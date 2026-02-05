@@ -51,10 +51,19 @@ NUM_ARTICLES = 3
 
 # Modèles IA utilisés
 OPENAI_MODEL = "gpt-4o-mini"
-GEMINI_MODEL = "gemini-2.0-flash-lite"
+
+# Liste des modèles Gemini à essayer en cascade (chaque modèle a son propre quota)
+GEMINI_MODELS = [
+    "gemini-2.0-flash",        # Modèle principal, très performant
+    "gemini-2.0-flash-lite",   # Version légère, quota séparé
+    "gemini-1.5-flash",        # Ancienne génération, quota séparé
+    "gemini-1.5-flash-8b",     # Version 8B, quota séparé
+    "gemini-1.5-pro",          # Version Pro, quota séparé
+]
 
 # Provider IA actif (déterminé automatiquement)
 AI_PROVIDER = None
+CURRENT_GEMINI_MODEL = None  # Modèle Gemini actuellement utilisé
 
 
 # =============================================================================
@@ -92,10 +101,10 @@ def get_ai_provider() -> str:
 
 def call_ai(system_prompt: str, user_prompt: str, temperature: float = 0.7, max_tokens: int = 500) -> str:
     """
-    Appelle le provider IA avec basculement automatique.
+    Appelle le provider IA avec basculement automatique multi-modèles.
     
-    Essaie d'abord OpenAI, puis bascule vers Gemini en cas d'erreur
-    (quota dépassé, erreur réseau, etc.).
+    Essaie d'abord OpenAI, puis bascule vers Gemini en cas d'erreur.
+    Pour Gemini, essaie plusieurs modèles en cascade jusqu'à ce qu'un fonctionne.
     
     Args:
         system_prompt: Instructions système pour l'IA
@@ -109,9 +118,9 @@ def call_ai(system_prompt: str, user_prompt: str, temperature: float = 0.7, max_
         str: Réponse générée par l'IA
     
     Raises:
-        RuntimeError: Si tous les providers échouent
+        RuntimeError: Si tous les providers et modèles échouent
     """
-    global AI_PROVIDER
+    global AI_PROVIDER, CURRENT_GEMINI_MODEL
     
     # ==========================================================================
     # TENTATIVE OPENAI
@@ -142,32 +151,55 @@ def call_ai(system_prompt: str, user_prompt: str, temperature: float = 0.7, max_
                 print(f"   🔄 Basculement vers Gemini...")
     
     # ==========================================================================
-    # FALLBACK GEMINI
+    # FALLBACK GEMINI - Essai de plusieurs modèles en cascade
     # ==========================================================================
     gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if gemini_key:
-        try:
-            from google import genai
-            from google.genai import types
-            
-            client = genai.Client(api_key=gemini_key)
-            
-            # Gemini n'a pas de "system prompt" séparé, on combine
-            full_prompt = f"{system_prompt}\n\n{user_prompt}"
-            
-            response = client.models.generate_content(
-                model=GEMINI_MODEL,
-                contents=full_prompt,
-                config=types.GenerateContentConfig(
-                    temperature=temperature,
-                    max_output_tokens=max_tokens
+        from google import genai
+        from google.genai import types
+        
+        client = genai.Client(api_key=gemini_key)
+        full_prompt = f"{system_prompt}\n\n{user_prompt}"
+        
+        last_error = None
+        for model_name in GEMINI_MODELS:
+            try:
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=full_prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens
+                    )
                 )
-            )
-            AI_PROVIDER = "gemini"
-            return response.text.strip()
-            
-        except Exception as e:
-            raise RuntimeError(f"❌ Erreur Gemini: {e}")
+                AI_PROVIDER = "gemini"
+                CURRENT_GEMINI_MODEL = model_name
+                print(f"   ✓ Gemini: modèle {model_name} utilisé avec succès")
+                return response.text.strip()
+                
+            except Exception as e:
+                error_msg = str(e).lower()
+                if "quota" in error_msg or "exhausted" in error_msg or "429" in str(e):
+                    print(f"   ⚠️ Gemini {model_name}: quota épuisé, essai du modèle suivant...")
+                    last_error = e
+                    continue
+                elif "not found" in error_msg or "404" in str(e):
+                    print(f"   ⚠️ Gemini {model_name}: modèle non disponible, essai du modèle suivant...")
+                    last_error = e
+                    continue
+                else:
+                    # Erreur non liée au quota, on la propage
+                    raise RuntimeError(f"❌ Erreur Gemini ({model_name}): {e}")
+        
+        # Tous les modèles ont échoué
+        raise RuntimeError(
+            f"❌ Tous les modèles Gemini ont échoué (quota épuisé).\n"
+            f"   Dernière erreur: {last_error}\n"
+            f"   💡 Solutions:\n"
+            f"      - Attendez le reset quotidien des quotas\n"
+            f"      - Activez la facturation sur Google AI Studio\n"
+            f"      - Rechargez votre crédit OpenAI"
+        )
     
     raise ValueError(
         "❌ Aucun provider IA disponible.\n"
