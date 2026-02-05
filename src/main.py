@@ -231,22 +231,28 @@ def translate_articles_to_french(news: list[dict]) -> list[dict]:
         for i, article in enumerate(news)
     ])
     
-    system_prompt = "Tu es un traducteur professionnel anglais-français spécialisé en cybersécurité."
+    system_prompt = "Tu es un traducteur anglais-français. Traduis TOUT le contenu demandé sans rien omettre."
     
-    user_prompt = f"""Traduis les titres et résumés suivants en français.
-Garde le même format de réponse avec les numéros d'articles.
+    user_prompt = f"""Traduis ces {len(news)} articles en français.
 
 {articles_text}
 
-Réponds uniquement avec le format suivant pour chaque article:
+Réponds EXACTEMENT avec ce format pour CHAQUE article:
 [ARTICLE 1]
-TITRE: <titre en français>
-RESUME: <résumé en français>
+TITRE: <titre traduit>
+RESUME: <résumé traduit en 2-3 phrases>
 
 [ARTICLE 2]
-...etc"""
+TITRE: <titre traduit>
+RESUME: <résumé traduit en 2-3 phrases>
 
-    translated_text = call_ai(system_prompt, user_prompt, temperature=0.3, max_tokens=1500)
+[ARTICLE 3]
+TITRE: <titre traduit>
+RESUME: <résumé traduit en 2-3 phrases>
+
+IMPORTANT: Traduis TOUS les articles, ne t'arrête pas avant d'avoir fini."""
+
+    translated_text = call_ai(system_prompt, user_prompt, temperature=0.3, max_tokens=2000)
     
     # Parser les traductions
     translated_articles = []
@@ -306,24 +312,23 @@ def generate_radio_script(news: list[dict]) -> str:
         for i, article in enumerate(news)
     ])
     
-    system_prompt = "Tu es un journaliste radio français spécialisé en cybersécurité."
+    system_prompt = "Tu es un journaliste radio français dynamique. Tu DOIS écrire un script COMPLET."
     
-    user_prompt = f"""Rédige un script de "Flash Info Cyber" en français.
+    user_prompt = f"""Écris un script radio "Flash Info Cyber" de 150-200 mots.
 
-CONTRAINTES:
-- Durée de lecture: environ 1 minute (150-180 mots)
-- Ton: professionnel mais accessible
-- Structure: introduction accrocheuse, 3 brèves actualités, conclusion
-- Style: phrases courtes et dynamiques pour la radio
-- Ne pas inclure les URLs
-- Commencer par une formule d'introduction engageante
-
-ACTUALITÉS DU JOUR:
+ACTUALITÉS:
 {news_content}
 
-Rédige uniquement le script, sans indication technique."""
+FORMAT OBLIGATOIRE:
+1. Introduction accrocheuse ("Bonjour et bienvenue...")
+2. Actualité 1 en 2-3 phrases
+3. Actualité 2 en 2-3 phrases  
+4. Actualité 3 en 2-3 phrases
+5. Conclusion ("Restez vigilants...")
 
-    return call_ai(system_prompt, user_prompt, temperature=0.7, max_tokens=500)
+Écris le script COMPLET maintenant, sans t'arrêter."""
+
+    return call_ai(system_prompt, user_prompt, temperature=0.7, max_tokens=800)
 
 
 def save_data_json(news: list[dict], script: str) -> None:
