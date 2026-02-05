@@ -1,28 +1,29 @@
 {
-  "generated_at": "2026-01-22T21:00:00Z",
+  "generated_at": "2026-02-05T10:09:42.231766Z",
   "articles": [
     {
-      "title": "New Osiris Ransomware Emerges as New Strain Using POORTRY Driver in BYOVD Attack",
-      "title_fr": "Le ransomware Osiris émerge avec le driver POORTRY dans une attaque BYOVD",
-      "url": "https://thehackernews.com/2026/01/new-osiris-ransomware-emerges-as-new.html",
-      "summary": "Cybersecurity researchers have disclosed details of a new ransomware family called Osiris that targeted a major food service franchisee operator in Southeast Asia in November 2025.",
-      "summary_fr": "Des chercheurs en cybersécurité ont révélé une nouvelle famille de ransomware nommée Osiris, ayant ciblé un important opérateur de restauration en Asie du Sud-Est en novembre 2025. Elle utilise une technique BYOVD pour désactiver les solutions de sécurité."
+      "title": "Critical n8n Flaw CVE-2026-25049 Enables System Command Execution via Malicious Workflows",
+      "url": "https://thehackernews.com/2026/02/critical-n8n-flaw-cve-2026-25049.html",
+      "summary": "A new, critical security vulnerability has been disclosed in the n8n workflow automation platform that, if successfully exploited, could result in the execution of arbitrary system commands.  The flaw, tracked as CVE-2026-25049  (CVSS score: 9.4), is the result of inadequate sanitization that bypasses safeguards put in place to address CVE-2025-68613  (CVSS score: 9.9), another critical defect that was patched by n8n in December 2025.  \"Additional exploits in the expression evaluation of n8n have been identified and patched following CVE-2025-68613,\" n8n's maintainers said  in an advisory released Wednesday.  \"An authenticated user with permission to create or modify workflows could abuse crafted expressions in workflow parameters to trigger unintended system command execution on the host running n8n.\"   The issue affects the following versions -   <1.123.17 (Fixed in 1.123.17)  <2.5.2 (Fixed in 2.5.2)",
+      "title_fr": "Une faille critique n8n (CVE-2026-25049) permet l'exécution de commandes système via des workflows malveillants",
+      "summary_fr": "Une nouvelle vulnérabilité de sécurité critique a"
     },
     {
-      "title": "Critical GNU InetUtils telnetd Flaw Lets Attackers Bypass Login and Gain Root Access",
-      "title_fr": "Faille critique GNU InetUtils : contournement de l'authentification et accès root",
-      "url": "https://thehackernews.com/2026/01/critical-gnu-inetutils-telnetd-flaw.html",
-      "summary": "A critical security flaw has been disclosed in the GNU InetUtils telnet daemon (telnetd) that went unnoticed for nearly 11 years. CVE-2026-24061 is rated 9.8/10.0.",
-      "summary_fr": "Une faille de sécurité critique vieille de 11 ans a été découverte dans le daemon telnet de GNU InetUtils. La CVE-2026-24061 obtient un score CVSS de 9.8/10 et permet d'obtenir un accès root sans authentification."
+      "title": "Malicious NGINX Configurations Enable Large-Scale Web Traffic Hijacking Campaign",
+      "url": "https://thehackernews.com/2026/02/hackers-exploit-react2shell-to-hijack.html",
+      "summary": "Cybersecurity researchers have disclosed details of an active web traffic hijacking campaign that has targeted NGINX installations and management panels like Baota (BT) in an attempt to route it through the attacker's infrastructure.  Datadog Security Labs said  it observed threat actors associated with the recent React2Shell  ( CVE-2025-55182 , CVSS score: 10.0) exploitation using malicious NGINX configurations to pull off the attack.  \"The malicious configuration intercepts legitimate web traffic between users and websites and routes it through attacker-controlled backend servers,\" security researcher Ryan Simon said. \"The campaign targets Asian TLDs (.in, .id, .pe, .bd, .th), Chinese hosting infrastructure (Baota Panel), and government and educational TLDs (.edu, .gov).\"   The activity involves the use of shell scripts to inject malicious configurations into NGINX, an open-source reverse proxy and load balancer for web traffic management. These \"locatio...",
+      "title_fr": "Malicious NGINX Configurations Enable Large-Scale Web Traffic Hijacking Campaign",
+      "summary_fr": "Cybersecurity researchers have disclosed details of an active web traffic hijacking campaign that has targeted NGINX installations and management panels like Baota (BT) in an attempt to route it through the attacker's infrastructure.  Datadog Security Labs said  it observed threat actors associated with the recent React2Shell  ( CVE-2025-55182 , CVSS score: 10.0) exploitation using malicious NGINX configurations to pull off the attack.  \"The malicious configuration intercepts legitimate web traffic between users and websites and routes it through attacker-controlled backend servers,\" security researcher Ryan Simon said. \"The campaign targets Asian TLDs (.in, .id, .pe, .bd, .th), Chinese hosting infrastructure (Baota Panel), and government and educational TLDs (.edu, .gov).\"   The activity involves the use of shell scripts to inject malicious configurations into NGINX, an open-source reverse proxy and load balancer for web traffic management. These \"locatio..."
     },
     {
-      "title": "ThreatsDay Bulletin: Pixel Zero-Click, Redis RCE, China C2s, RAT Ads, Crypto Scams",
-      "title_fr": "Bulletin ThreatsDay : Zero-Click Pixel, RCE Redis, C2 chinois et arnaques crypto",
-      "url": "https://thehackernews.com/2026/01/threatsday-bulletin-pixel-zero-click.html",
-      "summary": "Most of this week's threats didn't rely on new tricks. They relied on familiar systems behaving exactly as designed, just in the wrong hands.",
-      "summary_fr": "Les menaces de cette semaine ne reposent pas sur de nouvelles techniques. Les attaquants exploitent des systèmes de confiance mal configurés : vulnérabilité Pixel zero-click, RCE Redis, et serveurs C2 en provenance de Chine."
+      "title": "Microsoft Develops Scanner to Detect Backdoors in Open-Weight Large Language Models",
+      "url": "https://thehackernews.com/2026/02/microsoft-develops-scanner-to-detect.html",
+      "summary": "Microsoft on Wednesday said it built a lightweight scanner  that it said can detect backdoors in open-weight large language models (LLMs) and improve the overall trust in artificial intelligence (AI) systems.  The tech giant's AI Security team said the scanner leverages three observable signals that can be used to reliably flag the presence of backdoors while maintaining a low false positive rate.  \"These signatures are grounded in how trigger inputs measurably affect a model's internal behavior, providing a technically robust and operationally meaningful basis for detection,\" Blake Bullwinkel and Giorgio Severi said  in a report shared with The Hacker News.  LLMs can be susceptible to two types of tampering: model weights, which refer to learnable parameters within a machine learning model that undergird the decision-making logic and transform input data into predicted outputs, and the code itself.   Another type of attack is model poisoning, which occurs when a t...",
+      "title_fr": "Microsoft Develops Scanner to Detect Backdoors in Open-Weight Large Language Models",
+      "summary_fr": "Microsoft on Wednesday said it built a lightweight scanner  that it said can detect backdoors in open-weight large language models (LLMs) and improve the overall trust in artificial intelligence (AI) systems.  The tech giant's AI Security team said the scanner leverages three observable signals that can be used to reliably flag the presence of backdoors while maintaining a low false positive rate.  \"These signatures are grounded in how trigger inputs measurably affect a model's internal behavior, providing a technically robust and operationally meaningful basis for detection,\" Blake Bullwinkel and Giorgio Severi said  in a report shared with The Hacker News.  LLMs can be susceptible to two types of tampering: model weights, which refer to learnable parameters within a machine learning model that undergird the decision-making logic and transform input data into predicted outputs, and the code itself.   Another type of attack is model poisoning, which occurs when a t..."
     }
   ],
-  "script": "Bonjour et bienvenue dans votre Flash Info Cyber !\n\nAujourd'hui, trois actualités majeures secouent le monde de la cybersécurité.\n\nPremièrement, une nouvelle souche de ransomware baptisée Osiris fait parler d'elle. Elle a ciblé un important opérateur de restauration en Asie du Sud-Est, utilisant une technique sophistiquée pour désactiver les logiciels de sécurité.\n\nEnsuite, une faille critique vieille de onze ans a été découverte dans GNU InetUtils. Avec un score de 9,8 sur 10, cette vulnérabilité permet aux attaquants d'obtenir un accès root sans authentification.\n\nEnfin, notre bulletin ThreatsDay révèle que les menaces de cette semaine ne reposent pas sur de nouvelles techniques. Les attaquants exploitent simplement des systèmes de confiance mal configurés.\n\nRestez vigilants et à demain pour un nouveau Flash Info Cyber !",
-  "audio_file": "audio/latest_briefing.mp3"
+  "script": "Bonjour à toutes et à tous, bienvenue dans votre Flash Info Cyber. Restez connectés pour les",
+  "audio_file": "audio/latest_briefing.mp3",
+  "ai_provider": "gemini"
 }
