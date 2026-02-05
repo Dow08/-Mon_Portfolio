@@ -51,7 +51,7 @@ NUM_ARTICLES = 3
 
 # Modèles IA utilisés
 OPENAI_MODEL = "gpt-4o-mini"
-GEMINI_MODEL = "gemini-1.5-flash"
+GEMINI_MODEL = "gemini-2.0-flash"
 
 # Provider IA actif (déterminé automatiquement)
 AI_PROVIDER = None
@@ -147,17 +147,18 @@ def call_ai(system_prompt: str, user_prompt: str, temperature: float = 0.7, max_
     gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if gemini_key:
         try:
-            import google.generativeai as genai
+            from google import genai
+            from google.genai import types
             
-            genai.configure(api_key=gemini_key)
-            model = genai.GenerativeModel(GEMINI_MODEL)
+            client = genai.Client(api_key=gemini_key)
             
             # Gemini n'a pas de "system prompt" séparé, on combine
             full_prompt = f"{system_prompt}\n\n{user_prompt}"
             
-            response = model.generate_content(
-                full_prompt,
-                generation_config=genai.types.GenerationConfig(
+            response = client.models.generate_content(
+                model=GEMINI_MODEL,
+                contents=full_prompt,
+                config=types.GenerateContentConfig(
                     temperature=temperature,
                     max_output_tokens=max_tokens
                 )
