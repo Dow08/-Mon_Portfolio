@@ -51,7 +51,7 @@ NUM_ARTICLES = 3
 
 # Modèles IA utilisés
 OPENAI_MODEL = "gpt-4o-mini"
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-2.0-flash-lite"
 
 # Provider IA actif (déterminé automatiquement)
 AI_PROVIDER = None
