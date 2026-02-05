@@ -512,8 +512,9 @@ async function renderCyberNews() {
     if (!newsGrid) return;
 
     try {
-        // Fetch local data.json
-        const response = await fetch('./cyber-news/data.json');
+        // Fetch local data.json with cache busting
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`./cyber-news/data.json?t=${cacheBuster}`);
 
         if (!response.ok) {
             throw new Error('Données non disponibles');
@@ -540,7 +541,7 @@ async function renderCyberNews() {
             // data.audio_file est relatif (ex: "audio/latest_briefing.mp3")
             const audioPath = `./cyber-news/${data.audio_file}?t=${new Date().getTime()}`;
             console.log('🔊 [CyberPulse] Updating audio source:', audioPath);
-            
+
             audioPlayer.src = audioPath;
             audioPlayer.load(); // Force le rechargement du flux
         }
