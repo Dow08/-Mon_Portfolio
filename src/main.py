@@ -53,12 +53,13 @@ NUM_ARTICLES = 3
 OPENAI_MODEL = "gpt-4o-mini"
 
 # Liste des modèles Gemini à essayer en cascade (chaque modèle a son propre quota)
+# Gemini 1.5 est déprécié, utiliser Gemini 2.0 et 2.5
 GEMINI_MODELS = [
-    "gemini-2.0-flash",        # Modèle principal, très performant
-    "gemini-2.0-flash-lite",   # Version légère, quota séparé
-    "gemini-1.5-flash",        # Ancienne génération, quota séparé
-    "gemini-1.5-flash-8b",     # Version 8B, quota séparé
-    "gemini-1.5-pro",          # Version Pro, quota séparé
+    "gemini-2.5-flash",        # Nouveau modèle par défaut (juin 2025)
+    "gemini-2.5-flash-lite",   # Version légère 2.5, très économique
+    "gemini-2.0-flash",        # Version 2.0, stable
+    "gemini-2.0-flash-lite",   # Version légère 2.0
+    "gemini-2.5-pro",          # Version Pro (quota limité mais puissant)
 ]
 
 # Provider IA actif (déterminé automatiquement)
