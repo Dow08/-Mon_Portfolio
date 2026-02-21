@@ -15,39 +15,44 @@
 
 const MES_PROJETS = [
     {
-        titre: "Audit Sécurité Infrastructure",
-        description: "Analyse complète des vulnérabilités d'une infrastructure d'entreprise avec mise en place de recommandations de remédiation et hardening.",
-        tags: ["Pentest", "Nmap", "Metasploit", "Burp Suite"],
-        lien: "https://github.com/Dow08",
-        icone: "fas fa-search"
+        titre: "Agent RGPD — LÉA",
+        description: "LÉA (Liberté, Expertise, Assistance) — IA conversationnelle entièrement locale dédiée à la conformité RGPD et à l'assistance juridique.",
+        tags: ["Python", "IA Locale", "RGPD", "LLM"],
+        lien: "https://github.com/Dow08/Agent_RGPD",
+        icone: "🤖",
+        date: "Fév 2026"
     },
     {
-        titre: "SOC Monitoring Dashboard",
-        description: "Développement d'un tableau de bord de surveillance sécurité en temps réel avec alertes personnalisées et corrélation d'événements.",
-        tags: ["SIEM", "Python", "ELK Stack", "Grafana"],
-        lien: "https://github.com/Dow08",
-        icone: "fas fa-shield-alt"
+        titre: "Mon Portfolio",
+        description: "Portfolio cybersécurité avec pipeline CyberPulse : scraping, traduction IA, génération audio et déploiement automatisé via GitHub Actions.",
+        tags: ["HTML", "CSS", "JavaScript", "Python", "GitHub Actions"],
+        lien: "https://github.com/Dow08/Mon_Portfolio",
+        icone: "🌐",
+        date: "Fév 2026"
     },
     {
-        titre: "Automatisation DevSecOps",
-        description: "Pipeline CI/CD sécurisé avec intégration de scans de vulnérabilités automatisés et tests de sécurité continus.",
-        tags: ["GitHub Actions", "Docker", "OWASP ZAP", "SonarQube"],
-        lien: "https://github.com/Dow08",
-        icone: "fas fa-cogs"
+        titre: "Moltbot v1",
+        description: "Bot personnalisé Moltbot v1 — automatisation d'interactions et intégration de fonctionnalités intelligentes.",
+        tags: ["TypeScript", "Bot", "Automatisation"],
+        lien: "https://github.com/Dow08/Moltbot",
+        icone: "⚡",
+        date: "Fév 2026"
     },
     {
-        titre: "CTF Write-ups Collection",
-        description: "Documentation détaillée des challenges CTF résolus sur TryHackMe et HackTheBox avec méthodologies d'exploitation.",
-        tags: ["CTF", "Writeups", "Exploitation", "Forensics"],
-        lien: "https://github.com/Dow08",
-        icone: "fas fa-spider"
-    },
-    {
-        titre: "CyberDailyWatch",
-        description: "Agrégateur automatisé d'actualités cybersécurité avec briefings audio générés par IA. Scraping quotidien, résumés GPT et interface web futuriste.",
-        tags: ["Python", "OpenAI", "GitHub Actions", "TTS"],
+        titre: "ActuCybersécurité",
+        description: "Scraper d'actualités cybersécurité avec génération automatique de podcasts audio — ancêtre du pipeline CyberPulse.",
+        tags: ["Python", "Scraping", "Podcast", "Cybersécurité"],
         lien: "https://github.com/Dow08/ActuCybersecurite",
-        icone: "fas fa-satellite-dish"
+        icone: "📡",
+        date: "Jan 2026"
+    },
+    {
+        titre: "TRP",
+        description: "Projet de développement web HTML — travaux pratiques et expérimentations front-end.",
+        tags: ["HTML", "Web"],
+        lien: "https://github.com/Dow08/TRP",
+        icone: "📄",
+        date: "Oct 2025"
     }
 ];
 
@@ -55,33 +60,79 @@ const MES_PROJETS = [
 // 🎯 MES COMPÉTENCES
 // ----------------------------------------
 
-const MES_COMPETENCES = {
-    cyber: {
-        titre: "Cybersécurité",
+const MES_COMPETENCES = [
+    {
+        categorie: "🛡️ Cybersécurité & Sécurité Offensive",
         icone: "fas fa-shield-alt",
-        items: ["Pentest", "SIEM/SOC", "OWASP Top 10", "Forensics", "Threat Hunting", "Incident Response"]
+        couleur: "cyber",
+        items: [
+            { nom: "Test d'intrusion (Pentest)", niveau: 80, badge: "Jedha" },
+            { nom: "Sécurité Web", niveau: 80, badge: "Jedha" },
+            { nom: "Sécurité Réseau", niveau: 75, badge: "Jedha" },
+            { nom: "Sécurité Système", niveau: 75, badge: "Jedha" },
+            { nom: "Source Intelligence (OSINT)", niveau: 70, badge: "Jedha" },
+            { nom: "Cybersécurité (générale)", niveau: 85, badge: null },
+            { nom: "CTF & Challenges (TryHackMe)", niveau: 70, badge: null }
+        ]
     },
-    dev: {
-        titre: "Développement",
+    {
+        categorie: "💻 Informatique & Développement",
         icone: "fas fa-code",
-        items: ["Python", "JavaScript", "SQL", "API REST", "Bash/PowerShell", "Git"]
+        couleur: "dev",
+        items: [
+            { nom: "Prompting IA & LLM", niveau: 85, badge: "Jedha" },
+            { nom: "Administration Réseau", niveau: 75, badge: "Jedha" },
+            { nom: "Python", niveau: 70, badge: null },
+            { nom: "TypeScript / Bots", niveau: 60, badge: null },
+            { nom: "HTML / CSS / JS", niveau: 65, badge: null },
+            { nom: "Maintenance & Réparation Informatique", niveau: 90, badge: null },
+            { nom: "Installation Matériel & Dépannage", niveau: 90, badge: null },
+            { nom: "Conseil en Informatique", niveau: 85, badge: null },
+            { nom: "GitHub Actions & CI/CD", niveau: 65, badge: null }
+        ]
     },
-    reseau: {
-        titre: "Réseau & Infrastructure",
-        icone: "fas fa-network-wired",
-        items: ["Linux", "Windows Server", "Active Directory", "Cloud AWS/Azure", "Docker", "Firewall"]
+    {
+        categorie: "📊 Management & Commerce",
+        icone: "fas fa-chart-bar",
+        couleur: "management",
+        items: [
+            { nom: "Gestion de Magasin & Encadrement Équipe", niveau: 95, badge: "Carrefour" },
+            { nom: "Recrutement & RH", niveau: 85, badge: "Carrefour" },
+            { nom: "E-commerce & Optimisation", niveau: 80, badge: "Carrefour" },
+            { nom: "Stratégie de Vente & Marketing", niveau: 85, badge: "Carrefour" },
+            { nom: "Analyse Marketing & Merchandising", niveau: 80, badge: "Carrefour" },
+            { nom: "Logistique & Analyse", niveau: 75, badge: "Carrefour" },
+            { nom: "Comptabilité & Gestion", niveau: 70, badge: "Carrefour" },
+            { nom: "Développement des Ventes", niveau: 85, badge: "Carrefour" }
+        ]
+    },
+    {
+        categorie: "🤝 Soft Skills & Transversal",
+        icone: "fas fa-users",
+        couleur: "soft",
+        items: [
+            { nom: "Adaptabilité", niveau: 95, badge: null },
+            { nom: "Prise d'initiative", niveau: 90, badge: null },
+            { nom: "Esprit d'équipe", niveau: 90, badge: null },
+            { nom: "Sens de l'organisation", niveau: 90, badge: null },
+            { nom: "Autonomie", niveau: 90, badge: null },
+            { nom: "Communication", niveau: 85, badge: null },
+            { nom: "Résolution de problèmes", niveau: 85, badge: null },
+            { nom: "Relations publiques", niveau: 75, badge: null }
+        ]
     }
-};
+];
 
 // ----------------------------------------
 // 📊 MES STATS
 // ----------------------------------------
 
-const MES_STATS = [
-    { valeur: "99.9%", label: "Uptime" },
-    { valeur: "15min", label: "Response" },
-    { valeur: "200+", label: "Systems" },
-    { valeur: "350+", label: "Threats" }
+const HERO_BADGES = [
+    { label: 'G.R.C Consulting', icone: '📋', color: 'gold' },
+    { label: 'Cybersécurité', icone: '🛡️', color: 'cyber' },
+    { label: 'Pentest Junior & OSINT', icone: '🔍', color: 'cyber' },
+    { label: 'IA & Automatisation', icone: '🤖', color: 'purple' },
+    { label: 'Administration Sys.', icone: '🖥️', color: 'green' }
 ];
 
 // ----------------------------------------
@@ -274,6 +325,19 @@ function initNavigation() {
             // Re-init reveal animations
             initScrollReveal();
 
+            // Animer les barres de compétences si on navigue vers Skills
+            if (pageId === 'skills') {
+                setTimeout(() => animerBarresCompetences(), 400);
+            }
+
+            // Animer stats + typewriter si on revient vers Home
+            if (pageId === 'home') {
+                setTimeout(() => {
+                    initTypewriter();
+                    animerStats();
+                }, 400);
+            }
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -319,19 +383,90 @@ function initScrollReveal() {
 }
 
 // ========================================
+// 📊 ANIMATION BARRES COMPÉTENCES
+// ========================================
+
+function animerBarresCompetences() {
+    const barres = document.querySelectorAll('.skill-bar__fill');
+    barres.forEach((barre, index) => {
+        const niveau = barre.getAttribute('data-level');
+        setTimeout(() => {
+            barre.style.width = niveau + '%';
+        }, 100 + index * 30);
+    });
+}
+
+// ========================================
 // 🖥️ DYNAMIC RENDERING
 // ========================================
 
-function renderStats() {
-    const container = document.getElementById('hero-stats');
+function renderHeroBadges() {
+    const container = document.getElementById('hero-badges');
     if (!container) return;
 
-    container.innerHTML = MES_STATS.map(stat => `
-        <div class="hero-stat">
-            <span class="stat-value">${stat.valeur}</span>
-            <span class="stat-label">${stat.label}</span>
-        </div>
+    container.innerHTML = HERO_BADGES.map(b => `
+        <span class="hero-badge hero-badge--${b.color}">
+            <span class="hero-badge__icon">${b.icone}</span>
+            ${b.label}
+        </span>
     `).join('');
+}
+
+// ========================================
+// ⌨️ TYPEWRITER EFFECT
+// ========================================
+
+function initTypewriter() {
+    const el = document.getElementById('hero-typewriter');
+    if (!el) return;
+
+    // Stop any previous typewriter
+    if (window._typewriterTimer) clearTimeout(window._typewriterTimer);
+
+    const phrases = [
+        'Futur Analyste GRC',
+        'Chef d\'Entreprise actif',
+        'Passionné de Cybersécurité'
+    ];
+
+    let phraseIdx = 0, charIdx = 0, deleting = false;
+
+    function type() {
+        const current = phrases[phraseIdx];
+        if (!deleting) {
+            el.textContent = current.slice(0, ++charIdx);
+            if (charIdx === current.length) {
+                deleting = true;
+                window._typewriterTimer = setTimeout(type, 2000);
+                return;
+            }
+        } else {
+            el.textContent = current.slice(0, --charIdx);
+            if (charIdx === 0) {
+                deleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+            }
+        }
+        window._typewriterTimer = setTimeout(type, deleting ? 50 : 80);
+    }
+    type();
+}
+
+// ========================================
+// 📊 ANIMATED STATS COUNTER
+// ========================================
+
+function animerStats() {
+    document.querySelectorAll('.hero-stat__value').forEach(el => {
+        const target = parseInt(el.getAttribute('data-target'));
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = current;
+            if (current >= target) clearInterval(timer);
+        }, 40);
+    });
 }
 
 function renderProjects() {
@@ -341,17 +476,18 @@ function renderProjects() {
     container.innerHTML = MES_PROJETS.map((projet, i) => `
         <div class="project-card reveal" style="transition-delay: ${i * 0.1}s">
             <div class="project-icon">
-                <i class="${projet.icone}"></i>
+                <span class="project-icon-emoji">${projet.icone}</span>
             </div>
             <h3 class="project-title">${projet.titre}</h3>
             <p class="project-description">${projet.description}</p>
             <div class="project-tags">
                 ${projet.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
-            <a href="${projet.lien}" target="_blank" class="project-link">
+            <a href="${projet.lien}" target="_blank" rel="noopener noreferrer" class="project-link">
                 <i class="fab fa-github"></i> Code Source
                 <i class="fas fa-arrow-right"></i>
             </a>
+            <span class="project-date">${projet.date}</span>
         </div>
     `).join('');
 }
@@ -360,16 +496,27 @@ function renderSkills() {
     const container = document.getElementById('skills-grid');
     if (!container) return;
 
-    container.innerHTML = Object.values(MES_COMPETENCES).map((cat, i) => `
-        <div class="skill-category reveal" style="transition-delay: ${i * 0.1}s">
-            <div class="skill-header">
-                <div class="skill-icon">
-                    <i class="${cat.icone}"></i>
-                </div>
-                <h3 class="skill-title">${cat.titre}</h3>
-            </div>
-            <div class="skill-items">
-                ${cat.items.map(item => `<span class="skill-item">${item}</span>`).join('')}
+    container.innerHTML = MES_COMPETENCES.map((cat, i) => `
+        <div class="skills-category skills-category--${cat.couleur} reveal" style="transition-delay: ${i * 0.1}s">
+            <h3 class="skills-category__title">
+                <i class="${cat.icone}"></i> ${cat.categorie}
+            </h3>
+            <div class="skills-list">
+                ${cat.items.map(item => `
+                    <div class="skill-item-row">
+                        <div class="skill-item__header">
+                            <span class="skill-item__name">${item.nom}</span>
+                            ${item.badge ? `<span class="skill-badge">${item.badge}</span>` : ''}
+                            <span class="skill-item__level">${item.niveau}%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar__fill skill-bar__fill--${cat.couleur}" 
+                                 style="width: 0%" 
+                                 data-level="${item.niveau}">
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
             </div>
         </div>
     `).join('');
@@ -432,7 +579,7 @@ function renderContact() {
         </div>
         
         <div class="contact-form-card reveal reveal-delay-1">
-            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="contact-form">
                 <input type="hidden" name="_subject" value="Nouveau message depuis le Portfolio">
                 <input type="hidden" name="_captcha" value="false">
                 <div class="form-group">
@@ -459,40 +606,33 @@ function renderContact() {
         </div>
     `;
 
-    // Form handler with Formspree integration
+    // Form handler with mailto
     const form = document.getElementById('contact-form');
     if (form) {
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const submitBtn = document.getElementById('submit-btn');
-            const originalText = submitBtn.innerHTML;
+            const originalHTML = submitBtn.innerHTML;
 
-            // Loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Envoi...</span>';
+            // Récupérer les valeurs
+            const nom = form.querySelector('input[name="name"]').value;
+            const sujet = form.querySelector('input[name="subject"]').value;
+            const message = form.querySelector('textarea[name="message"]').value;
+
+            // Construire le lien mailto
+            const mailtoLink = `mailto:Dow@ikmail.com?subject=${encodeURIComponent(sujet + ' - Message de ' + nom)}&body=${encodeURIComponent(message)}`;
+            window.location.href = mailtoLink;
+
+            // Feedback visuel
+            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>Redirection vers votre client email...</span>';
             submitBtn.disabled = true;
+            showToast('✅ Redirection vers votre client email !');
 
-            try {
-                const formData = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    showToast('✅ Message envoyé avec succès !');
-                    form.reset();
-                } else {
-                    throw new Error('Erreur serveur');
-                }
-            } catch (error) {
-                console.error('Erreur envoi formulaire:', error);
-                showToast('❌ Erreur lors de l\'envoi. Réessayez.');
-            } finally {
-                submitBtn.innerHTML = originalText;
+            setTimeout(() => {
+                submitBtn.innerHTML = originalHTML;
                 submitBtn.disabled = false;
-            }
+            }, 3000);
         });
     }
 }
@@ -576,8 +716,11 @@ async function renderCyberNews() {
 
         // Display script if available
         if (scriptSection && scriptContent && data.script) {
+            const scriptRadio = data.script && data.script.trim().length > 50
+                ? data.script
+                : "\u26a0\ufe0f Script radio non disponible pour cette session. Consultez les articles ci-dessous.";
             scriptSection.style.display = 'block';
-            scriptContent.textContent = data.script;
+            scriptContent.textContent = scriptRadio;
         }
 
     } catch (error) {
@@ -751,11 +894,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Render all sections
-    renderStats();
+    renderHeroBadges();
     renderProjects();
     renderSkills();
     renderContact();
     renderCyberNews();
+
+    // Initialize hero animations
+    initTypewriter();
+    animerStats();
 
     // Initialize interactions
     initNavigation();

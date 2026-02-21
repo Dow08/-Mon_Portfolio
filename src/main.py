@@ -151,21 +151,23 @@ def generate_script(news: list[dict]) -> str:
         for i, a in enumerate(news)
     ])
 
-    prompt = f"""Écris un script radio "Flash Info Cyber" de 150-200 mots.
+    prompt = f"""Écris un script radio "Flash Info Cyber" de 200 à 250 mots en français.
 
-ACTUALITÉS:
+ACTUALITÉS DU JOUR :
 {content}
 
-FORMAT OBLIGATOIRE:
-1. Introduction accrocheuse ("Bonjour et bienvenue...")
-2. Actualité 1 en 2-3 phrases
-3. Actualité 2 en 2-3 phrases
-4. Actualité 3 en 2-3 phrases
-5. Conclusion ("Restez vigilants...")
+CONSIGNES STRICTES :
+1. Commence par une accroche engageante ("Bonjour et bienvenue dans votre Flash Info Cyber du jour...")
+2. Résume chaque actualité en 2-3 phrases concrètes, en te basant sur les résumés fournis
+3. Termine par une conclusion ("Restez vigilants, et à demain pour un nouveau flash...")
+4. Le texte doit être FLUIDE et naturel à l'oral, comme un vrai présentateur radio
+5. NE PAS utiliser de markdown, de gras, de listes à puces, de numérotation ni de crochets
+6. NE PAS écrire les titres bruts des articles, reformule-les naturellement
+7. Le script doit être du TEXTE BRUT uniquement, prêt à être lu par un synthétiseur vocal
 
-Écris le script COMPLET maintenant."""
+Écris le script COMPLET maintenant, en texte brut."""
 
-    return call_ai("Tu es un journaliste radio français dynamique.", prompt, 0.7, 800)
+    return call_ai("Tu es un journaliste radio français dynamique et professionnel.", prompt, 0.7, 1200)
 
 
 def save_data(news: list[dict], script: str) -> None:
