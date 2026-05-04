@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-02T09:02:00.375553Z",
+  "articles": [
+    {
+      "title": "Trellix Confirms Source Code Breach With Unauthorized Repository Access",
+      "url": "https://thehackernews.com/2026/05/trellix-confirms-source-code-breach.html",
+      "summary": "Cybersecurity company Trellix has announced  that it suffered a breach that enabled unauthorized access to a \"portion\" of its source code.  It said it \"recently identified\" the compromise of its source code repository and that it began working with \"leading forensic experts\" to resolve the matter immediately. It also said it has notified law enforcement of the matter.  Trellix did not disclose the exact nature of the data that may have been accessed by the attackers. However, it pointed out that there are no indications that its source code has been affected or exploited.   \"Based on our investigation to date, we have found no evidence that our source code release or distribution process was affected, or that our source code has been exploited,\" the company added.   The company did not share any details about who may be behind the incident, and for how long the attackers had access to its systems. Trellix noted that additional information will b...",
+      "title_fr": "Trellix confirme une violation de son code source avec accès non autorisé à un dépôt",
+      "summary_fr": "L'entreprise de cybersécurité Trellix a annoncé avoir subi une violation ayant permis un accès non autorisé à une \"partie\" de son code source. L'entreprise a identifié le compromis, a engagé des experts légistes et a informé les forces de l'ordre. Bien que la nature exacte des données consultées n'ait pas été divulguée, Trellix n'a trouvé aucune preuve d'exploitation de son code source ni d'impact sur son processus de distribution."
+    },
+    {
+      "title": "30,000 Facebook Accounts Hacked via Google AppSheet Phishing Campaign",
+      "url": "https://thehackernews.com/2026/05/30000-facebook-accounts-hacked-via.html",
+      "summary": "A newly discovered Vietnamese-linked operation has been observed using a Google AppSheet as a \"phishing relay\" to distribute phishing emails with an aim to compromise Facebook accounts.  The activity has been codenamed AccountDumpling  by Guardio, with the scheme selling the stolen accounts back through an illicit storefront run by the threat actors. In all, roughly 30,000 Facebook accounts are estimated to have been hacked as part of the campaign.  \"What we found wasn't a single phishing kit,\" security researcher Shaked Chen wrote  in a report shared with The Hacker News. \"It was a living operation with real-time operator panels, advanced evasion, continuous evolution and a criminal-commercial loop that quietly feeds on the same accounts it helps steal back.\"  The findings are just the latest example of how Vietnamese threat actors  continue to embrace various tactics  to gain unauthorized access to victims' Facebook accounts, which are then sold...",
+      "title_fr": "30 000 comptes Facebook piratés via une campagne de phishing utilisant Google AppSheet",
+      "summary_fr": "Une opération liée au Vietnam, nommée AccountDumpling, a utilisé Google AppSheet comme \"relais de phishing\" pour compromettre environ 30 000 comptes Facebook. Les comptes volés sont ensuite revendus via une vitrine illicite gérée par les acteurs de la menace. Cette campagne illustre les tactiques évolutives des acteurs de la menace vietnamiens pour voler et monétiser des comptes Facebook."
+    },
+    {
+      "title": "Cybercrime Groups Using Vishing and SSO Abuse in Rapid SaaS Extortion Attacks",
+      "url": "https://thehackernews.com/2026/05/cybercrime-groups-using-vishing-and-sso.html",
+      "summary": "Cybersecurity researchers are warning of two cybercrime groups that are carrying out \"rapid, high-impact attacks\" operating almost within the confines of SaaS environments, while leaving minimal traces of their actions.  The clusters, Cordial Spider  (aka BlackFile, CL-CRI-1116, O-UNC-045, and UNC6671) and Snarky Spider  (aka O-UNC-025 and UNC6661), have been attributed to high-speed data theft and extortion campaigns that share a remarkable degree of operational similarities. Both hacking groups are assessed to be active since at least October 2025, with the latter a native English-speaking crew sharing ties to the e-crime ecosystem known as The Com .  \"In most cases, these adversaries use voice phishing (vishing) to direct targeted users to malicious, SSO-themed adversary-in-the-middle (AiTM) pages, where they capture authentication data and pivot directly into SSO-integrated SaaS applications,\" CrowdStrike's Counter Adversary Operations said  in a report.   ...",
+      "title_fr": "Des groupes cybercriminels utilisent le vishing et l'abus de SSO dans des attaques d'extorsion SaaS rapides",
+      "summary_fr": "Des chercheurs en cybersécurité alertent sur deux groupes cybercriminels, Cordial Spider et Snarky Spider, menant des attaques \"rapides et à fort impact\" dans les environnements SaaS. Ces groupes utilisent le hameçonnage vocal (vishing) pour diriger les utilisateurs vers des pages malveillantes simulant le SSO. Ils capturent ensuite les données d'authentification pour accéder aux applications SaaS intégrées au SSO, en vue de vol de données et d'extorsion."
+    }
+  ],
+  "script": "Bonjour et bienvenue dans votre Flash Info Cyber du jour, l'actualité brûlante de la cybersécurité décryptée pour vous.\n\nNous débutons avec l'entreprise de cybersécurité Trellix qui a confirmé une",
+  "audio_file": "audio/latest_briefing.mp3",
+  "ai_provider": "gemini"
+}
