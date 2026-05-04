@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ══ Favicon ══ -->
+    <link rel="icon" type="image/png" href="./assets/images/cyber-shield.png">
+    <link rel="apple-touch-icon" href="./assets/images/cyber-shield.png">
+
+    <!-- ══ SEO ══ -->
+    <meta name="description"
+        content="Portfolio de Poncelet Dorian — Administrateur Système & Cybersécurité. Projets, compétences, veille cyber automatisée et contact.">
+    <meta name="author" content="Poncelet Dorian">
+    <meta name="keywords"
+        content="cybersécurité, portfolio, Poncelet Dorian, CTF, sécurité informatique, administration système, TryHackMe, GitHub">
+
+    <!-- ══ Open Graph (LinkedIn, Discord, Facebook) ══ -->
+    <meta property="og:title" content="Poncelet Dorian — Portfolio Cybersécurité">
+    <meta property="og:description"
+        content="Administrateur Système & Cybersécurité passionné. Découvrez mes projets, compétences et veille cyber quotidienne.">
+    <meta property="og:image" content="https://dow08.github.io/Mon_Portfolio/assets/images/cyber-shield.png">
+    <meta property="og:url" content="https://dow08.github.io/Mon_Portfolio">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Portfolio Poncelet Dorian">
+
+    <!-- ══ Twitter / X Card ══ -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Poncelet Dorian — Portfolio Cybersécurité">
+    <meta name="twitter:description"
+        content="Administrateur Système & Cybersécurité. Projets, CTF, veille cyber automatisée.">
+    <meta name="twitter:image" content="https://dow08.github.io/Mon_Portfolio/assets/images/cyber-shield.png">
+
+    <!-- ══ Profils sociaux ══ -->
+    <link rel="me" href="https://github.com/Dow08">
+    <link rel="me" href="https://www.linkedin.com/in/dorian-poncelet-1807612b5">
+
+    <title>Dorian Poncelet | Cybersécurité</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <!-- Aurora Orbs -->
+        <div class="aurora-orb aurora-orb-1"></div>
+        <div class="aurora-orb aurora-orb-2"></div>
+        <div class="aurora-orb aurora-orb-3"></div>
+        <div class="aurora-orb aurora-orb-4"></div>
+
+        <!-- Particle Canvas -->
+        <canvas id="particles-canvas"></canvas>
+
+        <!-- Grid Overlay -->
+        <div class="grid-overlay"></div>
+
+        <!-- Floating Decorative Elements -->
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+            <div class="floating-shape shape-5"></div>
+            <div class="floating-shape shape-ring"></div>
+            <div class="floating-shape shape-ring shape-ring-2"></div>
+        </div>
+    </div>
+
+    <!-- Navigation Capsule -->
+    <nav class="nav-capsule">
+        <a href="#" class="nav-link active" data-page="home">
+            <i class="fas fa-home"></i><span>Accueil</span>
+        </a>
+        <a href="#" class="nav-link" data-page="projects">
+            <i class="fas fa-rocket"></i><span>Projets</span>
+        </a>
+        <a href="#" class="nav-link" data-page="skills">
+            <i class="fas fa-cogs"></i><span>Compétences</span>
+        </a>
+        <a href="#" class="nav-link" data-page="contact">
+            <i class="fas fa-envelope"></i><span>Contact</span>
+        </a>
+        <a href="#" class="nav-link" data-page="cyber-news">
+            <i class="fas fa-satellite-dish"></i><span>Cyber News</span>
+        </a>
+    </nav>
+
+    <!-- Pages Container -->
+    <div class="pages-container">
+
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page-section active">
+            <div class="page-content">
+                <div class="home-content">
+                    <!-- ZONE 1 — Avatar enrichi avec anneau SVG rotatif + statut live -->
+                    <div class="hero-avatar-wrapper">
+                        <svg class="hero-avatar-ring" viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(0,255,136,0.15)"
+                                stroke-width="1" />
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#00ff88" stroke-width="2"
+                                stroke-dasharray="60 480" stroke-linecap="round">
+                                <animateTransform attributeName="transform" type="rotate" from="0 100 100"
+                                    to="360 100 100" dur="8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="100" cy="10" r="3" fill="#00ff88" opacity="0.6" />
+                            <circle cx="190" cy="100" r="3" fill="#00ff88" opacity="0.6" />
+                            <circle cx="100" cy="190" r="3" fill="#00ff88" opacity="0.6" />
+                            <circle cx="10" cy="100" r="3" fill="#00ff88" opacity="0.6" />
+                        </svg>
+                        <div class="hero-avatar-img">
+                            <img src="./assets/images/cyber-shield.png" alt="Dorian Poncelet" />
+                        </div>
+                        <div class="hero-avatar-status">
+                            <span class="status-dot"></span>
+                            <span class="status-text">En reconversion active</span>
+                        </div>
+                    </div>
+
+                    <!-- ZONE 2 — Texte Hero avec typewriter -->
+                    <div class="hero-text">
+                        <div class="hero-tag">// profil.init()</div>
+                        <h1 class="hero-name">Dorian Poncelet</h1>
+                        <p class="hero-role">
+                            <span class="typewriter" id="hero-typewriter"></span>
+                            <span class="cursor-blink">|</span>
+                        </p>
+                        <p class="hero-subtitle">Administrateur Système &amp; Cybersécurité</p>
+                        <p class="hero-desc">
+                            Spécialisé dans la sécurisation des infrastructures, la détection des menaces
+                            et la réponse aux incidents pour les environnements professionnels.
+                        </p>
+                    </div>
+
+                    <!-- ZONE 3 — Badges de compétences enrichis -->
+                    <div class="hero-badges" id="hero-badges">
+                        <!-- Rendered by JS -->
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="hero-cta">
+                        <a href="#" class="cta-btn cta-primary" data-page="projects">
+                            <i class="fas fa-rocket"></i> Voir mes projets
+                        </a>
+                        <a href="#" class="cta-btn cta-secondary" data-page="contact">
+                            <i class="fas fa-envelope"></i> Me contacter
+                        </a>
+                    </div>
+
+                    <!-- ZONE 4 — Stats animées -->
+                    <div class="hero-stats" id="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat__value" data-target="99">0</span><span
+                                class="hero-stat__unit">%</span>
+                            <span class="hero-stat__label">Uptime</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="hero-stat__value" data-target="5">0</span>
+                            <span class="hero-stat__label">Projets GitHub</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="hero-stat__value" data-target="3">0</span>
+                            <span class="hero-stat__label">Certifications</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="hero-stat__value" data-target="15">0</span><span
+                                class="hero-stat__unit">+</span>
+                            <span class="hero-stat__label">Ans d'exp. pro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS PAGE -->
+        <section id="page-projects" class="page-section">
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">Mes Projets</h1>
+                    <p class="page-subtitle">
+                        Découvrez mes réalisations en cybersécurité, développement et automatisation
+                    </p>
+                </div>
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS PAGE -->
+        <section id="page-skills" class="page-section">
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">Compétences</h1>
+                    <p class="page-subtitle">
+                        Mes domaines d'expertise technique acquis par la formation et la pratique
+                    </p>
+                </div>
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="page-contact" class="page-section">
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">Contact</h1>
+                    <p class="page-subtitle">
+                        Restons en contact pour discuter cybersécurité et opportunités
+                    </p>
+                </div>
+                <div class="contact-grid" id="contact-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CYBER NEWS PAGE -->
+        <section id="page-cyber-news" class="page-section">
+            <div class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">Actualités Cyber</h1>
+                    <p class="page-subtitle">
+                        Briefing quotidien automatisé des dernières menaces et actualités cybersécurité
+                    </p>
+                </div>
+
+                <!-- Audio Briefing Card -->
+                <div class="cyber-audio-card" id="cyber-audio-card">
+                    <div class="audio-header">
+                        <div class="audio-badge">
+                            <span class="badge-live"></span>
+                            <span>🔊 Briefing du jour</span>
+                        </div>
+                        <div class="audio-meta" id="audio-meta">
+                            <span id="cyber-update-date">Chargement...</span>
+                        </div>
+                    </div>
+
+                    <!-- Custom Audio Player -->
+                    <div class="custom-audio-player" id="custom-audio-player">
+                        <!-- Hidden native audio element -->
+                        <audio id="cyber-audio-player" aria-label="Lecture du briefing cybersécurité quotidien">
+                            <source src="cyber-news/audio/latest_briefing.mp3" type="audio/mpeg">
+                        </audio>
+
+                        <!-- Waveform Visualizer -->
+                        <div class="audio-visualizer" id="audio-visualizer">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+
+                        <!-- Play Controls -->
+                        <div class="audio-controls">
+                            <button class="audio-btn audio-play-btn" id="audio-play-btn" aria-label="Lecture/Pause">
+                                <i class="fas fa-play" id="play-icon"></i>
+                            </button>
+
+                            <div class="audio-progress-container">
+                                <span class="audio-time" id="audio-current-time">0:00</span>
+                                <div class="audio-progress-bar" id="audio-progress-bar">
+                                    <div class="audio-progress" id="audio-progress"></div>
+                                    <div class="audio-progress-handle" id="audio-progress-handle"></div>
+                                </div>
+                                <span class="audio-time" id="audio-duration">0:00</span>
+                            </div>
+
+                            <div class="audio-volume-container">
+                                <button class="audio-btn audio-volume-btn" id="audio-volume-btn" aria-label="Volume">
+                                    <i class="fas fa-volume-up" id="volume-icon"></i>
+                                </button>
+                                <div class="audio-volume-slider" id="audio-volume-slider">
+                                    <div class="volume-level" id="volume-level"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fallback -->
+                    <div id="audio-fallback" class="audio-fallback" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Audio indisponible - Consultez les actualités ci-dessous</span>
+                    </div>
+                </div>
+
+                <!-- News Grid -->
+                <div class="cyber-news-grid" id="cyber-news-grid">
+                    <!-- Rendered by JS -->
+                    <div class="cyber-loading">
+                        <div class="loading-spinner"></div>
+                        <p>Chargement des actualités...</p>
+                    </div>
+                </div>
+
+                <!-- Script Section -->
+                <div class="cyber-script-section" id="cyber-script-section" style="display: none;">
+                    <h3 class="script-header">
+                        <i class="fas fa-scroll"></i> Script Radio
+                    </h3>
+                    <div id="cyber-script-content" class="cyber-script-content"></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span>Action effectuée !</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
