@@ -1392,9 +1392,15 @@ footer{
 </footer>
 
 <script>
-/* Le contenu est différé jusqu'à DOMContentLoaded car gsap/ScrollTrigger
-   sont maintenant chargés en `defer` (non-bloquant pour le rendu initial). */
-document.addEventListener('DOMContentLoaded', function(){
+/* Ce script est placé en fin de <body> : le DOM au-dessus est déjà
+   disponible, inutile d'attendre DOMContentLoaded pour l'essentiel.
+   gsap/ScrollTrigger sont chargés en `defer` (non-bloquant pour le
+   rendu initial) — les blocs qui en dépendent utilisent whenGsapReady()
+   plus bas pour ne jamais bloquer le reste (cartes, formulaire, nav). */
+function whenGsapReady(cb){
+  if (window.gsap && window.ScrollTrigger) { cb(); }
+  else { window.addEventListener('load', cb, { once:true }); }
+}
 
 /* ══════════════════════════════════════════
    VIDÉO HERO — chargée uniquement sur grand écran
@@ -1440,7 +1446,7 @@ document.addEventListener('mousemove',e=>{
   targetAy=(e.clientY-cy)/cy * 7;
 });
 (function animNames(){
-  if(!document.hidden){
+  if(!document.hidden && window.gsap){
     ax+=(targetAx-ax)*.07; ay+=(targetAy-ay)*.07;
     /* On n'anime QUE X via gsap.set — Y est géré par ScrollTrigger
        pour éviter tout conflit de transform */
@@ -1638,7 +1644,7 @@ if(heroSection) heroObs.observe(heroSection);
    VIDEO PARALLAX — GSAP ScrollTrigger
    (autoplay loop + scale dézoom + parallax noms)
 ══════════════════════════════════════════ */
-(function initVideoScroll(){
+whenGsapReady(function initVideoScroll(){
   gsap.registerPlugin(ScrollTrigger);
 
   /* ── Dézoom vidéo : scale(1.1) → scale(1) pendant le scroll ── */
@@ -1688,7 +1694,7 @@ if(heroSection) heroObs.observe(heroSection);
       scrub  : 1,
     }
   });
-})();
+});
 
 /* ══════════════════════════════════════════
    NAV — active on scroll
@@ -1737,8 +1743,6 @@ if(contactForm){
     }
   });
 }
-
-}); /* fin DOMContentLoaded */
 </script>
 </body>
 </html>
