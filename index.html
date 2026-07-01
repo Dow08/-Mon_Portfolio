@@ -1474,84 +1474,114 @@ const revObs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
 /* ══════════════════════════════════════════
-   PROJETS — Sélection manuelle et curée
-   Chaque entrée pointe vers le sous-dossier réel du
-   monorepo GitHub concerné (voir Dow08/<repo>/README.md
-   pour la liste complète des projets par thématique).
-   Pour ajouter/retirer un projet : éditer PROJETS ci-dessous.
+   PROJETS — Génération 100% automatique depuis GitHub
+   Parcourt tous les repos publics (hors forks et hors ce
+   portfolio lui-même), lit le README.md de chacun et en
+   extrait chaque sous-projet (sections "### slug"). Un repo
+   sans sous-section est affiché comme un projet unique.
+   → Ajouter/documenter un projet sur GitHub suffit à le
+     faire apparaître ici automatiquement, sans toucher au site.
 ══════════════════════════════════════════ */
 (function renderProjects(){
 
-  const PROJETS = [
-    {
-      titre: "Nova Syndicate",
-      categorie: "Infrastructure",
-      desc: "Infrastructure multi-sites sécurisée : 12 VMs Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation VLAN, VPN WireGuard, plan de continuité et budget CAPEX/OPEX.",
-      tags: ["Terraform","Ansible","Wazuh","WireGuard"],
-      url: "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate",
-      icon: "fa-server", color: "#00ff88"
-    },
-    {
-      titre: "Demoday PixelStore",
-      categorie: "Offensive & Cloud",
-      desc: "E-commerce Flask déployé sur AWS : infrastructure Terraform, tests de pénétration, remédiation des vulnérabilités, analyse GRC complète (ISO 27001, NIST CSF, FAIR).",
-      tags: ["Flask","AWS","Terraform","Pentest"],
-      url: "https://github.com/Dow08/Portfolio/tree/master/demoday-pixelstore",
-      icon: "fa-shield-halved", color: "#f87171"
-    },
-    {
-      titre: "LÉA — Agent RGPD",
-      categorie: "IA & Conformité",
-      desc: "Assistant IA conversationnel 100% local, spécialisé dans la conformité RGPD et l'assistance juridique.",
-      tags: ["Python","IA locale","RGPD"],
-      url: "https://github.com/Dow08/GRC-Compliance/tree/master/agent-rgpd-lea",
-      icon: "fa-robot", color: "#a78bfa"
-    },
-    {
-      titre: "IaC Auditor Agent",
-      categorie: "DevSecOps",
-      desc: "Agent d'audit Infrastructure as Code : analyse Ansible/Terraform/Docker, mapping automatique ISO 27001, NIS2 et CIS Controls, génération de rapports HTML.",
-      tags: ["Python","Ansible","Terraform"],
-      url: "https://github.com/Dow08/GRC-Compliance/tree/master/iac-auditor-agent",
-      icon: "fa-magnifying-glass-chart", color: "#60a5fa"
-    },
-    {
-      titre: "SMSI Automation Lab",
-      categorie: "GRC",
-      desc: "SMSI complet pour une PME fictive : déploiement CISO Assistant, automatisation des livrables ISO 27001:2022, cartographie NIS2 et RGPD.",
-      tags: ["Docker","Python","CISO Assistant"],
-      url: "https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab",
-      icon: "fa-file-shield", color: "#34d399"
-    },
-    {
-      titre: "Hermès Local",
-      categorie: "IA",
-      desc: "Agent IA personnalisé tournant 100% en local, multi-modèles (Ollama, Mistral, GLM), dashboard adaptatif avec sélection dynamique du LLM selon la tâche.",
-      tags: ["Python","Ollama","Mistral"],
-      url: "https://github.com/Dow08/AI-Automation/tree/master/agent-hermes-local",
-      icon: "fa-microchip", color: "#fbbf24"
-    },
-    {
-      titre: "CyberPulse",
-      categorie: "Automatisation",
-      desc: "Pipeline de veille cybersécurité automatisée : scraping quotidien, traduction IA, script radio et synthèse vocale, publiés en direct sur ce portfolio.",
-      tags: ["Python","OpenAI / Gemini","edge-tts","GitHub Actions"],
-      url: "https://github.com/Dow08/-Mon_Portfolio/tree/main/src",
-      icon: "fa-satellite-dish", color: "#22d3ee"
-    }
+  const track = document.getElementById('projects-track');
+  if(!track) return;
+
+  const OWNER = 'Dow08';
+  const SELF_REPO = '-Mon_Portfolio';           // ce portfolio : jamais listé comme "projet"
+  const EXCLUDE_SLUGS = ['site-web'];           // copie de ce portfolio hébergée dans un autre repo
+
+  /* Libellé de catégorie affiché sur chaque carte, par repo GitHub */
+  const CATEGORY_LABELS = {
+    'Infrastructure-SecOps': 'Infrastructure',
+    'GRC-Compliance': 'GRC',
+    'AI-Automation': 'IA & Automatisation',
+    'Portfolio': 'Portfolio',
+    'Divers': 'Divers',
+    'Formation': 'Formation'
+  };
+
+  const THEMES = [
+    { color:'#00ff88', icon:'fa-server' },
+    { color:'#f87171', icon:'fa-shield-halved' },
+    { color:'#a78bfa', icon:'fa-robot' },
+    { color:'#60a5fa', icon:'fa-magnifying-glass-chart' },
+    { color:'#34d399', icon:'fa-file-shield' },
+    { color:'#fbbf24', icon:'fa-microchip' },
+    { color:'#22d3ee', icon:'fa-satellite-dish' },
+    { color:'#fb923c', icon:'fa-bug' },
+    { color:'#c084fc', icon:'fa-network-wired' },
   ];
 
+  /* Petites exceptions de casse/accents pour un rendu plus soigné */
+  const NAME_FIXES = {
+    'Iac':'IaC','Smsi':'SMSI','Rgpd':'RGPD','Vps':'VPS','Osint':'OSINT',
+    'Soc':'SOC','Siem':'SIEM','Ccm':'CCM','Nist':'NIST','Csf':'CSF',
+    'Pci':'PCI','Dss':'DSS','Trp':'TRP','Ai':'AI','Devsecops':'DevSecOps',
+    'Lea':'LÉA','Hermes':'Hermès','Pixelstore':'PixelStore',
+    'Cybersecurite':'Cybersécurité','Conformite':'Conformité'
+  };
+  const LOWERCASE_WORDS = ['Et','De','Des','Du','La','Le','Un','Une','En','À','Au'];
+
+  function formatTitle(slug){
+    const words = slug.replace(/[-_]/g,' ').trim().split(/\s+/)
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+    return words.map((w,i) => {
+      if (NAME_FIXES[w]) return NAME_FIXES[w];
+      if (i > 0 && LOWERCASE_WORDS.includes(w)) return w.toLowerCase();
+      return w;
+    }).join(' ');
+  }
+
+  function stripMarkdown(text){
+    return text
+      .replace(/\*\*(.+?)\*\*/g,'$1')
+      .replace(/\*(.+?)\*/g,'$1')
+      .replace(/`(.+?)`/g,'$1')
+      .replace(/\[(.+?)\]\(.+?\)/g,'$1');
+  }
+
+  /* Extrait les sous-projets d'un README (sections "### slug") */
+  function parseReadmeProjects(md){
+    const lines = md.split('\n');
+    const h3idx = [];
+    lines.forEach((l,i) => { if(/^###\s+/.test(l)) h3idx.push(i); });
+    if(h3idx.length === 0) return [];
+
+    const projects = [];
+    for(let k=0;k<h3idx.length;k++){
+      const start = h3idx[k];
+      const end = k+1 < h3idx.length ? h3idx[k+1] : lines.length;
+      const slug = lines[start].replace(/^###\s+/,'').trim();
+      const body = lines.slice(start+1, end)
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && l !== '---' && !l.startsWith('**'));
+
+      let stack = [];
+      const descLines = [];
+      body.forEach(l => {
+        const m = l.match(/^Stack\s*:\s*(.+)$/i);
+        if(m) stack = m[1].split(',').map(s => s.trim()).filter(Boolean);
+        else descLines.push(l);
+      });
+
+      projects.push({ slug, desc: stripMarkdown(descLines.join(' ').trim()), stack });
+    }
+    return projects;
+  }
+
   function buildCard(p, index){
+    const theme = THEMES[index % THEMES.length];
     const num = String(index + 1).padStart(2,'0');
-    const tagsHTML = p.tags.map(t => `<span class="card-tag">${t}</span>`).join('');
+    const tagsHTML = p.stack.slice(0,4).map(t => `<span class="card-tag">${t}</span>`).join('');
     const delayClass = index < 4 ? ` reveal-delay-${index}` : '';
 
     return `
       <div class="project-card reveal${delayClass}">
-        <div class="card-thumb" style="color:${p.color}">
-          <div class="card-thumb-bg"  style="color:${p.color}"></div>
-          <div class="card-thumb-icon" style="color:${p.color}">
-            <i class="fas ${p.icon}"></i>
+        <div class="card-thumb" style="color:${theme.color}">
+          <div class="card-thumb-bg"  style="color:${theme.color}"></div>
+          <div class="card-thumb-icon" style="color:${theme.color}">
+            <i class="fas ${theme.icon}"></i>
           </div>
         </div>
         <div class="card-body">
@@ -1571,11 +1601,65 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       </div>`;
   }
 
-  const track = document.getElementById('projects-track');
-  if(!track) return;
+  track.innerHTML = Array.from({length:6}, ()=>`
+    <div class="project-card" style="opacity:.25;pointer-events:none">
+      <div class="card-thumb" style="color:#444;background:rgba(255,255,255,.03)"></div>
+      <div class="card-body">
+        <div style="height:10px;width:60px;background:rgba(255,255,255,.07);border-radius:4px;margin-bottom:10px"></div>
+        <div style="height:14px;width:70%;background:rgba(255,255,255,.09);border-radius:4px;margin-bottom:8px"></div>
+        <div style="height:10px;width:90%;background:rgba(255,255,255,.05);border-radius:4px"></div>
+      </div>
+    </div>`).join('');
 
-  track.innerHTML = PROJETS.map((p,i) => buildCard(p,i)).join('');
-  track.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+  fetch(`https://api.github.com/users/${OWNER}/repos?sort=updated&per_page=100`)
+    .then(r => { if(!r.ok) throw new Error('GitHub API ' + r.status); return r.json(); })
+    .then(repos => {
+      const candidates = repos.filter(r => !r.fork && r.name !== SELF_REPO);
+
+      return Promise.all(candidates.map(repo =>
+        fetch(`https://raw.githubusercontent.com/${OWNER}/${repo.name}/${repo.default_branch}/README.md`)
+          .then(r => r.ok ? r.text() : '')
+          .then(md => {
+            const subProjects = parseReadmeProjects(md)
+              .filter(p => !EXCLUDE_SLUGS.includes(p.slug));
+
+            if(subProjects.length > 0){
+              return subProjects.map(p => ({
+                titre: formatTitle(p.slug),
+                categorie: CATEGORY_LABELS[repo.name] || repo.name,
+                desc: p.desc || 'Projet en cours de documentation.',
+                stack: p.stack,
+                url: `${repo.html_url}/tree/${repo.default_branch}/${p.slug}`
+              }));
+            }
+            /* Pas de sous-section détectée : le repo est un projet à part entière */
+            return [{
+              titre: formatTitle(repo.name),
+              categorie: CATEGORY_LABELS[repo.name] || 'Projet',
+              desc: repo.description || 'Projet en cours de documentation.',
+              stack: repo.language ? [repo.language] : [],
+              url: repo.html_url
+            }];
+          })
+          .catch(() => [])
+      ));
+    })
+    .then(groupedProjects => {
+      const allProjects = [].concat(...groupedProjects);
+
+      if(allProjects.length === 0){
+        track.innerHTML = `<p style="color:rgba(240,240,240,.25);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
+          Aucun projet trouvé.</p>`;
+        return;
+      }
+
+      track.innerHTML = allProjects.map((p,i) => buildCard(p,i)).join('');
+      track.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+    })
+    .catch(() => {
+      track.innerHTML = `<p style="color:rgba(240,240,240,.2);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
+        Impossible de charger les projets GitHub — veuillez réessayer.</p>`;
+    });
 
 })();
 
