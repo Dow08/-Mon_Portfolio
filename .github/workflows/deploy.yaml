@@ -1,9 +1,12 @@
-name: Security Scan (manuel)
+name: Security Scan
 
 # Le déploiement du site est géré nativement par GitHub Pages
-# (Settings > Pages > Source : "Deploy from a branch" > main > /root).
-# Ce workflow ne sert plus qu'au scan de sécurité Trivy, à la demande.
+# (Settings > Pages > Source : "Deploy from a branch" > main > /root),
+# donc ce workflow n'a plus besoin de bloquer/attendre quoi que ce soit :
+# il tourne en parallèle du déploiement, à chaque push et sur demande.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:

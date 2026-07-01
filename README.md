@@ -10,12 +10,12 @@
 
 ## ✨ Fonctionnalités
 
-### 🏠 Portfolio Multi-pages
-- **Accueil** : Présentation avec animation de particules
-- **Projets** : Grille de projets avec tags et liens GitHub
-- **Compétences** : Catégories Cyber, Dev, Infrastructure
-- **Contact** : Formulaire Formspree + Téléchargement CV
-- **Cyber News** : Actualités quotidiennes automatisées
+### 🏠 Portfolio One-Page
+- **Hero** : présentation, vidéo de fond, statistiques (dont le nombre de repos GitHub, à jour via l'API)
+- **About** : parcours, bloc terminal, chiffres clés
+- **Projets** : sélection manuelle et curée des projets phares (voir `PROJETS` dans `index.html`), avec lien direct vers le sous-dossier GitHub concerné
+- **Skills** : stack technique par domaine (Infra, Offensive, Défensive, GRC, Management…) + certifications
+- **Contact** : formulaire (envoi via `mailto:`), liens directs (email, LinkedIn, GitHub, TryHackMe) et téléchargement du CV
 
 ### 🔊 CyberPulse - Veille Automatisée
 Pipeline IA quotidien (08:00 UTC) qui :
@@ -48,9 +48,9 @@ Pipeline IA quotidien (08:00 UTC) qui :
 ## 📁 Structure du Projet
 
 ```
-├── index.html              # Page principale
-├── style.css               # Styles (40KB, design système)
-├── script.js               # Logique JS (rendu dynamique)
+├── index.html              # Page principale (HTML + CSS + JS, tout inline)
+├── style.css                # ⚠️ non utilisé — hérité d'une ancienne version multi-pages
+├── script.js                 # ⚠️ non utilisé — hérité d'une ancienne version multi-pages
 ├── cyber-news/
 │   ├── data.json           # Actualités (généré par IA)
 │   └── audio/
@@ -81,13 +81,9 @@ Pipeline IA quotidien (08:00 UTC) qui :
 
 > ➡️ `Settings > Secrets and variables > Actions > New repository secret`
 
-### Formspree (Formulaire Contact)
+### Formulaire de contact
 
-1. Créer un formulaire sur [formspree.io](https://formspree.io)
-2. Modifier `script.js` ligne ~435 :
-```javascript
-action="https://formspree.io/f/VOTRE_ID"
-```
+Pas de service tiers : le formulaire construit un lien `mailto:` côté client (voir le handler `contact-form` dans `index.html`) et ouvre le client mail du visiteur avec le message pré-rempli.
 
 ---
 
@@ -114,8 +110,8 @@ cd src && python main.py
 ### Déploiement du site
 Géré nativement par **GitHub Pages** (Settings > Pages > Source : "Deploy from a branch" > `main` > `/root`). Chaque push sur `main` republie automatiquement le site, sans workflow ni scan bloquant.
 
-### Security Scan (manuel)
-- **Déclencheur** : Manuel uniquement (`workflow_dispatch`)
+### Security Scan
+- **Déclencheur** : Push sur `main` ou manuel — tourne en parallèle du déploiement, ne le bloque jamais
 - **Actions** : Scan de vulnérabilités Trivy, résultats dans l'onglet Security du repo
 
 ### CyberPulse - Mise à jour quotidienne
@@ -126,7 +122,7 @@ Géré nativement par **GitHub Pages** (Settings > Pages > Source : "Deploy from
 
 ## 🛡️ Sécurité
 
-- ✅ Scan Trivy automatique à chaque déploiement
+- ✅ Scan Trivy automatique à chaque push (indépendant du déploiement)
 - ✅ Secrets via GitHub Secrets (jamais en dur)
 - ✅ `.gitignore` configuré (`.env`, `__pycache__`, etc.)
 - ✅ CSP et attributs `rel="noopener noreferrer"` sur liens externes
