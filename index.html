@@ -2138,7 +2138,9 @@ sections.forEach(s=>navObs.observe(s));
    annulée seulement si l'utilisateur reprend la main : molette/tactile)
 ══════════════════════════════════════════ */
 function smoothScrollTo(targetY, dur){
-  if(REDUCED){ window.scrollTo(0, targetY); return; }
+  /* Onglet caché ou reduced-motion : rAF ne tournerait pas (ou ne doit
+     pas) — on saute directement à la cible pour garantir l'arrivée */
+  if(REDUCED || document.hidden){ window.scrollTo(0, targetY); return; }
   dur = dur || 650;
   const startY = window.scrollY;
   const diff = targetY - startY;
@@ -2149,6 +2151,9 @@ function smoothScrollTo(targetY, dur){
   window.addEventListener('touchstart', cancel, { passive:true, once:true });
   (function step(now){
     if(cancelled) return;
+    /* L'onglet passe en arrière-plan en cours d'animation : on termine
+       instantanément plutôt que de laisser le scroll gelé à mi-course */
+    if(document.hidden){ window.scrollTo(0, targetY); return; }
     const p = Math.min(1, (now - t0) / dur);
     const e = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
     window.scrollTo(0, startY + diff * e);
