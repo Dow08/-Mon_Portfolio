@@ -13,8 +13,9 @@
 ### 🏠 Portfolio One-Page
 - **Hero** : présentation, vidéo de fond, statistiques (dont le nombre de repos GitHub, à jour via l'API)
 - **About** : parcours, bloc terminal, chiffres clés
-- **Projets** : génération 100% automatique — parcourt tous les repos publics (hors forks, hors ce portfolio) via l'API GitHub, lit le README.md de chacun et affiche chaque sous-projet documenté (voir `renderProjects()` dans `index.html`). Ajouter/documenter un projet sur GitHub suffit à le faire apparaître sur le site.
+- **Projets** : génération 100% automatique — parcourt tous les repos publics (hors forks, hors ce portfolio) via l'API GitHub, lit le README.md de chacun et affiche chaque sous-projet documenté (voir `renderProjects()` dans `index.html`). Ajouter/documenter un projet sur GitHub suffit à le faire apparaître sur le site. Filtres par catégorie auto-générés ; une ligne commençant par `⭐` dans la section d'un projet le met "à la une" (carte mise en avant, triée en tête). Cache `sessionStorage` 10 min contre le rate-limit de l'API.
 - **Skills** : stack technique par domaine (Infra, Offensive, Défensive, GRC, Management…) + certifications
+- **CyberPulse (Veille)** : section affichant le flash info quotidien généré par le pipeline — lecteur audio custom avec visualiseur, date et articles du jour (chargés depuis `cyber-news/data.json`). La section se masque d'elle-même si les données sont indisponibles.
 - **Contact** : formulaire (envoi via `mailto:`), liens directs (email, LinkedIn, GitHub, TryHackMe) et téléchargement du CV
 
 ### 🔊 CyberPulse - Veille Automatisée

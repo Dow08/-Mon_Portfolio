@@ -4,6 +4,24 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dorian Poncelet — Cybersécurité</title>
+
+  <!-- ── SEO & PARTAGE (Open Graph / Twitter Card) ─────────────────── -->
+  <meta name="description" content="Portfolio de Dorian Poncelet — administrateur systèmes et cybersécurité : projets GRC, infrastructure sécurisée, IA locale et veille cyber quotidienne générée par IA."/>
+  <link rel="canonical" href="https://dow08.github.io/-Mon_Portfolio/"/>
+  <meta name="theme-color" content="#080808"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://dow08.github.io/-Mon_Portfolio/"/>
+  <meta property="og:title" content="Dorian Poncelet — Cybersécurité"/>
+  <meta property="og:description" content="Projets GRC, infrastructure sécurisée, IA locale et veille cyber quotidienne générée par IA."/>
+  <meta property="og:image" content="https://dow08.github.io/-Mon_Portfolio/assets/images/cyber-shield.png"/>
+  <meta property="og:image:alt" content="Bouclier néon — portfolio cybersécurité de Dorian Poncelet"/>
+  <meta property="og:locale" content="fr_FR"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Dorian Poncelet — Cybersécurité"/>
+  <meta name="twitter:description" content="Projets GRC, infrastructure sécurisée, IA locale et veille cyber quotidienne générée par IA."/>
+  <meta name="twitter:image" content="https://dow08.github.io/-Mon_Portfolio/assets/images/cyber-shield.png"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080808'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%2300ff88'/%3E%3C/svg%3E"/>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
@@ -11,7 +29,8 @@
    RESET + ROOT
 ══════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+/* scroll-behavior:smooth retiré — le défilement d'ancre est géré en JS
+   (smoothScrollTo) pour rester fiable malgré les animations GSAP au scroll */
 body{
   font-family:'Space Grotesk',sans-serif;
   background:#080808;
@@ -794,6 +813,142 @@ footer{
   93%{clip:rect(18px,9999px,55px,0);}
   95%{clip:rect(80px,9999px,110px,0);}
 }
+
+/* ══════════════════════════════════════════
+   SCROLLBAR CUSTOM (signature)
+══════════════════════════════════════════ */
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:#080808;}
+::-webkit-scrollbar-thumb{background:#232328;border-radius:5px;border:2px solid #080808;}
+::-webkit-scrollbar-thumb:hover{background:rgba(0,255,136,.35);}
+html{scrollbar-width:thin;scrollbar-color:#232328 #080808;}
+
+/* ══════════════════════════════════════════
+   FOND "BLUEPRINT" — grille discrète animée
+══════════════════════════════════════════ */
+section::before{
+  content:'';position:absolute;inset:-48px;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,255,136,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.028) 1px,transparent 1px);
+  background-size:48px 48px;
+  animation:grid-drift 80s linear infinite;
+}
+@keyframes grid-drift{to{transform:translate(48px,48px);}}
+
+/* ══════════════════════════════════════════
+   CARTES PROJETS — tilt 3D + spotlight
+══════════════════════════════════════════ */
+.project-card{position:relative;}
+.project-card::after{
+  content:'';position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;
+  transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(0,255,136,.07),transparent 65%);
+}
+.project-card:hover::after{opacity:1;}
+.project-card.tilting{transition:transform .08s ease-out,border-color .4s;}
+
+/* ── Projets "à la une" (marqueur ⭐ dans le README GitHub) ── */
+.project-card--featured{border-color:rgba(0,255,136,.35);}
+.project-card--featured:hover{border-color:rgba(0,255,136,.6);}
+.featured-flag{color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:.65rem;}
+
+/* ══════════════════════════════════════════
+   FILTRES PROJETS — chips par catégorie
+══════════════════════════════════════════ */
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;padding:0 60px 28px;}
+.filter-chip{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  padding:7px 16px;border-radius:100px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  color:rgba(240,240,240,.6);cursor:none;
+  transition:border-color .25s,color .25s,background .25s;
+}
+.filter-chip:hover{border-color:rgba(0,255,136,.35);color:#f0f0f0;}
+.filter-chip.active{background:rgba(0,255,136,.1);border-color:#00ff88;color:#00ff88;}
+
+/* ══════════════════════════════════════════
+   SECTION CYBERPULSE — veille automatisée
+══════════════════════════════════════════ */
+#cyberpulse{background:#0a0a0a;min-height:auto;padding:120px 60px;}
+.cyberpulse-inner{max-width:1200px;margin:0 auto;}
+.cyberpulse-note{font-size:.95rem;color:rgba(240,240,240,.6);line-height:1.8;max-width:640px;margin:18px 0 40px;}
+.cyberpulse-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:start;}
+.pulse-player-card{background:#0d0d10;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px;}
+.pulse-player-head{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#00ff88;
+  display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;
+}
+.pulse-player-head span{color:rgba(240,240,240,.5);margin-left:auto;}
+.pulse-controls{display:flex;align-items:center;gap:14px;}
+#pulse-play{
+  width:46px;height:46px;border-radius:50%;border:none;flex-shrink:0;
+  background:linear-gradient(135deg,#00ff88,#7c3aed);color:#000;font-size:.95rem;
+  cursor:none;display:flex;align-items:center;justify-content:center;
+  transition:transform .25s,box-shadow .25s;
+}
+#pulse-play:hover{transform:scale(1.08);box-shadow:0 0 30px rgba(0,255,136,.35);}
+.pulse-progress{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.08);cursor:none;overflow:hidden;}
+.pulse-progress-fill{height:100%;width:0%;border-radius:3px;background:linear-gradient(90deg,#00ff88,#7c3aed);}
+.pulse-time{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(240,240,240,.55);min-width:38px;}
+.pulse-viz{display:flex;align-items:flex-end;gap:3px;height:26px;}
+.pulse-viz span{width:3px;height:6px;border-radius:2px;background:rgba(0,255,136,.55);}
+.pulse-viz.playing span{animation:pulse-eq .9s ease-in-out infinite alternate;}
+.pulse-viz span:nth-child(2n){animation-delay:.15s;}
+.pulse-viz span:nth-child(3n){animation-delay:.3s;}
+.pulse-viz span:nth-child(5n){animation-delay:.45s;}
+@keyframes pulse-eq{from{height:5px;}to{height:24px;}}
+.pulse-articles{display:flex;flex-direction:column;gap:14px;}
+.pulse-article{
+  background:#0d0d10;border:1px solid rgba(255,255,255,.07);border-radius:14px;
+  padding:18px 20px;transition:border-color .3s,transform .3s;
+}
+.pulse-article:hover{border-color:rgba(0,255,136,.2);transform:translateX(6px);}
+.pulse-article .idx{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#00ff88;margin-bottom:6px;display:block;}
+.pulse-article a{color:#f0f0f0;text-decoration:none;font-weight:600;font-size:.95rem;line-height:1.4;}
+.pulse-article a:hover{color:#00ff88;}
+.pulse-article p{font-size:.82rem;color:rgba(240,240,240,.55);line-height:1.7;margin-top:8px;}
+@media (max-width:900px){.cyberpulse-grid{grid-template-columns:1fr;}}
+@media (max-width:768px){#cyberpulse{padding:80px 24px;}.filter-row{padding:0 24px 24px;}}
+
+/* ══════════════════════════════════════════
+   ACCESSIBILITÉ — contrastes relevés (AA)
+══════════════════════════════════════════ */
+.hero-sub{color:rgba(240,240,240,.62);}
+.hero-stat .lbl,.stat-item .desc{color:rgba(240,240,240,.6);}
+.hero-hi{color:rgba(240,240,240,.55);}
+.nav-links a{color:rgba(240,240,240,.65);}
+.card-desc{color:rgba(240,240,240,.62);}
+.card-tag{color:rgba(240,240,240,.6);}
+.card-number{color:rgba(240,240,240,.45);}
+.skill-block-cat,.cert-pill-issuer,.clr-label,.form-label{color:rgba(240,240,240,.55);}
+.skill-tag{color:rgba(240,240,240,.6);}
+.contact-desc{color:rgba(240,240,240,.62);}
+.about-body{color:rgba(240,240,240,.65);}
+footer{color:rgba(240,240,240,.5);}
+.scroll-hint{color:rgba(240,240,240,.5);}
+.scroll-progress{color:rgba(240,240,240,.5);}
+.clr-arrow{color:rgba(240,240,240,.45);}
+.t-comment{color:rgba(240,240,240,.45);}
+.t-out{color:rgba(240,240,240,.6);}
+
+/* ══════════════════════════════════════════
+   TACTILE — curseur natif, pas de curseur custom
+══════════════════════════════════════════ */
+@media (hover:none),(pointer:coarse){
+  body,a,button,input,textarea,.btn-submit,.filter-chip{cursor:auto!important;}
+  #cursor,#cursor-ring{display:none!important;}
+}
+
+/* ══════════════════════════════════════════
+   PREFERS-REDUCED-MOTION — tout se calme
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;}
+  body{cursor:auto;}
+  #cursor,#cursor-ring{display:none!important;}
+  .reveal{opacity:1!important;transform:none!important;}
+}
   </style>
   <!-- GSAP + ScrollTrigger (chargement différé pour ne pas bloquer le rendu initial) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -818,6 +973,7 @@ footer{
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#cyberpulse">Veille</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta">
@@ -1007,6 +1163,9 @@ footer{
     │  Pour ajouter/retirer un projet : éditer PROJETS, pas le HTML.  │
     └─────────────────────────────────────────────────────────────────┘
   -->
+  <!-- Chips de filtrage par catégorie — remplies par setupProjects() -->
+  <div class="filter-row" id="filter-row" role="group" aria-label="Filtrer les projets par catégorie"></div>
+
   <div class="projects-grid-wrap" id="projects-track">
     <!-- Rempli dynamiquement par renderProjects() dans le script -->
   </div>
@@ -1276,6 +1435,51 @@ footer{
 <div class="section-divider"></div>
 
 <!-- ╔══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║          SECTION CYBERPULSE — VEILLE AUTOMATISÉE                ║ -->
+<!-- ║  Contenu chargé depuis cyber-news/data.json (généré chaque      ║ -->
+<!-- ║  jour par le pipeline src/main.py via GitHub Actions).          ║ -->
+<!-- ║  Si le fichier est indisponible, la section se masque seule.    ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
+<section id="cyberpulse">
+  <div class="cyberpulse-inner">
+    <div class="about-eyebrow reveal">Veille automatisée</div>
+    <h2 class="section-title reveal reveal-delay-1">Cyber<span class="outline">Pulse</span></h2>
+    <p class="cyberpulse-note reveal reveal-delay-2">
+      Flash info cybersécurité généré automatiquement chaque jour par un pipeline
+      IA autonome : scraping des dernières actualités, traduction, écriture d'un
+      script radio et synthèse vocale.
+    </p>
+    <div class="cyberpulse-grid">
+      <div class="pulse-player-card reveal reveal-delay-2">
+        <div class="pulse-player-head">
+          <i class="fas fa-podcast"></i> Briefing audio du jour
+          <span id="pulse-date"></span>
+        </div>
+        <audio id="pulse-audio" preload="none"></audio>
+        <div class="pulse-controls">
+          <button id="pulse-play" aria-label="Lecture ou pause du briefing audio">
+            <i class="fas fa-play" id="pulse-play-icon"></i>
+          </button>
+          <div class="pulse-progress" id="pulse-progress" aria-hidden="true">
+            <div class="pulse-progress-fill" id="pulse-progress-fill"></div>
+          </div>
+          <span class="pulse-time" id="pulse-time">0:00</span>
+          <div class="pulse-viz" id="pulse-viz" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pulse-articles" id="pulse-articles"></div>
+    </div>
+  </div>
+</section>
+<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║                  FIN SECTION CYBERPULSE                         ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
+
+<div class="section-divider"></div>
+
+<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
 <!-- ║               SECTION CONTACT — FORMULAIRE & LIENS              ║ -->
 <!-- ║  Pour modifier : email, URL LinkedIn, URL GitHub, TryHackMe.    ║ -->
 <!-- ║  Email       : Dow@ikmail.com                                   ║ -->
@@ -1402,11 +1606,16 @@ function whenGsapReady(cb){
   else { window.addEventListener('load', cb, { once:true }); }
 }
 
+/* Respect de prefers-reduced-motion : quand actif, on n'installe ni les
+   boucles d'animation (curseur, parallax), ni les effets GSAP au scroll,
+   ni l'effet de déchiffrement des titres — le CSS coupe le reste. */
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ══════════════════════════════════════════
    VIDÉO HERO — chargée uniquement sur grand écran
    (évite ~19 Mo de transfert inutile sur mobile)
 ══════════════════════════════════════════ */
-if (window.matchMedia('(min-width: 769px)').matches) {
+if (window.matchMedia('(min-width: 769px)').matches && !REDUCED) {
   const heroVideoEl = document.getElementById('hero-video');
   if (heroVideoEl) {
     heroVideoEl.preload = 'auto';
@@ -1425,7 +1634,7 @@ document.addEventListener('mousemove',e=>{
   cursor.style.left=mx+'px';
   cursor.style.top=my+'px';
 });
-(function animRing(){
+if(!REDUCED) (function animRing(){
   if(!document.hidden){
     rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
     ring.style.left=rx+'px'; ring.style.top=ry+'px';
@@ -1445,7 +1654,7 @@ document.addEventListener('mousemove',e=>{
   targetAx=(e.clientX-cx)/cx * 10;
   targetAy=(e.clientY-cy)/cy * 7;
 });
-(function animNames(){
+if(!REDUCED) (function animNames(){
   if(!document.hidden && window.gsap){
     ax+=(targetAx-ax)*.07; ay+=(targetAy-ay)*.07;
     /* On n'anime QUE X via gsap.set — Y est géré par ScrollTrigger
@@ -1586,14 +1795,20 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       });
 
       let stack = [];
+      let featured = false;
       const descLines = [];
       section.forEach(l => {
-        const m = l.trim().match(/^Stack\s*:\s*(.+)$/i);
+        const t = l.trim();
+        /* Marqueur "à la une" : une ligne commençant par ⭐ (ou ★, ou
+           "Featured") dans la section du projet sur GitHub suffit à
+           mettre la carte en avant — la ligne n'apparaît pas sur le site */
+        if(/^(⭐|★|Featured\b)/i.test(t)){ featured = true; return; }
+        const m = t.match(/^Stack\s*:\s*(.+)$/i);
         if(m) stack = m[1].split(',').map(s => s.trim()).filter(Boolean);
         else descLines.push(l);
       });
 
-      projects.push({ slug, desc: stripMarkdown(joinDescLines(descLines)), stack });
+      projects.push({ slug, desc: stripMarkdown(joinDescLines(descLines)), stack, featured });
     }
     return projects;
   }
@@ -1605,7 +1820,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     const delayClass = index < 4 ? ` reveal-delay-${index}` : '';
 
     return `
-      <div class="project-card reveal${delayClass}">
+      <div class="project-card reveal${delayClass}${p.featured ? ' project-card--featured' : ''}">
         <div class="card-thumb" style="color:${theme.color}">
           <div class="card-thumb-bg"  style="color:${theme.color}"></div>
           <div class="card-thumb-icon" style="color:${theme.color}">
@@ -1613,7 +1828,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
           </div>
         </div>
         <div class="card-body">
-          <div class="card-number">${num} — ${p.categorie.toUpperCase()}</div>
+          <div class="card-number">${num} — ${p.categorie.toUpperCase()}${p.featured ? ' &nbsp;<span class="featured-flag"><i class="fas fa-star"></i> À la une</span>' : ''}</div>
           <div class="card-title">${p.titre}</div>
           <div class="card-desc">${p.desc}</div>
           <div class="card-tags">${tagsHTML}</div>
@@ -1628,6 +1843,87 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
         </div>
       </div>`;
   }
+
+  /* ── Cache sessionStorage (10 min) : évite le rate-limit de l'API
+        GitHub (60 req/h non authentifié) si le visiteur recharge la
+        page plusieurs fois, et sert de repli si l'API est indisponible ── */
+  const CACHE_KEY = 'dp_projects_v1';
+  function readCache(ignoreAge){
+    try{
+      const raw = sessionStorage.getItem(CACHE_KEY);
+      if(!raw) return null;
+      const data = JSON.parse(raw);
+      if(!ignoreAge && Date.now() - data.t > 10*60*1000) return null;
+      return (data.projects && data.projects.length) ? data.projects : null;
+    }catch(e){ return null; }
+  }
+
+  function renderCards(list){
+    track.innerHTML = list.map((p,i) => buildCard(p,i)).join('');
+    track.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+  }
+
+  /* ── Tilt 3D + spotlight au survol (délégation sur la grille) ── */
+  let tiltBound = false;
+  function initCardTilt(){
+    if(tiltBound || REDUCED || !window.matchMedia('(hover:hover)').matches) return;
+    tiltBound = true;
+    track.addEventListener('mousemove', e => {
+      const card = e.target.closest('.project-card');
+      if(!card) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      card.classList.add('tilting');
+      card.style.transform =
+        `translateY(-8px) perspective(900px) rotateX(${((0.5 - y) * 5).toFixed(2)}deg) rotateY(${((x - 0.5) * 5).toFixed(2)}deg)`;
+      card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    });
+    track.addEventListener('mouseout', e => {
+      const card = e.target.closest('.project-card');
+      if(!card || card.contains(e.relatedTarget)) return;
+      card.classList.remove('tilting');
+      card.style.transform = '';
+    });
+  }
+
+  /* ── Rendu final : chips de filtrage + cartes + tilt ── */
+  function setupProjects(all){
+    const filterRow = document.getElementById('filter-row');
+    if(filterRow){
+      const cats = [];
+      all.forEach(p => {
+        const c = cats.find(x => x.name === p.categorie);
+        if(c) c.n++; else cats.push({ name: p.categorie, n: 1 });
+      });
+      filterRow.innerHTML =
+        `<button class="filter-chip active" data-cat="*">Tous · ${all.length}</button>` +
+        cats.map(c => `<button class="filter-chip" data-cat="${c.name}">${c.name} · ${c.n}</button>`).join('');
+      filterRow.addEventListener('click', e => {
+        const chip = e.target.closest('.filter-chip');
+        if(!chip) return;
+        filterRow.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const cat = chip.dataset.cat;
+        renderCards(cat === '*' ? all : all.filter(p => p.categorie === cat));
+        /* Les cartes filtrées sont déjà dans le viewport : révélation immédiate */
+        track.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      });
+    }
+    renderCards(all);
+    initCardTilt();
+    /* Arrivée directe sur une ancre (#contact…) : les cartes chargées
+       après coup décalent la page — on recale une fois, au chargement */
+    if(location.hash && performance.now() < 3000){
+      const target = document.getElementById(location.hash.slice(1));
+      if(target) window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY);
+    }
+  }
+
+  /* ── Cache frais disponible : rendu immédiat, zéro appel réseau ── */
+  const cachedProjects = readCache(false);
+  if(cachedProjects){ setupProjects(cachedProjects); return; }
 
   track.innerHTML = Array.from({length:6}, ()=>`
     <div class="project-card" style="opacity:.25;pointer-events:none">
@@ -1657,6 +1953,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
                 categorie: CATEGORY_LABELS[repo.name] || repo.name,
                 desc: p.desc || 'Projet en cours de documentation.',
                 stack: p.stack,
+                featured: !!p.featured,
                 url: `${repo.html_url}/tree/${repo.default_branch}/${p.slug}`
               }));
             }
@@ -1666,6 +1963,7 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
               categorie: CATEGORY_LABELS[repo.name] || 'Projet',
               desc: repo.description || 'Projet en cours de documentation.',
               stack: repo.language ? [repo.language] : [],
+              featured: false,
               url: repo.html_url
             }];
           })
@@ -1676,16 +1974,24 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       const allProjects = [].concat(...groupedProjects);
 
       if(allProjects.length === 0){
-        track.innerHTML = `<p style="color:rgba(240,240,240,.25);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
+        track.innerHTML = `<p style="color:rgba(240,240,240,.5);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
           Aucun projet trouvé.</p>`;
         return;
       }
 
-      track.innerHTML = allProjects.map((p,i) => buildCard(p,i)).join('');
-      track.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+      /* Projets "à la une" en tête (tri stable : ordre d'origine conservé) */
+      allProjects.sort((a,b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+      try{ sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), projects: allProjects })); }catch(e){}
+
+      setupProjects(allProjects);
     })
     .catch(() => {
-      track.innerHTML = `<p style="color:rgba(240,240,240,.2);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
+      /* API indisponible ou rate-limitée : on retombe sur le dernier
+         cache connu, même périmé, plutôt que d'afficher une section vide */
+      const stale = readCache(true);
+      if(stale){ setupProjects(stale); return; }
+      track.innerHTML = `<p style="color:rgba(240,240,240,.5);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
         Impossible de charger les projets GitHub — veuillez réessayer.</p>`;
     });
 
@@ -1757,6 +2063,7 @@ if(heroSection) heroObs.observe(heroSection);
    (autoplay loop + scale dézoom + parallax noms)
 ══════════════════════════════════════════ */
 whenGsapReady(function initVideoScroll(){
+  if(REDUCED) return;
   gsap.registerPlugin(ScrollTrigger);
 
   /* ── Dézoom vidéo : scale(1.1) → scale(1) pendant le scroll ── */
@@ -1818,12 +2125,164 @@ const navObs=new IntersectionObserver(entries=>{
     if(e.isIntersecting){
       navLinks.forEach(l=>{
         l.style.color=l.getAttribute('href')==='#'+e.target.id
-          ?'#f0f0f0':'rgba(240,240,240,.5)';
+          ?'#f0f0f0':'rgba(240,240,240,.65)';
       });
     }
   });
 },{threshold:.4});
 sections.forEach(s=>navObs.observe(s));
+
+/* ══════════════════════════════════════════
+   SCROLL D'ANCRE FIABLE — animation rAF maison
+   (indépendante des ScrollTriggers GSAP, toujours menée à terme ;
+   annulée seulement si l'utilisateur reprend la main : molette/tactile)
+══════════════════════════════════════════ */
+function smoothScrollTo(targetY, dur){
+  if(REDUCED){ window.scrollTo(0, targetY); return; }
+  dur = dur || 650;
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  const t0 = performance.now();
+  let cancelled = false;
+  const cancel = () => { cancelled = true; };
+  window.addEventListener('wheel', cancel, { passive:true, once:true });
+  window.addEventListener('touchstart', cancel, { passive:true, once:true });
+  (function step(now){
+    if(cancelled) return;
+    const p = Math.min(1, (now - t0) / dur);
+    const e = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
+    window.scrollTo(0, startY + diff * e);
+    if(p < 1) requestAnimationFrame(step);
+  })(performance.now());
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    smoothScrollTo(el.getBoundingClientRect().top + window.scrollY);
+    history.pushState(null, '', '#' + id);
+  });
+});
+
+/* ══════════════════════════════════════════
+   TITRES "DÉCHIFFRÉS" — effet terminal au scroll
+   Les caractères se résolvent vers le texte exact d'origine :
+   le contenu final est strictement identique, à l'octet près.
+══════════════════════════════════════════ */
+if(!REDUCED){
+  const GLYPHS = '!<>-_\\/[]{}—=+*^?#01';
+  function decodeEl(el){
+    const nodes = [];
+    (function walk(n){
+      n.childNodes.forEach(c => {
+        if(c.nodeType === 3 && c.textContent.trim()) nodes.push(c);
+        else if(c.nodeType === 1) walk(c);
+      });
+    })(el);
+    nodes.forEach(node => {
+      const orig = node.textContent;
+      const len = orig.length;
+      const t0 = performance.now();
+      const dur = 600 + len * 22;
+      (function step(now){
+        const p = Math.min(1, (now - t0) / dur);
+        const solved = Math.floor(p * len);
+        let out = orig.slice(0, solved);
+        for(let i = solved; i < len; i++){
+          out += orig[i] === ' ' ? ' ' : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        }
+        node.textContent = out;
+        if(p < 1) requestAnimationFrame(step);
+        else node.textContent = orig;
+      })(performance.now());
+    });
+  }
+  const decObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        decObs.unobserve(en.target);
+        decodeEl(en.target);
+      }
+    });
+  }, { threshold:.3 });
+  document.querySelectorAll('.section-title, .about-title, .contact-title').forEach(el => decObs.observe(el));
+}
+
+/* ══════════════════════════════════════════
+   CYBERPULSE — flash info quotidien (data.json + audio)
+   Généré chaque jour par src/main.py via GitHub Actions.
+   Si les données sont indisponibles, la section se masque.
+══════════════════════════════════════════ */
+(function renderCyberPulse(){
+  const section = document.getElementById('cyberpulse');
+  if(!section) return;
+  const articlesEl = document.getElementById('pulse-articles');
+
+  function initPulsePlayer(audioFile){
+    const audio = document.getElementById('pulse-audio');
+    const btn   = document.getElementById('pulse-play');
+    const icon  = document.getElementById('pulse-play-icon');
+    const bar   = document.getElementById('pulse-progress');
+    const fill  = document.getElementById('pulse-progress-fill');
+    const time  = document.getElementById('pulse-time');
+    const viz   = document.getElementById('pulse-viz');
+    if(!audio || !btn) return;
+
+    audio.src = './cyber-news/' + (audioFile || 'audio/latest_briefing.mp3') + '?t=' + Date.now();
+
+    function fmt(s){
+      if(!isFinite(s)) return '0:00';
+      const m = Math.floor(s / 60);
+      return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    }
+    btn.addEventListener('click', () => {
+      if(audio.paused){ audio.play().catch(() => {}); }
+      else { audio.pause(); }
+    });
+    audio.addEventListener('play',  () => { icon.className = 'fas fa-pause'; if(viz) viz.classList.add('playing'); });
+    audio.addEventListener('pause', () => { icon.className = 'fas fa-play';  if(viz) viz.classList.remove('playing'); });
+    audio.addEventListener('timeupdate', () => {
+      if(audio.duration) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      time.textContent = fmt(audio.currentTime);
+    });
+    audio.addEventListener('ended', () => {
+      fill.style.width = '0%';
+      icon.className = 'fas fa-play';
+      if(viz) viz.classList.remove('playing');
+    });
+    audio.addEventListener('error', () => {
+      const cardEl = btn.closest('.pulse-player-card');
+      if(cardEl) cardEl.style.display = 'none';
+    });
+    bar.addEventListener('click', e => {
+      if(!audio.duration) return;
+      const r = bar.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    });
+  }
+
+  fetch('./cyber-news/data.json?t=' + Date.now())
+    .then(r => { if(!r.ok) throw new Error('data.json ' + r.status); return r.json(); })
+    .then(data => {
+      const dateEl = document.getElementById('pulse-date');
+      if(dateEl && data.generated_at){
+        const d = new Date(data.generated_at);
+        dateEl.textContent = 'MAJ ' + d.toLocaleDateString('fr-FR');
+      }
+      if(articlesEl && data.articles && data.articles.length){
+        articlesEl.innerHTML = data.articles.map((a, i) => `
+          <article class="pulse-article">
+            <span class="idx">[${String(i + 1).padStart(2, '0')}]</span>
+            <a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title_fr || a.title}</a>
+            <p>${a.summary_fr || a.summary || ''}</p>
+          </article>`).join('');
+      }
+      initPulsePlayer(data.audio_file);
+    })
+    .catch(() => { section.style.display = 'none'; });
+})();
 
 /* ══════════════════════════════════════════
    FORMULAIRE DE CONTACT — envoi via mailto
