@@ -1541,31 +1541,59 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       .replace(/\[(.+?)\]\(.+?\)/g,'$1');
   }
 
+  /* Recolle les lignes d'une description en tenant compte des README dont
+     un export/copier-coller a isolé certains caractères accentués sur leur
+     propre ligne (ex: "d" / "é" / "ploiement" au lieu de "déploiement").
+     Une ligne "fragment" (≤2 caractères une fois trimmée) est recollée sans
+     espace à ce qui l'entoure ; les vraies lignes/phrases gardent un espace. */
+  function joinDescLines(lines){
+    let result = '';
+    let prevWasFragment = false;
+    lines.forEach(line => {
+      const trimmedLen = line.trim().length;
+      const isFragment = trimmedLen > 0 && trimmedLen <= 2;
+      if(result === '') result = line;
+      else if(isFragment || prevWasFragment) result += line;
+      else result += ' ' + line;
+      prevWasFragment = isFragment;
+    });
+    return result.replace(/\s+/g,' ').trim();
+  }
+
   /* Extrait les sous-projets d'un README (sections "### slug") */
   function parseReadmeProjects(md){
-    const lines = md.split('\n');
+    const rawLines = md.split('\n').map(l => l.replace(/\r$/,''));
     const h3idx = [];
-    lines.forEach((l,i) => { if(/^###\s+/.test(l)) h3idx.push(i); });
+    rawLines.forEach((l,i) => { if(/^###\s+/.test(l.trim())) h3idx.push(i); });
     if(h3idx.length === 0) return [];
 
     const projects = [];
     for(let k=0;k<h3idx.length;k++){
       const start = h3idx[k];
-      const end = k+1 < h3idx.length ? h3idx[k+1] : lines.length;
-      const slug = lines[start].replace(/^###\s+/,'').trim();
-      const body = lines.slice(start+1, end)
-        .map(l => l.trim())
-        .filter(l => l.length > 0 && l !== '---' && !l.startsWith('**'));
+      const end = k+1 < h3idx.length ? h3idx[k+1] : rawLines.length;
+      const slug = rawLines[start].trim().replace(/^###\s+/,'').trim();
+
+      let section = rawLines.slice(start+1, end);
+
+      /* Tronque avant la signature finale ("**Nom**…") si elle traîne
+         dans la dernière section du fichier */
+      const signatureIdx = section.findIndex(l => l.trim().startsWith('**'));
+      if(signatureIdx !== -1) section = section.slice(0, signatureIdx);
+
+      section = section.filter(l => {
+        const t = l.trim();
+        return t.length > 0 && t !== '---';
+      });
 
       let stack = [];
       const descLines = [];
-      body.forEach(l => {
-        const m = l.match(/^Stack\s*:\s*(.+)$/i);
+      section.forEach(l => {
+        const m = l.trim().match(/^Stack\s*:\s*(.+)$/i);
         if(m) stack = m[1].split(',').map(s => s.trim()).filter(Boolean);
         else descLines.push(l);
       });
 
-      projects.push({ slug, desc: stripMarkdown(descLines.join(' ').trim()), stack });
+      projects.push({ slug, desc: stripMarkdown(joinDescLines(descLines)), stack });
     }
     return projects;
   }
