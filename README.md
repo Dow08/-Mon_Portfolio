@@ -1,6 +1,5 @@
 # 🛡️ Portfolio Cybersécurité | Poncelet Dorian
 
-[![Deploy Status](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/deploy.yaml)
 [![CyberPulse](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/daily_cron.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/daily_cron.yml)
 
 > Portfolio professionnel avec veille cybersécurité automatisée et briefings audio quotidiens générés par IA.
@@ -110,13 +109,16 @@ cd src && python main.py
 
 ---
 
-## 📊 Workflows GitHub Actions
+## 📊 Déploiement & Workflows GitHub Actions
 
-### 1. Deploy and Security Scan
-- **Déclencheur** : Push sur `main`
-- **Actions** : Trivy scan + Déploiement GitHub Pages
+### Déploiement du site
+Géré nativement par **GitHub Pages** (Settings > Pages > Source : "Deploy from a branch" > `main` > `/root`). Chaque push sur `main` republie automatiquement le site, sans workflow ni scan bloquant.
 
-### 2. CyberPulse - Mise à jour quotidienne
+### Security Scan (manuel)
+- **Déclencheur** : Manuel uniquement (`workflow_dispatch`)
+- **Actions** : Scan de vulnérabilités Trivy, résultats dans l'onglet Security du repo
+
+### CyberPulse - Mise à jour quotidienne
 - **Déclencheur** : Cron `0 8 * * *` (08:00 UTC) ou manuel
 - **Actions** : Scraping → Traduction → Script → Audio → Commit
 
