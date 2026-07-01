@@ -1,11 +1,11 @@
 # 🛡️ Portfolio Cybersécurité | Poncelet Dorian
 
-[![Deploy Status](https://github.com/Dow08/Mon_Portfolio/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Dow08/Mon_Portfolio/actions/workflows/deploy.yaml)
-[![CyberPulse](https://github.com/Dow08/Mon_Portfolio/actions/workflows/daily_cron.yml/badge.svg)](https://github.com/Dow08/Mon_Portfolio/actions/workflows/daily_cron.yml)
+[![Deploy Status](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/deploy.yaml)
+[![CyberPulse](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/daily_cron.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/daily_cron.yml)
 
 > Portfolio professionnel avec veille cybersécurité automatisée et briefings audio quotidiens générés par IA.
 
-🌐 **[Voir le site en ligne](https://dow08.github.io/Mon_Portfolio/)**
+🌐 **[Voir le site en ligne](https://dow08.github.io/-Mon_Portfolio/)**
 
 ---
 
@@ -77,8 +77,8 @@ Pipeline IA quotidien (08:00 UTC) qui :
 
 | Secret | Description | Requis |
 |--------|-------------|--------|
-| `OPENAI_API_KEY` | Clé API OpenAI (GPT-4o-mini) | ✅ ou GEMINI |
-| `GEMINI_API_KEY` | Clé API Google Gemini (fallback) | Optionnel |
+| `OPEN_AI_KEY` | Clé API OpenAI (GPT-4o-mini) | ✅ ou GEMINI |
+| `GEMINI_KEY` | Clé API Google Gemini (fallback) | Optionnel |
 
 > ➡️ `Settings > Secrets and variables > Actions > New repository secret`
 
@@ -96,8 +96,8 @@ action="https://formspree.io/f/VOTRE_ID"
 
 ```bash
 # Cloner le repo
-git clone https://github.com/Dow08/Mon_Portfolio.git
-cd Mon_Portfolio
+git clone https://github.com/Dow08/-Mon_Portfolio.git
+cd ./-Mon_Portfolio
 
 # Serveur local
 python -m http.server 8080
