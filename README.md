@@ -13,7 +13,7 @@
 ### 🏠 Portfolio One-Page
 - **Hero** : présentation, vidéo de fond, statistiques (dont le nombre de repos GitHub, à jour via l'API)
 - **About** : parcours, bloc terminal, chiffres clés
-- **Projets** : sélection manuelle et curée des projets phares (voir `PROJETS` dans `index.html`), avec lien direct vers le sous-dossier GitHub concerné
+- **Projets** : génération 100% automatique — parcourt tous les repos publics (hors forks, hors ce portfolio) via l'API GitHub, lit le README.md de chacun et affiche chaque sous-projet documenté (voir `renderProjects()` dans `index.html`). Ajouter/documenter un projet sur GitHub suffit à le faire apparaître sur le site.
 - **Skills** : stack technique par domaine (Infra, Offensive, Défensive, GRC, Management…) + certifications
 - **Contact** : formulaire (envoi via `mailto:`), liens directs (email, LinkedIn, GitHub, TryHackMe) et téléchargement du CV
 
