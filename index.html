@@ -1921,6 +1921,20 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
     }
   }
 
+  /* Noms des dossiers présents à la racine d'un repo.
+     Renvoie null si l'information n'a pas pu être obtenue (API indisponible
+     ou quota dépassé) : l'appelant doit distinguer « aucun dossier » de
+     « je ne sais pas ». N'est appelé que pour les repos dont le README
+     contient des sections, afin de ne pas consommer le quota inutilement. */
+  function fetchRootDirs(repo){
+    return fetch(`https://api.github.com/repos/${OWNER}/${repo.name}/contents/?ref=${repo.default_branch}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(items => Array.isArray(items)
+        ? items.filter(i => i.type === 'dir').map(i => i.name)
+        : null)
+      .catch(() => null);
+  }
+
   /* ── Cache frais disponible : rendu immédiat, zéro appel réseau ── */
   const cachedProjects = readCache(false);
   if(cachedProjects){ setupProjects(cachedProjects); return; }
@@ -1943,9 +1957,24 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
       return Promise.all(candidates.map(repo =>
         fetch(`https://raw.githubusercontent.com/${OWNER}/${repo.name}/${repo.default_branch}/README.md`)
           .then(r => r.ok ? r.text() : '')
-          .then(md => {
-            const subProjects = parseReadmeProjects(md)
+          .then(async md => {
+            let subProjects = parseReadmeProjects(md)
               .filter(p => !EXCLUDE_SLUGS.includes(p.slug));
+
+            /* Une section "###" n'ouvre une carte que si un dossier du même nom
+               existe vraiment à la racine du repo : la carte pointe vers
+               /tree/<branche>/<slug>, donc une section sans dossier produit un
+               lien mort. Un repo-conteneur (un dossier par sous-projet) est
+               ainsi éclaté en cartes, tandis qu'un repo classique, dont les
+               sous-titres ne sont que de la documentation, reste une carte
+               unique. Aucune liste à tenir à jour : c'est le contenu réel du
+               repo qui tranche. */
+            if(subProjects.length > 0){
+              const dirs = await fetchRootDirs(repo);
+              /* dirs vaut null si l'API n'a pas répondu : dans ce cas on ne
+                 filtre pas, plutôt que d'effacer des projets valides. */
+              if(dirs) subProjects = subProjects.filter(p => dirs.includes(p.slug));
+            }
 
             if(subProjects.length > 0){
               return subProjects.map(p => ({
