@@ -51,7 +51,6 @@ Pipeline IA quotidien (08:00 UTC) qui :
 ```
 ├── index.html              # Page principale (HTML + CSS + JS, tout inline)
 ├── style.css                # ⚠️ non utilisé — hérité d'une ancienne version multi-pages
-├── script.js                 # ⚠️ non utilisé — hérité d'une ancienne version multi-pages
 ├── cyber-news/
 │   ├── data.json           # Actualités (généré par IA)
 │   └── audio/
@@ -61,8 +60,8 @@ Pipeline IA quotidien (08:00 UTC) qui :
 │   ├── scraper.py          # Scraping TheHackerNews
 │   └── audio_gen.py        # Génération TTS
 ├── assets/
-│   └── documents/
-│       └── CV_Poncelet_Dorian.pdf
+│   ├── images/
+│   └── Video/
 ├── .github/workflows/
 │   ├── deploy.yaml         # Déploiement + Trivy scan
 │   └── daily_cron.yml      # Pipeline CyberPulse (08:00 UTC)
