@@ -83,4 +83,13 @@ Ajouts évalués : `src/` réécrit, `schemas/`, 3 workflows épinglés par SHA,
 | SEO / recrutement | 10 | +1 | Lighthouse SEO 100, bonnes pratiques 100 |
 | **Global pondéré** | **9,1 / 10** | +0,1 | Bloquant restant pour 9,5 : la séquence |
 
+## 2026-10-13 (après-midi) — Séquence réelle intégrée (video4)
+
+| Critère | Note | Variation | Justification |
+|---|---:|---:|---|
+| Expérience cinématique | 8 | +2 | 72 frames réelles pilotées par le scroll, 3 légendes synchronisées, poster réel dans le hero, repli statique à 1 image sur mobile ; vérifié à 927 px et 375 px. Pas 10 : vidéo plus claire que la spécification (compensé par le voile), sujet un peu petit en fin de plan, et pas encore mesuré sur un vrai mobile |
+| Qualité artistique | 9 | +1 | poster temporaire remplacé par une image réelle cohérente avec la palette |
+| Performance | 9 | = | +2,9 Mo chargés progressivement sur desktop uniquement après le premier rendu ; à confirmer par Lighthouse sur l'URL publique |
+| **Global pondéré** | **9,4 / 10** | +0,3 | Reste pour 9,5 : dates des certifications (faits), Lighthouse public |
+
 Contrôles bloquants (§18) à ce stade : liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exit 1 + issue auto ; exécution réelle à confirmer après push) · médias avec repli ✅ (poster/procédural) · reduced-motion ✅ · informations validées ❌ · pas de fonctionnalité simulée ✅ · tests exécutés ✅ (14 automatisés + navigateur ; Lighthouse/axe en attente) · limitations documentées ✅ · déploiement/retour arrière documentés ✅.

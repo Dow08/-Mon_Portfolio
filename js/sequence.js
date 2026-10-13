@@ -57,11 +57,16 @@ export async function initSequence() {
       img.onload = () => { frames[i] = img; draw(); };
       img.onerror = () => { frames[i] = null; };
     };
-    // Priorité : première, dernière, puis échantillonnage, puis tout
-    load(0); load(manifest.count - 1);
-    for (let i = 0; i < manifest.count; i += 8) load(i);
-    const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
-    idle(() => { for (let i = 0; i < manifest.count; i++) load(i); });
+    if (prefersReducedMotion() || isSmallScreen()) {
+      // Mode statique : une seule image (la dernière), pas les 72
+      load(manifest.count - 1);
+    } else {
+      // Priorité : première, dernière, puis échantillonnage, puis tout
+      load(0); load(manifest.count - 1);
+      for (let i = 0; i < manifest.count; i += 8) load(i);
+      const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
+      idle(() => { for (let i = 0; i < manifest.count; i++) load(i); });
+    }
   }
 
   // ── Dimensionnement ────────────────────────────────────────
@@ -121,10 +126,13 @@ export async function initSequence() {
     drawProcedural(progress);
   }
 
+  // Recadrage « cover » ancré à droite (le sujet des vidéos est centré ; le
+  // texte occupe la gauche) : équivalent de object-position: 80% 50%.
+  const ANCHOR_X = isStatic ? 0.5 : 0.8;
   function drawCover(img) {
     const scale = Math.max(width / img.naturalWidth, height / img.naturalHeight);
     const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
-    ctx.drawImage(img, (width - w) / 2, (height - h) / 2, w, h);
+    ctx.drawImage(img, (width - w) * ANCHOR_X, (height - h) / 2, w, h);
   }
 
   // Graphe procédural déterministe : N nœuds, arêtes révélées selon progress.

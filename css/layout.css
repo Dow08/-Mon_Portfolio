@@ -66,6 +66,7 @@
   overflow: hidden;
   background: var(--ink-900);
 }
+.hero__poster img { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; }
 @media (max-width: 1024px) {
   .hero__inner { grid-template-columns: 1fr; }
   .hero__poster { aspect-ratio: 16 / 10; max-height: 46vh; }
@@ -92,7 +93,9 @@
 }
 .seq__media::after {           /* voile pour la lisibilité des légendes */
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(6,23,22,.86) 0%, rgba(6,23,22,.55) 45%, rgba(6,23,22,.15) 100%);
+  background:
+    linear-gradient(90deg, rgba(6,23,22,.94) 0%, rgba(6,23,22,.82) 38%, rgba(6,23,22,.35) 62%, rgba(6,23,22,.08) 100%),
+    linear-gradient(180deg, rgba(6,23,22,.55) 0%, rgba(6,23,22,0) 25%, rgba(6,23,22,0) 80%, rgba(6,23,22,.6) 100%);
 }
 .seq__captions {
   position: relative; z-index: 1;

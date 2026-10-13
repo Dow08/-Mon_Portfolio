@@ -90,9 +90,19 @@ Résultats de laboratoire (simulation), pas des données terrain. Points relevé
 
 Non couvert par axe : états ouverts (menu mobile, dialogue de l'assistant), version EN, lecteur d'écran.
 
+### Séquence réelle (2026-10-13, video4 → 72 frames WebP)
+
+| Vérification | Résultat |
+|---|---|
+| Extraction (`extract_frames.py`) | 72 frames 1280×720, 2,89 Mo, poster 13 Ko, poster final 49 Ko ; avertissement « première image claire (66/255) » accepté avec `--force` |
+| Desktop 927 px : chargement | 72/72 frames chargées (2 975 Ko) après le premier rendu, aucune erreur |
+| Desktop : scrub à 0 %, 50 %, 98 % | image correspondante affichée, légende 01/02/03 active, texte lisible grâce au voile renforcé et au cadrage ancré à droite |
+| Mobile 375 px | classe `seq--static`, **1 seule frame chargée** (la dernière), légendes empilées |
+| Tests automatisés | 15 pytest + 6 node, inchangés, verts |
+
 ### Non testé à ce stade (à faire)
 
-- Lighthouse sur l'URL publique après mise en production (compression serveur).
+- Lighthouse sur l'URL publique après mise en production (compression serveur, poids des frames sur mobile réel).
 - `prefers-reduced-motion` : non émulable dans le navigateur intégré ; à tester dans Chrome DevTools (Rendering → Emulate CSS media feature).
 - Lecture audio effective (clic sur Lecture) : non déclenchée automatiquement (autoplay policy) ; à tester à la main.
 - Lecteur d'écran (NVDA) et navigation clavier complète.
