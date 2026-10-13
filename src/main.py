@@ -176,11 +176,23 @@ def main() -> int:
 
         print("\n[4/5] Audio")
         AUDIO_DIR.mkdir(parents=True, exist_ok=True)
-        audio_path = generate_audio_sync(script, AUDIO_DIR / "latest_briefing.mp3")
-        size = audio_path.stat().st_size
-        if size < MIN_AUDIO_BYTES:
-            raise PipelineError(f"audio trop petit ({size} octets)")
-        print(f"   ok : {size / 1024:.0f} Ko")
+        audio_file: str | None = "audio/latest_briefing.mp3"
+        size = 0
+        try:
+            audio_path = generate_audio_sync(script, AUDIO_DIR / "latest_briefing.mp3")
+            size = audio_path.stat().st_size
+            if size < MIN_AUDIO_BYTES:
+                raise RuntimeError(f"audio trop petit ({size} octets)")
+            print(f"   ok : {size / 1024:.0f} Ko")
+        except Exception as e:  # noqa: BLE001
+            # L'audio dépend d'un service tiers gratuit : son absence ne doit pas
+            # bloquer la veille. Le flash est publié en texte seul, et le signale.
+            audio_file, size = None, 0
+            (AUDIO_DIR / "latest_briefing.mp3").unlink(missing_ok=True)
+            print(f"   ! AUDIO INDISPONIBLE, publication en texte seul : {e}")
+            if os.environ.get("GITHUB_STEP_SUMMARY"):
+                with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as fh:
+                    fh.write(f"> ⚠️ Audio indisponible aujourd'hui (synthèse vocale) : {str(e)[:200]}\n\n")
 
         print("\n[5/5] Validation et écriture")
         data = {
@@ -189,7 +201,7 @@ def main() -> int:
             "source": {"name": "The Hacker News", "url": "https://thehackernews.com", "feed": "https://feeds.feedburner.com/TheHackersNews"},
             "articles": [{k: a[k] for k in ("title", "url", "summary", "title_fr", "summary_fr", "published")} for a in news],
             "script": script,
-            "audio_file": "audio/latest_briefing.mp3",
+            "audio_file": audio_file,
             "audio_bytes": size,
             "ai_providers": PROVIDERS,
         }

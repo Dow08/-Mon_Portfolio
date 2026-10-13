@@ -35,8 +35,8 @@
       }
     },
     "script": { "type": "string", "minLength": 500, "maxLength": 4000 },
-    "audio_file": { "const": "audio/latest_briefing.mp3" },
-    "audio_bytes": { "type": "integer", "minimum": 20000 },
+    "audio_file": { "enum": ["audio/latest_briefing.mp3", null] },
+    "audio_bytes": { "type": "integer", "minimum": 0 },
     "ai_providers": { "type": "object", "additionalProperties": { "type": "string" } }
   }
 }

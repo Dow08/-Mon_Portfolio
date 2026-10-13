@@ -52,6 +52,16 @@ export async function initCyberPulse() {
 
   renderTexts();
   window.addEventListener('langchange', renderTexts);
+  // v2 : audio_file === null signifie « synthèse vocale indisponible ce jour » (publié en texte seul)
+  if (data.audio_file === null) {
+    const card = document.getElementById('pulse-player');
+    if (card) {
+      const note = el('p', { class: 'notice' }, t('js.pulse.noAudio', 'Audio indisponible pour ce flash (synthèse vocale en panne) — les articles restent disponibles ci-contre.'));
+      card.replaceWith(note);
+      window.addEventListener('langchange', () => { note.textContent = t('js.pulse.noAudio', 'Audio indisponible pour ce flash (synthèse vocale en panne) — les articles restent disponibles ci-contre.'); });
+    }
+    return;
+  }
   initPlayer(`cyber-news/${data.audio_file || 'audio/latest_briefing.mp3'}?t=${Date.now()}`);
 }
 

@@ -57,7 +57,7 @@ jobs:
             cyber-news/data.json
             cyber-news/audio/latest_briefing.mp3
           retention-days: 3
-          if-no-files-found: error
+          if-no-files-found: error   # data.json au minimum ; le mp3 peut manquer (audio optionnel)
 
   publish:
     name: Publication
@@ -88,7 +88,9 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add cyber-news/data.json cyber-news/audio/latest_briefing.mp3
+          git add cyber-news/data.json
+          # mp3 absent = flash publié sans audio (signalé dans data.json) : l'ancien mp3 reste, inutilisé
+          [ -f cyber-news/audio/latest_briefing.mp3 ] && git add cyber-news/audio/latest_briefing.mp3
           if git diff --staged --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -107,6 +109,7 @@ jobs:
             echo "| Date | $(date -u +'%Y-%m-%d %H:%M UTC') |"
             echo "| Publié | ${{ steps.commit.outputs.changed }} |"
             echo "| Fournisseurs IA | $(python -c "import json;print(json.load(open('cyber-news/data.json'))['ai_providers'])") |"
+            echo "| Audio | $(python -c "import json;d=json.load(open('cyber-news/data.json'));print('oui, %d Ko' % (d['audio_bytes']//1024) if d['audio_file'] else 'NON (synthèse vocale indisponible)')") |"
           } >> "$GITHUB_STEP_SUMMARY"
 
   alert:

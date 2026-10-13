@@ -33,6 +33,9 @@ def check_cyberpulse() -> None:
         jsonschema.validate(data, schema)
     except jsonschema.ValidationError as e:
         sys.exit(f"ERREUR cyber-news/data.json : {e.message} (à {'/'.join(map(str, e.path)) or 'racine'})")
+    if data["audio_file"] is None:
+        print(f"ok cyberpulse : {len(data['articles'])} articles, SANS audio (signalé), {data['generated_at']}")
+        return
     audio = ROOT / "cyber-news" / data["audio_file"]
     if not audio.is_file() or audio.stat().st_size < 20_000:
         sys.exit(f"ERREUR audio manquant ou trop petit : {audio}")

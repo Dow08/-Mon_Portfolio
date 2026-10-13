@@ -96,6 +96,27 @@ def test_schema_accepts_valid_payload_and_rejects_bad_url_or_count():
         cp.validate(short)
 
 
+def test_schema_accepts_text_only_briefing_when_audio_unavailable():
+    p = _valid_payload(); p["audio_file"] = None; p["audio_bytes"] = 0
+    cp.validate(p)
+
+
+def test_main_publishes_without_audio_when_tts_fails(monkeypatch, tmp_path):
+    monkeypatch.setenv("OPENAI_API_KEY", "x")
+    monkeypatch.delenv("GITHUB_STEP_SUMMARY", raising=False)
+    art = {"title": "Titre long", "url": "https://thehackernews.com/x.html", "summary": "s", "published": ""}
+    monkeypatch.setattr(cp, "scrape_hackernews", lambda n: [dict(art) for _ in range(3)])
+    monkeypatch.setattr(cp, "translate_articles", lambda news: [dict(a, title_fr="Titre fr", summary_fr="Résumé en français.") for a in news])
+    monkeypatch.setattr(cp, "generate_script", lambda news: "mot " * 200)
+    def boom(*a, **k): raise RuntimeError("403 Invalid response status")
+    monkeypatch.setattr(cp, "generate_audio_sync", boom)
+    monkeypatch.setattr(cp, "PUBLIC_DIR", tmp_path); monkeypatch.setattr(cp, "AUDIO_DIR", tmp_path / "audio")
+    monkeypatch.setattr(cp, "DATA_FILE", tmp_path / "data.json")
+    assert cp.main() == 0
+    out = json.loads((tmp_path / "data.json").read_text(encoding="utf-8"))
+    assert out["audio_file"] is None and out["audio_bytes"] == 0 and len(out["articles"]) == 3
+
+
 def test_main_fails_when_not_enough_articles(monkeypatch):
     monkeypatch.setenv("OPENAI_API_KEY", "x")
     monkeypatch.setattr(cp, "scrape_hackernews", lambda n: [])
