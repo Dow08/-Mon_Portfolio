@@ -1,0 +1,8 @@
+{
+  "count": 72,
+  "pattern": "assets/sequence/{n}.webp",
+  "width": 1280,
+  "height": 720,
+  "bytes": 3025290,
+  "source": "video4.mp4"
+}

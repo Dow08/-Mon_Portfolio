@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CyberPulse data.json",
+  "type": "object",
+  "required": ["version", "generated_at", "source", "articles", "script", "audio_file"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 2 },
+    "generated_at": { "type": "string", "format": "date-time", "pattern": "^\\d{4}-\\d{2}-\\d{2}T" },
+    "source": {
+      "type": "object",
+      "required": ["name", "url"],
+      "properties": {
+        "name": { "type": "string", "maxLength": 80 },
+        "url": { "type": "string", "pattern": "^https://" },
+        "feed": { "type": "string", "pattern": "^https://" }
+      }
+    },
+    "articles": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["title", "url", "title_fr", "summary_fr"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string", "minLength": 5, "maxLength": 300 },
+          "url": { "type": "string", "pattern": "^https://thehackernews\\.com/" },
+          "summary": { "type": "string", "maxLength": 1000 },
+          "title_fr": { "type": "string", "minLength": 5, "maxLength": 300 },
+          "summary_fr": { "type": "string", "minLength": 10, "maxLength": 1000 },
+          "published": { "type": "string", "maxLength": 80 }
+        }
+      }
+    },
+    "script": { "type": "string", "minLength": 500, "maxLength": 4000 },
+    "audio_file": { "const": "audio/latest_briefing.mp3" },
+    "audio_bytes": { "type": "integer", "minimum": 20000 },
+    "ai_providers": { "type": "object", "additionalProperties": { "type": "string" } }
+  }
+}

@@ -1,143 +1,58 @@
-# 🛡️ Portfolio Cybersécurité | Poncelet Dorian
+# Portfolio — Dorian Poncelet
 
-[![CyberPulse](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/daily_cron.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/daily_cron.yml)
+[![CyberPulse](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/cyberpulse.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/cyberpulse.yml)
+[![Projets](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/projects.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/projects.yml)
+[![Security scan](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/security-scan.yml)
 
-> Portfolio professionnel avec veille cybersécurité automatisée et briefings audio quotidiens générés par IA.
+Portfolio de **Dorian Poncelet** — cybersécurité orientée gouvernance, risques et conformité (GRC), infrastructures sécurisées et automatisation par l'IA.
 
-🌐 **[Voir le site en ligne](https://dow08.github.io/-Mon_Portfolio/)**
+🌐 https://dow08.github.io/-Mon_Portfolio/
 
----
+## Ce que fait le site
 
-## ✨ Fonctionnalités
+- **Une page**, HTML/CSS/JavaScript sans framework ni bibliothèque, hébergée sur GitHub Pages, bilingue FR/EN.
+- **Projets générés automatiquement** depuis les dépôts publics de l'auteur (`data/projects.json`, régénéré chaque jour par une GitHub Action). Pour faire apparaître un projet : le documenter dans le README de son dépôt (section `### nom-du-dossier`, ligne `Stack : …`, `⭐` pour le mettre en avant).
+- **Compétences, formation et assistant « questions fréquentes »** alimentés par `data/profile.json`, un fichier de contenu validé. L'assistant fonctionne sans IA, sans réseau et sans stockage.
+- **CyberPulse** : chaque jour, un pipeline Python lit le flux RSS de The Hacker News, traduit et résume trois articles (OpenAI, repli Gemini), rédige un script radio et le lit en synthèse vocale (edge-tts). Résultat validé contre un schéma JSON avant publication ; un échec ouvre une issue.
+- **Séquence cinématique** pilotée par le défilement (canvas + images WebP), avec repli procédural, désactivée sous `prefers-reduced-motion` et sur petit écran.
 
-### 🏠 Portfolio One-Page
-- **Hero** : présentation, vidéo de fond, statistiques (dont le nombre de repos GitHub, à jour via l'API)
-- **About** : parcours, bloc terminal, chiffres clés
-- **Projets** : génération 100% automatique — parcourt tous les repos publics (hors forks, hors ce portfolio) via l'API GitHub, lit le README.md de chacun et affiche chaque sous-projet documenté (voir `renderProjects()` dans `index.html`). Ajouter/documenter un projet sur GitHub suffit à le faire apparaître sur le site. Filtres par catégorie auto-générés ; une ligne commençant par `⭐` dans la section d'un projet le met "à la une" (carte mise en avant, triée en tête). Cache `sessionStorage` 10 min contre le rate-limit de l'API.
-- **Skills** : stack technique par domaine (Infra, Offensive, Défensive, GRC, Management…) + certifications
-- **CyberPulse (Veille)** : section affichant le flash info quotidien généré par le pipeline — lecteur audio custom avec visualiseur, date et articles du jour (chargés depuis `cyber-news/data.json`). La section se masque d'elle-même si les données sont indisponibles.
-- **Contact** : formulaire (envoi via `mailto:`), liens directs (email, LinkedIn, GitHub, TryHackMe) et téléchargement du CV
+## Sécurité
 
-### 🔊 CyberPulse - Veille Automatisée
-Pipeline IA quotidien (08:00 UTC) qui :
-1. Scrape TheHackerNews pour les 3 derniers articles
-2. Traduit en français via GPT/Gemini
-3. Génère un script radio
-4. Synthétise l'audio avec edge-tts
-5. Met à jour le site automatiquement
+- CSP stricte par balise meta, sans `unsafe-inline` ; aucune origine externe (polices et icônes auto-hébergées).
+- Tout contenu externe (README, flux RSS, réponses IA) est rendu via `textContent` et des URL filtrées, jamais via `innerHTML`.
+- Actions GitHub épinglées par SHA, permissions minimales, secrets IA isolés du job qui écrit dans le dépôt, Dependabot, scan Trivy.
+- Détail et limites (GitHub Pages n'autorise pas les en-têtes HTTP) : [docs/RAPPORT_SECURITE.md](docs/RAPPORT_SECURITE.md).
 
-### 🎨 Design
-- Thème futuriste "Vision 2026"
-- Animations CSS (particules, aurora orbs)
-- Lecteur audio custom avec visualiseur
-- 100% responsive
-
----
-
-## 🚀 Stack Technique
-
-| Catégorie | Technologies |
-|-----------|--------------|
-| Frontend | HTML5, CSS3, JavaScript Vanilla |
-| Backend/Pipeline | Python 3.11, OpenAI/Gemini API |
-| Audio | edge-tts (Microsoft voices) |
-| CI/CD | GitHub Actions |
-| Hosting | GitHub Pages |
-
----
-
-## 📁 Structure du Projet
-
-```
-├── index.html              # Page principale (HTML + CSS + JS, tout inline)
-├── style.css                # ⚠️ non utilisé — hérité d'une ancienne version multi-pages
-├── cyber-news/
-│   ├── data.json           # Actualités (généré par IA)
-│   └── audio/
-│       └── latest_briefing.mp3  # Podcast quotidien
-├── src/
-│   ├── main.py             # Orchestrateur pipeline
-│   ├── scraper.py          # Scraping TheHackerNews
-│   └── audio_gen.py        # Génération TTS
-├── assets/
-│   ├── images/
-│   └── Video/
-├── .github/workflows/
-│   ├── deploy.yaml         # Déploiement + Trivy scan
-│   └── daily_cron.yml      # Pipeline CyberPulse (08:00 UTC)
-└── requirements.txt        # Dépendances Python
-```
-
----
-
-## ⚙️ Configuration
-
-### Secrets GitHub requis
-
-| Secret | Description | Requis |
-|--------|-------------|--------|
-| `OPEN_AI_KEY` | Clé API OpenAI (GPT-4o-mini) | ✅ ou GEMINI |
-| `GEMINI_KEY` | Clé API Google Gemini (fallback) | Optionnel |
-
-> ➡️ `Settings > Secrets and variables > Actions > New repository secret`
-
-### Formulaire de contact
-
-Pas de service tiers : le formulaire construit un lien `mailto:` côté client (voir le handler `contact-form` dans `index.html`) et ouvre le client mail du visiteur avec le message pré-rempli.
-
----
-
-## 🔧 Développement Local
+## Développement
 
 ```bash
-# Cloner le repo
-git clone https://github.com/Dow08/-Mon_Portfolio.git
-cd ./-Mon_Portfolio
-
-# Serveur local
-python -m http.server 8080
-# → http://localhost:8080
-
-# Tester le pipeline (optionnel)
-pip install -r requirements.txt
-cd src && python main.py
+python scripts/serve.py              # http://localhost:8080 (CSP en mode rapport, sans cache)
+python scripts/build_css.py          # régénère css/site.css après modification de css/*.css
+python scripts/build_projects.py     # régénère data/projects.json (GITHUB_TOKEN conseillé)
+python scripts/make_og.py            # régénère l'image de partage
+python -m pytest tests && node --test tests/*.test.mjs
 ```
 
----
+Pipeline CyberPulse en local : `pip install -r requirements.txt`, puis `cd src && python main.py` avec `OPENAI_API_KEY` ou `GEMINI_API_KEY`.
 
-## 📊 Déploiement & Workflows GitHub Actions
+Guide complet : [docs/MAINTENANCE.md](docs/MAINTENANCE.md). Décisions, direction artistique, rapports de tests et de sécurité, scoring : dossier [docs/](docs/).
 
-### Déploiement du site
-Géré nativement par **GitHub Pages** (Settings > Pages > Source : "Deploy from a branch" > `main` > `/root`). Chaque push sur `main` republie automatiquement le site, sans workflow ni scan bloquant.
+## Structure
 
-### Security Scan
-- **Déclencheur** : Push sur `main` ou manuel — tourne en parallèle du déploiement, ne le bloque jamais
-- **Actions** : Scan de vulnérabilités Trivy, résultats dans l'onglet Security du repo
+```
+index.html  accessibilite.html  404.html  robots.txt  sitemap.xml
+css/        sources (tokens, base, layout, components, motion) → site.css généré
+js/         modules ES : main, i18n, nav, reveal, sequence, projects, profile, assistant, cyberpulse, util/dom
+data/       projects.json (généré) · profile.json (validé) · i18n.en.json · sequence.json
+assets/     fonts (Geist, OFL) · img · sequence (frames générées) · source (brut, non versionné)
+cyber-news/ data.json + audio (générés par CyberPulse)
+src/        pipeline CyberPulse · schemas/ schéma de validation
+scripts/    serve, build_css, build_projects, extract_frames, make_og, validate_data
+tests/      pytest + node --test
+.github/    workflows cyberpulse, projects, security-scan · dependabot
+docs/       audit, décisions, DA, plan, rapports, scoring, maintenance
+```
 
-### CyberPulse - Mise à jour quotidienne
-- **Déclencheur** : Cron `0 8 * * *` (08:00 UTC) ou manuel
-- **Actions** : Scraping → Traduction → Script → Audio → Commit
+## Licence
 
----
-
-## 🛡️ Sécurité
-
-- ✅ Scan Trivy automatique à chaque push (indépendant du déploiement)
-- ✅ Secrets via GitHub Secrets (jamais en dur)
-- ✅ `.gitignore` configuré (`.env`, `__pycache__`, etc.)
-- ✅ CSP et attributs `rel="noopener noreferrer"` sur liens externes
-
----
-
-## 📝 Licence
-
-MIT License - Libre d'utilisation et modification.
-
----
-
-## 👤 Auteur
-
-**Dorian Poncelet**
-- 🔗 [GitHub](https://github.com/Dow08)
-- 🔗 [LinkedIn](https://www.linkedin.com/in/dorian-poncelet-1807612b5)
-- 🔗 [TryHackMe](https://tryhackme.com/p/seallia81)
+Code du site : MIT. Polices Geist : SIL Open Font License (`assets/fonts/OFL.txt`). Contenus (textes, projets) : © Dorian Poncelet.

@@ -1,0 +1,132 @@
+name: CyberPulse
+
+# Génère le flash info quotidien (RSS → IA → audio) puis le publie.
+# Deux jobs volontairement séparés :
+#   - generate : a les clés IA mais ne peut PAS écrire dans le dépôt ;
+#   - publish  : peut écrire dans le dépôt mais n'a PAS les clés IA.
+# Un échec à n'importe quelle étape laisse le job rouge et ne publie rien.
+# Les crons GitHub s'exécutent avec un retard variable (souvent plusieurs heures).
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: cyberpulse
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: Génération
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPEN_AI_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_KEY }}
+        working-directory: src
+        run: python main.py
+
+      - name: Validation du résultat
+        run: python scripts/validate_data.py cyberpulse
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cyber-news
+          path: |
+            cyber-news/data.json
+            cyber-news/audio/latest_briefing.mp3
+          retention-days: 3
+          if-no-files-found: error
+
+  publish:
+    name: Publication
+    needs: generate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: cyber-news
+          path: cyber-news
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+
+      - name: Re-validation avant commit
+        run: |
+          pip install jsonschema==4.26.0
+          python scripts/validate_data.py cyberpulse
+
+      - name: Commit et push
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cyber-news/data.json cyber-news/audio/latest_briefing.mp3
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "CyberPulse : flash info du $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Résumé
+        run: |
+          {
+            echo "## CyberPulse"
+            echo
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Date | $(date -u +'%Y-%m-%d %H:%M UTC') |"
+            echo "| Publié | ${{ steps.commit.outputs.changed }} |"
+            echo "| Fournisseurs IA | $(python -c "import json;print(json.load(open('cyber-news/data.json'))['ai_providers'])") |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  alert:
+    name: Alerte en cas d'échec
+    needs: [generate, publish]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const title = 'CyberPulse en échec';
+            const url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `Le pipeline CyberPulse a échoué le ${new Date().toISOString().slice(0, 16)} UTC.\n\nJournal : ${url}\n\nLe site continue d'afficher le dernier flash publié.`;
+            const { data: issues } = await github.rest.issues.listForRepo({ ...context.repo, state: 'open', labels: 'cyberpulse' });
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ ...context.repo, title, body, labels: ['cyberpulse'] });
+            }

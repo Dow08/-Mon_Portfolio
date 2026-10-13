@@ -4,7 +4,6 @@ Synthèse vocale avec edge-tts (Microsoft Azure Neural Voices)
 """
 
 import asyncio
-import edge_tts
 from pathlib import Path
 
 VOICE = "fr-FR-HenriNeural"  # Alternatives: fr-FR-DeniseNeural (femme)
@@ -12,6 +11,8 @@ VOICE = "fr-FR-HenriNeural"  # Alternatives: fr-FR-DeniseNeural (femme)
 
 async def generate_audio(text: str, output_path: Path, voice: str = VOICE) -> Path:
     """Génère un fichier MP3 à partir du texte."""
+    import edge_tts  # import local : les tests n'ont pas besoin de la dépendance réseau
+
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     

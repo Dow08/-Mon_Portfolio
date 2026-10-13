@@ -1,2398 +1,264 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dorian Poncelet — Cybersécurité</title>
-
-  <!-- ── SEO & PARTAGE (Open Graph / Twitter Card) ─────────────────── -->
-  <meta name="description" content="Portfolio de Dorian Poncelet — administrateur systèmes et cybersécurité : projets GRC, infrastructure sécurisée, IA locale et veille cyber quotidienne générée par IA."/>
-  <link rel="canonical" href="https://dow08.github.io/-Mon_Portfolio/"/>
-  <meta name="theme-color" content="#080808"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://dow08.github.io/-Mon_Portfolio/"/>
-  <meta property="og:title" content="Dorian Poncelet — Cybersécurité"/>
-  <meta property="og:description" content="Projets GRC, infrastructure sécurisée, IA locale et veille cyber quotidienne générée par IA."/>
-  <meta property="og:image" content="https://dow08.github.io/-Mon_Portfolio/assets/images/cyber-shield.png"/>
-  <meta property="og:image:alt" content="Bouclier néon — portfolio cybersécurité de Dorian Poncelet"/>
-  <meta property="og:locale" content="fr_FR"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Dorian Poncelet — Cybersécurité"/>
-  <meta name="twitter:description" content="Projets GRC, infrastructure sécurisée, IA locale et veille cyber quotidienne générée par IA."/>
-  <meta name="twitter:image" content="https://dow08.github.io/-Mon_Portfolio/assets/images/cyber-shield.png"/>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080808'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%2300ff88'/%3E%3C/svg%3E"/>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-/* ══════════════════════════════════════════
-   RESET + ROOT
-══════════════════════════════════════════ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-/* scroll-behavior:smooth retiré — le défilement d'ancre est géré en JS
-   (smoothScrollTo) pour rester fiable malgré les animations GSAP au scroll */
-body{
-  font-family:'Space Grotesk',sans-serif;
-  background:#080808;
-  color:#f0f0f0;
-  overflow-x:hidden;
-  cursor:none;
-}
-
-/* ══════════════════════════════════════════
-   CURSOR CUSTOM
-══════════════════════════════════════════ */
-#cursor{
-  position:fixed;z-index:9999;
-  width:12px;height:12px;
-  border-radius:50%;
-  background:#00ff88;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:width .2s,height .2s,background .2s,opacity .2s;
-  mix-blend-mode:difference;
-  box-shadow:0 0 16px #00ff88,0 0 40px rgba(0,255,136,.3);
-}
-#cursor-ring{
-  position:fixed;z-index:9998;
-  width:40px;height:40px;
-  border-radius:50%;
-  border:1px solid rgba(0,255,136,.5);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:transform .12s ease,width .25s,height .25s,border-color .25s;
-}
-body:has(a:hover) #cursor,
-body:has(button:hover) #cursor{width:24px;height:24px;background:#fff;}
-body:has(a:hover) #cursor-ring,
-body:has(button:hover) #cursor-ring{width:60px;height:60px;border-color:rgba(255,255,255,.4);}
-
-/* ══════════════════════════════════════════
-   NOISE OVERLAY
-══════════════════════════════════════════ */
-.noise{
-  position:fixed;inset:0;z-index:1;
-  pointer-events:none;opacity:.04;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:200px 200px;
-}
-
-/* ══════════════════════════════════════════
-   NAV
-══════════════════════════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  padding:24px 60px;
-  display:flex;align-items:center;justify-content:space-between;
-  mix-blend-mode:normal;
-}
-.nav-logo{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.85rem;font-weight:700;
-  color:#f0f0f0;
-  letter-spacing:-.01em;
-  display:flex;align-items:center;gap:8px;
-}
-.nav-logo .dot{
-  width:8px;height:8px;border-radius:50%;
-  background:#00ff88;
-  box-shadow:0 0 10px #00ff88;
-  animation:pulse-dot 2s ease-in-out infinite;
-}
-@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
-
-.nav-links{
-  display:flex;gap:36px;list-style:none;
-}
-.nav-links a{
-  font-size:.82rem;font-weight:500;
-  color:rgba(240,240,240,.5);
-  text-decoration:none;
-  text-transform:uppercase;letter-spacing:.12em;
-  transition:color .3s;
-  position:relative;
-}
-.nav-links a::after{
-  content:'';
-  position:absolute;bottom:-4px;left:0;right:0;height:1px;
-  background:#00ff88;
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .3s cubic-bezier(.4,0,.2,1);
-}
-.nav-links a:hover{color:#f0f0f0;}
-.nav-links a:hover::after{transform:scaleX(1);}
-
-.nav-cta{
-  display:flex;align-items:center;gap:8px;
-  padding:10px 22px;
-  border-radius:100px;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.04);
-  color:#f0f0f0;
-  font-size:.82rem;font-weight:600;
-  text-decoration:none;
-  transition:background .3s,border-color .3s,transform .3s;
-  backdrop-filter:blur(12px);
-}
-.nav-cta:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);transform:translateY(-2px);}
-
-/* ══════════════════════════════════════════
-   HERO SECTION
-══════════════════════════════════════════ */
-#hero{
-  position:relative;
-  width:100vw;height:100vh;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  overflow:hidden;
-  background:#080808;
-}
-
-/* HUGE background text — "CYBER" watermark */
-.hero-bg-text{
-  position:absolute;
-  bottom:-2%;left:50%;
-  transform:translateX(-50%);
-  font-size:clamp(120px,20vw,260px);
-  font-weight:700;
-  white-space:nowrap;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,255,255,.04);
-  pointer-events:none;
-  user-select:none;
-  letter-spacing:-.02em;
-  line-height:1;
-}
-
-/* Left content */
-.hero-left{
-  position:absolute;
-  left:60px;bottom:80px;
-  z-index:10;
-  display:flex;flex-direction:column;gap:16px;
-  max-width:280px;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:6px 14px;
-  border-radius:100px;
-  background:rgba(0,255,136,.08);
-  border:1px solid rgba(0,255,136,.2);
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;color:#00ff88;
-  width:fit-content;
-}
-.hero-badge .live-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:#00ff88;
-  box-shadow:0 0 8px #00ff88;
-  animation:pulse-dot 1.5s ease-in-out infinite;
-}
-.hero-sub{
-  font-size:.85rem;
-  color:rgba(240,240,240,.45);
-  line-height:1.7;
-  font-weight:400;
-}
-.hero-sub strong{color:rgba(240,240,240,.8);}
-
-/* Right content — tiny tags */
-.hero-right{
-  position:absolute;
-  right:60px;bottom:80px;
-  z-index:10;
-  display:flex;flex-direction:column;gap:8px;
-  align-items:flex-end;
-}
-.hero-stat{text-align:right;}
-.hero-stat .val{
-  display:block;
-  font-size:2rem;font-weight:700;
-  line-height:1;
-  font-family:'JetBrains Mono',monospace;
-  color:#f0f0f0;
-}
-.hero-stat .lbl{
-  font-size:.7rem;color:rgba(240,240,240,.35);
-  text-transform:uppercase;letter-spacing:.1em;
-}
-.stat-divider{
-  width:1px;height:30px;
-  background:rgba(255,255,255,.08);
-  align-self:flex-end;
-  margin:4px 0;
-}
-
-/* ── BOTTOM CENTER GROUP — eyebrow + CTA, jamais superposés ── */
-.hero-bottom-center{
-  position:absolute;
-  bottom:80px;left:50%;
-  transform:translateX(-50%);
-  z-index:25;
-  display:flex;flex-direction:column;
-  align-items:center;gap:20px;
-  width:max-content;
-  pointer-events:none;
-}
-.hero-hi{
-  white-space:nowrap;
-  font-size:clamp(11px,1.2vw,16px);
-  font-family:'JetBrains Mono',monospace;
-  color:rgba(240,240,240,.35);
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  pointer-events:none;user-select:none;
-}
-
-/* ── TITLE CONTAINER — ancre centrale immuable, jamais touchée par JS ── */
-/* Le centrage top/left/transform ici ne DOIT JAMAIS être modifié par JS.  */
-/* Le JS (GSAP) anime seulement x/y des enfants, pas ce conteneur.         */
-.hero-title-container{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  z-index:15;
-  display:flex;
-  flex-direction:column;   /* ← DORIAN au-dessus, PONCELET en dessous */
-  align-items:center;
-  gap:.08em;
-  pointer-events:none;user-select:none;
-  will-change:transform;
-}
-
-/* ── TAILLE commune aux deux noms ── */
-.hero-name-front,
-.hero-name-behind{
-  font-size:clamp(56px,9vw,138px);
-  font-weight:700;
-  letter-spacing:-.04em;
-  line-height:1;
-  text-transform:uppercase;
-  white-space:nowrap;
-  pointer-events:none;user-select:none;
-  position:relative;   /* indispensable pour le glitch ::before/::after */
-  display:block;
-}
-
-/* ── DORIAN — éclatant, blanc pur + lueur cyber ── */
-.hero-name-front{
-  z-index:20;
-  color:#ffffff;
-  text-shadow:
-    0 0 20px rgba(100,220,255,.45),
-    0 0 50px rgba(0,180,255,.18),
-    0 2px 8px rgba(0,0,0,.95);
-}
-
-/* ── PONCELET — lisible, légèrement cyan translucide ── */
-.hero-name-behind{
-  z-index:10;
-  color:rgba(160,210,255,.55);
-  -webkit-text-stroke:.5px rgba(120,200,255,.4);
-  text-shadow:
-    0 0 30px rgba(60,160,255,.2),
-    0 2px 6px rgba(0,0,0,.9);
-}
-
-/* ── AVATAR / CYBER CHARACTER ── */
-/* ── VIDEO BACKGROUND ── */
-.hero-video-wrap{
-  position:absolute;inset:0;
-  z-index:1;overflow:hidden;
-  pointer-events:none;
-}
-#hero-video{
-  position:absolute;
-  top:0;left:0;
-  width:100%;height:100%;
-  object-fit:cover;
-  transform:scale(1.1);
-  transform-origin:center center;
-  will-change:transform;
-}
-.hero-video-overlay{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
-  opacity:.7;
-  background:linear-gradient(
-    to bottom,
-    rgba(8,8,8,.58) 0%,
-    rgba(8,8,8,.32) 45%,
-    rgba(8,8,8,.70) 100%
-  );
-}
-
-/* CTA button */
-.hero-cta-wrap{
-  pointer-events:all;
-}
-.btn-hero{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:16px 38px;
-  border-radius:100px;
-  background:linear-gradient(135deg,#00ff88 0%,#7c3aed 100%);
-  color:#000;
-  font-size:.9rem;font-weight:700;
-  text-decoration:none;
-  text-transform:uppercase;letter-spacing:.08em;
-  transition:transform .3s,box-shadow .3s;
-  box-shadow:0 0 40px rgba(0,255,136,.3),0 0 80px rgba(124,58,237,.15);
-}
-.btn-hero:hover{
-  transform:translateY(-4px) scale(1.02);
-  box-shadow:0 0 60px rgba(0,255,136,.5),0 0 120px rgba(124,58,237,.25);
-}
-
-/* scroll indicator */
-.scroll-hint{
-  position:absolute;bottom:28px;left:50%;
-  transform:translateX(-50%);
-  z-index:20;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  font-size:.68rem;font-family:'JetBrains Mono',monospace;
-  color:rgba(240,240,240,.25);letter-spacing:.15em;text-transform:uppercase;
-}
-.scroll-line{
-  width:1px;height:40px;
-  background:linear-gradient(to bottom,rgba(0,255,136,.5),transparent);
-  animation:scroll-pulse 2s ease-in-out infinite;
-}
-@keyframes scroll-pulse{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.3);}}
-
-/* ══════════════════════════════════════════
-   HERO — RESPONSIVE MOBILE
-══════════════════════════════════════════ */
-@media (max-width:768px){
-  /* Masque les colonnes gauche/droite pour libérer le centre */
-  .hero-left,
-  .hero-right{ display:none; }
-  /* Noms plus petits pour tenir sur écran étroit */
-  .hero-name-front,
-  .hero-name-behind{
-    font-size:clamp(42px,13vw,80px);
-    white-space:normal;
-    text-align:center;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <title>Dorian Poncelet — Cybersécurité &amp; GRC</title>
+  <meta name="description" content="Dorian Poncelet, analyste GRC et administrateur d'infrastructures sécurisées en reconversion : gouvernance, risques et conformité, infrastructures, automatisation par l'IA. Projets vérifiables sur GitHub. Rodez, France.">
+  <link rel="canonical" href="https://dow08.github.io/-Mon_Portfolio/">
+  <meta name="theme-color" content="#061716">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://dow08.github.io/-Mon_Portfolio/">
+  <meta property="og:title" content="Dorian Poncelet — Cybersécurité &amp; GRC">
+  <meta property="og:description" content="Gouvernance, risques et conformité, infrastructures sécurisées, automatisation par l'IA. Projets vérifiables sur GitHub.">
+  <meta property="og:image" content="https://dow08.github.io/-Mon_Portfolio/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dorian Poncelet — Cybersécurité et GRC">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="fr" href="https://dow08.github.io/-Mon_Portfolio/">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="module" src="js/main.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dorian Poncelet",
+    "url": "https://dow08.github.io/-Mon_Portfolio/",
+    "description": "Cybersécurité : gouvernance, risques et conformité (GRC), administration d'infrastructures sécurisées, automatisation par l'IA.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Rodez", "addressCountry": "FR" },
+    "knowsAbout": ["ISO 27001", "NIS 2", "RGPD", "NIST CSF", "DORA", "EBIOS RM", "Wazuh", "Terraform", "Ansible", "Active Directory"],
+    "sameAs": ["https://github.com/Dow08", "https://www.linkedin.com/in/dorian-p-1807612b5/", "https://tryhackme.com/p/seallia81"]
   }
-  /* Bottom group remonte un peu */
-  .hero-bottom-center{ bottom:60px; width:90vw; }
-  .hero-hi{ font-size:10px; text-align:center; white-space:normal; }
-  /* Scroll hint compact */
-  .scroll-hint{ bottom:16px; }
-}
-
-/* ══════════════════════════════════════════
-   SECTION BASE
-══════════════════════════════════════════ */
-section{
-  position:relative;z-index:10;
-  min-height:100vh;
-  padding:120px 60px;
-  overflow:hidden;
-}
-
-/* ── DIVIDER ── */
-.section-divider{
-  width:100%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
-}
-
-/* ══════════════════════════════════════════
-   ABOUT SECTION
-══════════════════════════════════════════ */
-#about{background:#0a0a0a;}
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:center;
-  max-width:1200px;margin:0 auto;
-  padding-top:40px;
-}
-.about-eyebrow{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.75rem;color:#00ff88;
-  text-transform:uppercase;letter-spacing:.2em;
-  margin-bottom:20px;
-  display:flex;align-items:center;gap:12px;
-}
-.about-eyebrow::before{content:'//';opacity:.5;}
-.about-title{
-  font-size:clamp(36px,4.5vw,60px);
-  font-weight:700;line-height:1.1;
-  letter-spacing:-.03em;
-  margin-bottom:24px;
-}
-.about-title .outline{
-  -webkit-text-stroke:1px rgba(240,240,240,.3);
-  color:transparent;
-}
-.about-body{
-  font-size:1rem;color:rgba(240,240,240,.55);
-  line-height:1.85;margin-bottom:32px;
-}
-.about-body strong{color:rgba(240,240,240,.9);}
-
-/* Terminal block */
-.terminal-block{
-  background:#0d0d10;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-  overflow:hidden;
-  font-family:'JetBrains Mono',monospace;
-  font-size:.8rem;
-}
-.terminal-bar{
-  padding:12px 16px;
-  background:rgba(255,255,255,.03);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;gap:7px;
-}
-.terminal-bar .tb-dot{width:10px;height:10px;border-radius:50%;}
-.tb-red{background:#ff5f57;}.tb-yellow{background:#febc2e;}.tb-green{background:#28c840;}
-.terminal-body{padding:20px 16px;line-height:2;}
-.t-prompt{color:rgba(0,255,136,.7);}
-.t-cmd{color:#f0f0f0;}
-.t-comment{color:rgba(240,240,240,.25);}
-.t-out{color:rgba(240,240,240,.5);}
-.t-green{color:#00ff88;}
-.t-purple{color:#a78bfa;}
-.t-blue{color:#60a5fa;}
-.t-cursor{
-  display:inline-block;width:8px;height:1em;
-  background:#00ff88;vertical-align:text-bottom;
-  animation:blink-cursor .9s step-end infinite;
-}
-@keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
-
-/* Stats counter row */
-.stats-row{
-  display:flex;gap:40px;margin-top:40px;
-  padding-top:40px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.stat-item .n{
-  font-size:2.5rem;font-weight:700;
-  font-family:'JetBrains Mono',monospace;
-  color:#f0f0f0;line-height:1;
-  display:block;margin-bottom:4px;
-}
-.stat-item .n .accent{color:#00ff88;}
-.stat-item .desc{font-size:.78rem;color:rgba(240,240,240,.35);text-transform:uppercase;letter-spacing:.1em;}
-
-/* ══════════════════════════════════════════
-   PROJECTS SECTION — horizontal scroll
-══════════════════════════════════════════ */
-#projects{
-  padding:120px 0;
-  background:#080808;
-}
-.projects-header{
-  padding:0 60px 60px;
-  display:flex;align-items:flex-end;justify-content:space-between;
-  max-width:1400px;
-}
-.projects-header .section-eyebrow{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.75rem;color:#00ff88;
-  text-transform:uppercase;letter-spacing:.2em;
-  margin-bottom:12px;
-  display:flex;align-items:center;gap:12px;
-}
-.projects-header .section-eyebrow::before{content:'//';opacity:.5;}
-.section-title{
-  font-size:clamp(36px,4.5vw,60px);
-  font-weight:700;line-height:1.1;
-  letter-spacing:-.03em;
-}
-.section-title .outline{
-  -webkit-text-stroke:1px rgba(240,240,240,.3);
-  color:transparent;
-}
-.projects-grid-wrap{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
-  gap:24px;
-  padding:0 60px 20px;
-}
-
-.project-card{
-  width:100%;
-  border-radius:20px;
-  background:#0d0d10;
-  border:1px solid rgba(255,255,255,.07);
-  overflow:hidden;
-  scroll-snap-align:start;
-  transition:transform .4s cubic-bezier(.4,0,.2,1),border-color .4s;
-  display:flex;flex-direction:column;
-}
-.project-card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(0,255,136,.2);
-}
-.card-thumb{
-  height:200px;
-  position:relative;
-  overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
-.card-thumb-icon{
-  font-size:4rem;
-  position:relative;z-index:2;
-  filter:drop-shadow(0 0 20px currentColor);
-}
-.card-thumb-bg{
-  position:absolute;inset:0;
-  opacity:.15;
-  background:radial-gradient(circle at 50% 50%, currentColor 0%, transparent 70%);
-}
-.card-body{padding:24px;}
-.card-number{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.7rem;color:rgba(240,240,240,.2);
-  letter-spacing:.1em;margin-bottom:8px;
-}
-.card-title{font-size:1.1rem;font-weight:700;margin-bottom:8px;}
-.card-desc{font-size:.83rem;color:rgba(240,240,240,.45);line-height:1.7;margin-bottom:16px;}
-.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
-.card-tag{
-  font-size:.68rem;font-family:'JetBrains Mono',monospace;
-  padding:3px 10px;border-radius:100px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  color:rgba(240,240,240,.45);
-}
-.card-footer{
-  padding:16px 24px;
-  border-top:1px solid rgba(255,255,255,.05);
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:.75rem;
-  margin-top:auto;
-}
-.card-status{
-  display:flex;align-items:center;gap:6px;
-  font-family:'JetBrains Mono',monospace;
-}
-.status-dot-live{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pulse-dot 2s ease-in-out infinite;}
-.status-dot-wip{width:6px;height:6px;border-radius:50%;background:#fbbf24;}
-.card-link{
-  width:32px;height:32px;border-radius:8px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;
-  color:rgba(240,240,240,.4);
-  text-decoration:none;font-size:.8rem;
-  transition:background .2s,color .2s,border-color .2s;
-}
-.card-link:hover{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.25);color:#00ff88;}
-
-/* scroll indicator below */
-.scroll-progress{
-  padding:20px 60px 0;
-  display:flex;align-items:center;gap:12px;
-  font-size:.72rem;font-family:'JetBrains Mono',monospace;
-  color:rgba(240,240,240,.25);
-}
-.scroll-progress-bar{
-  flex:1;max-width:200px;height:1px;
-  background:rgba(255,255,255,.08);border-radius:1px;overflow:hidden;
-}
-.scroll-progress-fill{
-  height:100%;width:30%;
-  background:linear-gradient(90deg,#00ff88,#7c3aed);
-  border-radius:1px;
-  transition:width .3s;
-}
-
-/* ══════════════════════════════════════════
-   SKILLS SECTION
-══════════════════════════════════════════ */
-#skills{background:#0a0a0a;}
-.skills-inner{max-width:1200px;margin:0 auto;padding-top:20px;}
-
-.skills-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:16px;
-  margin-top:48px;
-}
-.skill-block{
-  padding:20px;
-  border-radius:14px;
-  background:#0d0d10;
-  border:1px solid rgba(255,255,255,.06);
-  transition:border-color .3s,transform .3s;
-}
-.skill-block:hover{border-color:rgba(0,255,136,.18);transform:translateY(-3px);}
-.skill-block-header{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:14px;
-}
-.skill-block-icon{
-  width:38px;height:38px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.95rem;flex-shrink:0;
-}
-.skill-block-name{font-size:.92rem;font-weight:600;}
-.skill-block-cat{font-size:.7rem;color:rgba(240,240,240,.3);font-family:'JetBrains Mono',monospace;margin-top:1px;}
-
-/* ── Stack tags — liste des technos dans chaque carte ── */
-.skill-block-stack{
-  display:flex;flex-wrap:wrap;gap:5px;
-  margin-top:14px;
-}
-.skill-tag{
-  font-size:.64rem;
-  font-family:'JetBrains Mono',monospace;
-  padding:3px 9px;
-  border-radius:6px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-  color:rgba(240,240,240,.45);
-  white-space:nowrap;
-  transition:background .2s,color .2s;
-}
-.skill-block:hover .skill-tag{
-  background:rgba(0,255,136,.05);
-  border-color:rgba(0,255,136,.12);
-  color:rgba(240,240,240,.65);
-}
-
-/* Cert badges */
-.certs-row{
-  display:flex;flex-wrap:wrap;gap:12px;
-  margin-top:48px;
-}
-.cert-pill{
-  display:flex;align-items:center;gap:10px;
-  padding:12px 20px;
-  border-radius:12px;
-  background:#0d0d10;
-  border:1px solid rgba(255,255,255,.07);
-  transition:border-color .3s;
-}
-.cert-pill:hover{border-color:rgba(0,255,136,.2);}
-.cert-pill-icon{font-size:1.2rem;}
-.cert-pill-name{font-size:.85rem;font-weight:600;}
-.cert-pill-issuer{font-size:.7rem;color:rgba(240,240,240,.3);font-family:'JetBrains Mono',monospace;}
-
-/* ══════════════════════════════════════════
-   CONTACT SECTION
-══════════════════════════════════════════ */
-#contact{background:#080808;}
-.contact-inner{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1.1fr;
-  gap:80px;align-items:start;padding-top:20px;
-}
-.contact-title{
-  font-size:clamp(42px,6vw,90px);
-  font-weight:700;line-height:.95;
-  letter-spacing:-.04em;
-  margin-bottom:24px;
-}
-.contact-title .outline{
-  -webkit-text-stroke:1.5px rgba(240,240,240,.2);
-  color:transparent;display:block;
-}
-.contact-desc{
-  font-size:.95rem;color:rgba(240,240,240,.45);
-  line-height:1.8;margin-bottom:36px;
-}
-
-.contact-links{display:flex;flex-direction:column;gap:10px;}
-.contact-link-row{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 18px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.02);
-  text-decoration:none;color:#f0f0f0;
-  transition:border-color .3s,background .3s,transform .3s;
-}
-.contact-link-row:hover{border-color:rgba(0,255,136,.2);background:rgba(0,255,136,.04);transform:translateX(6px);}
-/* Ligne d'information, sans destination : on neutralise l'animation de survol,
-   qui laisserait croire à tort que la ligne est cliquable. */
-.contact-link-row--static{cursor:default;}
-.contact-link-row--static:hover{border-color:rgba(255,255,255,.06);background:rgba(255,255,255,.02);transform:none;}
-.clr-icon{
-  width:40px;height:40px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;flex-shrink:0;
-}
-.clr-label{font-size:.7rem;color:rgba(240,240,240,.3);font-family:'JetBrains Mono',monospace;margin-bottom:1px;}
-.clr-val{font-size:.88rem;font-weight:600;}
-.clr-arrow{margin-left:auto;font-size:.8rem;color:rgba(240,240,240,.2);transition:transform .3s,color .3s;}
-.contact-link-row:hover .clr-arrow{transform:translateX(4px);color:#00ff88;}
-
-/* Form */
-.contact-form{display:flex;flex-direction:column;gap:14px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
-.form-label{font-size:.72rem;font-family:'JetBrains Mono',monospace;color:rgba(240,240,240,.3);text-transform:uppercase;letter-spacing:.1em;}
-.form-input,.form-textarea{
-  width:100%;padding:12px 16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:10px;
-  color:#f0f0f0;font-family:'Space Grotesk',sans-serif;font-size:.875rem;
-  outline:none;transition:border-color .3s,background .3s,box-shadow .3s;
-  resize:vertical;
-}
-.form-input:focus,.form-textarea:focus{
-  border-color:rgba(0,255,136,.35);
-  background:rgba(0,255,136,.02);
-  box-shadow:0 0 0 3px rgba(0,255,136,.07);
-}
-.form-textarea{min-height:120px;}
-.btn-submit{
-  padding:15px;border-radius:12px;
-  background:linear-gradient(135deg,#00ff88,#7c3aed);
-  color:#000;font-family:'Space Grotesk',sans-serif;
-  font-size:.9rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.08em;
-  border:none;cursor:none;
-  transition:transform .3s,box-shadow .3s;
-  box-shadow:0 0 30px rgba(0,255,136,.25);
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.btn-submit:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(0,255,136,.4);}
-
-/* ══════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════ */
-footer{
-  padding:32px 60px;
-  border-top:1px solid rgba(255,255,255,.05);
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:.75rem;font-family:'JetBrains Mono',monospace;
-  color:rgba(240,240,240,.2);
-}
-
-/* ══════════════════════════════════════════
-   REVEAL ANIMATIONS (scroll)
-══════════════════════════════════════════ */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1);
-}
-.reveal.visible{opacity:1;transform:none;}
-.reveal-delay-1{transition-delay:.1s;}
-.reveal-delay-2{transition-delay:.2s;}
-.reveal-delay-3{transition-delay:.3s;}
-.reveal-delay-4{transition-delay:.4s;}
-
-/* ══════════════════════════════════════════
-   GLITCH (hover text effect)
-══════════════════════════════════════════ */
-.glitch{position:relative;}
-.glitch::before,.glitch::after{
-  content:attr(data-text);
-  position:absolute;top:0;left:0;
-  width:100%;height:100%;
-  background:#080808;
-}
-.glitch::before{
-  left:2px;text-shadow:-2px 0 #00ff88;
-  clip:rect(24px,550px,90px,0);
-  animation:glitch-1 3s linear infinite;
-}
-.glitch::after{
-  left:-2px;text-shadow:-2px 0 #7c3aed;
-  clip:rect(85px,550px,140px,0);
-  animation:glitch-2 3s linear infinite;
-}
-@keyframes glitch-1{
-  0%,90%,100%{clip:rect(0,0,0,0);}
-  92%{clip:rect(12px,9999px,48px,0);}
-  94%{clip:rect(65px,9999px,90px,0);}
-  96%{clip:rect(28px,9999px,68px,0);}
-}
-@keyframes glitch-2{
-  0%,88%,100%{clip:rect(0,0,0,0);}
-  90%{clip:rect(50px,9999px,85px,0);}
-  93%{clip:rect(18px,9999px,55px,0);}
-  95%{clip:rect(80px,9999px,110px,0);}
-}
-
-/* ══════════════════════════════════════════
-   SCROLLBAR CUSTOM (signature)
-══════════════════════════════════════════ */
-::-webkit-scrollbar{width:10px;}
-::-webkit-scrollbar-track{background:#080808;}
-::-webkit-scrollbar-thumb{background:#232328;border-radius:5px;border:2px solid #080808;}
-::-webkit-scrollbar-thumb:hover{background:rgba(0,255,136,.35);}
-html{scrollbar-width:thin;scrollbar-color:#232328 #080808;}
-
-/* ══════════════════════════════════════════
-   FOND "BLUEPRINT" — grille discrète animée
-══════════════════════════════════════════ */
-section::before{
-  content:'';position:absolute;inset:-48px;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(0,255,136,.028) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,255,136,.028) 1px,transparent 1px);
-  background-size:48px 48px;
-  animation:grid-drift 80s linear infinite;
-}
-@keyframes grid-drift{to{transform:translate(48px,48px);}}
-
-/* ══════════════════════════════════════════
-   CARTES PROJETS — tilt 3D + spotlight
-══════════════════════════════════════════ */
-.project-card{position:relative;}
-.project-card::after{
-  content:'';position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;
-  transition:opacity .3s;
-  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(0,255,136,.07),transparent 65%);
-}
-.project-card:hover::after{opacity:1;}
-.project-card.tilting{transition:transform .08s ease-out,border-color .4s;}
-
-/* ── Projets "à la une" (marqueur ⭐ dans le README GitHub) ── */
-.project-card--featured{border-color:rgba(0,255,136,.35);}
-.project-card--featured:hover{border-color:rgba(0,255,136,.6);}
-.featured-flag{color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:.65rem;}
-
-/* ══════════════════════════════════════════
-   FILTRES PROJETS — chips par catégorie
-══════════════════════════════════════════ */
-.filter-row{display:flex;flex-wrap:wrap;gap:8px;padding:0 60px 28px;}
-.filter-chip{
-  font-family:'JetBrains Mono',monospace;font-size:.72rem;
-  padding:7px 16px;border-radius:100px;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
-  color:rgba(240,240,240,.6);cursor:none;
-  transition:border-color .25s,color .25s,background .25s;
-}
-.filter-chip:hover{border-color:rgba(0,255,136,.35);color:#f0f0f0;}
-.filter-chip.active{background:rgba(0,255,136,.1);border-color:#00ff88;color:#00ff88;}
-
-/* ══════════════════════════════════════════
-   SECTION CYBERPULSE — veille automatisée
-══════════════════════════════════════════ */
-#cyberpulse{background:#0a0a0a;min-height:auto;padding:120px 60px;}
-.cyberpulse-inner{max-width:1200px;margin:0 auto;}
-.cyberpulse-note{font-size:.95rem;color:rgba(240,240,240,.6);line-height:1.8;max-width:640px;margin:18px 0 40px;}
-.cyberpulse-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:start;}
-.pulse-player-card{background:#0d0d10;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px;}
-.pulse-player-head{
-  font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#00ff88;
-  display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;
-}
-.pulse-player-head span{color:rgba(240,240,240,.5);margin-left:auto;}
-.pulse-controls{display:flex;align-items:center;gap:14px;}
-#pulse-play{
-  width:46px;height:46px;border-radius:50%;border:none;flex-shrink:0;
-  background:linear-gradient(135deg,#00ff88,#7c3aed);color:#000;font-size:.95rem;
-  cursor:none;display:flex;align-items:center;justify-content:center;
-  transition:transform .25s,box-shadow .25s;
-}
-#pulse-play:hover{transform:scale(1.08);box-shadow:0 0 30px rgba(0,255,136,.35);}
-.pulse-progress{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.08);cursor:none;overflow:hidden;}
-.pulse-progress-fill{height:100%;width:0%;border-radius:3px;background:linear-gradient(90deg,#00ff88,#7c3aed);}
-.pulse-time{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(240,240,240,.55);min-width:38px;}
-.pulse-viz{display:flex;align-items:flex-end;gap:3px;height:26px;}
-.pulse-viz span{width:3px;height:6px;border-radius:2px;background:rgba(0,255,136,.55);}
-.pulse-viz.playing span{animation:pulse-eq .9s ease-in-out infinite alternate;}
-.pulse-viz span:nth-child(2n){animation-delay:.15s;}
-.pulse-viz span:nth-child(3n){animation-delay:.3s;}
-.pulse-viz span:nth-child(5n){animation-delay:.45s;}
-@keyframes pulse-eq{from{height:5px;}to{height:24px;}}
-.pulse-articles{display:flex;flex-direction:column;gap:14px;}
-.pulse-article{
-  background:#0d0d10;border:1px solid rgba(255,255,255,.07);border-radius:14px;
-  padding:18px 20px;transition:border-color .3s,transform .3s;
-}
-.pulse-article:hover{border-color:rgba(0,255,136,.2);transform:translateX(6px);}
-.pulse-article .idx{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#00ff88;margin-bottom:6px;display:block;}
-.pulse-article a{color:#f0f0f0;text-decoration:none;font-weight:600;font-size:.95rem;line-height:1.4;}
-.pulse-article a:hover{color:#00ff88;}
-.pulse-article p{font-size:.82rem;color:rgba(240,240,240,.55);line-height:1.7;margin-top:8px;}
-@media (max-width:900px){.cyberpulse-grid{grid-template-columns:1fr;}}
-@media (max-width:768px){#cyberpulse{padding:80px 24px;}.filter-row{padding:0 24px 24px;}}
-
-/* ══════════════════════════════════════════
-   ACCESSIBILITÉ — contrastes relevés (AA)
-══════════════════════════════════════════ */
-.hero-sub{color:rgba(240,240,240,.62);}
-.hero-stat .lbl,.stat-item .desc{color:rgba(240,240,240,.6);}
-.hero-hi{color:rgba(240,240,240,.55);}
-.nav-links a{color:rgba(240,240,240,.65);}
-.card-desc{color:rgba(240,240,240,.62);}
-.card-tag{color:rgba(240,240,240,.6);}
-.card-number{color:rgba(240,240,240,.45);}
-.skill-block-cat,.cert-pill-issuer,.clr-label,.form-label{color:rgba(240,240,240,.55);}
-.skill-tag{color:rgba(240,240,240,.6);}
-.contact-desc{color:rgba(240,240,240,.62);}
-.about-body{color:rgba(240,240,240,.65);}
-footer{color:rgba(240,240,240,.5);}
-.scroll-hint{color:rgba(240,240,240,.5);}
-.scroll-progress{color:rgba(240,240,240,.5);}
-.clr-arrow{color:rgba(240,240,240,.45);}
-.t-comment{color:rgba(240,240,240,.45);}
-.t-out{color:rgba(240,240,240,.6);}
-
-/* ══════════════════════════════════════════
-   TACTILE — curseur natif, pas de curseur custom
-══════════════════════════════════════════ */
-@media (hover:none),(pointer:coarse){
-  body,a,button,input,textarea,.btn-submit,.filter-chip{cursor:auto!important;}
-  #cursor,#cursor-ring{display:none!important;}
-}
-
-/* ══════════════════════════════════════════
-   PREFERS-REDUCED-MOTION — tout se calme
-══════════════════════════════════════════ */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important;}
-  body{cursor:auto;}
-  #cursor,#cursor-ring{display:none!important;}
-  .reveal{opacity:1!important;transform:none!important;}
-}
-  </style>
-  <!-- GSAP + ScrollTrigger (chargement différé pour ne pas bloquer le rendu initial) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  </script>
 </head>
 <body>
 
-<!-- ── Cursor ── -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<svg width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5v-9h3zM6.5 8.7A1.7 1.7 0 1 1 6.5 5.3a1.7 1.7 0 0 1 0 3.4zM19 19h-3v-4.4c0-1.1 0-2.4-1.5-2.4S13 13.4 13 14.5V19h-3v-9h2.9v1.2a3.2 3.2 0 0 1 2.8-1.5c3 0 3.6 2 3.6 4.6z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></symbol>
+</svg>
 
-<!-- ── Noise ── -->
-<div class="noise" aria-hidden="true"></div>
+<a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
 
-<!-- ══════════ NAV ══════════ -->
-<nav>
-  <div class="nav-logo">
-    <span class="dot"></span>
-    dp.security
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projets</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#cyberpulse">Veille</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">
-    <i class="fas fa-terminal"></i> Me contacter
-  </a>
-</nav>
-
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║               SECTION HERO — PAGE D'ACCUEIL                     ║ -->
-<!-- ║  Pour modifier : titre, sous-titre, badge "Disponible", stats   ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-<section id="hero">
-
-  <!-- Watermark de fond (décoratif) -->
-  <div class="hero-bg-text" aria-hidden="true">CYBER</div>
-
-  <!-- ── TITRE PRINCIPAL (DORIAN / PONCELET) ──────────────────────── -->
-  <!-- Le container est ancré au centre par CSS. NE PAS modifier les   -->
-  <!-- attributs style/class ici. Pour changer le prénom ou le nom,    -->
-  <!-- modifier UNIQUEMENT le texte visible ET l'attribut data-text.   -->
-  <div class="hero-title-container">
-    <div class="hero-name-front glitch" id="hero-name-front" data-text="DORIAN">DORIAN</div>
-    <div class="hero-name-behind glitch" id="hero-name-behind" data-text="PONCELET">PONCELET</div>
-  </div>
-
-  <!-- ── VIDÉO DE FOND ─────────────────────────────────────────────── -->
-  <!-- Chargée uniquement sur grand écran : évite ~19 Mo de transfert  -->
-  <!-- inutile sur mobile, où la colonne vidéo n'est de toute façon    -->
-  <!-- pas déterminante visuellement (voir media query @768px).       -->
-  <div class="hero-video-wrap">
-    <video id="hero-video"
-      muted playsinline preload="none" autoplay loop>
-    </video>
-  </div>
-  <div class="hero-video-overlay"></div>
-
-  <!-- ── COLONNE GAUCHE — Badge de disponibilité + accroche ────────── -->
-  <!-- Modifier le texte du badge et le texte descriptif ici          -->
-  <div class="hero-left">
-    <div class="hero-badge">
-      <span class="live-dot"></span>
-      Disponible — Remote / France
-    </div>
-    <p class="hero-sub">
-      Dirigeant reconverti dans la cybersécurité, j'allie
-      <strong>vision stratégique des risques business</strong> et
-      maîtrise technique opérationnelle. De l'automatisation
-      DevSecOps à la réponse aux incidents, je sécurise vos
-      infrastructures avec une approche pragmatique, résiliente
-      et orientée résultats.
-    </p>
-  </div>
-
-  <!-- ── COLONNE DROITE — Statistiques ─────────────────────────────── -->
-  <!-- "data-count" = valeur cible de l'animation. Le compteur GitHub  -->
-  <!-- (Projets) est mis à jour automatiquement via l'API GitHub.      -->
-  <div class="hero-right">
-    <div class="hero-stat">
-      <span class="val" data-count="99">0</span>
-      <span class="lbl">% Uptime</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="hero-stat">
-      <!-- data-count="5" est écrasé dynamiquement par l'API GitHub   -->
-      <span class="val" id="github-repo-count" data-count="5">0</span>
-      <span class="lbl">Repos GitHub</span>
+<header class="nav">
+  <div class="nav__pill">
+    <a class="nav__brand" href="#top">Dorian Poncelet</a>
+    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu" data-i18n-label="nav.menu">
+      <span></span>
+    </button>
+    <div class="nav__menu" id="nav-menu">
+      <nav aria-label="Principale">
+        <ul class="nav__links" role="list">
+          <li><a href="#approche" data-i18n="nav.approche">Approche</a></li>
+          <li><a href="#gouvernance" data-i18n="nav.gouvernance">Gouvernance</a></li>
+          <li><a href="#competences" data-i18n="nav.competences">Compétences</a></li>
+          <li><a href="#projets" data-i18n="nav.projets">Projets</a></li>
+          <li><a href="#veille" data-i18n="nav.veille">Veille</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="lang" role="group" aria-label="Langue" data-i18n-label="lang.label">
+        <button type="button" class="lang__btn" data-lang="fr" aria-pressed="true" lang="fr">FR</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a class="btn btn--primary btn--sm" href="#contact" data-i18n="nav.cta">Me contacter</a>
     </div>
   </div>
+</header>
 
-  <!-- ── BAS DE SECTION — Titre de métier + Bouton CTA ─────────────── -->
-  <!-- Modifier le texte "Administrateur..." et le label du bouton ici -->
-  <div class="hero-bottom-center">
-    <div class="hero-hi">// Admin Systeme Informatique · Cybersecurité</div>
-    <div class="hero-cta-wrap">
-      <a href="#projects" class="btn-hero">
-        <i class="fas fa-rocket"></i> Voir mes projets
-      </a>
-    </div>
-  </div>
+<main id="main">
 
-  <!-- Indicateur de scroll (décoratif) -->
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-
-</section>
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║                    FIN SECTION HERO                             ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-
-<div class="section-divider"></div>
-
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║             SECTION À PROPOS — QUI SUIS-JE                      ║ -->
-<!-- ║  Pour modifier : texte de présentation, stats (certifications,  ║ -->
-<!-- ║  heures CTF, TryHackMe), et les lignes du terminal.             ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-<section id="about">
-  <div class="about-grid">
-    <div>
-      <div class="about-eyebrow reveal">Qui suis-je</div>
-      <h2 class="about-title reveal reveal-delay-1">
-        Passionné de<br>
-        <span class="outline">Cybersécurité et d'IA</span>
-      </h2>
-      <p class="about-body reveal reveal-delay-2">
-        Fort de <strong>12 ans d'expérience en tant que dirigeant</strong>, j'ai pivoté vers la cybersécurité pour fusionner ma capacité de gestion de crise à la défense des SI. Diplômé de <strong>Jedha</strong> et en cours de certification <strong>AIS (RNCP 37680)</strong>, je maîtrise la chaîne de valeur complète : de l'audit technique, au durcissement d'infrastructures, en passant par la <strong>GRC (EBIOS RM)</strong>. Mon profil hybride me permet de faire le pont entre les équipes techniques (SOC/Dev) et les comités de direction.
-      </p>
-      <div class="stats-row reveal reveal-delay-3">
-        <div class="stat-item">
-          <span class="n"><span class="accent">9</span></span>
-          <span class="desc">Certifications</span>
+  <!-- ═══ A — Ouverture ═══════════════════════════════════════════════ -->
+  <section class="section hero" id="top" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="mono reveal" data-i18n="hero.eyebrow">Analyste GRC · Consultant GRC junior · Administrateur d'infrastructures sécurisées</p>
+        <h1 id="hero-title" class="reveal" data-delay="1">Dorian<br>Poncelet</h1>
+        <p class="lead reveal" data-delay="2" data-i18n="hero.lead">Dirigeant d'un commerce de proximité depuis 2014, reconverti dans la cybersécurité. Je relie la gouvernance des risques et la conformité à la maîtrise des infrastructures et à l'automatisation par l'IA, avec des projets documentés et vérifiables.</p>
+        <div class="hero__actions reveal" data-delay="3">
+          <a class="btn btn--primary" href="#projets"><span data-i18n="hero.cta1">Voir les projets</span> <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#contact" data-i18n="hero.cta2">Me contacter</a>
         </div>
-        <div class="stat-item">
-          <span class="n"><span class="accent">+</span>200</span>
-          <span class="desc">Heures CTF</span>
+        <div class="hero__meta mono reveal" data-delay="3">
+          <span><span id="count-projects">—</span> <span data-i18n="hero.meta.projects">projets publics</span></span>
+          <span><span id="count-repos">—</span> <span data-i18n="hero.meta.repos">dépôts GitHub</span></span>
+          <span class="scroll-hint" data-i18n="hero.scroll">Défiler</span>
         </div>
-        <div class="stat-item">
-          <span class="n">Top <span class="accent">7%</span></span>
-          <span class="desc">TryHackMe</span>
+      </div>
+      <div class="hero__poster reveal" data-delay="2" aria-hidden="true">
+        <img src="assets/img/poster-last.webp" alt="" width="1280" height="720" decoding="async" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ B — Séquence pilotée par le scroll ══════════════════════════ -->
+  <section class="seq" id="approche" aria-labelledby="seq-title">
+    <div class="seq__track">
+      <div class="seq__sticky">
+        <div class="seq__media" aria-hidden="true">
+          <canvas></canvas>
+        </div>
+        <div class="container seq__captions">
+          <h2 id="seq-title" class="visually-hidden" data-i18n="seq.title">Approche : des infrastructures à la gouvernance</h2>
+          <!-- Preuves = projets publics réels (voir docs/LIENS_ET_PROJETS.md) -->
+          <div class="seq__caption">
+            <p class="mono" data-i18n="seq.1.k">01 — Infrastructures</p>
+            <p class="lead" data-i18n="seq.1.t">Déployer et durcir.</p>
+            <p class="muted" data-i18n="seq.1.p">Infrastructure multi-sites, 12 machines virtuelles Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation réseau et VPN — un lab de formation complet, documenté de bout en bout.</p>
+            <a class="proof" href="https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate" target="_blank" rel="noopener noreferrer">Nova Syndicate <svg aria-hidden="true" width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="seq__caption">
+            <p class="mono" data-i18n="seq.2.k">02 — Détection &amp; réponse</p>
+            <p class="lead" data-i18n="seq.2.t">Observer et répondre.</p>
+            <p class="muted" data-i18n="seq.2.p">SOC fonctionnel avec Wazuh, intégration des sources de logs, tests de détection par simulation d'attaque et ajustement des règles.</p>
+            <a class="proof" href="https://github.com/Dow08/Infrastructure-SecOps/tree/master/kessel-soc-siem" target="_blank" rel="noopener noreferrer">Kessel SOC / SIEM <svg aria-hidden="true" width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="seq__caption">
+            <p class="mono" data-i18n="seq.3.k">03 — Gouvernance</p>
+            <p class="lead" data-i18n="seq.3.t">Cartographier, prioriser, prouver.</p>
+            <p class="muted" data-i18n="seq.3.p">Système de management de la sécurité pour une PME fictive : déploiement de CISO Assistant, automatisation des livrables ISO 27001:2022, cartographie NIS 2 et RGPD.</p>
+            <a class="proof" href="https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab" target="_blank" rel="noopener noreferrer">SMSI Automation Lab <svg aria-hidden="true" width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+        <div class="seq__progress" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ C — Risques & gouvernance ═══════════════════════════════════ -->
+  <section class="section section--light section--grid" id="gouvernance" aria-labelledby="gov-title">
+    <div class="container">
+      <div class="gov__inner">
+        <div class="gov__text">
+          <p class="mono reveal" data-i18n="gov.eyebrow">Gouvernance, risques &amp; conformité</p>
+          <h2 id="gov-title" class="reveal" data-delay="1" data-i18n="gov.title">Du contrôle technique à la décision.</h2>
+          <p class="lead reveal" data-delay="2" data-i18n="gov.lead">Lors d'un stage en consulting cybersécurité pour une association, j'ai produit l'ensemble des rapports de mission (ISO 27001, NIS 2, RGPD, NIST CSF) avec Green Shield, l'outil que j'ai conçu. Un risque n'a de sens que s'il est mesuré, priorisé et expliqué à ceux qui décident — sans jamais inventer un constat.</p>
+          <ul class="refs reveal" data-delay="3" id="referentials" role="list" aria-label="Référentiels présents dans les projets" data-i18n-label="gov.refs"></ul>
+        </div>
+        <div class="reveal" data-delay="2">
+          <svg class="matrix" viewBox="0 0 360 360" role="img" aria-labelledby="matrix-title matrix-desc">
+            <title id="matrix-title">Matrice de risques</title>
+            <desc id="matrix-desc">Grille vraisemblance par impact, de faible à critique. Illustration sans données réelles.</desc>
+            <g transform="translate(48 12)">
+              <g class="cells">
+                <rect class="cell l1" x="0" y="240" width="58" height="58"/><rect class="cell l1" x="60" y="240" width="58" height="58"/><rect class="cell l2" x="120" y="240" width="58" height="58"/><rect class="cell l2" x="180" y="240" width="58" height="58"/><rect class="cell l3" x="240" y="240" width="58" height="58"/>
+                <rect class="cell l1" x="0" y="180" width="58" height="58"/><rect class="cell l2" x="60" y="180" width="58" height="58"/><rect class="cell l2" x="120" y="180" width="58" height="58"/><rect class="cell l3" x="180" y="180" width="58" height="58"/><rect class="cell l4" x="240" y="180" width="58" height="58"/>
+                <rect class="cell l2" x="0" y="120" width="58" height="58"/><rect class="cell l2" x="60" y="120" width="58" height="58"/><rect class="cell l3" x="120" y="120" width="58" height="58"/><rect class="cell l4" x="180" y="120" width="58" height="58"/><rect class="cell l4" x="240" y="120" width="58" height="58"/>
+                <rect class="cell l2" x="0" y="60" width="58" height="58"/><rect class="cell l3" x="60" y="60" width="58" height="58"/><rect class="cell l4" x="120" y="60" width="58" height="58"/><rect class="cell l4" x="180" y="60" width="58" height="58"/><rect class="cell l5" x="240" y="60" width="58" height="58"/>
+                <rect class="cell l3" x="0" y="0" width="58" height="58"/><rect class="cell l4" x="60" y="0" width="58" height="58"/><rect class="cell l4" x="120" y="0" width="58" height="58"/><rect class="cell l5" x="180" y="0" width="58" height="58"/><rect class="cell l5" x="240" y="0" width="58" height="58"/>
+              </g>
+              <circle class="dot" cx="89" cy="209" r="7"/><circle class="dot" cx="209" cy="89" r="7"/><circle class="dot" cx="269" cy="149" r="7"/>
+              <text x="149" y="326" text-anchor="middle" data-i18n="matrix.x">Impact →</text>
+              <text transform="translate(-30 149) rotate(-90)" text-anchor="middle" data-i18n="matrix.y">Vraisemblance →</text>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
-    <div class="reveal reveal-delay-2">
-      <div class="terminal-block">
-        <div class="terminal-bar">
-          <div class="tb-dot tb-red"></div>
-          <div class="tb-dot tb-yellow"></div>
-          <div class="tb-dot tb-green"></div>
-          <span style="font-size:.7rem;color:rgba(240,240,240,.2);margin-left:8px">dorian@sec-lab — zsh</span>
-        </div>
-        <div class="terminal-body">
-          <div><span class="t-prompt">➜ </span><span class="t-cmd">whoami</span></div>
-          <div><span class="t-green">dorian.poncelet</span> <span class="t-comment"># dirigeant → architecte cyber</span></div>
-          <br>
-          <div><span class="t-prompt">➜ </span><span class="t-cmd">cat skills.txt</span></div>
-          <div>
-            <span class="t-blue">Linux (Debian/RHEL)</span> | <span class="t-blue">Windows AD</span> |
-            <span class="t-purple">Docker Swarm</span> | <span class="t-purple">Ansible Vault</span> | <span class="t-green">Terraform</span>
-          </div>
-          <div>
-            <span class="t-green">Pentest Web (JWT, SQLi, LFI)</span> |
-            <span class="t-blue">Wireshark/GNS3</span> | <span class="t-purple">Cloud AWS</span>
-          </div>
-          <div>
-            <span class="t-purple">GRC (EBIOS RM/ISO 27001)</span> |
-            <span class="t-blue">CNIL/RGPD</span> | <span class="t-green">MITRE ATT&CK</span> | <span class="t-purple">OpenCTI</span>
-          </div>
-          <br>
-          <div><span class="t-prompt">➜ </span><span class="t-cmd">echo $STATUS</span></div>
-          <div><span class="t-green">🟢 Disponible · Remote OK · France</span></div>
-          <br>
-          <div><span class="t-prompt">➜ </span><span class="t-cursor"></span></div>
-        </div>
+  </section>
+
+  <!-- ═══ C2 — Compétences (data/profile.json, contenu validé) ════════ -->
+  <section class="section" id="competences" aria-labelledby="skills-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="mono reveal" data-i18n="skills.eyebrow">Compétences</p>
+        <h2 id="skills-title" class="reveal" data-delay="1" data-i18n="skills.title">Ce que je sais faire, et comment je le prouve.</h2>
+        <p class="lead reveal" data-delay="2" data-i18n="skills.lead">Pas de jauges ni de pourcentages : chaque compétence indique si elle est démontrée par un projet public, pratiquée en formation ou en stage, ou en cours d'acquisition.</p>
+        <ul class="legend reveal" data-delay="3" id="skills-legend" role="list"></ul>
+      </div>
+      <div class="skills" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ D — Projets ═════════════════════════════════════════════════ -->
+  <section class="section section--light" id="projets" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="mono reveal" data-i18n="projects.eyebrow">Projets</p>
+        <h2 id="projects-title" class="reveal" data-delay="1" data-i18n="projects.title">Des preuves, pas des promesses.</h2>
+        <p class="lead reveal" data-delay="2" data-i18n="projects.lead">Chaque carte renvoie au dépôt GitHub correspondant. Les laboratoires de formation et les projets personnels sont identifiés comme tels.</p>
+      </div>
+      <div class="chips reveal" id="projects-filters" role="group" aria-label="Filtrer par domaine" data-i18n-label="projects.filters"></div>
+      <div class="projects__grid" id="projects-grid" aria-live="polite" aria-busy="true">
+        <noscript><p class="notice">Activez JavaScript pour afficher les projets, ou consultez <a href="https://github.com/Dow08" rel="noopener noreferrer">github.com/Dow08</a>.</p></noscript>
       </div>
     </div>
-  </div>
-</section>
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║                  FIN SECTION À PROPOS                           ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
+  </section>
 
-<div class="section-divider"></div>
-
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║               SECTION PROJETS — MES RÉALISATIONS                ║ -->
-<!-- ║  Pour modifier : titre, description, tags, liens GitHub,        ║ -->
-<!-- ║  et le statut (Live / En cours) de chaque carte.                ║ -->
-<!-- ║  Chaque carte commence par <div class="project-card reveal">    ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-<section id="projects">
-  <div class="projects-header">
-    <div>
-      <div class="section-eyebrow reveal">Réalisations</div>
-      <h2 class="section-title reveal reveal-delay-1">Mes <span class="outline">Projets</span></h2>
-    </div>
-    <p class="reveal" style="font-size:.82rem;color:rgba(240,240,240,.3);font-family:'JetBrains Mono',monospace;max-width:200px;text-align:right;line-height:1.6">
-      Faites défiler<br>pour explorer →
-    </p>
-  </div>
-
-  <!--
-    ┌─────────────────────────────────────────────────────────────────┐
-    │  CARTES PROJETS — Générées par renderProjects() à partir de la  │
-    │  liste PROJETS (sélection manuelle et curée, voir le script).   │
-    │  Pour ajouter/retirer un projet : éditer PROJETS, pas le HTML.  │
-    └─────────────────────────────────────────────────────────────────┘
-  -->
-  <!-- Chips de filtrage par catégorie — remplies par setupProjects() -->
-  <div class="filter-row" id="filter-row" role="group" aria-label="Filtrer les projets par catégorie"></div>
-
-  <div class="projects-grid-wrap" id="projects-track">
-    <!-- Rempli dynamiquement par renderProjects() dans le script -->
-  </div>
-
-</section>
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║                   FIN SECTION PROJETS                           ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-
-<div class="section-divider"></div>
-
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║            SECTION COMPÉTENCES — STACK & TOOLS                  ║ -->
-<!-- ║  Pour modifier : nom de la compétence, catégorie, niveau (%).   ║ -->
-<!-- ║  Pour les certifications : nom, organisme et année.             ║ -->
-<!-- ║  ⚠ TryHackMe : https://tryhackme.com/p/seallia81              ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-<section id="skills">
-  <div class="skills-inner">
-    <div class="about-eyebrow reveal">Expertise technique</div>
-    <h2 class="section-title reveal reveal-delay-1">Stack <span class="outline">&amp; Tools</span></h2>
-
-    <!-- ── 9 CARTES D'EXPERTISE — aucune barre de pourcentage ──────── -->
-    <!-- Pour modifier une carte : nom, icône, tags dans skill-block-stack -->
-    <div class="skills-grid" id="skills-grid">
-
-      <!-- 1. Infra, Cloud & DevSecOps -->
-      <div class="skill-block reveal">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(0,255,136,.08);color:#00ff88">
-            <i class="fas fa-server"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Infra, Cloud &amp; DevSecOps</div>
-            <div class="skill-block-cat">Infrastructure</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">Ansible (Vault, Playbooks)</span>
-          <span class="skill-tag">Terraform (IaC)</span>
-          <span class="skill-tag">Docker Swarm</span>
-          <span class="skill-tag">Kubernetes</span>
-          <span class="skill-tag">CI/CD GitHub Actions</span>
-          <span class="skill-tag">AWS (IAM, S3, VPC)</span>
-        </div>
+  <!-- ═══ E — CyberPulse (veille automatisée) ═════════════════════════ -->
+  <section class="section" id="veille" aria-labelledby="pulse-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="mono reveal" data-i18n="pulse.eyebrow">Veille automatisée</p>
+        <h2 id="pulse-title" class="reveal" data-delay="1" data-i18n="pulse.title">CyberPulse, le flash info du jour.</h2>
+        <p class="lead reveal" data-delay="2"><span data-i18n="pulse.lead">Chaque jour, un pipeline que j'ai écrit lit l'actualité cybersécurité, la résume en français, rédige un script radio et le lit en synthèse vocale.</span> <span data-i18n="pulse.updated">Mis à jour le</span> <time id="pulse-date"></time>.</p>
+        <p class="muted" id="pulse-source"></p>
       </div>
-
-      <!-- 2. Admin Systèmes & Hardening -->
-      <div class="skill-block reveal reveal-delay-1">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(96,165,250,.08);color:#60a5fa">
-            <i class="fas fa-network-wired"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Admin Systèmes &amp; Hardening</div>
-            <div class="skill-block-cat">Systèmes</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">Linux (Debian/RHEL)</span>
-          <span class="skill-tag">Windows Server / AD</span>
-          <span class="skill-tag">VMware / VirtualBox</span>
-          <span class="skill-tag">Audit Lynis</span>
-          <span class="skill-tag">CIS Benchmarks</span>
-          <span class="skill-tag">UFW / nftables</span>
-          <span class="skill-tag">Fail2Ban</span>
-        </div>
-      </div>
-
-      <!-- 3. Réseaux & Architecture -->
-      <div class="skill-block reveal reveal-delay-2">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(34,211,238,.08);color:#22d3ee">
-            <i class="fas fa-globe"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Réseaux &amp; Architecture</div>
-            <div class="skill-block-cat">Réseau</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">Modèle OSI</span>
-          <span class="skill-tag">TCP/IP</span>
-          <span class="skill-tag">IPv4/IPv6</span>
-          <span class="skill-tag">Subnetting CIDR</span>
-          <span class="skill-tag">NAT/PAT</span>
-          <span class="skill-tag">DNSSEC / DoH / DoT</span>
-          <span class="skill-tag">Wireshark / GNS3</span>
-          <span class="skill-tag">Proxmox VE</span>
-          <span class="skill-tag">Virtualisation &amp; gestion de VM</span>
-        </div>
-      </div>
-
-      <!-- 4. Offensive & Web Pentest -->
-      <div class="skill-block reveal reveal-delay-3">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(248,113,113,.08);color:#f87171">
-            <i class="fas fa-bug"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Offensive &amp; Web Pentest</div>
-            <div class="skill-block-cat">Offensive</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">Méthode PTES</span>
-          <span class="skill-tag">OWASP Top 10</span>
-          <span class="skill-tag">JWT / CSRF / XSS</span>
-          <span class="skill-tag">LFI/RFI / SQLi</span>
-          <span class="skill-tag">Burp Suite</span>
-          <span class="skill-tag">Gobuster / SQLMap</span>
-          <span class="skill-tag">Nmap</span>
-        </div>
-      </div>
-
-      <!-- 5. Offensive AD & Post-Exploitation -->
-      <div class="skill-block reveal">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(251,191,36,.08);color:#fbbf24">
-            <i class="fas fa-user-ninja"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Offensive AD &amp; Post-Exploitation</div>
-            <div class="skill-block-cat">Offensive AD</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">Active Directory</span>
-          <span class="skill-tag">Kerberoasting</span>
-          <span class="skill-tag">AS-REP Roasting</span>
-          <span class="skill-tag">Pass-the-Hash</span>
-          <span class="skill-tag">Relais NTLM</span>
-          <span class="skill-tag">WinPeas / LinPeas</span>
-          <span class="skill-tag">Metasploit</span>
-        </div>
-      </div>
-
-      <!-- 6. Défense, SOC & CTI -->
-      <div class="skill-block reveal reveal-delay-1">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(167,139,250,.08);color:#a78bfa">
-            <i class="fas fa-shield-halved"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Défense, SOC &amp; CTI</div>
-            <div class="skill-block-cat">Défensive</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">SIEM (ELK)</span>
-          <span class="skill-tag">MITRE ATT&CK &amp; DEFEND</span>
-          <span class="skill-tag">OpenCTI / MISP / Yeti</span>
-          <span class="skill-tag">DFIR (Forensics)</span>
-          <span class="skill-tag">Analyse Malwares</span>
-          <span class="skill-tag">OSINT (Dorks, theHarvester)</span>
-        </div>
-      </div>
-
-      <!-- 7. GRC & Conformité -->
-      <div class="skill-block reveal reveal-delay-2">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(52,211,153,.08);color:#34d399">
-            <i class="fas fa-file-shield"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">GRC &amp; Conformité</div>
-            <div class="skill-block-cat">Gouvernance</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">EBIOS RM</span>
-          <span class="skill-tag">ISO 27001 (en cours)</span>
-          <span class="skill-tag">RGPD / outils CNIL</span>
-          <span class="skill-tag">IAM</span>
-      
-        </div>
-      </div>
-
-      <!-- 8. Gestion de Crise & Stratégie -->
-      <div class="skill-block reveal reveal-delay-3">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(251,146,60,.08);color:#fb923c">
-            <i class="fas fa-bolt"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Gestion de Crise &amp; Stratégie</div>
-            <div class="skill-block-cat">Management</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">Plan de Réponse aux Incidents (PRI)</span>
-          <span class="skill-tag">PRA / PCA</span>
-          <span class="skill-tag">Décision sous pression</span>
-          <span class="skill-tag">Négociation</span>
-          <span class="skill-tag">Phishing (SPF/DKIM/DMARC)</span>
-        </div>
-      </div>
-
-      <!-- 9. Direction & Business Ops -->
-      <div class="skill-block reveal">
-        <div class="skill-block-header">
-          <div class="skill-block-icon" style="background:rgba(192,132,252,.08);color:#c084fc">
-            <i class="fas fa-chart-pie"></i>
-          </div>
-          <div>
-            <div class="skill-block-name">Direction &amp; Business Ops</div>
-            <div class="skill-block-cat">Leadership</div>
-          </div>
-        </div>
-        <div class="skill-block-stack">
-          <span class="skill-tag">12 ans d'expérience dirigeant</span>
-          <span class="skill-tag">SQL </span>
-          <span class="skill-tag">Gestion comptable</span>
-          <span class="skill-tag">Recrutement technique</span>
-          <span class="skill-tag">Optimisation de processus</span>
-          <span class="skill-tag">IA Skill, MCP, Agentique, N8N</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Certifications -->
-    <div style="margin-top:48px;">
-      <div class="skills-section-title reveal" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(240,240,240,.25);text-transform:uppercase;letter-spacing:.15em;margin-bottom:16px;">Certifications</div>
-      <div class="certs-row">
-
-        <div class="cert-pill reveal">
-          <div class="cert-pill-icon">🏛️</div>
-          <div>
-            <div class="cert-pill-name">Titre Pro AIS (RNCP 37680)</div>
-            <div class="cert-pill-issuer">Administrateur d'Infrastructures Sécurisées · En cours</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-1">
-          <div class="cert-pill-icon">🎓</div>
-          <div>
-            <div class="cert-pill-name">Jedha Fullstack Cyber</div>
-            <div class="cert-pill-issuer">Bootcamp Intensif · Validé 2025-2026</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-2">
-          <div class="cert-pill-icon">🎓</div>
-          <div>
-            <div class="cert-pill-name">Jedha Cybersécurité Essentials</div>
-            <div class="cert-pill-issuer">Jedha Bootcamp · Validé</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-3">
-          <div class="cert-pill-icon">🤖</div>
-          <div>
-            <div class="cert-pill-name">Google AI Essentials</div>
-            <div class="cert-pill-issuer">Google · Validé</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-4">
-          <div class="cert-pill-icon">🔐</div>
-          <div>
-            <div class="cert-pill-name">Google Cybersecurity Professional Certificate</div>
-            <div class="cert-pill-issuer">Google · Validé</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal">
-          <div class="cert-pill-icon">🚩</div>
-          <div>
-            <!-- Lien TryHackMe : https://tryhackme.com/p/seallia81 -->
-            <div class="cert-pill-name">TryHackMe Pre-Security</div>
-            <div class="cert-pill-issuer">TryHackMe · Validé</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-1">
-          <div class="cert-pill-icon">🚩</div>
-          <div>
-            <!-- Lien TryHackMe : https://tryhackme.com/p/seallia81 -->
-            <div class="cert-pill-name">TryHackMe Cyber Security 101</div>
-            <div class="cert-pill-issuer">TryHackMe · Validé</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-2">
-          <div class="cert-pill-icon">🕵️</div>
-          <div>
-            <div class="cert-pill-name">Permis d'Osinter</div>
-            <div class="cert-pill-issuer">Certification OSINT · Validé</div>
-          </div>
-        </div>
-
-        <div class="cert-pill reveal reveal-delay-3">
-          <div class="cert-pill-icon">🛡️</div>
-          <div>
-            <div class="cert-pill-name">Atelier RGPD</div>
-            <div class="cert-pill-issuer">CNIL · Certifié</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║                  FIN SECTION COMPÉTENCES                        ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-
-<div class="section-divider"></div>
-
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║          SECTION CYBERPULSE — VEILLE AUTOMATISÉE                ║ -->
-<!-- ║  Contenu chargé depuis cyber-news/data.json (généré chaque      ║ -->
-<!-- ║  jour par le pipeline src/main.py via GitHub Actions).          ║ -->
-<!-- ║  Si le fichier est indisponible, la section se masque seule.    ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-<section id="cyberpulse">
-  <div class="cyberpulse-inner">
-    <div class="about-eyebrow reveal">Veille automatisée</div>
-    <h2 class="section-title reveal reveal-delay-1">Cyber<span class="outline">Pulse</span></h2>
-    <p class="cyberpulse-note reveal reveal-delay-2">
-      Flash info cybersécurité généré automatiquement chaque jour par un pipeline
-      IA autonome : scraping des dernières actualités, traduction, écriture d'un
-      script radio et synthèse vocale.
-    </p>
-    <div class="cyberpulse-grid">
-      <div class="pulse-player-card reveal reveal-delay-2">
-        <div class="pulse-player-head">
-          <i class="fas fa-podcast"></i> Briefing audio du jour
-          <span id="pulse-date"></span>
-        </div>
-        <audio id="pulse-audio" preload="none"></audio>
-        <div class="pulse-controls">
-          <button id="pulse-play" aria-label="Lecture ou pause du briefing audio">
-            <i class="fas fa-play" id="pulse-play-icon"></i>
+      <div class="pulse">
+        <div class="pulse__player reveal" id="pulse-player">
+          <audio id="pulse-audio" preload="none"></audio>
+          <button class="pulse__btn" id="pulse-play" type="button" aria-label="Écouter le flash info" data-state="paused">
+            <svg class="pulse__icon-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="pulse__icon-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
           </button>
-          <div class="pulse-progress" id="pulse-progress" aria-hidden="true">
-            <div class="pulse-progress-fill" id="pulse-progress-fill"></div>
-          </div>
-          <span class="pulse-time" id="pulse-time">0:00</span>
-          <div class="pulse-viz" id="pulse-viz" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          <div class="pulse__controls">
+            <label class="visually-hidden" for="pulse-seek" data-i18n="pulse.seek">Position dans le flash info</label>
+            <input class="pulse__seek" id="pulse-seek" type="range" min="0" max="0" value="0" step="1">
+            <span class="mono" id="pulse-time">0:00</span>
           </div>
         </div>
-      </div>
-      <div class="pulse-articles" id="pulse-articles"></div>
-    </div>
-  </div>
-</section>
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║                  FIN SECTION CYBERPULSE                         ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-
-<div class="section-divider"></div>
-
-<!-- ╔══════════════════════════════════════════════════════════════════╗ -->
-<!-- ║               SECTION CONTACT — FORMULAIRE & LIENS              ║ -->
-<!-- ║  Pour modifier : email, URL LinkedIn, URL GitHub, TryHackMe.    ║ -->
-<!-- ║  Email       : Dow@ikmail.com                                   ║ -->
-<!-- ║  LinkedIn    : linkedin.com/in/dorian-p-1807612b5/              ║ -->
-<!-- ║  GitHub      : github.com/Dow08                                 ║ -->
-<!-- ║  TryHackMe   : tryhackme.com/p/seallia81                        ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════════╝ -->
-<section id="contact">
-  <div class="contact-inner">
-    <div>
-      <h2 class="contact-title reveal">
-        Let's<br>work<br>
-        <span class="outline">together</span>
-      </h2>
-      <p class="contact-desc reveal reveal-delay-1">
-        Disponible pour des missions en cybersécurité, administration système et automatisation. Remote ou France.
-      </p>
-      <div class="contact-links">
-
-        <a href="mailto:Dow@ikmail.com" class="contact-link-row reveal reveal-delay-2">
-          <div class="clr-icon" style="background:rgba(0,255,136,.08);color:#00ff88">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div>
-            <div class="clr-label">Email</div>
-            <div class="clr-val">Dow@ikmail.com</div>
-          </div>
-          <i class="fas fa-arrow-right clr-arrow"></i>
-        </a>
-
-        <a href="https://www.linkedin.com/in/dorian-p-1807612b5/" target="_blank" rel="noopener" class="contact-link-row reveal reveal-delay-3">
-          <div class="clr-icon" style="background:rgba(96,165,250,.08);color:#60a5fa">
-            <i class="fab fa-linkedin-in"></i>
-          </div>
-          <div>
-            <div class="clr-label">LinkedIn</div>
-            <div class="clr-val">dorian-p</div>
-          </div>
-          <i class="fas fa-arrow-right clr-arrow"></i>
-        </a>
-
-        <a href="https://github.com/Dow08" target="_blank" rel="noopener" class="contact-link-row reveal reveal-delay-4">
-          <div class="clr-icon" style="background:rgba(167,139,250,.08);color:#a78bfa">
-            <i class="fab fa-github"></i>
-          </div>
-          <div>
-            <div class="clr-label">GitHub</div>
-            <div class="clr-val">github.com/Dow08</div>
-          </div>
-          <i class="fas fa-arrow-right clr-arrow"></i>
-        </a>
-
-        <a href="https://tryhackme.com/p/seallia81" target="_blank" rel="noopener" class="contact-link-row reveal">
-          <div class="clr-icon" style="background:rgba(251,191,36,.08);color:#fbbf24">
-            <i class="fas fa-flag"></i>
-          </div>
-          <div>
-            <div class="clr-label">TryHackMe</div>
-            <div class="clr-val">Top 7% · seallia81</div>
-          </div>
-          <i class="fas fa-arrow-right clr-arrow"></i>
-        </a>
-
-        <div class="contact-link-row contact-link-row--static reveal">
-          <div class="clr-icon" style="background:rgba(0,255,136,.08);color:#00ff88">
-            <i class="fas fa-file-lines"></i>
-          </div>
-          <div>
-            <div class="clr-label">CV</div>
-            <div class="clr-val">Sur demande</div>
-          </div>
-        </div>
-
+        <ol class="pulse__list reveal" id="pulse-articles" data-delay="1" aria-label="Articles du jour" data-i18n-label="pulse.articles"></ol>
       </div>
     </div>
+  </section>
 
-    <div class="reveal reveal-delay-2">
-      <form class="contact-form" id="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Prénom</label>
-            <input class="form-input" type="text" name="prenom" placeholder="Jean" required/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Nom</label>
-            <input class="form-input" type="text" name="nom" placeholder="Dupont" required/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" type="email" name="email" placeholder="votre@email.com" required/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Sujet</label>
-          <input class="form-input" type="text" name="sujet" placeholder="Opportunité · Mission · Collaboration" required/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Message</label>
-          <textarea class="form-textarea" name="message" placeholder="Décrivez votre projet ou opportunité..." required></textarea>
-        </div>
-        <button class="btn-submit" type="submit" id="contact-submit-btn">
-          <i class="fas fa-paper-plane"></i> <span>Envoyer</span>
-        </button>
-      </form>
+  <!-- ═══ F — Formation & certifications (data/profile.json) ══════════ -->
+  <section class="section section--light" id="formation" aria-labelledby="edu-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="mono reveal" data-i18n="edu.eyebrow">Formation &amp; certifications</p>
+        <h2 id="edu-title" class="reveal" data-delay="1" data-i18n="edu.title">Un parcours récent, avec son statut exact.</h2>
+        <p class="lead reveal" data-delay="2" id="education-note"></p>
+      </div>
+      <ul class="edu-list reveal" id="education-list" role="list"></ul>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer>
-  <span>Dorian Poncelet © 2025 — Cybersécurité</span>
-  <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem">built with <span style="color:#00ff88">♥</span> &amp; code</span>
+  <!-- ═══ G — Contact ═════════════════════════════════════════════════ -->
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="container contact__inner">
+      <div>
+        <p class="mono reveal" data-i18n="contact.eyebrow">Contact</p>
+        <h2 id="contact-title" class="reveal" data-delay="1" data-i18n="contact.title">Parlons sécurité.</h2>
+        <p class="lead reveal" data-delay="2" data-i18n="contact.lead">Disponible immédiatement. Basé à Rodez, en déplacement et en remote dans toute la France. Ouvert à toute proposition : CDI, CDD, freelance ou mission. CV sur demande via LinkedIn.</p>
+      </div>
+      <div class="contact__links reveal" data-delay="2">
+        <a class="contact-link" href="mailto:Dow@ikmail.com"><svg aria-hidden="true"><use href="#i-mail"/></svg><span><small data-i18n="contact.email">E-mail</small>Dow@ikmail.com</span></a>
+        <a class="contact-link" href="https://www.linkedin.com/in/dorian-p-1807612b5/" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-linkedin"/></svg><span><small>LinkedIn</small>Dorian Poncelet</span></a>
+        <a class="contact-link" href="https://github.com/Dow08" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-github"/></svg><span><small>GitHub</small>github.com/Dow08</span></a>
+        <a class="contact-link" href="https://tryhackme.com/p/seallia81" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-flag"/></svg><span><small>TryHackMe</small>seallia81</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>© <span id="year">2026</span> Dorian Poncelet · Rodez</span>
+    <span>
+      <a href="accessibilite.html" data-i18n="footer.a11y">Accessibilité</a> ·
+      <a href="https://github.com/Dow08/-Mon_Portfolio" rel="noopener noreferrer" data-i18n="footer.source">Code source du site</a>
+    </span>
+  </div>
 </footer>
 
-<script>
-/* Ce script est placé en fin de <body> : le DOM au-dessus est déjà
-   disponible, inutile d'attendre DOMContentLoaded pour l'essentiel.
-   gsap/ScrollTrigger sont chargés en `defer` (non-bloquant pour le
-   rendu initial) — les blocs qui en dépendent utilisent whenGsapReady()
-   plus bas pour ne jamais bloquer le reste (cartes, formulaire, nav). */
-function whenGsapReady(cb){
-  if (window.gsap && window.ScrollTrigger) { cb(); }
-  else { window.addEventListener('load', cb, { once:true }); }
-}
-
-/* Respect de prefers-reduced-motion : quand actif, on n'installe ni les
-   boucles d'animation (curseur, parallax), ni les effets GSAP au scroll,
-   ni l'effet de déchiffrement des titres — le CSS coupe le reste. */
-const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ══════════════════════════════════════════
-   VIDÉO HERO — chargée uniquement sur grand écran
-   (évite ~19 Mo de transfert inutile sur mobile)
-══════════════════════════════════════════ */
-if (window.matchMedia('(min-width: 769px)').matches && !REDUCED) {
-  const heroVideoEl = document.getElementById('hero-video');
-  if (heroVideoEl) {
-    heroVideoEl.preload = 'auto';
-    heroVideoEl.src = './assets/Video/cyber_hero.mp4';
-  }
-}
-
-/* ══════════════════════════════════════════
-   CURSOR
-══════════════════════════════════════════ */
-const cursor = document.getElementById('cursor');
-const ring   = document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  cursor.style.left=mx+'px';
-  cursor.style.top=my+'px';
-});
-if(!REDUCED) (function animRing(){
-  if(!document.hidden){
-    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-  }
-  requestAnimationFrame(animRing);
-})();
-
-/* ══════════════════════════════════════════
-   AVATAR PARALLAX — mouse tracking
-══════════════════════════════════════════ */
-/* Names follow mouse — Three.js gère le shield */
-const nameFront  = document.getElementById('hero-name-front');
-const nameBehind = document.getElementById('hero-name-behind');
-let ax=0,ay=0,targetAx=0,targetAy=0;
-document.addEventListener('mousemove',e=>{
-  const cx=window.innerWidth/2, cy=window.innerHeight/2;
-  targetAx=(e.clientX-cx)/cx * 10;
-  targetAy=(e.clientY-cy)/cy * 7;
-});
-if(!REDUCED) (function animNames(){
-  if(!document.hidden && window.gsap){
-    ax+=(targetAx-ax)*.07; ay+=(targetAy-ay)*.07;
-    /* On n'anime QUE X via gsap.set — Y est géré par ScrollTrigger
-       pour éviter tout conflit de transform */
-    if(nameFront)  gsap.set(nameFront,  { x: ax*-0.5 });
-    if(nameBehind) gsap.set(nameBehind, { x: ax*0.3  });
-  }
-  requestAnimationFrame(animNames);
-})();
-
-/* ══════════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════════ */
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      if(e.target.classList.contains('skill-block')){
-        e.target.classList.add('revealed');
-      }
-    }
-  });
-},{threshold:.15});
-
-/* Enregistre tous les éléments .reveal existants dans le DOM statique */
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
-
-/* ══════════════════════════════════════════
-   PROJETS — Génération 100% automatique depuis GitHub
-   Parcourt tous les repos publics (hors forks et hors ce
-   portfolio lui-même), lit le README.md de chacun et en
-   extrait chaque sous-projet (sections "### slug"). Un repo
-   sans sous-section est affiché comme un projet unique.
-   → Ajouter/documenter un projet sur GitHub suffit à le
-     faire apparaître ici automatiquement, sans toucher au site.
-══════════════════════════════════════════ */
-(function renderProjects(){
-
-  const track = document.getElementById('projects-track');
-  if(!track) return;
-
-  const OWNER = 'Dow08';
-  const SELF_REPO = '-Mon_Portfolio';           // ce portfolio : jamais listé comme "projet"
-  const EXCLUDE_SLUGS = ['site-web'];           // copie de ce portfolio hébergée dans un autre repo
-
-  /* Libellé de catégorie affiché sur chaque carte, par repo GitHub */
-  const CATEGORY_LABELS = {
-    'Infrastructure-SecOps': 'Infrastructure',
-    'GRC-Compliance': 'GRC',
-    'AI-Automation': 'IA & Automatisation',
-    'Portfolio': 'Portfolio',
-    'Divers': 'Divers',
-    'Formation': 'Formation'
-  };
-
-  const THEMES = [
-    { color:'#00ff88', icon:'fa-server' },
-    { color:'#f87171', icon:'fa-shield-halved' },
-    { color:'#a78bfa', icon:'fa-robot' },
-    { color:'#60a5fa', icon:'fa-magnifying-glass-chart' },
-    { color:'#34d399', icon:'fa-file-shield' },
-    { color:'#fbbf24', icon:'fa-microchip' },
-    { color:'#22d3ee', icon:'fa-satellite-dish' },
-    { color:'#fb923c', icon:'fa-bug' },
-    { color:'#c084fc', icon:'fa-network-wired' },
-  ];
-
-  /* Petites exceptions de casse/accents pour un rendu plus soigné */
-  const NAME_FIXES = {
-    'Iac':'IaC','Smsi':'SMSI','Rgpd':'RGPD','Vps':'VPS','Osint':'OSINT',
-    'Soc':'SOC','Siem':'SIEM','Ccm':'CCM','Nist':'NIST','Csf':'CSF',
-    'Pci':'PCI','Dss':'DSS','Trp':'TRP','Ai':'AI','Devsecops':'DevSecOps',
-    'Lea':'LÉA','Hermes':'Hermès','Pixelstore':'PixelStore',
-    'Cybersecurite':'Cybersécurité','Conformite':'Conformité'
-  };
-  const LOWERCASE_WORDS = ['Et','De','Des','Du','La','Le','Un','Une','En','À','Au'];
-
-  function formatTitle(slug){
-    const words = slug.replace(/[-_]/g,' ').trim().split(/\s+/)
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
-    return words.map((w,i) => {
-      if (NAME_FIXES[w]) return NAME_FIXES[w];
-      if (i > 0 && LOWERCASE_WORDS.includes(w)) return w.toLowerCase();
-      return w;
-    }).join(' ');
-  }
-
-  function stripMarkdown(text){
-    return text
-      .replace(/\*\*(.+?)\*\*/g,'$1')
-      .replace(/\*(.+?)\*/g,'$1')
-      .replace(/`(.+?)`/g,'$1')
-      .replace(/\[(.+?)\]\(.+?\)/g,'$1');
-  }
-
-  /* Recolle les lignes d'une description en tenant compte des README dont
-     un export/copier-coller a isolé certains caractères accentués sur leur
-     propre ligne (ex: "d" / "é" / "ploiement" au lieu de "déploiement").
-     Une ligne "fragment" (≤2 caractères une fois trimmée) est recollée sans
-     espace à ce qui l'entoure ; les vraies lignes/phrases gardent un espace. */
-  function joinDescLines(lines){
-    let result = '';
-    let prevWasFragment = false;
-    lines.forEach(line => {
-      const trimmedLen = line.trim().length;
-      const isFragment = trimmedLen > 0 && trimmedLen <= 2;
-      if(result === '') result = line;
-      else if(isFragment || prevWasFragment) result += line;
-      else result += ' ' + line;
-      prevWasFragment = isFragment;
-    });
-    return result.replace(/\s+/g,' ').trim();
-  }
-
-  /* Extrait les sous-projets d'un README (sections "### slug") */
-  function parseReadmeProjects(md){
-    const rawLines = md.split('\n').map(l => l.replace(/\r$/,''));
-    const h3idx = [];
-    rawLines.forEach((l,i) => { if(/^###\s+/.test(l.trim())) h3idx.push(i); });
-    if(h3idx.length === 0) return [];
-
-    const projects = [];
-    for(let k=0;k<h3idx.length;k++){
-      const start = h3idx[k];
-      const end = k+1 < h3idx.length ? h3idx[k+1] : rawLines.length;
-      const slug = rawLines[start].trim().replace(/^###\s+/,'').trim();
-
-      let section = rawLines.slice(start+1, end);
-
-      /* Tronque avant la signature finale ("**Nom**…") si elle traîne
-         dans la dernière section du fichier */
-      const signatureIdx = section.findIndex(l => l.trim().startsWith('**'));
-      if(signatureIdx !== -1) section = section.slice(0, signatureIdx);
-
-      section = section.filter(l => {
-        const t = l.trim();
-        return t.length > 0 && t !== '---';
-      });
-
-      let stack = [];
-      let featured = false;
-      const descLines = [];
-      section.forEach(l => {
-        const t = l.trim();
-        /* Marqueur "à la une" : une ligne commençant par ⭐ (ou ★, ou
-           "Featured") dans la section du projet sur GitHub suffit à
-           mettre la carte en avant — la ligne n'apparaît pas sur le site */
-        if(/^(⭐|★|Featured\b)/i.test(t)){ featured = true; return; }
-        const m = t.match(/^Stack\s*:\s*(.+)$/i);
-        if(m) stack = m[1].split(',').map(s => s.trim()).filter(Boolean);
-        else descLines.push(l);
-      });
-
-      projects.push({ slug, desc: stripMarkdown(joinDescLines(descLines)), stack, featured });
-    }
-    return projects;
-  }
-
-  function buildCard(p, index){
-    const theme = THEMES[index % THEMES.length];
-    const num = String(index + 1).padStart(2,'0');
-    const tagsHTML = p.stack.slice(0,4).map(t => `<span class="card-tag">${t}</span>`).join('');
-    const delayClass = index < 4 ? ` reveal-delay-${index}` : '';
-
-    return `
-      <div class="project-card reveal${delayClass}${p.featured ? ' project-card--featured' : ''}">
-        <div class="card-thumb" style="color:${theme.color}">
-          <div class="card-thumb-bg"  style="color:${theme.color}"></div>
-          <div class="card-thumb-icon" style="color:${theme.color}">
-            <i class="fas ${theme.icon}"></i>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-number">${num} — ${p.categorie.toUpperCase()}${p.featured ? ' &nbsp;<span class="featured-flag"><i class="fas fa-star"></i> À la une</span>' : ''}</div>
-          <div class="card-title">${p.titre}</div>
-          <div class="card-desc">${p.desc}</div>
-          <div class="card-tags">${tagsHTML}</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-status" style="color:#86efac">
-            <span class="status-dot-live"></span> Actif
-          </span>
-          <a href="${p.url}" class="card-link" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>`;
-  }
-
-  /* ── Cache sessionStorage (10 min) : évite le rate-limit de l'API
-        GitHub (60 req/h non authentifié) si le visiteur recharge la
-        page plusieurs fois, et sert de repli si l'API est indisponible ── */
-  const CACHE_KEY = 'dp_projects_v1';
-  function readCache(ignoreAge){
-    try{
-      const raw = sessionStorage.getItem(CACHE_KEY);
-      if(!raw) return null;
-      const data = JSON.parse(raw);
-      if(!ignoreAge && Date.now() - data.t > 10*60*1000) return null;
-      return (data.projects && data.projects.length) ? data.projects : null;
-    }catch(e){ return null; }
-  }
-
-  function renderCards(list){
-    track.innerHTML = list.map((p,i) => buildCard(p,i)).join('');
-    track.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-  }
-
-  /* ── Tilt 3D + spotlight au survol (délégation sur la grille) ── */
-  let tiltBound = false;
-  function initCardTilt(){
-    if(tiltBound || REDUCED || !window.matchMedia('(hover:hover)').matches) return;
-    tiltBound = true;
-    track.addEventListener('mousemove', e => {
-      const card = e.target.closest('.project-card');
-      if(!card) return;
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      card.classList.add('tilting');
-      card.style.transform =
-        `translateY(-8px) perspective(900px) rotateX(${((0.5 - y) * 5).toFixed(2)}deg) rotateY(${((x - 0.5) * 5).toFixed(2)}deg)`;
-      card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
-      card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
-    });
-    track.addEventListener('mouseout', e => {
-      const card = e.target.closest('.project-card');
-      if(!card || card.contains(e.relatedTarget)) return;
-      card.classList.remove('tilting');
-      card.style.transform = '';
-    });
-  }
-
-  /* ── Rendu final : chips de filtrage + cartes + tilt ── */
-  function setupProjects(all){
-    const filterRow = document.getElementById('filter-row');
-    if(filterRow){
-      const cats = [];
-      all.forEach(p => {
-        const c = cats.find(x => x.name === p.categorie);
-        if(c) c.n++; else cats.push({ name: p.categorie, n: 1 });
-      });
-      filterRow.innerHTML =
-        `<button class="filter-chip active" data-cat="*">Tous · ${all.length}</button>` +
-        cats.map(c => `<button class="filter-chip" data-cat="${c.name}">${c.name} · ${c.n}</button>`).join('');
-      filterRow.addEventListener('click', e => {
-        const chip = e.target.closest('.filter-chip');
-        if(!chip) return;
-        filterRow.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        const cat = chip.dataset.cat;
-        renderCards(cat === '*' ? all : all.filter(p => p.categorie === cat));
-        /* Les cartes filtrées sont déjà dans le viewport : révélation immédiate */
-        track.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-      });
-    }
-    renderCards(all);
-    initCardTilt();
-    /* Arrivée directe sur une ancre (#contact…) : les cartes chargées
-       après coup décalent la page — on recale une fois, au chargement */
-    if(location.hash && performance.now() < 3000){
-      const target = document.getElementById(location.hash.slice(1));
-      if(target) window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY);
-    }
-  }
-
-  /* Noms des dossiers présents à la racine d'un repo.
-     Renvoie null si l'information n'a pas pu être obtenue (API indisponible
-     ou quota dépassé) : l'appelant doit distinguer « aucun dossier » de
-     « je ne sais pas ». N'est appelé que pour les repos dont le README
-     contient des sections, afin de ne pas consommer le quota inutilement. */
-  function fetchRootDirs(repo){
-    return fetch(`https://api.github.com/repos/${OWNER}/${repo.name}/contents/?ref=${repo.default_branch}`)
-      .then(r => r.ok ? r.json() : null)
-      .then(items => Array.isArray(items)
-        ? items.filter(i => i.type === 'dir').map(i => i.name)
-        : null)
-      .catch(() => null);
-  }
-
-  /* ── Cache frais disponible : rendu immédiat, zéro appel réseau ── */
-  const cachedProjects = readCache(false);
-  if(cachedProjects){ setupProjects(cachedProjects); return; }
-
-  track.innerHTML = Array.from({length:6}, ()=>`
-    <div class="project-card" style="opacity:.25;pointer-events:none">
-      <div class="card-thumb" style="color:#444;background:rgba(255,255,255,.03)"></div>
-      <div class="card-body">
-        <div style="height:10px;width:60px;background:rgba(255,255,255,.07);border-radius:4px;margin-bottom:10px"></div>
-        <div style="height:14px;width:70%;background:rgba(255,255,255,.09);border-radius:4px;margin-bottom:8px"></div>
-        <div style="height:10px;width:90%;background:rgba(255,255,255,.05);border-radius:4px"></div>
-      </div>
-    </div>`).join('');
-
-  fetch(`https://api.github.com/users/${OWNER}/repos?sort=updated&per_page=100`)
-    .then(r => { if(!r.ok) throw new Error('GitHub API ' + r.status); return r.json(); })
-    .then(repos => {
-      const candidates = repos.filter(r => !r.fork && r.name !== SELF_REPO);
-
-      return Promise.all(candidates.map(repo =>
-        fetch(`https://raw.githubusercontent.com/${OWNER}/${repo.name}/${repo.default_branch}/README.md`)
-          .then(r => r.ok ? r.text() : '')
-          .then(async md => {
-            let subProjects = parseReadmeProjects(md)
-              .filter(p => !EXCLUDE_SLUGS.includes(p.slug));
-
-            /* Une section "###" n'ouvre une carte que si un dossier du même nom
-               existe vraiment à la racine du repo : la carte pointe vers
-               /tree/<branche>/<slug>, donc une section sans dossier produit un
-               lien mort. Un repo-conteneur (un dossier par sous-projet) est
-               ainsi éclaté en cartes, tandis qu'un repo classique, dont les
-               sous-titres ne sont que de la documentation, reste une carte
-               unique. Aucune liste à tenir à jour : c'est le contenu réel du
-               repo qui tranche. */
-            if(subProjects.length > 0){
-              const dirs = await fetchRootDirs(repo);
-              /* dirs vaut null si l'API n'a pas répondu : dans ce cas on ne
-                 filtre pas, plutôt que d'effacer des projets valides. */
-              if(dirs) subProjects = subProjects.filter(p => dirs.includes(p.slug));
-            }
-
-            if(subProjects.length > 0){
-              return subProjects.map(p => ({
-                titre: formatTitle(p.slug),
-                categorie: CATEGORY_LABELS[repo.name] || repo.name,
-                desc: p.desc || 'Projet en cours de documentation.',
-                stack: p.stack,
-                featured: !!p.featured,
-                url: `${repo.html_url}/tree/${repo.default_branch}/${p.slug}`
-              }));
-            }
-            /* Pas de sous-section détectée : le repo est un projet à part entière */
-            return [{
-              titre: formatTitle(repo.name),
-              categorie: CATEGORY_LABELS[repo.name] || 'Projet',
-              desc: repo.description || 'Projet en cours de documentation.',
-              stack: repo.language ? [repo.language] : [],
-              featured: false,
-              url: repo.html_url
-            }];
-          })
-          .catch(() => [])
-      ));
-    })
-    .then(groupedProjects => {
-      const allProjects = [].concat(...groupedProjects);
-
-      if(allProjects.length === 0){
-        track.innerHTML = `<p style="color:rgba(240,240,240,.5);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
-          Aucun projet trouvé.</p>`;
-        return;
-      }
-
-      /* Projets "à la une" en tête (tri stable : ordre d'origine conservé) */
-      allProjects.sort((a,b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-
-      try{ sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), projects: allProjects })); }catch(e){}
-
-      setupProjects(allProjects);
-    })
-    .catch(() => {
-      /* API indisponible ou rate-limitée : on retombe sur le dernier
-         cache connu, même périmé, plutôt que d'afficher une section vide */
-      const stale = readCache(true);
-      if(stale){ setupProjects(stale); return; }
-      track.innerHTML = `<p style="color:rgba(240,240,240,.5);font-family:'JetBrains Mono',monospace;font-size:.8rem;padding:40px">
-        Impossible de charger les projets GitHub — veuillez réessayer.</p>`;
-    });
-
-})();
-
-/* ══════════════════════════════════════════
-   COUNTER ANIMATION + GITHUB API
-══════════════════════════════════════════ */
-
-/* Anime un compteur de 0 → target */
-function animCount(el, target, suffix=''){
-  let n=0;
-  const step=Math.max(1, Math.ceil(target/60));
-  const t=setInterval(()=>{
-    n=Math.min(n+step, target);
-    el.textContent=n+suffix;
-    if(n>=target) clearInterval(t);
-  }, 24);
-}
-
-/* Lance tous les compteurs du hero avec les data-count actuels */
-let _countersLaunched=false;
-function launchHeroCounters(){
-  if(_countersLaunched) return;
-  _countersLaunched=true;
-  document.querySelectorAll('.hero-stat .val').forEach(el=>{
-    animCount(el, parseInt(el.dataset.count)||0);
-  });
-}
-
-/* ── Fetch GitHub API — met à jour le compteur Repos ── */
-/* URL du profil : https://github.com/Dow08               */
-let _githubDone=false;
-fetch('https://api.github.com/users/Dow08')
-  .then(r=>r.json())
-  .then(data=>{
-    if(typeof data.public_repos==='number'){
-      const repoEl=document.getElementById('github-repo-count');
-      if(repoEl) repoEl.dataset.count=data.public_repos;
-    }
-  })
-  .catch(()=>{ /* API inaccessible — garde la valeur de secours */ })
-  .finally(()=>{ _githubDone=true; });
-
-/* ── IntersectionObserver : déclenche les compteurs quand hero visible ── */
-/* Attend la fin du fetch GitHub (max 2s) avant de lancer l'animation    */
-const heroObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      if(_githubDone){
-        launchHeroCounters();
-      } else {
-        /* Pooling léger — attend la réponse jusqu'à 2s max */
-        const fallback=setTimeout(launchHeroCounters, 2000);
-        const poll=setInterval(()=>{
-          if(_githubDone){ clearTimeout(fallback); clearInterval(poll); launchHeroCounters(); }
-        }, 80);
-      }
-      heroObs.disconnect();
-    }
-  });
-},{threshold:.5});
-const heroSection=document.getElementById('hero');
-if(heroSection) heroObs.observe(heroSection);
-
-
-/* ══════════════════════════════════════════
-   VIDEO PARALLAX — GSAP ScrollTrigger
-   (autoplay loop + scale dézoom + parallax noms)
-══════════════════════════════════════════ */
-whenGsapReady(function initVideoScroll(){
-  if(REDUCED) return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  /* ── Dézoom vidéo : scale(1.1) → scale(1) pendant le scroll ── */
-  gsap.to('#hero-video', {
-    scale  : 1,
-    ease   : 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start  : 'top top',
-      end    : 'bottom top',
-      scrub  : 1,
-    }
-  });
-
-  /* ── Overlay s'assombrit légèrement en scrollant ── */
-  gsap.to('.hero-video-overlay', {
-    opacity: 1,
-    ease   : 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start  : 'top top',
-      end    : 'bottom top',
-      scrub  : 1,
-    }
-  });
-
-  /* ── PONCELET — remonte doucement (parallax lent) ── */
-  gsap.to('#hero-name-behind', {
-    y    : -40,
-    ease : 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start  : 'top top',
-      end    : 'bottom top',
-      scrub  : 1,
-    }
-  });
-
-  /* ── DORIAN — remonte plus vite (parallax rapide) ── */
-  gsap.to('#hero-name-front', {
-    y    : -90,
-    ease : 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start  : 'top top',
-      end    : 'bottom top',
-      scrub  : 1,
-    }
-  });
-});
-
-/* ══════════════════════════════════════════
-   NAV — active on scroll
-══════════════════════════════════════════ */
-const sections=document.querySelectorAll('section[id]');
-const navLinks=document.querySelectorAll('.nav-links a');
-const navObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      navLinks.forEach(l=>{
-        l.style.color=l.getAttribute('href')==='#'+e.target.id
-          ?'#f0f0f0':'rgba(240,240,240,.65)';
-      });
-    }
-  });
-},{threshold:.4});
-sections.forEach(s=>navObs.observe(s));
-
-/* ══════════════════════════════════════════
-   SCROLL D'ANCRE FIABLE — animation rAF maison
-   (indépendante des ScrollTriggers GSAP, toujours menée à terme ;
-   annulée seulement si l'utilisateur reprend la main : molette/tactile)
-══════════════════════════════════════════ */
-function smoothScrollTo(targetY, dur){
-  /* Onglet caché ou reduced-motion : rAF ne tournerait pas (ou ne doit
-     pas) — on saute directement à la cible pour garantir l'arrivée */
-  if(REDUCED || document.hidden){ window.scrollTo(0, targetY); return; }
-  dur = dur || 650;
-  const startY = window.scrollY;
-  const diff = targetY - startY;
-  const t0 = performance.now();
-  let cancelled = false;
-  const cancel = () => { cancelled = true; };
-  window.addEventListener('wheel', cancel, { passive:true, once:true });
-  window.addEventListener('touchstart', cancel, { passive:true, once:true });
-  (function step(now){
-    if(cancelled) return;
-    /* L'onglet passe en arrière-plan en cours d'animation : on termine
-       instantanément plutôt que de laisser le scroll gelé à mi-course */
-    if(document.hidden){ window.scrollTo(0, targetY); return; }
-    const p = Math.min(1, (now - t0) / dur);
-    const e = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
-    window.scrollTo(0, startY + diff * e);
-    if(p < 1) requestAnimationFrame(step);
-  })(performance.now());
-}
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if(!el) return;
-    e.preventDefault();
-    smoothScrollTo(el.getBoundingClientRect().top + window.scrollY);
-    history.pushState(null, '', '#' + id);
-  });
-});
-
-/* ══════════════════════════════════════════
-   TITRES "DÉCHIFFRÉS" — effet terminal au scroll
-   Les caractères se résolvent vers le texte exact d'origine :
-   le contenu final est strictement identique, à l'octet près.
-══════════════════════════════════════════ */
-if(!REDUCED){
-  const GLYPHS = '!<>-_\\/[]{}—=+*^?#01';
-  function decodeEl(el){
-    const nodes = [];
-    (function walk(n){
-      n.childNodes.forEach(c => {
-        if(c.nodeType === 3 && c.textContent.trim()) nodes.push(c);
-        else if(c.nodeType === 1) walk(c);
-      });
-    })(el);
-    nodes.forEach(node => {
-      const orig = node.textContent;
-      const len = orig.length;
-      const t0 = performance.now();
-      const dur = 600 + len * 22;
-      (function step(now){
-        const p = Math.min(1, (now - t0) / dur);
-        const solved = Math.floor(p * len);
-        let out = orig.slice(0, solved);
-        for(let i = solved; i < len; i++){
-          out += orig[i] === ' ' ? ' ' : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-        }
-        node.textContent = out;
-        if(p < 1) requestAnimationFrame(step);
-        else node.textContent = orig;
-      })(performance.now());
-    });
-  }
-  const decObs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if(en.isIntersecting){
-        decObs.unobserve(en.target);
-        decodeEl(en.target);
-      }
-    });
-  }, { threshold:.3 });
-  document.querySelectorAll('.section-title, .about-title, .contact-title').forEach(el => decObs.observe(el));
-}
-
-/* ══════════════════════════════════════════
-   CYBERPULSE — flash info quotidien (data.json + audio)
-   Généré chaque jour par src/main.py via GitHub Actions.
-   Si les données sont indisponibles, la section se masque.
-══════════════════════════════════════════ */
-(function renderCyberPulse(){
-  const section = document.getElementById('cyberpulse');
-  if(!section) return;
-  const articlesEl = document.getElementById('pulse-articles');
-
-  function initPulsePlayer(audioFile){
-    const audio = document.getElementById('pulse-audio');
-    const btn   = document.getElementById('pulse-play');
-    const icon  = document.getElementById('pulse-play-icon');
-    const bar   = document.getElementById('pulse-progress');
-    const fill  = document.getElementById('pulse-progress-fill');
-    const time  = document.getElementById('pulse-time');
-    const viz   = document.getElementById('pulse-viz');
-    if(!audio || !btn) return;
-
-    audio.src = './cyber-news/' + (audioFile || 'audio/latest_briefing.mp3') + '?t=' + Date.now();
-
-    function fmt(s){
-      if(!isFinite(s)) return '0:00';
-      const m = Math.floor(s / 60);
-      return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
-    }
-    btn.addEventListener('click', () => {
-      if(audio.paused){ audio.play().catch(() => {}); }
-      else { audio.pause(); }
-    });
-    audio.addEventListener('play',  () => { icon.className = 'fas fa-pause'; if(viz) viz.classList.add('playing'); });
-    audio.addEventListener('pause', () => { icon.className = 'fas fa-play';  if(viz) viz.classList.remove('playing'); });
-    audio.addEventListener('timeupdate', () => {
-      if(audio.duration) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-      time.textContent = fmt(audio.currentTime);
-    });
-    audio.addEventListener('ended', () => {
-      fill.style.width = '0%';
-      icon.className = 'fas fa-play';
-      if(viz) viz.classList.remove('playing');
-    });
-    audio.addEventListener('error', () => {
-      const cardEl = btn.closest('.pulse-player-card');
-      if(cardEl) cardEl.style.display = 'none';
-    });
-    bar.addEventListener('click', e => {
-      if(!audio.duration) return;
-      const r = bar.getBoundingClientRect();
-      audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
-    });
-  }
-
-  fetch('./cyber-news/data.json?t=' + Date.now())
-    .then(r => { if(!r.ok) throw new Error('data.json ' + r.status); return r.json(); })
-    .then(data => {
-      const dateEl = document.getElementById('pulse-date');
-      if(dateEl && data.generated_at){
-        const d = new Date(data.generated_at);
-        dateEl.textContent = 'MAJ ' + d.toLocaleDateString('fr-FR');
-      }
-      if(articlesEl && data.articles && data.articles.length){
-        articlesEl.innerHTML = data.articles.map((a, i) => `
-          <article class="pulse-article">
-            <span class="idx">[${String(i + 1).padStart(2, '0')}]</span>
-            <a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title_fr || a.title}</a>
-            <p>${a.summary_fr || a.summary || ''}</p>
-          </article>`).join('');
-      }
-      initPulsePlayer(data.audio_file);
-    })
-    .catch(() => { section.style.display = 'none'; });
-})();
-
-/* ══════════════════════════════════════════
-   FORMULAIRE DE CONTACT — envoi via mailto
-══════════════════════════════════════════ */
-const contactForm = document.getElementById('contact-form');
-if(contactForm){
-  contactForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const submitBtn = document.getElementById('contact-submit-btn');
-    const data = new FormData(contactForm);
-    const prenom = (data.get('prenom')||'').trim();
-    const nom    = (data.get('nom')||'').trim();
-    const email  = (data.get('email')||'').trim();
-    const sujet  = (data.get('sujet')||'').trim();
-    const message= (data.get('message')||'').trim();
-
-    const corps = `${message}\n\n—\n${prenom} ${nom}\n${email}`;
-    const mailto = `mailto:Dow@ikmail.com?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
-    window.location.href = mailto;
-
-    if(submitBtn){
-      const originalHTML = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>Redirection vers votre client email…</span>';
-      submitBtn.disabled = true;
-      setTimeout(()=>{
-        submitBtn.innerHTML = originalHTML;
-        submitBtn.disabled = false;
-      }, 3000);
-    }
-  });
-}
-</script>
 </body>
 </html>

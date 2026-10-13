@@ -1,0 +1,416 @@
+{
+  "generated_at": "2026-10-13T08:24:39+00:00",
+  "owner": "Dow08",
+  "repo_count": 10,
+  "groups": {
+    "grc": "GRC & conformité",
+    "secops": "Infrastructure & SecOps",
+    "ia": "IA & automatisation",
+    "formation": "Formation",
+    "autres": "Autres travaux"
+  },
+  "referentials": {
+    "ISO 27001": 4,
+    "NIS 2": 3,
+    "RGPD": 4,
+    "NIST CSF": 3,
+    "CIS Controls": 1,
+    "PCI DSS": 1
+  },
+  "projects": [
+    {
+      "id": "OS-Agentique_showcase",
+      "title": "OS Agentique Showcase",
+      "group": "ia",
+      "group_label": "IA & automatisation",
+      "repo": "OS-Agentique_showcase",
+      "repo_label": "Projet",
+      "description": "Une équipe de 20 agents IA qui tourne en local sur Windows : interface vocale, approbation humaine pour chaque action sensible, résultats vérifiés. Vitrine d'Hermes OS.",
+      "stack": [],
+      "featured": false,
+      "status": "vitrine",
+      "url": "https://github.com/Dow08/OS-Agentique_showcase",
+      "updated_at": "2026-10-02T07:25:39Z"
+    },
+    {
+      "id": "Green-Shield-GRC",
+      "title": "Green Shield GRC",
+      "group": "grc",
+      "group_label": "GRC & conformité",
+      "repo": "Green-Shield-GRC",
+      "repo_label": "Projet",
+      "description": "Application pour consulting cyber sécurité entreprise",
+      "stack": [
+        "Python"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Green-Shield-GRC",
+      "updated_at": "2026-09-28T20:08:41Z"
+    },
+    {
+      "id": "RED-SHIELD-",
+      "title": "Red Shield",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "RED-SHIELD-",
+      "repo_label": "Projet",
+      "description": "Projet en cours de documentation.",
+      "stack": [
+        "Python"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/RED-SHIELD-",
+      "updated_at": "2026-10-01T03:37:59Z"
+    },
+    {
+      "id": "cours-et-certifications",
+      "title": "Cours et Certifications",
+      "group": "formation",
+      "group_label": "Formation",
+      "repo": "Formation",
+      "repo_label": "Formation",
+      "description": "Notes et supports sur ISO 27001:2022, NIS2, RGPD, réseau/OSI, sécurité technique et cloud. En construction au fil de la formation.",
+      "stack": [],
+      "featured": false,
+      "status": "formation",
+      "url": "https://github.com/Dow08/Formation/tree/master/cours-et-certifications",
+      "updated_at": "2026-07-19T19:09:44Z"
+    },
+    {
+      "id": "exercices-python",
+      "title": "Exercices Python",
+      "group": "formation",
+      "group_label": "Formation",
+      "repo": "Formation",
+      "repo_label": "Formation",
+      "description": "Scripts et exercices de scripting Python — automatisation, manipulation de fichiers, bases du développement orienté sécurité.",
+      "stack": [],
+      "featured": false,
+      "status": "formation",
+      "url": "https://github.com/Dow08/Formation/tree/master/exercices-python",
+      "updated_at": "2026-07-19T19:09:44Z"
+    },
+    {
+      "id": "Saison-et-Terroir-Application-smartphone",
+      "title": "Saison et Terroir Application Smartphone",
+      "group": "autres",
+      "group_label": "Autres travaux",
+      "repo": "Saison-et-Terroir-Application-smartphone",
+      "repo_label": "Projet",
+      "description": "Application de recherche par géolocalisation d'activités pour des vacances ",
+      "stack": [
+        "TypeScript"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Saison-et-Terroir-Application-smartphone",
+      "updated_at": "2026-07-16T08:55:50Z"
+    },
+    {
+      "id": "agent-hermes-local",
+      "title": "Agent Hermès Local",
+      "group": "ia",
+      "group_label": "IA & automatisation",
+      "repo": "AI-Automation",
+      "repo_label": "IA & Automatisation",
+      "description": "Agent IA personnalisé tournant 100% en local — multi-modèles (Ollama, Mistral, GLM), dashboard adaptatif, sélection dynamique du LLM selon la tâche.",
+      "stack": [
+        "Python",
+        "Ollama",
+        "Mistral",
+        "GLM"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/AI-Automation/tree/master/agent-hermes-local",
+      "updated_at": "2026-07-02T10:14:30Z"
+    },
+    {
+      "id": "actu-cybersecurite",
+      "title": "Actu Cybersécurité",
+      "group": "ia",
+      "group_label": "IA & automatisation",
+      "repo": "AI-Automation",
+      "repo_label": "IA & Automatisation",
+      "description": "Scraper de veille cybersécurité — agrégation automatique de news et podcasts depuis plusieurs sources, classement par thématique.",
+      "stack": [
+        "Python"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/AI-Automation/tree/master/actu-cybersecurite",
+      "updated_at": "2026-07-02T10:14:30Z"
+    },
+    {
+      "id": "netguard-surveillance",
+      "title": "Netguard Surveillance",
+      "group": "ia",
+      "group_label": "IA & automatisation",
+      "repo": "AI-Automation",
+      "repo_label": "IA & Automatisation",
+      "description": "Backend de surveillance réseau — monitoring des connexions et détection d'anomalies.",
+      "stack": [
+        "Python"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/AI-Automation/tree/master/netguard-surveillance",
+      "updated_at": "2026-07-02T10:14:30Z"
+    },
+    {
+      "id": "smsi-automation-lab",
+      "title": "SMSI Automation Lab",
+      "group": "grc",
+      "group_label": "GRC & conformité",
+      "repo": "GRC-Compliance",
+      "repo_label": "GRC",
+      "description": "SMSI complet pour une PME fictive (TechShop SAS) — déploiement CISO Assistant, scripting Python pour automatiser les livrables ISO 27001:2022, cartographie NIS2 et RGPD.",
+      "stack": [
+        "Docker",
+        "Python",
+        "CISO Assistant"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab",
+      "updated_at": "2026-06-17T15:20:02Z"
+    },
+    {
+      "id": "iac-auditor-agent",
+      "title": "IaC Auditor Agent",
+      "group": "grc",
+      "group_label": "GRC & conformité",
+      "repo": "GRC-Compliance",
+      "repo_label": "GRC",
+      "description": "Agent d'audit Infrastructure as Code — analyse des fichiers Ansible, Terraform et Docker, mapping automatique vers ISO 27001, NIS2 et CIS Controls, génération de rapports HTML.",
+      "stack": [
+        "Python",
+        "Ansible",
+        "Terraform"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/GRC-Compliance/tree/master/iac-auditor-agent",
+      "updated_at": "2026-06-17T15:20:02Z"
+    },
+    {
+      "id": "agent-rgpd-lea",
+      "title": "Agent RGPD LÉA",
+      "group": "grc",
+      "group_label": "GRC & conformité",
+      "repo": "GRC-Compliance",
+      "repo_label": "GRC",
+      "description": "Assistant conversationnel local spécialisé conformité RGPD — RAG sur sources officielles CNIL, ANSSI et EUR-Lex, 100% offline via Ollama.",
+      "stack": [
+        "Python",
+        "Ollama",
+        "ChromaDB",
+        "Mistral"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/GRC-Compliance/tree/master/agent-rgpd-lea",
+      "updated_at": "2026-06-17T15:20:02Z"
+    },
+    {
+      "id": "syntaris-compliance-lab",
+      "title": "Syntaris Compliance Lab",
+      "group": "grc",
+      "group_label": "GRC & conformité",
+      "repo": "GRC-Compliance",
+      "repo_label": "GRC",
+      "description": "(Évaluation de maturité NIST CSF 2.0 pour une entreprise fictive — scoring automatisé, visualisations, plan de remédiation RGPD et PCI-DSS.",
+      "stack": [
+        "Python"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/GRC-Compliance/tree/master/syntaris-compliance-lab",
+      "updated_at": "2026-06-17T15:20:02Z"
+    },
+    {
+      "id": "demoday-pixelstore",
+      "title": "Demoday PixelStore",
+      "group": "grc",
+      "group_label": "GRC & conformité",
+      "repo": "Portfolio",
+      "repo_label": "Portfolio",
+      "description": "E-commerce Flask déployé sur AWS — infrastructure Terraform, tests de pénétration, remédiation des vulnérabilités, analyse GRC complète (ISO 27001, NIST CSF, modèle FAIR).",
+      "stack": [
+        "Flask",
+        "AWS",
+        "Terraform",
+        "Python"
+      ],
+      "featured": false,
+      "status": "formation",
+      "url": "https://github.com/Dow08/Portfolio/tree/master/demoday-pixelstore",
+      "updated_at": "2026-06-17T13:12:37Z"
+    },
+    {
+      "id": "nova-syndicate",
+      "title": "Nova Syndicate",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Infrastructure multi-sites complète — 12 VMs Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation VLAN, VPN WireGuard, plan de continuité et budget CAPEX/OPEX.",
+      "stack": [
+        "Terraform",
+        "Ansible",
+        "Wazuh",
+        "WireGuard"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate",
+      "updated_at": "2026-06-17T13:12:34Z"
+    },
+    {
+      "id": "kessel-soc-siem",
+      "title": "Kessel SOC SIEM",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Déploiement d'un SOC fonctionnel avec Wazuh — intégration de sources de logs, tests de détection par simulation de brute force, tuning des règles.",
+      "stack": [
+        "Wazuh",
+        "Linux"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/kessel-soc-siem",
+      "updated_at": "2026-06-17T13:12:34Z"
+    },
+    {
+      "id": "meet-voice-devsecops",
+      "title": "Meet Voice DevSecOps",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Mise en place d'un stack de monitoring complet sur un serveur de réseau social — Prometheus, Grafana, Alertmanager, Loki, Promtail, orchestration Ansible.",
+      "stack": [
+        "Ansible",
+        "Prometheus",
+        "Grafana",
+        "Loki"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/meet-voice-devsecops",
+      "updated_at": "2026-06-17T13:12:34Z"
+    },
+    {
+      "id": "cyber-homelab-vps",
+      "title": "Cyber Homelab VPS",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Station OSINT auto-hébergée sur VPS — environnement de veille et d'investigation isolé.",
+      "stack": [
+        "Linux",
+        "VPS"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/cyber-homelab-vps",
+      "updated_at": "2026-06-17T13:12:34Z"
+    },
+    {
+      "id": "vps-osint-hermes",
+      "title": "VPS OSINT Hermès",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Déploiement One-Shot d'un VPS personnel — outillage OSINT (mini-Palantir) et agent Hermès intégré, automatisation complète de l'installation.",
+      "stack": [
+        "Python",
+        "Bash",
+        "Linux"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/vps-osint-hermes",
+      "updated_at": "2026-06-17T13:12:34Z"
+    },
+    {
+      "id": "active-directory",
+      "title": "Active Directory",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Administration Active Directory sous Windows Server — gestion des utilisateurs, GPO, sécurisation de l'annuaire.",
+      "stack": [
+        "Windows Server",
+        "Active Directory"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/active-directory",
+      "updated_at": "2026-06-17T13:12:34Z"
+    },
+    {
+      "id": "nexus-conformite",
+      "title": "Nexus Conformité",
+      "group": "autres",
+      "group_label": "Autres travaux",
+      "repo": "Divers",
+      "repo_label": "Divers",
+      "description": "Projet de conformité — dashboard et documentation réglementaire.",
+      "stack": [],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Divers/tree/master/nexus-conformite",
+      "updated_at": "2026-06-17T13:12:39Z"
+    },
+    {
+      "id": "outils-divers",
+      "title": "Outils Divers",
+      "group": "autres",
+      "group_label": "Autres travaux",
+      "repo": "Divers",
+      "repo_label": "Divers",
+      "description": "Outils personnels et scripts utilitaires.",
+      "stack": [],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Divers/tree/master/outils-divers",
+      "updated_at": "2026-06-17T13:12:39Z"
+    },
+    {
+      "id": "trp-site-ami",
+      "title": "TRP Site Ami",
+      "group": "autres",
+      "group_label": "Autres travaux",
+      "repo": "Divers",
+      "repo_label": "Divers",
+      "description": "Site web réalisé pour un ami.",
+      "stack": [],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Divers/tree/master/trp-site-ami",
+      "updated_at": "2026-06-17T13:12:39Z"
+    },
+    {
+      "id": "sortia-app",
+      "title": "Sortia App",
+      "group": "autres",
+      "group_label": "Autres travaux",
+      "repo": "Divers",
+      "repo_label": "Divers",
+      "description": "Application mobile — projet en pause.",
+      "stack": [],
+      "featured": false,
+      "status": "pause",
+      "url": "https://github.com/Dow08/Divers/tree/master/sortia-app",
+      "updated_at": "2026-06-17T13:12:39Z"
+    }
+  ]
+}
