@@ -49,6 +49,18 @@
   "projects.filters": "Filter by domain",
   "projects.noscript": "Enable JavaScript to display the projects, or visit github.com/Dow08.",
 
+  "nav.etudes": "Case studies",
+  "cases.eyebrow": "Case studies",
+  "cases.title": "Six projects, told with their limits.",
+  "cases.lead": "For each project: my actual role, the problem, the approach, what can be observed in the repository, and what it should not be taken to prove. Figures quoted come from the projects' READMEs.",
+  "js.case.role": "My role",
+  "js.case.context": "Context",
+  "js.case.problem": "Problem",
+  "js.case.approach": "Approach",
+  "js.case.results": "Observable results",
+  "js.case.limits": "Limits",
+  "js.case.repo": "Open the repository",
+
   "pulse.eyebrow": "Automated watch",
   "pulse.title": "CyberPulse, today's briefing.",
   "pulse.lead": "Every day, a pipeline I wrote reads cybersecurity news, summarises it in French, writes a radio script and reads it aloud with speech synthesis.",

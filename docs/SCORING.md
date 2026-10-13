@@ -100,6 +100,16 @@ Ajouts évalués : `src/` réécrit, `schemas/`, 3 workflows épinglés par SHA,
 | Maintenabilité / tests | 10 | = | déploiement et retour arrière documentés et exercés (push → 20 s) |
 | **Global pondéré** | **9,5 / 10** | +0,1 | **Seuil de livraison atteint.** Non à 10 : dates des certifications non encore publiées (faits 9), cinématique 8 (vidéo plus claire que la spec, pas de test sur mobile réel), accessibilité sans lecteur d'écran, workflows pas encore passés en conditions réelles |
 
+## 2026-10-13 (soir) — Études de cas livrées (lot 3 complété) + revue DevSecOps
+
+| Critère | Note | Variation | Justification |
+|---|---:|---:|---|
+| Faits et crédibilité | 9 | = | Six fiches sourcées (README + métadonnées GitHub), rôle réel (PixelStore : équipe de trois, périmètre nommé), chiffres attribués au README, limites explicites ; test automatique exigeant une limite et la nature du projet sur chaque fiche. Reste : dates des certifications |
+| Liens et fonctionnalités | 10 | = | chaque fiche renvoie à une carte projet existante (test) |
+| Sécurité | 10 | +1 | Trusted Types, `el()` durci, SHA-256 du modèle, `--require-hashes`, 0 violation ; limites restantes imputables à l'hébergeur et documentées |
+| Maintenabilité / tests | 10 | = | 26 pytest + 14 node |
+| **Global pondéré** | **9,6 / 10** | +0,1 | |
+
 ### Contrôles bloquants (§18) à la livraison
 Liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exécution réelle à confirmer) · médias avec repli ✅ · reduced-motion ✅ · informations validées ✅ (sauf dates de certifications, affichées sans date) · pas de fonctionnalité simulée ✅ · tests exécutés ✅ · limitations documentées ✅ · déploiement / retour arrière ✅.
 

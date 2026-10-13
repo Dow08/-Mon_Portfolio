@@ -1,0 +1,138 @@
+{
+  "_comment": "Études de cas. Chaque fait provient du README du projet (cité) ou des métadonnées GitHub (dates, contributeurs). Les chiffres annoncés par les README (tests, scores) sont attribués au README, pas vérifiés indépendamment. Ne rien ajouter sans source.",
+  "updated": "2026-10-13",
+  "cases": [
+    {
+      "id": "green-shield",
+      "title": "Green Shield — cockpit de mission GRC",
+      "title_en": "Green Shield — GRC engagement cockpit",
+      "kicker": { "fr": "Projet personnel · seul · juil. → sept. 2026 · code public", "en": "Personal project · solo · Jul → Sep 2026 · public code" },
+      "image": "assets/cases/greenshieldgrc.webp",
+      "image_alt": { "fr": "Registre des missions de Green Shield avec la frise des remédiations", "en": "Green Shield engagement register with the remediation timeline" },
+      "url": "https://github.com/Dow08/Green-Shield-GRC",
+      "tags": ["React 19", "FastAPI", "Docker", "ISO 27001", "DORA", "NIS 2", "RGPD"],
+      "role": { "fr": "Conception, développement et tests, seul (dépôt : un contributeur humain + Dependabot).", "en": "Design, development and tests, solo (repository: one human contributor plus Dependabot)." },
+      "context": { "fr": "À l'approche d'un stage en consulting cybersécurité pour une association, j'ai voulu un outil qui guide une mission GRC du cadrage à la restitution au Comex, pour ne rien oublier en début de carrière. Les outils du marché (Vanta, CISO Assistant) m'ont inspiré, mais je voulais plus directif et plus pédagogique.", "en": "Ahead of a cybersecurity consulting internship for a non-profit, I wanted a tool that walks a GRC engagement from scoping to the board debrief, so that nothing gets forgotten early in a career. Market tools (Vanta, CISO Assistant) inspired it, but I wanted something more guided and more educational." },
+      "problem": { "fr": "Un outil d'audit qui « comble les trous » fait signer au consultant des constats qu'il n'a pas faits. Il fallait un outil 100 % local (données client), multi-référentiel, et qui n'invente jamais rien.", "en": "An audit tool that fills in the blanks makes the consultant sign findings they never made. I needed something fully local (client data), multi-framework, that never invents anything." },
+      "approach": { "fr": "Application locale (127.0.0.1) React + FastAPI, livrée en Docker. Six phases guidées : cadrage et patrimoine, diagnostic et RGPD (AIPD, registre des violations art. 33-34), risques tiers (ratio ANSSI, exigences DORA/NIS 2), EBIOS RM, résilience et conformité (RTO/RPO, SoA des 93 contrôles ISO 27001:2022, bibliothèque de preuves), traitement et livrables (Word, PDF, Markdown). Règle structurante, vérifiable dans le code : une mission neuve démarre vide, ce qui manque apparaît comme manquant, le LLM ne remplit jamais un champ structuré.", "en": "Local app (127.0.0.1) in React + FastAPI, shipped with Docker. Six guided phases: scoping and assets, diagnosis and GDPR (DPIA, breach register art. 33-34), third-party risk (ANSSI ratio, DORA/NIS 2 requirements), EBIOS RM, resilience and compliance (RTO/RPO, SoA for the 93 ISO 27001:2022 controls, evidence library), treatment and deliverables (Word, PDF, Markdown). One rule shapes the product and is enforced in code: a new engagement starts empty, what is missing is shown as missing, the LLM never fills a structured field." },
+      "results": {
+        "fr": ["Utilisé pour rédiger l'ensemble des rapports de mon stage (ISO 27001, NIS 2, RGPD, NIST CSF).", "Une mission peut porter ISO 27001 + DORA + NIS 2 à la fois ; une preuve couvre des contrôles de plusieurs référentiels.", "Mission de démonstration fictive générée en un clic ; livrables bruts de deux missions fictives publiés dans le dépôt.", "D'après le README : 750 tests back-end, 183 tests front-end, CI avec Trivy."],
+        "en": ["Used to write every report of my internship (ISO 27001, NIS 2, GDPR, NIST CSF).", "One engagement can carry ISO 27001 + DORA + NIS 2 at once; one piece of evidence covers controls from several frameworks.", "Fictional demo engagement generated in one click; raw deliverables of two fictional engagements published in the repository.", "Per the README: 750 back-end tests, 183 front-end tests, CI with Trivy."]
+      },
+      "limits": {
+        "fr": ["Outil personnel : aucun audit externe du code ni de la méthode.", "Licence PolyForm Noncommercial : usage non commercial uniquement.", "Les chiffres de tests sont ceux affichés par le README du dépôt."],
+        "en": ["Personal tool: no external audit of the code or the method.", "PolyForm Noncommercial licence: non-commercial use only.", "Test figures are those displayed in the repository README."]
+      }
+    },
+    {
+      "id": "smsi-lab",
+      "title": "SMSI automatisé — TechShop SAS",
+      "title_en": "Automated ISMS — TechShop SAS",
+      "kicker": { "fr": "Lab de formation · seul · 2026 · entreprise fictive", "en": "Training lab · solo · 2026 · fictional company" },
+      "image": "assets/cases/smsi.webp",
+      "image_alt": { "fr": "Tableau de bord de synthèse de conformité dans CISO Assistant", "en": "Compliance summary dashboard in CISO Assistant" },
+      "url": "https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab",
+      "tags": ["CISO Assistant", "Docker", "Python", "ISO 27001", "NIS 2", "RGPD", "EBIOS RM", "AI Act"],
+      "role": { "fr": "Réalisé seul, dans le cadre de la formation AIS (Jedha).", "en": "Carried out solo as part of the AIS training programme (Jedha)." },
+      "context": { "fr": "Déployer un système de management de la sécurité de l'information complet pour une PME e-commerce fictive (TechShop SAS, 47 salariés, 3,2 M€ de CA), avec CISO Assistant comme plateforme GRC open source centrale.", "en": "Deploy a complete information security management system for a fictional e-commerce SME (TechShop SAS, 47 staff, €3.2M revenue), with the open-source CISO Assistant as the central GRC platform." },
+      "problem": { "fr": "Montrer qu'un SMSI n'est pas une liste de cases à cocher : relier référentiels, risques, mesures et indicateurs, et automatiser ce qui prend des heures de clics.", "en": "Show that an ISMS is not a box-ticking list: connect frameworks, risks, measures and indicators, and automate what otherwise takes hours of clicking." },
+      "approach": { "fr": "CISO Assistant déployé en Docker (trois commandes). Déclaration d'applicabilité sur les 93 contrôles ISO 27001:2022, analyse EBIOS RM (ateliers 1, 3, 5), mapping NIS 2 article 21, registre RGPD, et un volet gouvernance IA : inventaire des systèmes et mapping EU AI Act côté déployeur. Huit scripts Python exploitent l'API pour produire rapports, matrice de risques et douze livrables PDF.", "en": "CISO Assistant deployed with Docker (three commands). Statement of Applicability over the 93 ISO 27001:2022 controls, EBIOS RM analysis (workshops 1, 3, 5), NIS 2 article 21 mapping, GDPR register, plus an AI governance stream: system inventory and EU AI Act mapping from a deployer's perspective. Eight Python scripts drive the API to produce reports, the risk matrix and twelve PDF deliverables." },
+      "results": {
+        "fr": ["D'après le README : 26 actifs inventoriés, 15 risques EBIOS RM cotés (brut, résiduel, décision direction), 93 contrôles traités (84 applicables, 9 exclus justifiés), 12 mesures planifiées.", "Rapport de conformité ISO 27001 généré en 5 secondes depuis l'API, contre environ 30 minutes de clics.", "Cinq systèmes IA inventoriés (Stripe Radar, HubSpot…) et plan de conformité EU AI Act.", "Douze livrables PDF régénérables depuis les sources Markdown."],
+        "en": ["Per the README: 26 assets inventoried, 15 EBIOS RM risks rated (inherent, residual, management decision), 93 controls addressed (84 applicable, 9 justified exclusions), 12 planned measures.", "ISO 27001 compliance report generated in 5 seconds from the API, versus roughly 30 minutes of clicking.", "Five AI systems inventoried (Stripe Radar, HubSpot…) and an EU AI Act compliance plan.", "Twelve PDF deliverables regenerated from Markdown sources."]
+      },
+      "limits": {
+        "fr": ["Entreprise et données entièrement fictives : les taux de conformité décrivent le cas d'étude, pas une organisation réelle.", "Pas de revue par un auditeur certifié."],
+        "en": ["Company and data are entirely fictional: compliance rates describe the case study, not a real organisation.", "Not reviewed by a certified auditor."]
+      }
+    },
+    {
+      "id": "pixelstore",
+      "title": "PixelStore — e-commerce AWS, pentest et analyse GRC",
+      "title_en": "PixelStore — AWS e-commerce, pentest and GRC analysis",
+      "kicker": { "fr": "Projet de fin de bootcamp (Demo Day Jedha) · équipe de 3 · 2026 · PME fictive", "en": "Bootcamp final project (Jedha Demo Day) · team of 3 · 2026 · fictional SME" },
+      "image": null,
+      "image_alt": null,
+      "url": "https://github.com/Dow08/Portfolio/tree/master/demoday-pixelstore",
+      "tags": ["AWS", "Terraform", "Flask", "Cloudflare WAF", "ISO 27001", "NIST CSF 2.0", "FAIR"],
+      "role": { "fr": "Équipe de trois. Mon rôle, tel que documenté dans le README : responsable GRC / SecOps — développement applicatif, Terraform, gestion des secrets. Les deux autres membres portaient le WAF, l'IAM et la supervision, puis l'architecture cloud, les arbitrages de risques et le FinOps.", "en": "Team of three. My role, as documented in the README: GRC / SecOps lead — application development, Terraform, secrets management. The two other members owned WAF, IAM and monitoring, then cloud architecture, risk trade-offs and FinOps." },
+      "context": { "fr": "Concevoir, déployer, attaquer puis durcir une plateforme e-commerce de niveau production pour une PME fictive (~35 salariés), et l'évaluer selon trois référentiels.", "en": "Design, deploy, attack and then harden a production-grade e-commerce platform for a fictional SME (~35 staff), and assess it against three frameworks." },
+      "problem": { "fr": "Passer d'une application exposée en HTTP avec serveur de développement à une infrastructure cloud défendable, et chiffrer le risque en euros pour un comité de direction.", "en": "Move from an application exposed over plain HTTP with a development server to a defensible cloud infrastructure, and express risk in euros for a management board." },
+      "approach": { "fr": "Terraform modulaire sur AWS (VPC, ALB, EC2 auto-scaling, RDS, WAF, IAM, Secrets Manager, CloudTrail, GuardDuty), Cloudflare en bordure (TLS, WAF), aucun secret versionné. Test d'intrusion puis remédiation des constats (TLS, Gunicorn, en-têtes de sécurité, cookies, énumération de comptes…). Analyse GRC : grilles ISO 27001 et NIST CSF 2.0, quantification FAIR par simulation Monte-Carlo.", "en": "Modular Terraform on AWS (VPC, ALB, auto-scaling EC2, RDS, WAF, IAM, Secrets Manager, CloudTrail, GuardDuty), Cloudflare at the edge (TLS, WAF), no secret committed. Penetration test then remediation of findings (TLS, Gunicorn, security headers, cookies, account enumeration…). GRC analysis: ISO 27001 and NIST CSF 2.0 grids, FAIR quantification by Monte-Carlo simulation." },
+      "results": {
+        "fr": ["Toutes les vulnérabilités du pentest remédiées (tableau F1 à F8 du README).", "ISO 27001 : 28 % de conformité effective, maturité 1,72 / 5 — écarts surtout administratifs (PSSI, RH, chartes).", "NIST CSF 2.0 : Tier 1 partiel (0,69 / 4), chantiers prioritaires réponse à incident et reprise.", "FAIR (10 000 itérations) : exposition annuelle ramenée de 192 000 € à 17 000 €, sous le seuil d'appétence de 30 000 €."],
+        "en": ["Every pentest finding remediated (table F1 to F8 in the README).", "ISO 27001: 28% effective compliance, maturity 1.72 / 5 — gaps mostly administrative (policy, HR, charters).", "NIST CSF 2.0: Tier 1 partial (0.69 / 4), priority areas incident response and recovery.", "FAIR (10,000 iterations): annual exposure brought from €192,000 down to €17,000, below the €30,000 appetite threshold."]
+      },
+      "limits": {
+        "fr": ["Projet d'école sur une entreprise fictive ; l'infrastructure n'est plus déployée.", "Travail d'équipe : les résultats sont collectifs, mon périmètre est celui indiqué ci-dessus.", "Certains documents portent la mention « confidentiel – interne » et ne sont pas tous publiés."],
+        "en": ["School project on a fictional company; the infrastructure is no longer deployed.", "Team work: results are collective, my scope is the one stated above.", "Some documents are marked “confidential – internal” and are not all published."]
+      }
+    },
+    {
+      "id": "nova-syndicate",
+      "title": "Nova Syndicate — infrastructure multi-sites sécurisée",
+      "title_en": "Nova Syndicate — secure multi-site infrastructure",
+      "kicker": { "fr": "Projet de titre AIS (soutenance devant jury) · seul · printemps 2026 · lab virtualisé", "en": "AIS title project (defended before a jury) · solo · spring 2026 · virtualised lab" },
+      "image": "assets/cases/nova.webp",
+      "image_alt": { "fr": "Tableau de bord Wazuh du SIEM de Nova Syndicate", "en": "Wazuh SIEM dashboard of Nova Syndicate" },
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate",
+      "tags": ["Terraform", "Ansible", "Proxmox", "OPNsense", "Suricata", "Wazuh", "Prometheus", "Grafana", "Loki", "WireGuard"],
+      "role": { "fr": "Réalisé seul, pour le titre RNCP niveau 6 Administrateur d'Infrastructures Sécurisées (Jedha, promotion 2026), avec soutenance orale.", "en": "Carried out solo for the RNCP level 6 Secure Infrastructure Administrator title (Jedha, class of 2026), with an oral defence." },
+      "context": { "fr": "Une entreprise fictive exploite un site e-commerce sur deux sites, Lyon (principal) et Marseille (repli PRA). Il faut concevoir, déployer et sécuriser toute l'infrastructure réseau, reproductible et conforme aux référentiels.", "en": "A fictional company runs an e-commerce site across two locations, Lyon (primary) and Marseille (DR fallback). The whole network infrastructure had to be designed, deployed and secured, reproducibly and in line with the frameworks." },
+      "problem": { "fr": "Faire tenir ensemble segmentation, pare-feu, annuaire, SIEM, IDS, supervision et une application 3-tiers, en Infrastructure as Code, et prouver que ça fonctionne.", "en": "Make segmentation, firewalling, directory, SIEM, IDS, monitoring and a 3-tier application hold together as Infrastructure as Code, and prove that it works." },
+      "approach": { "fr": "Architecture hub & spoke chiffrée IPsec, défense en profondeur sur cinq VLAN (DMZ, utilisateurs, serveurs, management, sauvegarde), OPNsense + Suricata, Active Directory (Samba), SIEM Wazuh avec mapping MITRE ATT&CK, stack Prometheus / Grafana / Loki, pipeline DevSecOps (Trivy, Checkov, Gitleaks, Dependabot). Douze machines virtuelles provisionnées par Terraform, services configurés par dix playbooks Ansible.", "en": "IPsec-encrypted hub & spoke architecture, defence in depth over five VLANs (DMZ, users, servers, management, backup), OPNsense + Suricata, Active Directory (Samba), Wazuh SIEM with MITRE ATT&CK mapping, Prometheus / Grafana / Loki stack, DevSecOps pipeline (Trivy, Checkov, Gitleaks, Dependabot). Twelve virtual machines provisioned by Terraform, services configured by ten Ansible playbooks." },
+      "results": {
+        "fr": ["Infrastructure entière redéployable depuis zéro en 30 à 45 minutes (README).", "Plus de 35 captures de preuve de fonctionnement : tunnel IPsec actif, agents Wazuh, alertes Grafana, journalisation Suricata, pipeline CI.", "25 incidents techniques documentés pendant le déploiement (symptôme, cause racine, correctif, apprentissage).", "Étude économique sur trois ans : solution open source on-premise retenue à 38 730 € de TCO, soit −78 % par rapport à l'option propriétaire."],
+        "en": ["Entire infrastructure redeployable from scratch in 30 to 45 minutes (README).", "Over 35 proof-of-operation screenshots: active IPsec tunnel, Wazuh agents, Grafana alerts, Suricata logging, CI pipeline.", "25 technical incidents documented during deployment (symptom, root cause, fix, lesson).", "Three-year economic study: open-source on-premise option selected at €38,730 TCO, −78% versus the proprietary option."]
+      },
+      "limits": {
+        "fr": ["Preuve de concept en laboratoire virtualisé (Proxmox / VirtualBox), pas en production.", "Entreprise et volumes fictifs ; le TCO est une estimation de projet d'étude."],
+        "en": ["Proof of concept in a virtualised lab (Proxmox / VirtualBox), not in production.", "Fictional company and volumes; the TCO is a study-project estimate."]
+      }
+    },
+    {
+      "id": "red-shield",
+      "title": "Red Shield — plateforme d'audit red + blue, 100 % locale",
+      "title_en": "Red Shield — red + blue audit platform, fully local",
+      "kicker": { "fr": "Projet personnel · seul · juil. → oct. 2026 · code public", "en": "Personal project · solo · Jul → Oct 2026 · public code" },
+      "image": "assets/cases/redshield.webp",
+      "image_alt": { "fr": "Tableau de bord « Command Grid » de Red Shield avec le score d'exposition", "en": "Red Shield “Command Grid” dashboard with the exposure score" },
+      "url": "https://github.com/Dow08/RED-SHIELD-",
+      "tags": ["FastAPI", "React", "Tauri v2", "nmap", "MITRE ATT&CK", "CVE / NVD", "ISO 27001", "NIST CSF"],
+      "role": { "fr": "Conception et développement, seul (un contributeur sur le dépôt).", "en": "Design and development, solo (one contributor on the repository)." },
+      "context": { "fr": "Un audit de sécurité oblige à jongler entre une dizaine d'outils disjoints (scan, monitoring réseau, veille CVE, conformité, SIEM) puis à tout ré-agréger à la main dans un rapport.", "en": "A security audit means juggling a dozen disconnected tools (scanning, network monitoring, CVE watch, compliance, SIEM) and then re-aggregating everything by hand into a report." },
+      "problem": { "fr": "Agréger et corréler ce que ces outils produisent, du capteur au livrable, sans réimplémenter les outils, sans dépendre du cloud, et sans jamais afficher une donnée inventée.", "en": "Aggregate and correlate what those tools produce, from sensor to deliverable, without reimplementing them, without depending on the cloud, and without ever displaying an invented value." },
+      "approach": { "fr": "Trois étages : capteurs (scan, reconnaissance, santé du poste, connexions, e-mails) → cerveau (scoring d'exposition 0-100, MITRE ATT&CK, CVE/NVD, conformité GRC) → rapport de mission éditable avec export PDF. Backend FastAPI, interface React / Vite / Tailwind, application de bureau Tauri v2, mode air-gapped par défaut, garde-fou de périmètre et journal d'audit local pour la reconnaissance active.", "en": "Three tiers: sensors (scan, recon, host health, connections, e-mails) → brain (0-100 exposure score, MITRE ATT&CK, CVE/NVD, GRC compliance) → editable engagement report with PDF export. FastAPI backend, React / Vite / Tailwind UI, Tauri v2 desktop app, air-gapped by default, scope guard-rail and local audit log for active reconnaissance." },
+      "results": {
+        "fr": ["Dix vues documentées par des captures réelles (dashboard, carte réseau, traceroute géolocalisé, ports en écoute, recon, SOC local, santé, connecteurs, diagnostic).", "D'après le README : 112 tests pytest et 7 tests vitest, scan Trivy en CI, garde-fou de build TypeScript.", "Modèle de mandat d'autorisation fourni pour un usage légal."],
+        "en": ["Ten views documented with real screenshots (dashboard, network map, geolocated traceroute, listening ports, recon, local SOC, health, connectors, diagnostics).", "Per the README: 112 pytest and 7 vitest tests, Trivy scan in CI, TypeScript build guard.", "Authorisation mandate template provided for lawful use."]
+      },
+      "limits": {
+        "fr": ["Usage autorisé uniquement (sa propre machine ou une cible couverte par une autorisation écrite).", "Licence PolyForm Noncommercial ; projet personnel sans audit externe.", "Les chiffres de tests sont ceux du README."],
+        "en": ["Authorised use only (one's own machine or a target covered by written authorisation).", "PolyForm Noncommercial licence; personal project without external audit.", "Test figures are those of the README."]
+      }
+    },
+    {
+      "id": "os-agentique",
+      "title": "OS-Agentique — une équipe d'agents IA sous contrôle humain",
+      "title_en": "OS-Agentique — a team of AI agents under human control",
+      "kicker": { "fr": "Projet personnel · seul · en cours (vitrine publiée sept. 2026) · code source privé", "en": "Personal project · solo · ongoing (showcase published Sep 2026) · private source code" },
+      "image": "assets/cases/osagentique_showcase.webp",
+      "image_alt": { "fr": "Interface vocale Jarvis : une conversation avec le directeur Hermès", "en": "Jarvis voice interface: a conversation with the director Hermès" },
+      "url": "https://github.com/Dow08/OS-Agentique_showcase",
+      "tags": ["Python", "Windows 11", "Ollama", "Claude", "Windows Hello", "ADR"],
+      "role": { "fr": "Conception, architecture et développement, seul. Le dépôt public est une vitrine : le code vit dans un dépôt privé.", "en": "Design, architecture and development, solo. The public repository is a showcase: the code lives in a private repository." },
+      "context": { "fr": "Les agents IA savent lire des fichiers, écrire du code, naviguer et lancer des commandes : utiles, donc risqués. Les outils populaires « donnent les clés » à l'agent et comptent sur sa bonne conduite.", "en": "AI agents can read files, write code, browse and run commands: useful, hence risky. Popular tools hand the agent the keys and rely on its good behaviour." },
+      "problem": { "fr": "Construire l'inverse : une équipe d'agents organisée comme une entreprise, où chaque action sensible attend une approbation humaine et où « l'IA dit que c'est fait » n'est jamais une preuve.", "en": "Build the opposite: a team of agents organised like a company, where every sensitive action waits for human approval and where “the AI says it's done” is never proof." },
+      "approach": { "fr": "Un seul point de contact (le directeur Hermès) qui délègue à des départements (développement, RH et recherche d'emploi, sécurité défensive, Red Cell, commerce numérique, secrétariat). Un noyau vérifie l'identité de l'appelant et délivre des jetons de capacité revérifiés à chaque appel d'outil ; toute tâche est cotée en risque, les actions moyennes et élevées attendent mon approbation, les plus sensibles vérifient ma présence par Windows Hello. Modèle au choix : local sur ma carte graphique (0 € par requête) ou Claude. Interface vocale avec mot de réveil, reconnaissance et synthèse locales.", "en": "A single point of contact (the director Hermès) delegating to departments (development, HR and job search, defensive security, Red Cell, digital commerce, secretariat). A kernel checks the caller's identity and issues capability tokens re-verified on every tool call; every task is risk-scored, medium and high-risk actions wait for my approval, the most sensitive ones check my presence through Windows Hello. Model of choice: local on my GPU (€0 per request) or Claude. Voice interface with wake word, local speech recognition and synthesis." },
+      "results": {
+        "fr": ["D'après le README : une trentaine d'agents en six départements (la description courte du dépôt en cite vingt), 1 296 tests unitaires passants, 98 décisions d'architecture écrites (ADR).", "Console de profilage temps réel : sessions, appels d'outils, jetons et coût lus dans la base du moteur.", "Captures réelles de l'interface, y compris une action refusée qui n'a donc pas été exécutée."],
+        "en": ["Per the README: around thirty agents in six departments (the repository's short description mentions twenty), 1,296 passing unit tests, 98 written architecture decision records (ADR).", "Real-time profiling console: sessions, tool calls, tokens and cost read from the engine's own database.", "Real screenshots of the interface, including a refused action that therefore never ran."]
+      },
+      "limits": {
+        "fr": ["Code source privé : les chiffres ne sont pas vérifiables publiquement.", "Projet en cours de développement ; les règles ne sont pas encore appliquées par le système d'exploitation lui-même (compte Windows restreint : prochaine étape annoncée)."],
+        "en": ["Private source code: figures cannot be verified publicly.", "Work in progress; the rules are not yet enforced by the operating system itself (restricted Windows account: announced next step)."]
+      }
+    }
+  ]
+}

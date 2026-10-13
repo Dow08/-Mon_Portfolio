@@ -4,6 +4,7 @@ import { observeReveal } from './reveal.js';
 import { initSequence } from './sequence.js';
 import { initProjects } from './projects.js';
 import { initCyberPulse } from './cyberpulse.js';
+import { initCases } from './cases.js';
 import { initProfile } from './profile.js';
 import { initAssistant } from './assistant.js';
 
@@ -17,6 +18,7 @@ observeReveal();
 initSequence();
 initProjects();
 initCyberPulse();
+initCases();
 initProfile().then((profile) => { if (profile) initAssistant(profile); });
 
 // Délais en cascade de la matrice (via CSSOM : la CSP interdit les attributs style inline)

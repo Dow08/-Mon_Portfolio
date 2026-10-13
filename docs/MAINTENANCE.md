@@ -17,6 +17,7 @@ Comment faire évoluer le site sans le casser. Chaque opération indique le fich
 |---|---|---|---|
 | Modifier un texte du site | `index.html` (FR) + `data/i18n.en.json` (EN) | — | script i18n ci-dessous |
 | Ajouter / retirer une compétence, une certification, une question de l'assistant | `data/profile.json` (FR et EN dans chaque entrée) | — | `node --test tests/*.test.mjs` |
+| Ajouter ou corriger une étude de cas | `data/cases.json` (FR et EN dans chaque champ ; `url` = URL exacte d'une carte projet ; image WebP ≤ 1200 px dans `assets/cases/` ou `null`) — ne citer que des faits présents dans le README du projet | — | `node --test tests/cases.test.mjs` (exige une limite et la nature du projet) |
 | Faire apparaître un nouveau projet | README du **dépôt du projet** : section `### nom-du-dossier`, 1-3 lignes, `Stack : a, b, c`, `⭐` pour la une | attendre l'Action quotidienne ou lancer « Projets » (`workflow_dispatch`) ; en local : `python scripts/build_projects.py` | `python -m pytest tests/test_build_projects.py` |
 | Changer la catégorie éditoriale d'un dépôt | `scripts/build_projects.py` → `REPO_GROUP`, `STATUS` | `python scripts/build_projects.py` | idem |
 | Changer une couleur, une taille | `css/tokens.css` (puis autres `css/*.css`) | `python scripts/build_css.py` | `tests/test_build_css.py` |

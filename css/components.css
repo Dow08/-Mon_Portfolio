@@ -220,6 +220,34 @@
 .contact-link small { display: block; color: var(--fg-2); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
 .contact-link svg { width: 20px; height: 20px; flex: none; }
 
+/* ── Études de cas ────────────────────────────────────────── */
+.cases { display: grid; gap: var(--s-8); }
+.case {
+  display: grid; gap: var(--s-6);
+  padding: var(--s-8);
+  border: 1px solid var(--line); border-radius: var(--r-m);
+  background: var(--bg-elev);
+}
+.case__head { display: grid; gap: var(--s-3); }
+.case__kicker { color: var(--accent-text); }
+.case__title { font-size: var(--t-h3); max-width: 32ch; }
+.case__figure { margin: 0; border-radius: var(--r-s); overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
+.case__figure img { width: 100%; height: auto; display: block; }
+.case__figure figcaption { font-size: var(--t-small); padding: var(--s-2) var(--s-4); border-top: 1px solid var(--line); }
+.case__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6) var(--s-8); }
+.case__part { display: grid; gap: var(--s-2); align-content: start; }
+.case__part p, .case__list { font-size: var(--t-small); line-height: 1.6; color: var(--fg-3); max-width: 70ch; }
+.case__label { color: var(--fg-2); font-weight: 500; }
+.case__list { padding-left: 1.1em; display: grid; gap: var(--s-1); }
+.case__list li::marker { color: var(--accent-text); }
+.case__links { display: flex; gap: var(--s-2); }
+@media (min-width: 1025px) {
+  .case { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "head head" "figure grid" "links links"; }
+  .case__head { grid-area: head; } .case__figure { grid-area: figure; align-self: start; } .case__grid { grid-area: grid; } .case__links { grid-area: links; }
+  .case--noimage { grid-template-areas: "head head" "grid grid" "links links"; }
+}
+@media (max-width: 640px) { .case { padding: var(--s-6); } .case__grid { grid-template-columns: 1fr; } }
+
 /* ── CyberPulse ───────────────────────────────────────────── */
 .pulse { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); align-items: start; }
 @media (max-width: 900px) { .pulse { grid-template-columns: 1fr; } }

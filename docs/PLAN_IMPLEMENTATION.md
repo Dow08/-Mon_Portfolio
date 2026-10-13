@@ -50,7 +50,7 @@ Risque : séquence fournie non conforme (ratio, luminosité) → signalé avant 
 | Workflow `projects.yml` : cron quotidien + `workflow_dispatch` + `repository_dispatch`, `GITHUB_TOKEN`, `permissions: contents: write` limité au job de commit, épinglé par SHA | .github/workflows/ |
 | `tests/test_build_projects.py` : parse_readme_projects, join_desc_lines, format_title, non-régression des 24 URL | tests/ |
 | Section « Autres travaux » repliée (`<details>`) si validé (CONTENU 4.2) | index.html, projects.js |
-| 4-6 études de cas (HTML statique rédigé à partir du contenu validé, captures issues des README) | index.html |
+| 4-6 études de cas — **livré le 2026-10-13** : `data/cases.json` (FR/EN, sourcé README + API GitHub), `js/cases.js`, captures converties en WebP dans `assets/cases/`, test `cases.test.mjs` | data/, js/, assets/cases/ |
 Dépend de : réponses §4 de CONTENU_A_VALIDER.
 
 ### Lot 4 — Fonctionnalités existantes : CyberPulse
