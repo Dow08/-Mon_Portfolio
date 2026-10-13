@@ -74,10 +74,10 @@ Un site statique sans backend ni authentification n'a **pas de session à voler 
 
 ### Priorité moyenne — qualité et sécurité
 4. ~~Hashes pip~~ — **fait pendant la revue** : `requirements.txt` à empreintes (1 691 hashes), `--require-hashes` dans le workflow, validé par un run réel.
-5. **Miroir du modèle Piper** dans une Release GitHub du dépôt (plus de dépendance à Hugging Face, empreinte déjà épinglée).
-6. **Test de non-régression CSP automatisé** : un script Node qui charge la page en headless et échoue sur toute violation CSP/Trusted Types (aujourd'hui vérifié à la main).
+5. ~~Miroir du modèle Piper~~ — **fait** : Release `piper-voices-v1`, source principale du pipeline, Hugging Face en repli ; validé par le run `38392986344`.
+6. ~~Test de non-régression CSP automatisé~~ — **fait** : `scripts/check_csp.mjs` + workflow `site-checks.yml` (tests Python et Node, CSS/i18n/données, navigateur réel) ; premier run vert (`38392969369`). Il a détecté au passage que `404.html` n'était pas servable en local (préfixe Pages) → `serve.py` corrigé.
 7. **Validation HTML (Nu) et lint JS** (ESLint, config stricte) en CI.
-8. **`SECURITY.md`** avec politique de signalement.
+8. ~~`SECURITY.md`~~ — **fait**.
 
 ### Priorité basse — performance et confort
 9. Inline du CSS critique (hash dans la CSP) : −300 ms de rendu bloquant simulé sur mobile.
