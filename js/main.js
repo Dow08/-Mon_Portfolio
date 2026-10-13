@@ -4,6 +4,8 @@ import { observeReveal } from './reveal.js';
 import { initSequence } from './sequence.js';
 import { initProjects } from './projects.js';
 import { initCyberPulse } from './cyberpulse.js';
+import { initProfile } from './profile.js';
+import { initAssistant } from './assistant.js';
 
 document.documentElement.classList.add('js');
 
@@ -15,6 +17,7 @@ observeReveal();
 initSequence();
 initProjects();
 initCyberPulse();
+initProfile().then((profile) => { if (profile) initAssistant(profile); });
 
 // Délais en cascade de la matrice (via CSSOM : la CSP interdit les attributs style inline)
 document.querySelectorAll('.matrix .cell').forEach((cell, i) => cell.style.setProperty('--i', String(i)));

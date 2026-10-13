@@ -22,7 +22,7 @@ export function initNav() {
   document.addEventListener('click', (e) => {
     if (isOpen() && !e.target.closest('.nav__pill')) setOpen(false);
   });
-  window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+  window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
 
   // Lien actif
   const links = [...menu.querySelectorAll('.nav__links a[href^="#"]')];

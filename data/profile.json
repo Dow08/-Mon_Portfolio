@@ -1,0 +1,178 @@
+{
+  "_comment": "Contenu validé par Dorian (docs/CONTENU_A_VALIDER.md). Niveaux : D = démontré par un projet public (lien), P = pratiqué en formation, lab ou stage, A = en cours d'acquisition. Ne rien ajouter ici sans validation.",
+  "updated": "2026-10-13",
+  "levels": {
+    "D": { "fr": "Démontré — projet public", "en": "Demonstrated — public project" },
+    "P": { "fr": "Pratiqué — formation, labs, stage", "en": "Practised — training, labs, internship" },
+    "A": { "fr": "En cours d'acquisition", "en": "Currently learning" }
+  },
+  "skills": [
+    {
+      "id": "grc",
+      "title": { "fr": "Gouvernance, risques & conformité", "en": "Governance, risk & compliance" },
+      "note": { "fr": "Référentiels mis en œuvre dans les projets et en stage, sans certification dédiée.", "en": "Frameworks applied in projects and during the internship, without a dedicated certification." },
+      "items": [
+        { "name": "ISO 27001:2022", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab" },
+        { "name": "NIS 2", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab" },
+        { "name": "RGPD", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/agent-rgpd-lea" },
+        { "name": "NIST CSF 2.0", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/syntaris-compliance-lab" },
+        { "name": "DORA", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
+        { "name": "CIS Controls", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/iac-auditor-agent" },
+        { "name": "PCI DSS", "level": "P", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/syntaris-compliance-lab" },
+        { "name": "EBIOS RM", "level": "P" },
+        { "name": "Analyse de risques, SoA, plan de traitement", "name_en": "Risk analysis, SoA, treatment plan", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
+        { "name": "AI Act", "level": "A" }
+      ]
+    },
+    {
+      "id": "infra",
+      "title": { "fr": "Infrastructures sécurisées & SecOps", "en": "Secure infrastructure & SecOps" },
+      "note": { "fr": "Issu de la formation AIS et de labs personnels.", "en": "From the AIS training programme and personal labs." },
+      "items": [
+        { "name": "Terraform", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate" },
+        { "name": "Ansible", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate" },
+        { "name": "Wazuh (SIEM / SOC)", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/kessel-soc-siem" },
+        { "name": "Prometheus · Grafana · Loki", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/meet-voice-devsecops" },
+        { "name": "Docker", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
+        { "name": "WireGuard, segmentation VLAN", "name_en": "WireGuard, VLAN segmentation", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate" },
+        { "name": "Linux (Debian / RHEL), durcissement", "name_en": "Linux (Debian / RHEL), hardening", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/cyber-homelab-vps" },
+        { "name": "Windows Server / Active Directory", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/active-directory" },
+        { "name": "AWS (IAM, S3, VPC)", "level": "D", "url": "https://github.com/Dow08/Portfolio/tree/master/demoday-pixelstore" },
+        { "name": "Proxmox · VirtualBox · GNS3", "level": "P" },
+        { "name": "ELK", "level": "P" },
+        { "name": "Kubernetes", "level": "A" }
+      ]
+    },
+    {
+      "id": "offensive",
+      "title": { "fr": "Offensif, détection & investigation", "en": "Offensive, detection & investigation" },
+      "note": { "fr": "Pratiqué sur des cibles autorisées : labs, TryHackMe, projet de fin de bootcamp.", "en": "Practised on authorised targets only: labs, TryHackMe, bootcamp final project." },
+      "items": [
+        { "name": "Pentest web (OWASP Top 10, Burp Suite, SQLMap, Nmap)", "level": "D", "url": "https://github.com/Dow08/Portfolio/tree/master/demoday-pixelstore" },
+        { "name": "Reconnaissance, CVE / NVD, MITRE ATT&CK", "level": "D", "url": "https://github.com/Dow08/RED-SHIELD-" },
+        { "name": "Active Directory offensif (Kerberoasting, Pass-the-Hash)", "name_en": "Offensive Active Directory (Kerberoasting, Pass-the-Hash)", "level": "P" },
+        { "name": "OSINT", "level": "D", "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/vps-osint-hermes" },
+        { "name": "DFIR, analyse de malwares", "name_en": "DFIR, malware analysis", "level": "P" },
+        { "name": "TryHackMe", "level": "P", "url": "https://tryhackme.com/p/seallia81" }
+      ]
+    },
+    {
+      "id": "ia",
+      "title": { "fr": "IA & automatisation", "en": "AI & automation" },
+      "note": { "fr": "Je conçois et construis mes outils de A à Z avec l'IA, et j'en assure la chaîne DevSecOps.", "en": "I design and build my own tools end to end with AI, and run their DevSecOps pipeline." },
+      "items": [
+        { "name": "Agents IA locaux, orchestration multi-agents", "name_en": "Local AI agents, multi-agent orchestration", "level": "D", "url": "https://github.com/Dow08/OS-Agentique_showcase" },
+        { "name": "RAG sur sources officielles (CNIL, ANSSI, EUR-Lex)", "name_en": "RAG over official sources (CNIL, ANSSI, EUR-Lex)", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/agent-rgpd-lea" },
+        { "name": "Pipelines automatisés (GitHub Actions, scraping, TTS)", "name_en": "Automated pipelines (GitHub Actions, scraping, TTS)", "level": "D", "url": "https://github.com/Dow08/-Mon_Portfolio" },
+        { "name": "DevSecOps (Trivy, CI, tests)", "level": "D", "url": "https://github.com/Dow08/RED-SHIELD-" },
+        { "name": "Python, FastAPI, React", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
+        { "name": "MCP, n8n", "level": "P" }
+      ]
+    },
+    {
+      "id": "management",
+      "title": { "fr": "Management & relation", "en": "Management & people" },
+      "note": { "fr": "Dirigeant d'un commerce de proximité depuis 2014 (activité déléguée depuis la reconversion).", "en": "Owner of a local retail business since 2014 (day-to-day delegated since retraining)." },
+      "items": [
+        { "name": "Management d'équipe et recrutement", "name_en": "Team management and hiring", "level": "D" },
+        { "name": "Gestion de crise, décision sous pression", "name_en": "Crisis management, decisions under pressure", "level": "D" },
+        { "name": "Négociation et relation client", "name_en": "Negotiation and client relations", "level": "D" },
+        { "name": "Gestion financière et comptable", "name_en": "Financial and accounting management", "level": "D" },
+        { "name": "Sensibilisation et formation à la sécurité", "name_en": "Security awareness and training", "level": "P" }
+      ]
+    }
+  ],
+  "education": [
+    { "name": "Titre professionnel AIS — Administrateur d'Infrastructures Sécurisées (RNCP 37680)", "name_en": "Professional title AIS — Secure Infrastructure Administrator (RNCP 37680)", "issuer": "Jedha Bootcamp", "status": "pending", "status_text": { "fr": "Formation terminée · en attente de passage du titre", "en": "Training completed · awaiting the certification exam" } },
+    { "name": "Fullstack Cybersécurité", "name_en": "Fullstack Cybersecurity", "issuer": "Jedha Bootcamp", "status": "done" },
+    { "name": "Cybersécurité Essentials", "name_en": "Cybersecurity Essentials", "issuer": "Jedha Bootcamp", "status": "done" }
+  ],
+  "certifications": [
+    { "name": "Google Cybersecurity Professional Certificate", "issuer": "Google", "status": "done" },
+    { "name": "Google AI Essentials", "issuer": "Google", "status": "done" },
+    { "name": "Pre-Security", "issuer": "TryHackMe", "status": "done", "url": "https://tryhackme.com/p/seallia81" },
+    { "name": "Cyber Security 101", "issuer": "TryHackMe", "status": "done", "url": "https://tryhackme.com/p/seallia81" },
+    { "name": "Permis d'Osinter", "issuer": "Certification OSINT", "status": "done" },
+    { "name": "Atelier RGPD", "issuer": "CNIL", "status": "done" }
+  ],
+  "certifications_note": { "fr": "Toutes obtenues au cours des douze derniers mois. Attestations disponibles sur demande.", "en": "All obtained within the last twelve months. Certificates available on request." },
+  "assistant": {
+    "enabled": true,
+    "faq": [
+      {
+        "id": "poste",
+        "q": { "fr": "Quel poste cherche Dorian ?", "en": "What role is Dorian looking for?" },
+        "keywords": ["poste", "job", "emploi", "role", "cherche", "recherche", "analyste", "consultant", "administrateur", "grc", "looking", "position"],
+        "a": { "fr": "Analyste GRC, consultant GRC junior ou administrateur d'infrastructures sécurisées. Il reste ouvert à toute proposition cohérente avec son profil, y compris en support.", "en": "GRC analyst, junior GRC consultant or secure infrastructure administrator. He is open to any offer consistent with his profile, including support roles." },
+        "links": [{ "label": "Contact", "href": "#contact" }]
+      },
+      {
+        "id": "dispo",
+        "q": { "fr": "Est-il disponible ? Où ?", "en": "Is he available? Where?" },
+        "keywords": ["disponible", "disponibilité", "quand", "available", "availability", "où", "lieu", "ville", "rodez", "remote", "télétravail", "déplacement", "mobilité", "localisation", "location", "where"],
+        "a": { "fr": "Disponible immédiatement pour un premier rendez-vous. Basé à Rodez (Occitanie), il travaille en remote dans toute la France et se déplace en mission.", "en": "Available immediately for a first meeting. Based in Rodez (Occitanie, France), he works remotely across France and travels for assignments." },
+        "links": [{ "label": "Contact", "href": "#contact" }]
+      },
+      {
+        "id": "contrat",
+        "q": { "fr": "Quel type de contrat ?", "en": "What kind of contract?" },
+        "keywords": ["contrat", "cdi", "cdd", "freelance", "mission", "indépendant", "contract", "permanent", "alternance", "stage"],
+        "a": { "fr": "CDI, CDD, freelance ou mission : tous les formats sont envisageables.", "en": "Permanent, fixed-term, freelance or assignment: all formats are possible." }
+      },
+      {
+        "id": "experience",
+        "q": { "fr": "Quelle expérience avant la cybersécurité ?", "en": "What experience before cybersecurity?" },
+        "keywords": ["expérience", "experience", "avant", "parcours", "dirigeant", "entreprise", "commerce", "background", "reconversion", "carrière", "career", "manager"],
+        "a": { "fr": "Dirigeant d'un commerce de proximité depuis 2014 (activité conservée mais déléguée depuis sa reconversion) : management, gestion de crise, négociation et relation client au quotidien.", "en": "Owner of a local retail business since 2014 (still owned, day-to-day delegated since retraining): management, crisis handling, negotiation and client relations on a daily basis." }
+      },
+      {
+        "id": "grc",
+        "q": { "fr": "Quels projets démontrent ses compétences GRC ?", "en": "Which projects show his GRC skills?" },
+        "keywords": ["projet", "projets", "grc", "conformité", "compliance", "gouvernance", "risque", "risques", "smsi", "green shield", "audit", "démontre", "preuve", "projects"],
+        "a": { "fr": "Green Shield (cockpit de mission GRC multi-référentiels, utilisé pour les rapports de son stage), SMSI Automation Lab (ISO 27001, NIS 2, RGPD pour une PME fictive), Syntaris (maturité NIST CSF 2.0), Agent RGPD LÉA (assistant RAG sur sources CNIL/ANSSI) et IaC Auditor (mapping ISO/NIS 2/CIS). La plupart ont été construits par lui-même, de A à Z, avec l'IA.", "en": "Green Shield (multi-framework GRC engagement cockpit, used for his internship reports), SMSI Automation Lab (ISO 27001, NIS 2, GDPR for a fictional SME), Syntaris (NIST CSF 2.0 maturity), Agent RGPD LÉA (RAG assistant over CNIL/ANSSI sources) and IaC Auditor (ISO/NIS 2/CIS mapping). Most were built by himself, end to end, with AI." },
+        "links": [{ "label": "Projets", "href": "#projets" }, { "label": "Green Shield", "href": "https://github.com/Dow08/Green-Shield-GRC" }]
+      },
+      {
+        "id": "referentiels",
+        "q": { "fr": "Quels référentiels connaît-il ?", "en": "Which frameworks does he know?" },
+        "keywords": ["référentiel", "référentiels", "norme", "normes", "iso", "27001", "nis", "nis2", "rgpd", "gdpr", "nist", "dora", "ebios", "cis", "pci", "ai act", "framework", "frameworks", "standard"],
+        "a": { "fr": "ISO 27001:2022, NIS 2, RGPD, NIST CSF 2.0, DORA, CIS Controls, PCI DSS et EBIOS RM, tous mis en œuvre dans ses projets ou en stage, sans certification dédiée. Il étudie actuellement l'AI Act.", "en": "ISO 27001:2022, NIS 2, GDPR, NIST CSF 2.0, DORA, CIS Controls, PCI DSS and EBIOS RM, all applied in his projects or internship, without a dedicated certification. He is currently studying the EU AI Act." },
+        "links": [{ "label": "Compétences", "href": "#competences" }]
+      },
+      {
+        "id": "formation",
+        "q": { "fr": "Quelles formations et certifications ?", "en": "Training and certifications?" },
+        "keywords": ["formation", "formations", "certification", "certifications", "diplôme", "titre", "ais", "rncp", "jedha", "google", "tryhackme", "certifié", "training", "degree", "certified"],
+        "a": { "fr": "Jedha Bootcamp : Cybersécurité Essentials puis Fullstack Cybersécurité. Titre professionnel AIS (RNCP 37680) : formation terminée, passage du titre en attente. Certifications obtenues en moins d'un an : Google Cybersecurity Professional Certificate, Google AI Essentials, TryHackMe Pre-Security et Cyber Security 101, Permis d'Osinter, Atelier RGPD de la CNIL.", "en": "Jedha Bootcamp: Cybersecurity Essentials then Fullstack Cybersecurity. AIS professional title (RNCP 37680): training completed, exam pending. Certifications obtained within the last year: Google Cybersecurity Professional Certificate, Google AI Essentials, TryHackMe Pre-Security and Cyber Security 101, Permis d'Osinter, CNIL GDPR workshop." },
+        "links": [{ "label": "Formation", "href": "#formation" }]
+      },
+      {
+        "id": "entreprise",
+        "q": { "fr": "A-t-il une expérience en entreprise en cybersécurité ?", "en": "Any hands-on cybersecurity work experience?" },
+        "keywords": ["stage", "internship", "entreprise", "association", "client", "mission", "terrain", "professionnelle", "work experience", "rapport", "rapports"],
+        "a": { "fr": "Un stage en consulting cybersécurité pour une association, pendant lequel il a produit l'ensemble des rapports de mission (ISO 27001, NIS 2, RGPD, NIST CSF ; DORA n'était pas pertinent) avec Green Shield, l'outil qu'il a conçu. En dehors de ce stage, son expérience cyber repose sur ses projets publics.", "en": "A cybersecurity consulting internship for a non-profit, during which he produced the full set of engagement reports (ISO 27001, NIS 2, GDPR, NIST CSF; DORA was not relevant) with Green Shield, the tool he designed. Beyond that internship, his cybersecurity experience is his public projects." }
+      },
+      {
+        "id": "ia",
+        "q": { "fr": "Que fait-il avec l'IA et l'automatisation ?", "en": "What does he do with AI and automation?" },
+        "keywords": ["ia", "ai", "intelligence", "artificielle", "automatisation", "automation", "agent", "agents", "llm", "hermès", "hermes", "os-agentique", "cyberpulse", "devsecops", "n8n", "mcp"],
+        "a": { "fr": "Il construit ses propres outils de A à Z avec l'IA et en assure la chaîne DevSecOps : OS-Agentique (équipe d'agents locaux avec approbation humaine), Agent Hermès, Agent RGPD LÉA (RAG), et CyberPulse, le pipeline qui produit chaque jour le flash info de ce site.", "en": "He builds his own tools end to end with AI and runs their DevSecOps pipeline: OS-Agentique (a team of local agents with human approval), Agent Hermès, Agent RGPD LÉA (RAG), and CyberPulse, the pipeline that produces this site's daily briefing." },
+        "links": [{ "label": "OS-Agentique", "href": "https://github.com/Dow08/OS-Agentique_showcase" }]
+      },
+      {
+        "id": "contact",
+        "q": { "fr": "Comment le contacter et obtenir son CV ?", "en": "How to contact him and get his CV?" },
+        "keywords": ["contact", "contacter", "email", "mail", "e-mail", "linkedin", "cv", "resume", "téléphone", "joindre", "rendez-vous"],
+        "a": { "fr": "Par e-mail (Dow@ikmail.com) ou via LinkedIn. Le CV est envoyé sur demande via LinkedIn.", "en": "By e-mail (Dow@ikmail.com) or via LinkedIn. The CV is sent on request via LinkedIn." },
+        "links": [{ "label": "Contact", "href": "#contact" }]
+      },
+      {
+        "id": "salaire",
+        "q": { "fr": "Quelles sont ses prétentions salariales ?", "en": "What are his salary expectations?" },
+        "keywords": ["salaire", "salary", "prétentions", "rémunération", "tjm", "tarif", "taux", "prix", "pay", "rate"],
+        "a": { "fr": "Cette information n'est pas publiée ici : elle se discute directement avec Dorian selon le poste et le format.", "en": "This is not published here: it is discussed directly with Dorian depending on the role and format." },
+        "links": [{ "label": "Contact", "href": "#contact" }]
+      }
+    ]
+  }
+}

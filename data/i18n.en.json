@@ -36,6 +36,13 @@
   "matrix.x": "Impact →",
   "matrix.y": "Likelihood →",
 
+  "nav.competences": "Skills",
+  "skills.eyebrow": "Skills",
+  "skills.title": "What I can do, and how I prove it.",
+  "skills.lead": "No gauges or percentages: each skill states whether it is demonstrated by a public project, practised in training or during the internship, or currently being learned.",
+  "edu.eyebrow": "Training & certifications",
+  "edu.title": "A recent path, with its exact status.",
+
   "projects.eyebrow": "Projects",
   "projects.title": "Evidence, not promises.",
   "projects.lead": "Every card links to the matching GitHub repository. Training labs and personal projects are labelled as such. Descriptions come from the repositories and are in French.",
