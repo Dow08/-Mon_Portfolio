@@ -31,7 +31,7 @@
 
   "gov.eyebrow": "Governance, risk & compliance",
   "gov.title": "From technical controls to decisions.",
-  "gov.lead": "During a cybersecurity consulting internship for a non-profit, I produced the full set of engagement reports (ISO 27001, NIS 2, GDPR, NIST CSF) with Green Shield, the tool I designed. A risk only matters once it is measured, prioritised and explained to the people who decide — without ever inventing a finding.",
+  "gov.lead": "During my cybersecurity consulting internship for the non-profit Cassiopée (September 2026), I led the EBIOS RM risk analysis and produced the full set of engagement reports (ISO 27001, NIS 2, GDPR, NIST CSF) with Green Shield, the tool I designed. A risk only matters once it is measured, prioritised and explained to the people who decide — without ever inventing a finding.",
   "gov.refs": "Frameworks found in the projects",
   "matrix.x": "Impact →",
   "matrix.y": "Likelihood →",
@@ -95,6 +95,7 @@
   "js.pulse.sourceNote": " — titles and summaries machine-translated into French.",
   "js.pulse.play": "Play the briefing (in French)",
   "js.pulse.pause": "Pause",
+  "js.pulse.transcript": "Read the transcript (in French)",
   "js.pulse.noAudio": "No audio for this briefing (speech synthesis unavailable) — the articles remain available alongside.",
   "js.pulse.project": "project",
   "js.pulse.projects": "projects"

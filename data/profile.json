@@ -19,7 +19,7 @@
         { "name": "DORA", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
         { "name": "CIS Controls", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/iac-auditor-agent" },
         { "name": "PCI DSS", "level": "P", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/syntaris-compliance-lab" },
-        { "name": "EBIOS RM", "level": "P" },
+        { "name": "EBIOS RM — mis en œuvre en stage (association Cassiopée, sept. 2026)", "name_en": "EBIOS RM — applied during my internship (Cassiopée non-profit, Sep 2026)", "level": "P" },
         { "name": "Analyse de risques, SoA, plan de traitement", "name_en": "Risk analysis, SoA, treatment plan", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
         { "name": "AI Act", "level": "A" }
       ]
@@ -136,7 +136,7 @@
         "id": "referentiels",
         "q": { "fr": "Quels référentiels connaît-il ?", "en": "Which frameworks does he know?" },
         "keywords": ["référentiel", "référentiels", "norme", "normes", "iso", "27001", "nis", "nis2", "rgpd", "gdpr", "nist", "dora", "ebios", "cis", "pci", "ai act", "framework", "frameworks", "standard"],
-        "a": { "fr": "ISO 27001:2022, NIS 2, RGPD, NIST CSF 2.0, DORA, CIS Controls, PCI DSS et EBIOS RM, tous mis en œuvre dans ses projets ou en stage, sans certification dédiée. Il étudie actuellement l'AI Act.", "en": "ISO 27001:2022, NIS 2, GDPR, NIST CSF 2.0, DORA, CIS Controls, PCI DSS and EBIOS RM, all applied in his projects or internship, without a dedicated certification. He is currently studying the EU AI Act." },
+        "a": { "fr": "ISO 27001:2022, NIS 2, RGPD, NIST CSF 2.0, DORA, CIS Controls et PCI DSS, mis en œuvre dans ses projets, et EBIOS RM, appliqué en conditions réelles pendant son stage chez Cassiopée (septembre 2026). Sans certification dédiée. Il étudie actuellement l'AI Act.", "en": "ISO 27001:2022, NIS 2, GDPR, NIST CSF 2.0, DORA, CIS Controls and PCI DSS, applied in his projects, and EBIOS RM, applied in real conditions during his internship at Cassiopée (September 2026). No dedicated certification. He is currently studying the EU AI Act." },
         "links": [{ "label": "Compétences", "href": "#competences" }]
       },
       {
@@ -150,7 +150,7 @@
         "id": "entreprise",
         "q": { "fr": "A-t-il une expérience en entreprise en cybersécurité ?", "en": "Any hands-on cybersecurity work experience?" },
         "keywords": ["stage", "internship", "entreprise", "association", "client", "mission", "terrain", "professionnelle", "work experience", "rapport", "rapports"],
-        "a": { "fr": "Un stage en consulting cybersécurité pour une association, pendant lequel il a produit l'ensemble des rapports de mission (ISO 27001, NIS 2, RGPD, NIST CSF ; DORA n'était pas pertinent) avec Green Shield, l'outil qu'il a conçu. En dehors de ce stage, son expérience cyber repose sur ses projets publics.", "en": "A cybersecurity consulting internship for a non-profit, during which he produced the full set of engagement reports (ISO 27001, NIS 2, GDPR, NIST CSF; DORA was not relevant) with Green Shield, the tool he designed. Beyond that internship, his cybersecurity experience is his public projects." }
+        "a": { "fr": "Un stage en consulting cybersécurité pour l'association Cassiopée (septembre 2026), pendant lequel il a mené l'analyse de risques EBIOS RM et produit l'ensemble des rapports de mission (ISO 27001, NIS 2, RGPD, NIST CSF ; DORA n'était pas pertinent) avec Green Shield, l'outil qu'il a conçu. En dehors de ce stage, son expérience cyber repose sur ses projets publics.", "en": "A cybersecurity consulting internship for the non-profit Cassiopée (September 2026), during which he led the EBIOS RM risk analysis and produced the full set of engagement reports (ISO 27001, NIS 2, GDPR, NIST CSF; DORA was not relevant) with Green Shield, the tool he designed. Beyond that internship, his cybersecurity experience is his public projects." }
       },
       {
         "id": "ia",

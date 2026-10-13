@@ -280,6 +280,14 @@
 .pulse-article h3 a { text-decoration: none; }
 .pulse-article h3 a:hover { text-decoration: underline; }
 .pulse-article p { font-size: var(--t-small); margin-top: var(--s-2); }
+.pulse__transcript { margin-top: var(--s-6); border: 1px solid var(--line); border-radius: var(--r-m); background: var(--bg-elev); }
+.pulse__transcript:empty { display: none; }
+.pulse__transcript-toggle { cursor: pointer; padding: var(--s-4) var(--s-6); font-weight: 500; list-style: none; display: flex; align-items: center; gap: var(--s-3); }
+.pulse__transcript-toggle::-webkit-details-marker { display: none; }
+.pulse__transcript-toggle::before { content: "+"; font-family: var(--font-mono); color: var(--accent-text); width: 1em; }
+.pulse__transcript[open] .pulse__transcript-toggle::before { content: "−"; }
+.pulse__transcript-body { padding: 0 var(--s-6) var(--s-6); display: grid; gap: var(--s-3); max-width: 72ch; }
+.pulse__transcript-body p { font-size: var(--t-small); line-height: 1.7; color: var(--fg-3); }
 
 /* ── Compétences ──────────────────────────────────────────── */
 .legend { display: flex; flex-wrap: wrap; gap: var(--s-4); font-size: var(--t-small); color: var(--fg-2); }

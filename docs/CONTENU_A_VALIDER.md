@@ -50,7 +50,7 @@
 |---|---|
 | ~~R1~~ | **Résolu le 2026-10-13** : LinkedIn = `https://www.linkedin.com/in/dorian-p-1807612b5/` (confirmé par Dorian ; l'autre slug venait de l'ancien README). |
 | R2 | Dates et liens de vérification des 7 certifications (un par ligne : nom · mois/année · lien) |
-| R3 | Stage : période (mois/année) et durée ; peut-on nommer l'association ? |
+| ~~R3~~ | **Résolu le 2026-10-13** : stage chez l'**association Cassiopée**, **septembre 2026**, association nommable ; EBIOS RM mis en œuvre pendant ce stage. Durée exacte non précisée (non affichée). |
 | R4 | « ISO 27001 (en cours) » : on garde « en cours » ? De quoi exactement ? |
 | R5 | Les badges de tests des README (750/183, 1 296, 112) sont-ils à jour ? |
 | R6 | Droits de republication THN : vérifié ? Sinon, on limite à titre + lien + une phrase |

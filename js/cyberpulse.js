@@ -50,6 +50,22 @@ export async function initCyberPulse() {
     }
   }
 
+  // Transcription : le script radio lu par la voix de synthèse (toujours en français)
+  const transcript = document.getElementById('pulse-transcript');
+  if (transcript && typeof data.script === 'string' && data.script.trim()) {
+    // Le script est souvent un seul bloc : on le découpe en phrases, trois par paragraphe
+    const text = data.script.trim().slice(0, 6000).replace(/\s+/g, ' ');
+    const sentences = text.split(/(?<=[.!?…])\s+(?=[A-ZÀ-ÝÉÈ«"(])/).map((s) => s.trim()).filter(Boolean);
+    const paragraphs = [];
+    for (let i = 0; i < sentences.length; i += 3) paragraphs.push(sentences.slice(i, i + 3).join(' '));
+    const summary = el('summary', { class: 'pulse__transcript-toggle' });
+    const body = el('div', { class: 'pulse__transcript-body', lang: 'fr' }, paragraphs.slice(0, 40).map((p) => el('p', {}, p)));
+    transcript.replaceChildren(summary, body);
+    const label = () => { summary.textContent = t('js.pulse.transcript', 'Lire la transcription du flash'); };
+    label();
+    window.addEventListener('langchange', label);
+  }
+
   renderTexts();
   window.addEventListener('langchange', renderTexts);
   // v2 : audio_file === null signifie « synthèse vocale indisponible ce jour » (publié en texte seul)
