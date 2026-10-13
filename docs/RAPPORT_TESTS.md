@@ -100,9 +100,28 @@ Non couvert par axe : états ouverts (menu mobile, dialogue de l'assistant), ver
 | Mobile 375 px | classe `seq--static`, **1 seule frame chargée** (la dernière), légendes empilées |
 | Tests automatisés | 15 pytest + 6 node, inchangés, verts |
 
+### Mise en production — 2026-10-13, merge `14c6b89` puis `942ee1a` (preload polices, poster 640 px)
+
+| Vérification sur https://dow08.github.io/-Mon_Portfolio/ | Résultat |
+|---|---|
+| Déploiement Pages | nouvelle version servie 20 s après le push ; HTML public identique au local (diff = 0) |
+| Ressources (`/`, site.css, projects.json, profile.json, frames, og.png, accessibilite.html, robots, sitemap, cyber-news/data.json) | toutes en 200 ; gzip + HSTS (`max-age=31556952`) ; `Cache-Control: max-age=600` imposé par GitHub |
+| Navigateur intégré sur l'URL publique | 24 cartes, 5 groupes de compétences, 9 lignes de formation, flash info du 11/10, 72 frames, polices chargées, assistant présent, 0 erreur console, 0 ressource en échec |
+
+**Lighthouse local sur l'URL publique — mesure faussée.** Les runs depuis cette machine (desktop 99, mobile 90-91, LCP 3,0-3,1 s) montraient un **script de 130 Ko, bloquant 750 ms, servi depuis `dow08.github.io/<nom aléatoire>`**. Vérifié : il n'est **pas** dans le HTML publié (curl = identique au local), l'URL répond 404, le navigateur intégré ne le voit pas, et il persiste avec `--disable-extensions`. Conclusion : injection locale dans Chrome sur ce poste (module de sécurité ou VPN), invisible pour les visiteurs. À signaler à Dorian pour sa propre machine.
+
+**PageSpeed Insights (Lighthouse 13.5 hébergé par Google, Moto G Power émulé, 4G lente) — mesure de référence, 2026-10-13 12:23 UTC+2 :**
+
+| Profil | Performance | Accessibilité | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS | Speed Index |
+|---|---:|---:|---:|---:|---|---|---|---|---|
+| Mobile | **97** | **100** | **100** | **100** | 0,9 s | **2,0 s** | 0 ms | 0 | 4,2 s |
+
+Objectifs du cahier des charges (LCP ≤ 2,5 s, INP/TBT ≤ 200 ms, CLS ≤ 0,1) : **atteints** en laboratoire. Pistes restantes signalées par PSI, non bloquantes : durée de cache (imposée par GitHub Pages), 300 ms de CSS bloquant (inlining du CSS critique possible, au prix d'un hash CSP), poster (31 Kio), deux animations non composées (matrice SVG : `opacity`/`transform` sur des `<rect>`). Les données terrain (CrUX) n'existent pas encore : site trop récent.
+
 ### Non testé à ce stade (à faire)
 
-- Lighthouse sur l'URL publique après mise en production (compression serveur, poids des frames sur mobile réel).
+- PageSpeed Insights desktop (quota API anonyme épuisé ce jour ; à lancer depuis https://pagespeed.web.dev).
+- Premier passage réel des workflows CyberPulse (08:00 UTC) et Projets (05:30 UTC) : à vérifier le 2026-10-14 dans l'onglet Actions.
 - `prefers-reduced-motion` : non émulable dans le navigateur intégré ; à tester dans Chrome DevTools (Rendering → Emulate CSS media feature).
 - Lecture audio effective (clic sur Lecture) : non déclenchée automatiquement (autoplay policy) ; à tester à la main.
 - Lecteur d'écran (NVDA) et navigation clavier complète.

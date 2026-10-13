@@ -92,4 +92,22 @@ Ajouts évalués : `src/` réécrit, `schemas/`, 3 workflows épinglés par SHA,
 | Performance | 9 | = | +2,9 Mo chargés progressivement sur desktop uniquement après le premier rendu ; à confirmer par Lighthouse sur l'URL publique |
 | **Global pondéré** | **9,4 / 10** | +0,3 | Reste pour 9,5 : dates des certifications (faits), Lighthouse public |
 
+## 2026-10-13 — Mise en production (accord explicite de Dorian), mesure publique
+
+| Critère | Note | Variation | Justification |
+|---|---:|---:|---|
+| Performance | 10 | +1 | PageSpeed Insights mobile depuis les serveurs Google : 97, LCP 2,0 s, TBT 0, CLS 0 — objectifs du cahier des charges atteints et vérifiés sur l'URL publique, servie en gzip |
+| Maintenabilité / tests | 10 | = | déploiement et retour arrière documentés et exercés (push → 20 s) |
+| **Global pondéré** | **9,5 / 10** | +0,1 | **Seuil de livraison atteint.** Non à 10 : dates des certifications non encore publiées (faits 9), cinématique 8 (vidéo plus claire que la spec, pas de test sur mobile réel), accessibilité sans lecteur d'écran, workflows pas encore passés en conditions réelles |
+
+### Contrôles bloquants (§18) à la livraison
+Liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exécution réelle à confirmer) · médias avec repli ✅ · reduced-motion ✅ · informations validées ✅ (sauf dates de certifications, affichées sans date) · pas de fonctionnalité simulée ✅ · tests exécutés ✅ · limitations documentées ✅ · déploiement / retour arrière ✅.
+
+### Limitations restantes et décisions en attente
+1. Dates et liens des certifications (Dorian).
+2. Droits de republication The Hacker News (Dorian) — sinon réduction à titre + lien + une phrase.
+3. Premier run réel de CyberPulse et Projets (2026-10-14).
+4. Test lecteur d'écran (NVDA) non réalisé.
+5. Script injecté localement dans Chrome sur le poste de Dorian (hors site) — à signaler.
+
 Contrôles bloquants (§18) à ce stade : liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exit 1 + issue auto ; exécution réelle à confirmer après push) · médias avec repli ✅ (poster/procédural) · reduced-motion ✅ · informations validées ❌ · pas de fonctionnalité simulée ✅ · tests exécutés ✅ (14 automatisés + navigateur ; Lighthouse/axe en attente) · limitations documentées ✅ · déploiement/retour arrière documentés ✅.
