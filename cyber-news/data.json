@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-13T10:54:36+00:00",
+  "generated_at": "2026-10-13T10:59:33+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -11,8 +11,8 @@
       "title": "Attackers Heat French Supermarket Fridges Up to 50°C by Hijacking Danfoss Controllers",
       "url": "https://thehackernews.com/2026/10/attackers-heat-french-supermarket.html",
       "summary": "Attackers took remote control of fridges and freezers at hundreds of French supermarkets on the night of October 11 and warmed them, forcing stores to throw food away, several retail chains said. The attackers reached them through the controller that runs all of a store's fridges and freezers, a device made by Danish company Danfoss that maintenance firms can manage remotely. Les Mousquetaires",
-      "title_fr": "Des attaquants chauffent les réfrigérateurs de supermarchés français jusqu'à 50°C en piratant des contrôleurs Danfoss",
-      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre, les réchauffant et forçant les magasins à jeter de la nourriture. Les attaquants ont accédé aux appareils via le contrôleur Danfoss, géré à distance par des entreprises de maintenance.",
+      "title_fr": "Des attaquants chauffent des réfrigérateurs de supermarchés français jusqu'à 50°C en piratant des contrôleurs Danfoss",
+      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre, les réchauffant et forçant les magasins à jeter de la nourriture. Les attaquants ont accédé aux appareils via un contrôleur Danfoss, géré à distance par des entreprises de maintenance.",
       "published": "Tue, 13 Oct 2026 14:18:41 +0530"
     },
     {
@@ -32,9 +32,9 @@
       "published": "Tue, 13 Oct 2026 14:13:37 +0530"
     }
   ],
-  "script": "Flash Info Cyber, bonjour à tous. Voici l'essentiel de l'actualité numérique de ce matin. C'est une attaque inédite qui a touché des supermarchés français. Des pirates informatiques ont réussi à prendre le contrôle à distance de systèmes de réfrigération, portant la température des congélateurs jusqu'à cinquante degrés Celsius. Cette opération a contraint de nombreux magasins à jeter des stocks entiers de produits alimentaires, suite à l'accès aux contrôleurs Danfoss gérés par des entreprises de maintenance. Dans un autre registre, la base de données MarkLogic Server de Progress Software est sous les feux de l'actualité. Deux vulnérabilités critiques parmi une trentaine récemment révélées pourraient permettre à des utilisateurs disposant de privilèges limités d'escalader leurs droits et d'obtenir un contrôle administrateur persistant sur le serveur. Des mises à jour correctives sont d'ores et déjà disponibles pour pallier ces failles. Enfin, une alerte majeure concerne GitLab. L'entreprise a déployé des correctifs urgents pour une vulnérabilité critique, notée dix sur dix, affectant ses éditions Community et Enterprise. Cette faille aurait pu permettre à un attaquant non authentifié d'exécuter du code à distance sur le serveur via une manipulation spécifique dans le système de CI/CD. C'est tout pour ce Flash Info Cyber. Restez vigilants.",
+  "script": "Flash Info Cyber, bonjour. À l'antenne, les dernières actualités pour votre sécurité numérique. La nuit du 11 octobre a été mouvementée pour de nombreux supermarchés français. Des attaquants ont réussi à s'introduire dans les systèmes de contrôle à distance de leurs réfrigérateurs et congélateurs, faisant monter la température jusqu'à cinquante degrés Celsius. Résultat, d'importantes quantités de nourriture ont dû être jetées, et les magasins concernés ont subi des pertes considérables. Le point d'entrée identifié est un contrôleur Danfoss, géré par des sociétés de maintenance. Dans un autre registre, la base de données MarkLogic Server est sous le feu des projecteurs. Deux failles critiques, parmi 31 récemment révélées, pourraient permettre à un compte ayant des privilèges de gestion limités de s'octroyer un contrôle administrateur persistant sur le serveur. Ces vulnérabilités sont sérieuses, mais des correctifs sont d'ores et déjà disponibles depuis le 10 septembre via les versions MarkLogic 11.3.7 et 12.1.0. Enfin, du côté de GitLab, une faille de sécurité majeure, notée dix sur dix, a été corrigée. Cette vulnérabilité aurait pu permettre à des utilisateurs non authentifiés d'exécuter du code arbitraire sur le serveur. Les versions Community Edition et Enterprise Edition étaient toutes deux concernées. Des mises à jour sont impératives pour tous les utilisateurs de GitLab. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 634462,
+  "audio_bytes": 700499,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
