@@ -42,6 +42,20 @@ def test_raises_when_both_fail(monkeypatch, tmp_path):
     assert not (tmp_path / "a.mp3").exists()
 
 
+def test_wav_to_mp3_produces_a_playable_mp3(tmp_path):
+    """Encodage réel avec lameenc (pur Python/wheel, présent dans requirements)."""
+    import math, struct, wave
+    pytest.importorskip("lameenc")
+    wav = tmp_path / "t.wav"
+    rate = 22050
+    with wave.open(str(wav), "wb") as f:
+        f.setnchannels(1); f.setsampwidth(2); f.setframerate(rate)
+        f.writeframes(b"".join(struct.pack("<h", int(8000 * math.sin(2 * math.pi * 440 * i / rate))) for i in range(rate)))
+    out = ag.wav_to_mp3(wav, tmp_path / "t.mp3")
+    data = out.read_bytes()
+    assert len(data) > 4000 and (data[:3] == b"ID3" or data[0] == 0xFF)
+
+
 def test_model_path_downloads_when_missing(monkeypatch, tmp_path):
     calls = []
     monkeypatch.setattr(ag, "PIPER_VOICES_DIR", tmp_path)

@@ -2,7 +2,8 @@
 CyberPulse - Générateur audio.
 
 Moteur principal : Piper TTS (open source, hors ligne, voix fr_FR-tom-medium
-téléchargée une fois et mise en cache). Sortie WAV convertie en MP3 par ffmpeg.
+téléchargée une fois et mise en cache). Sortie WAV encodée en MP3 par lameenc
+(ffmpeg en repli).
 Repli : edge-tts (service gratuit Microsoft, qui refuse parfois les centres de
 données — 403 depuis GitHub Actions constaté le 2026-10-13).
 
@@ -25,7 +26,6 @@ PIPER_VOICE = os.environ.get("PIPER_VOICE", "fr_FR-tom-medium")
 PIPER_VOICES_DIR = Path(os.environ.get("PIPER_VOICES_DIR", Path.home() / ".cache" / "piper-voices"))
 EDGE_VOICE = "fr-FR-HenriNeural"
 EDGE_RETRIES = 2
-MP3_BITRATE = "64k"
 
 
 # ─────────────────────────────── Piper ───────────────────────────────────
@@ -40,22 +40,47 @@ def piper_model_path(voice: str = PIPER_VOICE) -> Path:
     return onnx
 
 
-def synthesize_piper(text: str, output_path: Path, voice: str = PIPER_VOICE) -> Path:
-    """Texte → WAV (Piper) → MP3 (ffmpeg). Lève une exception en cas d'échec."""
-    from piper import PiperVoice  # import local : dépendance lourde (onnxruntime)
-
+def wav_to_mp3(wav_path: Path, mp3_path: Path, bitrate_kbps: int = 64) -> Path:
+    """WAV PCM 16 bits → MP3. lameenc (encodeur LAME embarqué, pur pip) d'abord ;
+    ffmpeg en repli s'il est présent. Les runners GitHub n'ont pas ffmpeg."""
+    try:
+        import lameenc
+    except ImportError:
+        lameenc = None
+    if lameenc is not None:
+        with wave.open(str(wav_path), "rb") as f:
+            channels, width, rate, frames = f.getnchannels(), f.getsampwidth(), f.getframerate(), f.getnframes()
+            pcm = f.readframes(frames)
+        if width != 2:
+            raise RuntimeError(f"WAV {width * 8} bits non géré (16 bits attendus)")
+        enc = lameenc.Encoder()
+        enc.set_bit_rate(bitrate_kbps)
+        enc.set_in_sample_rate(rate)
+        enc.set_channels(channels)
+        enc.set_quality(2)
+        mp3_path.write_bytes(enc.encode(pcm) + enc.flush())
+        return mp3_path
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
-        raise RuntimeError("ffmpeg introuvable (nécessaire pour produire le MP3)")
+        raise RuntimeError("ni lameenc ni ffmpeg disponibles pour produire le MP3")
+    subprocess.run([ffmpeg, "-v", "error", "-y", "-i", str(wav_path),
+                    "-codec:a", "libmp3lame", "-b:a", f"{bitrate_kbps}k", str(mp3_path)], check=True)
+    return mp3_path
+
+
+def synthesize_piper(text: str, output_path: Path, voice: str = PIPER_VOICE) -> Path:
+    """Texte → WAV (Piper) → MP3. Lève une exception en cas d'échec."""
+    from piper import PiperVoice  # import local : dépendance lourde (onnxruntime)
+
     model = piper_model_path(voice)
     wav_path = output_path.with_suffix(".wav")
     piper_voice = PiperVoice.load(str(model))
     with wave.open(str(wav_path), "wb") as wav:
         piper_voice.synthesize_wav(text, wav)
-    subprocess.run([ffmpeg, "-v", "error", "-y", "-i", str(wav_path),
-                    "-codec:a", "libmp3lame", "-b:a", MP3_BITRATE, str(output_path)], check=True)
-    wav_path.unlink(missing_ok=True)
-    return output_path
+    try:
+        return wav_to_mp3(wav_path, output_path)
+    finally:
+        wav_path.unlink(missing_ok=True)
 
 
 # ─────────────────────────────── edge-tts ────────────────────────────────
