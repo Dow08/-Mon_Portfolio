@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-13T11:26:49+00:00",
+  "generated_at": "2026-10-13T11:29:35+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -20,21 +20,21 @@
       "url": "https://thehackernews.com/2026/10/product-walkthrough-bitdefender-ai.html",
       "summary": "A user opens a browser tab, pastes data into a chat assistant, and nothing is installed. A developer adds a coding assistant as an editor extension, and nothing shows up in the installed programs list. Someone downloads a local model runtime, a program that runs models directly on the machine instead of sending data to an external service, because they were told not to send company data",
       "title_fr": "Présentation du produit : Visibilité et contrôle de l'IA Bitdefender",
-      "summary_fr": "Un utilisateur ouvre un onglet de navigateur, colle des données dans un assistant de chat, et rien n'est installé. Un développeur ajoute un assistant de codage comme extension d'éditeur, et rien n'apparaît dans la liste des programmes installés.",
+      "summary_fr": "Un utilisateur ouvre un onglet de navigateur, colle des données dans un assistant de discussion, et rien n'est installé. Un développeur ajoute un assistant de codage comme extension d'éditeur, et rien n'apparaît dans la liste des programmes installés.",
       "published": "Tue, 13 Oct 2026 16:00:00 +0530"
     },
     {
       "title": "Attackers Heat French Supermarket Fridges Up to 50°C by Hijacking Danfoss Controllers",
       "url": "https://thehackernews.com/2026/10/attackers-heat-french-supermarket.html",
       "summary": "Attackers took remote control of fridges and freezers at hundreds of French supermarkets on the night of October 11 and warmed them, forcing stores to throw food away, several retail chains said. The attackers reached them through the controller that runs all of a store's fridges and freezers, a device made by Danish company Danfoss that maintenance firms can manage remotely. Les Mousquetaires",
-      "title_fr": "Des attaquants chauffent les réfrigérateurs des supermarchés français jusqu'à 50°C en piratant les contrôleurs Danfoss",
-      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et de congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre et les ont réchauffés, forçant les magasins à jeter de la nourriture. Les attaquants les ont atteints via le contrôleur qui gère tous les réfrigérateurs et congélateurs d'un magasin, un appareil fabriqué par la société danoise Danfoss.",
+      "title_fr": "Des attaquants chauffent les réfrigérateurs de supermarchés français jusqu'à 50°C en piratant les contrôleurs Danfoss",
+      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre et les ont réchauffés, forçant les magasins à jeter de la nourriture. Les attaquants les ont atteints via le contrôleur qui gère tous les réfrigérateurs et congélateurs d'un magasin, un appareil fabriqué par la société danoise Danfoss.",
       "published": "Tue, 13 Oct 2026 14:18:41 +0530"
     }
   ],
-  "script": "Bonjour et bienvenue dans votre Flash Info Cyber. Restez connectés pour les dernières alertes. Commençons par une mise en garde pour les possesseurs de téléviseurs intelligents LG. Des chercheurs en sécurité ont découvert que certains modèles équipés de webOS étaient vulnérables. Un attaquant présent sur votre réseau local pourrait potentiellement prendre le contrôle total de votre appareil sans même que vous n'ayez à interagir avec. LG a heureusement déployé un correctif, il est donc crucial de vérifier que votre téléviseur est bien à jour pour éviter toute mauvaise surprise. Passons maintenant à une information sur la visibilité des outils d'intelligence artificielle en entreprise. Il est de plus en plus difficile pour les services informatiques de suivre l'utilisation de ces assistants, qu'ils soient intégrés à un navigateur ou sous forme d'extension. Ces outils ne laissent souvent aucune trace d'installation traditionnelle, posant un vrai défi pour le contrôle et la sécurité des données. Enfin, une actualité pour le moins insolite et préoccupante nous vient des supermarchés français. Des cyberattaquants ont réussi à pirater les systèmes de contrôle de réfrigérateurs et congélateurs dans des centaines de magasins. Dans la nuit du 11 octobre, ils ont fait monter la température jusqu'à 50 degrés Celsius, obligeant les enseignes à jeter une grande quantité de produits alimentaires. Les attaquants sont passés par des contrôleurs de la marque Danfoss pour accéder aux équipements. C'est tout pour ce Flash Info Cyber. Restez vigilants et à très bientôt.",
+  "script": "Bonjour et bienvenue dans votre Flash Info Cyber. Aujourd'hui, nous abordons des menaces allant de nos salons à nos supermarchés. Commençons avec nos téléviseurs connectés. Des chercheurs en sécurité ont découvert que certains modèles de téléviseurs intelligents LG, utilisant le système webOS, présentaient des failles. Ces vulnérabilités pouvaient permettre à un attaquant situé sur le même réseau local de prendre le contrôle total de l'appareil, sans même avoir besoin d'un code PIN ou d'une interaction de votre part. Heureusement, LG a réagi promptement en publiant un correctif pour sécuriser ces appareils. Pensez à vérifier et installer les mises à jour sur votre téléviseur. Passons maintenant à l'intelligence artificielle en entreprise. La prolifération des outils d'IA peut représenter un défi pour la sécurité informatique. Que ce soit un employé utilisant un assistant de discussion en ligne ou un développeur intégrant une extension d'IA, ces usages peuvent échapper au contrôle des services informatiques car ils ne nécessitent pas toujours d'installation traditionnelle. Il est crucial pour les entreprises de trouver des solutions pour surveiller et sécuriser ces interactions. Enfin, une attaque préoccupante a touché la France. Des cybercriminels ont réussi à prendre le contrôle à distance des systèmes de réfrigération et de congélation de centaines de supermarchés français. En manipulant les contrôleurs de marque Danfoss, les attaquants ont fait monter la température des équipements jusqu'à 50 degrés Celsius. Cette action malveillante a contraint les magasins à jeter d'importantes quantités de denrées alimentaires, soulignant la vulnérabilité des infrastructures critiques connectées. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 733727,
+  "audio_bytes": 798928,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
