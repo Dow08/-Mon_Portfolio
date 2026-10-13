@@ -50,7 +50,7 @@ Reproduction exacte de l'algorithme `renderProjects()` : un repo dont le README 
 | Nav : About / Projets / Skills / Veille / Contact | `#about` `#projects` `#skills` `#cyberpulse` `#contact` | Fonctionnent |
 | CTA « Me contacter », « Voir mes projets » | `#contact`, `#projects` | Fonctionnent |
 | Email | `mailto:Dow@ikmail.com` | **À valider** (adresse à confirmer) |
-| LinkedIn (site) | https://www.linkedin.com/in/dorian-p-1807612b5/ | **Incohérent** avec README : `dorian-poncelet-1807612b5` — une seule des deux est la bonne, à valider |
+| LinkedIn | https://www.linkedin.com/in/dorian-p-1807612b5/ | **Confirmé par Dorian (2026-10-13)** ; l'ancien README pointait vers un slug erroné, corrigé |
 | GitHub | https://github.com/Dow08 | OK |
 | TryHackMe | https://tryhackme.com/p/seallia81 | OK (rang « Top 7 % » à valider à date) |
 | CV | « Sur demande » (pas de lien) | À valider : garder ainsi ou publier un PDF |

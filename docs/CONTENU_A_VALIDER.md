@@ -48,7 +48,7 @@
 
 | # | Question restante |
 |---|---|
-| R1 | LinkedIn : « ce sont les bons » — mais le site et le README pointent vers **deux slugs différents** (`dorian-p-1807612b5` vs `dorian-poncelet-1807612b5`). Lequel ouvre ton profil ? |
+| ~~R1~~ | **Résolu le 2026-10-13** : LinkedIn = `https://www.linkedin.com/in/dorian-p-1807612b5/` (confirmé par Dorian ; l'autre slug venait de l'ancien README). |
 | R2 | Dates et liens de vérification des 7 certifications (un par ligne : nom · mois/année · lien) |
 | R3 | Stage : période (mois/année) et durée ; peut-on nommer l'association ? |
 | R4 | « ISO 27001 (en cours) » : on garde « en cours » ? De quoi exactement ? |
@@ -139,7 +139,7 @@ Questions complémentaires :
 | # | Question | Valeur actuelle | Réponse |
 |---|---|---|---|
 | 5.1 | Adresse e-mail publique | `Dow@ikmail.com` | |
-| 5.2 | LinkedIn : laquelle est la bonne ? | site : `/in/dorian-p-1807612b5/` · README : `/in/dorian-poncelet-1807612b5` | |
+| 5.2 | LinkedIn : laquelle est la bonne ? | site : `/in/dorian-p-1807612b5/` · README : `/in/dorian-poncelet-1807612b5` | `/in/dorian-p-1807612b5/` ✅ |
 | 5.3 | CV : « sur demande » ou PDF téléchargeable (version anonymisée possible) ? | sur demande | |
 | 5.4 | Nom de marque du site | « dp.security » (nav) | |
 | 5.5 | Formulaire de contact `mailto:` : conserver, ou remplacer par un simple bouton e-mail + LinkedIn ? (un vrai formulaire exige un service tiers, ex. Formspree, donc des données qui transitent par un tiers) | formulaire mailto | |
