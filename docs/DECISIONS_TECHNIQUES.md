@@ -111,6 +111,8 @@ Pas de `'unsafe-inline'` : donc **aucun `style=""` ni `onclick=""` inline** dans
 
 Recommandation : **B** si l'indépendance et le coût nul priment, **A** si la qualité prime et que le palier gratuit suffit (≈ 1 requête/jour).
 
+**Décision de Dorian (2026-10-13) : B, Piper TTS.** Implémentation : `piper-tts==1.8.0`, voix `fr_FR-tom-medium` (63 Mo, téléchargée par `python -m piper.download_voices`, mise en cache par `actions/cache` sous `~/.cache/piper-voices`), WAV → MP3 64 kb/s via ffmpeg (préinstallé sur `ubuntu-latest`). edge-tts reste en repli ; si les deux échouent, publication en texte seul (point 8). Voix changeable par la variable `PIPER_VOICE` (autres voix FR : `fr_FR-siwis-medium`, `fr_FR-upmc-medium`). Échantillon validé en local : 12 s de parole → 97 Ko.
+
 ## D8 — Assistant IA : option A recommandée
 
 | Critère | A. Déterministe statique | B. LLM + backend |

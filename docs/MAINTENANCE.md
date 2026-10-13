@@ -22,7 +22,8 @@ Comment faire évoluer le site sans le casser. Chaque opération indique le fich
 | Changer une couleur, une taille | `css/tokens.css` (puis autres `css/*.css`) | `python scripts/build_css.py` | `tests/test_build_css.py` |
 | Remplacer la séquence vidéo | déposer dans `assets/source/` | `python scripts/extract_frames.py assets/source/fichier.mp4` | ouvrir le site : la section « Approche » utilise les frames ; `data/sequence.json` a `count > 0` |
 | Régénérer l'image de partage | `scripts/make_og.py` (textes) | `python scripts/make_og.py` | aperçu sur https://www.opengraph.xyz |
-| Changer la voix ou la source de CyberPulse | `src/audio_gen.py` (`VOICE`), `src/scraper.py` (`FEED_URL`) | `cd src && python main.py` | `python -m pytest tests/test_cyberpulse.py` |
+| Changer la voix de CyberPulse | `src/audio_gen.py` (`PIPER_VOICE`, ou variable d'environnement du même nom dans le workflow) ; voix FR disponibles : `fr_FR-tom-medium`, `fr_FR-siwis-medium`, `fr_FR-upmc-medium` | `python -m piper.download_voices <voix>` puis `cd src && python main.py` ; changer la clé du cache (`piper-voice-…-v2`) dans `cyberpulse.yml` | `python -m pytest tests/test_audio_gen.py` |
+| Changer la source de CyberPulse | `src/scraper.py` (`FEED_URL`) | `cd src && python scraper.py` | `python -m pytest tests/test_cyberpulse.py` |
 | Désactiver l'assistant | `data/profile.json` → `assistant.enabled: false` | — | le bouton disparaît |
 | Mettre à jour une Action GitHub | `.github/workflows/*.yml` : remplacer le SHA **et** le commentaire de version | `git ls-remote --tags https://github.com/<org>/<action> vX.Y.Z` pour obtenir le SHA | Dependabot propose aussi les PR |
 
