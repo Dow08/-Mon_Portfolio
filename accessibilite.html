@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'">
+  <title>Accessibilité — Dorian Poncelet</title>
+  <meta name="description" content="Déclaration d'accessibilité du portfolio de Dorian Poncelet : mesures mises en place, limites connues, contact.">
+  <link rel="canonical" href="https://dow08.github.io/-Mon_Portfolio/accessibilite.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+<header class="nav">
+  <div class="nav__pill">
+    <a class="nav__brand" href="./">Dorian Poncelet</a>
+    <div class="nav__menu"><a class="btn btn--ghost btn--sm" href="./">Retour au portfolio</a></div>
+  </div>
+</header>
+<main class="section" id="main">
+  <div class="container" >
+    <div class="section-head">
+      <p class="mono">Accessibilité</p>
+      <h1>Déclaration d'accessibilité</h1>
+      <p class="lead">Ce site vise la conformité WCAG 2.2 niveau AA. Cette page décrit ce qui est en place, ce qui a été vérifié et les limites connues. Dernière mise à jour : 13 octobre 2026.</p>
+    </div>
+
+    <h2>Mesures en place</h2>
+    <ul>
+      <li>Structure sémantique : un titre principal, hiérarchie de titres, régions nommées, lien d'évitement vers le contenu.</li>
+      <li>Navigation entièrement utilisable au clavier ; indicateur de focus visible sur tous les éléments interactifs ; menu mobile avec état annoncé (<code>aria-expanded</code>), fermeture par Échap.</li>
+      <li>Contrastes de texte vérifiés sur les valeurs de la palette (minimum 4,9 : 1 pour le texte courant, la plupart au-delà de 6 : 1).</li>
+      <li>Respect de la préférence « réduire les animations » : aucune animation ni séquence pilotée par le défilement ; tout le contenu est affiché immédiatement.</li>
+      <li>Lecteur audio du flash info : bouton avec libellé, curseur de position utilisable au clavier, durée affichée.</li>
+      <li>Filtres de projets annoncés comme boutons à état (<code>aria-pressed</code>) ; mises à jour annoncées (<code>aria-live</code>).</li>
+      <li>Images et graphiques décoratifs masqués des technologies d'assistance ; la matrice de risques possède un titre et une description.</li>
+      <li>Texte redimensionnable, aucune information portée par la couleur seule, aucun contenu clignotant.</li>
+      <li>Aucune dépendance à un service tiers ; la page fonctionne sans JavaScript pour l'essentiel (les projets et le flash info nécessitent JavaScript ; un lien de repli vers GitHub est fourni).</li>
+    </ul>
+
+    <h2>Limites connues</h2>
+    <ul>
+      <li>Les titres et résumés du flash info sont traduits automatiquement : leur qualité linguistique n'est pas garantie.</li>
+      <li>Les descriptions de projets proviennent des fichiers README de GitHub et peuvent contenir des termes techniques non expliqués.</li>
+      <li>Le flash info audio n'a pas de transcription affichée ; le texte des articles résumés est disponible à côté du lecteur.</li>
+      <li>La séquence visuelle pilotée par le défilement est purement décorative ; son contenu n'est pas décrit car il ne porte aucune information.</li>
+    </ul>
+
+    <h2>Vérifications effectuées</h2>
+    <p>Tests au clavier et sur six largeurs d'écran (320 à 1 440 px), audit automatisé (Lighthouse, axe-core) consigné dans le dépôt du site. Aucun test avec un lecteur d'écran n'a encore été réalisé : cette limite sera levée et cette page mise à jour.</p>
+
+    <h2>Signaler un problème</h2>
+    <p>Si vous rencontrez un obstacle, écrivez à <a href="mailto:Dow@ikmail.com">Dow@ikmail.com</a> en décrivant la page et le problème ; une réponse sera apportée sous quelques jours.</p>
+  </div>
+</main>
+<footer class="footer">
+  <div class="container">
+    <span>© 2026 Dorian Poncelet</span>
+    <a href="./">Accueil</a>
+  </div>
+</footer>
+</body>
+</html>

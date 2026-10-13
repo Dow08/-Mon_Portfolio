@@ -5,6 +5,7 @@
  * absentes ou invalides.
  */
 import { el, externalLink, safeHref } from './util/dom.js';
+import { t, currentLang } from './i18n.js';
 
 export async function initCyberPulse() {
   const section = document.getElementById('veille');
@@ -20,33 +21,37 @@ export async function initCyberPulse() {
     return;
   }
 
-  // Date et source
-  const date = new Date(data.generated_at);
-  const dateEl = document.getElementById('pulse-date');
-  if (dateEl && !Number.isNaN(date.getTime())) {
-    dateEl.textContent = date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-    dateEl.setAttribute('datetime', date.toISOString());
-  }
-  const sourceEl = document.getElementById('pulse-source');
-  const source = data.source || { name: 'The Hacker News', url: 'https://thehackernews.com' };
-  if (sourceEl) sourceEl.replaceChildren('Source : ', externalLink(source.url, {}, source.name), ' — titres et résumés traduits automatiquement.');
+  function renderTexts() {
+    const date = new Date(data.generated_at);
+    const dateEl = document.getElementById('pulse-date');
+    if (dateEl && !Number.isNaN(date.getTime())) {
+      dateEl.textContent = date.toLocaleDateString(currentLang() === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      dateEl.setAttribute('datetime', date.toISOString());
+    }
+    const sourceEl = document.getElementById('pulse-source');
+    const source = data.source || { name: 'The Hacker News', url: 'https://thehackernews.com' };
+    if (sourceEl) sourceEl.replaceChildren(t('js.pulse.source', 'Source : '), externalLink(source.url, {}, source.name),
+      t('js.pulse.sourceNote', ' — titres et résumés traduits automatiquement.'));
 
-  // Articles
-  const list = document.getElementById('pulse-articles');
-  if (list) {
-    list.replaceChildren(...data.articles.slice(0, 3).map((a, i) => {
-      const href = safeHref(a.url);
-      const title = a.title_fr || a.title;
-      return el('li', { class: 'pulse-article' }, [
-        el('span', { class: 'mono' }, `0${i + 1}`),
-        el('div', {}, [
-          el('h3', {}, href ? externalLink(href, {}, title) : title),
-          el('p', { class: 'muted' }, (a.summary_fr || a.summary || '').slice(0, 400)),
-        ]),
-      ]);
-    }));
+    // Articles (en français quelle que soit la langue d'interface : contenu généré)
+    const list = document.getElementById('pulse-articles');
+    if (list) {
+      list.replaceChildren(...data.articles.slice(0, 3).map((a, i) => {
+        const href = safeHref(a.url);
+        const title = a.title_fr || a.title;
+        return el('li', { class: 'pulse-article', lang: 'fr' }, [
+          el('span', { class: 'mono' }, `0${i + 1}`),
+          el('div', {}, [
+            el('h3', {}, href ? externalLink(href, {}, title) : title),
+            el('p', { class: 'muted' }, (a.summary_fr || a.summary || '').slice(0, 400)),
+          ]),
+        ]);
+      }));
+    }
   }
 
+  renderTexts();
+  window.addEventListener('langchange', renderTexts);
   initPlayer(`cyber-news/${data.audio_file || 'audio/latest_briefing.mp3'}?t=${Date.now()}`);
 }
 
@@ -66,7 +71,7 @@ function initPlayer(src) {
   audio.src = src;
   const fmt = (s) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}` : '0:00');
   const setPlaying = (playing) => {
-    btn.setAttribute('aria-label', playing ? 'Mettre en pause' : 'Écouter le flash info');
+    btn.setAttribute('aria-label', playing ? t('js.pulse.pause', 'Mettre en pause') : t('js.pulse.play', 'Écouter le flash info'));
     btn.dataset.state = playing ? 'playing' : 'paused';
     card?.classList.toggle('is-playing', playing);
   };

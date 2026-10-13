@@ -5,23 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
   <title>Dorian Poncelet — Cybersécurité &amp; GRC</title>
-  <meta name="description" content="Portfolio de Dorian Poncelet : cybersécurité orientée gouvernance, risques et conformité (GRC), infrastructures sécurisées et automatisation. Projets vérifiables sur GitHub.">
+  <meta name="description" content="Dorian Poncelet, analyste GRC et administrateur d'infrastructures sécurisées en reconversion : gouvernance, risques et conformité, infrastructures, automatisation par l'IA. Projets vérifiables sur GitHub. Rodez, France.">
   <link rel="canonical" href="https://dow08.github.io/-Mon_Portfolio/">
   <meta name="theme-color" content="#061716">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:url" content="https://dow08.github.io/-Mon_Portfolio/">
   <meta property="og:title" content="Dorian Poncelet — Cybersécurité &amp; GRC">
-  <meta property="og:description" content="Gouvernance, risques et conformité, infrastructures sécurisées, automatisation. Projets vérifiables sur GitHub.">
+  <meta property="og:description" content="Gouvernance, risques et conformité, infrastructures sécurisées, automatisation par l'IA. Projets vérifiables sur GitHub.">
   <meta property="og:image" content="https://dow08.github.io/-Mon_Portfolio/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dorian Poncelet — Cybersécurité et GRC">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="fr" href="https://dow08.github.io/-Mon_Portfolio/">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/motion.css">
   <script type="module" src="js/main.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dorian Poncelet",
+    "url": "https://dow08.github.io/-Mon_Portfolio/",
+    "description": "Cybersécurité : gouvernance, risques et conformité (GRC), administration d'infrastructures sécurisées, automatisation par l'IA.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Rodez", "addressCountry": "FR" },
+    "knowsAbout": ["ISO 27001", "NIS 2", "RGPD", "NIST CSF", "DORA", "EBIOS RM", "Wazuh", "Terraform", "Ansible", "Active Directory"],
+    "sameAs": ["https://github.com/Dow08", "https://tryhackme.com/p/seallia81"]
+  }
+  </script>
 </head>
 <body>
 
@@ -33,25 +49,29 @@
   <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></symbol>
 </svg>
 
-<a class="skip-link" href="#main">Aller au contenu</a>
+<a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
 
 <header class="nav">
   <div class="nav__pill">
     <a class="nav__brand" href="#top">Dorian Poncelet</a>
-    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu" data-i18n-label="nav.menu">
       <span></span>
     </button>
     <div class="nav__menu" id="nav-menu">
       <nav aria-label="Principale">
         <ul class="nav__links" role="list">
-          <li><a href="#approche">Approche</a></li>
-          <li><a href="#gouvernance">Gouvernance</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#veille">Veille</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#approche" data-i18n="nav.approche">Approche</a></li>
+          <li><a href="#gouvernance" data-i18n="nav.gouvernance">Gouvernance</a></li>
+          <li><a href="#projets" data-i18n="nav.projets">Projets</a></li>
+          <li><a href="#veille" data-i18n="nav.veille">Veille</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
-      <a class="btn btn--primary btn--sm" href="#contact">Me contacter</a>
+      <div class="lang" role="group" aria-label="Langue" data-i18n-label="lang.label">
+        <button type="button" class="lang__btn" data-lang="fr" aria-pressed="true" lang="fr">FR</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a class="btn btn--primary btn--sm" href="#contact" data-i18n="nav.cta">Me contacter</a>
     </div>
   </div>
 </header>
@@ -62,18 +82,17 @@
   <section class="section hero" id="top" aria-labelledby="hero-title">
     <div class="container hero__inner">
       <div class="hero__text">
-        <p class="mono reveal">Cybersécurité · Gouvernance, risques &amp; conformité</p>
+        <p class="mono reveal" data-i18n="hero.eyebrow">Analyste GRC · Consultant GRC junior · Administrateur d'infrastructures sécurisées</p>
         <h1 id="hero-title" class="reveal" data-delay="1">Dorian<br>Poncelet</h1>
-        <!-- PROTOTYPE : chapô provisoire, repris du site actuel. Texte final après validation (docs/CONTENU_A_VALIDER.md §1). -->
-        <p class="lead reveal" data-delay="2">Ancien dirigeant reconverti dans la cybersécurité. Je relie la maîtrise technique des infrastructures à la gouvernance des risques et à la conformité, avec des projets documentés et vérifiables.</p>
+        <p class="lead reveal" data-delay="2" data-i18n="hero.lead">Dirigeant d'un commerce de proximité depuis 2014, reconverti dans la cybersécurité. Je relie la gouvernance des risques et la conformité à la maîtrise des infrastructures et à l'automatisation par l'IA, avec des projets documentés et vérifiables.</p>
         <div class="hero__actions reveal" data-delay="3">
-          <a class="btn btn--primary" href="#projets">Voir les projets <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn--ghost" href="#contact">Me contacter</a>
+          <a class="btn btn--primary" href="#projets"><span data-i18n="hero.cta1">Voir les projets</span> <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#contact" data-i18n="hero.cta2">Me contacter</a>
         </div>
         <div class="hero__meta mono reveal" data-delay="3">
-          <span><span id="count-projects">—</span> projets publics</span>
-          <span><span id="count-repos">—</span> dépôts GitHub</span>
-          <span class="scroll-hint">Défiler</span>
+          <span><span id="count-projects">—</span> <span data-i18n="hero.meta.projects">projets publics</span></span>
+          <span><span id="count-repos">—</span> <span data-i18n="hero.meta.repos">dépôts GitHub</span></span>
+          <span class="scroll-hint" data-i18n="hero.scroll">Défiler</span>
         </div>
       </div>
       <div class="hero__poster reveal" data-delay="2" aria-hidden="true">
@@ -101,24 +120,24 @@
           <canvas></canvas>
         </div>
         <div class="container seq__captions">
-          <h2 id="seq-title" class="visually-hidden">Approche : des infrastructures à la gouvernance</h2>
+          <h2 id="seq-title" class="visually-hidden" data-i18n="seq.title">Approche : des infrastructures à la gouvernance</h2>
           <!-- Preuves = projets publics réels (voir docs/LIENS_ET_PROJETS.md) -->
           <div class="seq__caption">
-            <p class="mono">01 — Infrastructures</p>
-            <p class="lead">Déployer et durcir.</p>
-            <p class="muted">Infrastructure multi-sites, 12 machines virtuelles Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation réseau et VPN — un lab de formation complet, documenté de bout en bout.</p>
+            <p class="mono" data-i18n="seq.1.k">01 — Infrastructures</p>
+            <p class="lead" data-i18n="seq.1.t">Déployer et durcir.</p>
+            <p class="muted" data-i18n="seq.1.p">Infrastructure multi-sites, 12 machines virtuelles Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation réseau et VPN — un lab de formation complet, documenté de bout en bout.</p>
             <a class="proof" href="https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate" target="_blank" rel="noopener noreferrer">Nova Syndicate <svg aria-hidden="true" width="14" height="14"><use href="#i-arrow"/></svg></a>
           </div>
           <div class="seq__caption">
-            <p class="mono">02 — Détection &amp; réponse</p>
-            <p class="lead">Observer et répondre.</p>
-            <p class="muted">SOC fonctionnel avec Wazuh, intégration des sources de logs, tests de détection par simulation d'attaque et ajustement des règles.</p>
+            <p class="mono" data-i18n="seq.2.k">02 — Détection &amp; réponse</p>
+            <p class="lead" data-i18n="seq.2.t">Observer et répondre.</p>
+            <p class="muted" data-i18n="seq.2.p">SOC fonctionnel avec Wazuh, intégration des sources de logs, tests de détection par simulation d'attaque et ajustement des règles.</p>
             <a class="proof" href="https://github.com/Dow08/Infrastructure-SecOps/tree/master/kessel-soc-siem" target="_blank" rel="noopener noreferrer">Kessel SOC / SIEM <svg aria-hidden="true" width="14" height="14"><use href="#i-arrow"/></svg></a>
           </div>
           <div class="seq__caption">
-            <p class="mono">03 — Gouvernance</p>
-            <p class="lead">Cartographier, prioriser, prouver.</p>
-            <p class="muted">Système de management de la sécurité pour une PME fictive : déploiement de CISO Assistant, automatisation des livrables ISO 27001:2022, cartographie NIS 2 et RGPD.</p>
+            <p class="mono" data-i18n="seq.3.k">03 — Gouvernance</p>
+            <p class="lead" data-i18n="seq.3.t">Cartographier, prioriser, prouver.</p>
+            <p class="muted" data-i18n="seq.3.p">Système de management de la sécurité pour une PME fictive : déploiement de CISO Assistant, automatisation des livrables ISO 27001:2022, cartographie NIS 2 et RGPD.</p>
             <a class="proof" href="https://github.com/Dow08/GRC-Compliance/tree/master/smsi-automation-lab" target="_blank" rel="noopener noreferrer">SMSI Automation Lab <svg aria-hidden="true" width="14" height="14"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
@@ -132,11 +151,10 @@
     <div class="container">
       <div class="gov__inner">
         <div class="gov__text">
-          <p class="mono reveal">Gouvernance, risques &amp; conformité</p>
-          <h2 id="gov-title" class="reveal" data-delay="1">Du contrôle technique à la décision.</h2>
-          <!-- PROTOTYPE : texte provisoire — à remplacer par le positionnement validé -->
-          <p class="lead reveal" data-delay="2">Un risque n'a de sens que s'il est mesuré, priorisé et expliqué à ceux qui décident. Mes projets GRC relient les référentiels aux contrôles réellement en place, sans jamais inventer un constat.</p>
-          <ul class="refs reveal" data-delay="3" id="referentials" role="list" aria-label="Référentiels présents dans les projets"></ul>
+          <p class="mono reveal" data-i18n="gov.eyebrow">Gouvernance, risques &amp; conformité</p>
+          <h2 id="gov-title" class="reveal" data-delay="1" data-i18n="gov.title">Du contrôle technique à la décision.</h2>
+          <p class="lead reveal" data-delay="2" data-i18n="gov.lead">Lors d'un stage en consulting cybersécurité pour une association, j'ai produit l'ensemble des rapports de mission (ISO 27001, NIS 2, RGPD, NIST CSF) avec Green Shield, l'outil que j'ai conçu. Un risque n'a de sens que s'il est mesuré, priorisé et expliqué à ceux qui décident — sans jamais inventer un constat.</p>
+          <ul class="refs reveal" data-delay="3" id="referentials" role="list" aria-label="Référentiels présents dans les projets" data-i18n-label="gov.refs"></ul>
         </div>
         <div class="reveal" data-delay="2">
           <svg class="matrix" viewBox="0 0 360 360" role="img" aria-labelledby="matrix-title matrix-desc">
@@ -151,8 +169,8 @@
                 <rect class="cell l3" x="0" y="0" width="58" height="58"/><rect class="cell l4" x="60" y="0" width="58" height="58"/><rect class="cell l4" x="120" y="0" width="58" height="58"/><rect class="cell l5" x="180" y="0" width="58" height="58"/><rect class="cell l5" x="240" y="0" width="58" height="58"/>
               </g>
               <circle class="dot" cx="89" cy="209" r="7"/><circle class="dot" cx="209" cy="89" r="7"/><circle class="dot" cx="269" cy="149" r="7"/>
-              <text x="149" y="326" text-anchor="middle">Impact →</text>
-              <text transform="translate(-30 149) rotate(-90)" text-anchor="middle">Vraisemblance →</text>
+              <text x="149" y="326" text-anchor="middle" data-i18n="matrix.x">Impact →</text>
+              <text transform="translate(-30 149) rotate(-90)" text-anchor="middle" data-i18n="matrix.y">Vraisemblance →</text>
             </g>
           </svg>
         </div>
@@ -164,11 +182,11 @@
   <section class="section section--light" id="projets" aria-labelledby="projects-title">
     <div class="container">
       <div class="section-head">
-        <p class="mono reveal">Projets</p>
-        <h2 id="projects-title" class="reveal" data-delay="1">Des preuves, pas des promesses.</h2>
-        <p class="lead reveal" data-delay="2">Chaque carte renvoie au dépôt GitHub correspondant. Les laboratoires de formation et les projets personnels sont identifiés comme tels.</p>
+        <p class="mono reveal" data-i18n="projects.eyebrow">Projets</p>
+        <h2 id="projects-title" class="reveal" data-delay="1" data-i18n="projects.title">Des preuves, pas des promesses.</h2>
+        <p class="lead reveal" data-delay="2" data-i18n="projects.lead">Chaque carte renvoie au dépôt GitHub correspondant. Les laboratoires de formation et les projets personnels sont identifiés comme tels.</p>
       </div>
-      <div class="chips reveal" id="projects-filters" role="group" aria-label="Filtrer par domaine"></div>
+      <div class="chips reveal" id="projects-filters" role="group" aria-label="Filtrer par domaine" data-i18n-label="projects.filters"></div>
       <div class="projects__grid" id="projects-grid" aria-live="polite" aria-busy="true">
         <noscript><p class="notice">Activez JavaScript pour afficher les projets, ou consultez <a href="https://github.com/Dow08" rel="noopener noreferrer">github.com/Dow08</a>.</p></noscript>
       </div>
@@ -179,9 +197,9 @@
   <section class="section" id="veille" aria-labelledby="pulse-title">
     <div class="container">
       <div class="section-head">
-        <p class="mono reveal">Veille automatisée</p>
-        <h2 id="pulse-title" class="reveal" data-delay="1">CyberPulse, le flash info du jour.</h2>
-        <p class="lead reveal" data-delay="2">Chaque jour, un pipeline que j'ai écrit lit l'actualité cybersécurité, la résume en français, rédige un script radio et le lit en synthèse vocale. Mis à jour le <time id="pulse-date"></time>.</p>
+        <p class="mono reveal" data-i18n="pulse.eyebrow">Veille automatisée</p>
+        <h2 id="pulse-title" class="reveal" data-delay="1" data-i18n="pulse.title">CyberPulse, le flash info du jour.</h2>
+        <p class="lead reveal" data-delay="2"><span data-i18n="pulse.lead">Chaque jour, un pipeline que j'ai écrit lit l'actualité cybersécurité, la résume en français, rédige un script radio et le lit en synthèse vocale.</span> <span data-i18n="pulse.updated">Mis à jour le</span> <time id="pulse-date"></time>.</p>
         <p class="muted" id="pulse-source"></p>
       </div>
       <div class="pulse">
@@ -192,12 +210,12 @@
             <svg class="pulse__icon-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
           </button>
           <div class="pulse__controls">
-            <label class="visually-hidden" for="pulse-seek">Position dans le flash info</label>
+            <label class="visually-hidden" for="pulse-seek" data-i18n="pulse.seek">Position dans le flash info</label>
             <input class="pulse__seek" id="pulse-seek" type="range" min="0" max="0" value="0" step="1">
             <span class="mono" id="pulse-time">0:00</span>
           </div>
         </div>
-        <ol class="pulse__list reveal" id="pulse-articles" data-delay="1" aria-label="Articles du jour"></ol>
+        <ol class="pulse__list reveal" id="pulse-articles" data-delay="1" aria-label="Articles du jour" data-i18n-label="pulse.articles"></ol>
       </div>
     </div>
   </section>
@@ -206,13 +224,12 @@
   <section class="section" id="contact" aria-labelledby="contact-title">
     <div class="container contact__inner">
       <div>
-        <p class="mono reveal">Contact</p>
-        <h2 id="contact-title" class="reveal" data-delay="1">Parlons sécurité.</h2>
-        <!-- PROTOTYPE : disponibilité et localisation à valider (§1.3-1.5) -->
-        <p class="lead reveal" data-delay="2">Ouvert aux échanges sur des missions en gouvernance, risques et conformité, administration d'infrastructures sécurisées et automatisation.</p>
+        <p class="mono reveal" data-i18n="contact.eyebrow">Contact</p>
+        <h2 id="contact-title" class="reveal" data-delay="1" data-i18n="contact.title">Parlons sécurité.</h2>
+        <p class="lead reveal" data-delay="2" data-i18n="contact.lead">Disponible immédiatement. Basé à Rodez, en déplacement et en remote dans toute la France. Ouvert à toute proposition : CDI, CDD, freelance ou mission. CV sur demande via LinkedIn.</p>
       </div>
       <div class="contact__links reveal" data-delay="2">
-        <a class="contact-link" href="mailto:Dow@ikmail.com"><svg aria-hidden="true"><use href="#i-mail"/></svg><span><small>E-mail</small>Dow@ikmail.com</span></a>
+        <a class="contact-link" href="mailto:Dow@ikmail.com"><svg aria-hidden="true"><use href="#i-mail"/></svg><span><small data-i18n="contact.email">E-mail</small>Dow@ikmail.com</span></a>
         <a class="contact-link" href="https://www.linkedin.com/in/dorian-p-1807612b5/" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-linkedin"/></svg><span><small>LinkedIn</small>Dorian Poncelet</span></a>
         <a class="contact-link" href="https://github.com/Dow08" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-github"/></svg><span><small>GitHub</small>github.com/Dow08</span></a>
         <a class="contact-link" href="https://tryhackme.com/p/seallia81" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-flag"/></svg><span><small>TryHackMe</small>seallia81</span></a>
@@ -224,8 +241,11 @@
 
 <footer class="footer">
   <div class="container">
-    <span>© <span id="year">2026</span> Dorian Poncelet</span>
-    <a href="https://github.com/Dow08/-Mon_Portfolio" rel="noopener noreferrer">Code source du site</a>
+    <span>© <span id="year">2026</span> Dorian Poncelet · Rodez</span>
+    <span>
+      <a href="accessibilite.html" data-i18n="footer.a11y">Accessibilité</a> ·
+      <a href="https://github.com/Dow08/-Mon_Portfolio" rel="noopener noreferrer" data-i18n="footer.source">Code source du site</a>
+    </span>
   </div>
 </footer>
 

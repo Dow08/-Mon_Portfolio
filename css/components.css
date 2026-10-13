@@ -77,6 +77,18 @@
   .nav__menu .btn { width: 100%; justify-content: center; }
 }
 
+/* ── Bascule de langue ────────────────────────────────────── */
+.lang { display: inline-flex; border: 1px solid rgba(244,245,242,.15); border-radius: var(--r-pill); padding: 2px; }
+.lang__btn {
+  min-width: 40px; min-height: 32px; padding: 0 var(--s-2);
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: .06em;
+  color: var(--mist-300);
+  transition: background var(--d-fast), color var(--d-fast);
+}
+.lang__btn[aria-pressed="true"] { background: var(--paper-50); color: var(--ink-950); }
+@media (max-width: 768px) { .lang { align-self: center; } .lang__btn { min-height: 44px; min-width: 56px; } }
+
 /* ── Boutons ──────────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; gap: var(--s-2);

@@ -1,0 +1,7 @@
+{
+  "_comment": "Manifeste de la séquence cinématique. count = 0 tant que les frames ne sont pas générées (scripts/extract_frames.py) : le rendu procédural est utilisé.",
+  "count": 0,
+  "pattern": "assets/sequence/{n}.webp",
+  "width": 1280,
+  "height": 720
+}

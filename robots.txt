@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /cyber-news/audio/
+
+Sitemap: https://dow08.github.io/-Mon_Portfolio/sitemap.xml
