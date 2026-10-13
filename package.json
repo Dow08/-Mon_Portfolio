@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-dorian-poncelet",
+  "private": true,
+  "description": "Outils de test du portfolio (aucune dépendance côté site : le site est en HTML/CSS/JS pur).",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check:csp": "node scripts/check_csp.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.13.0"
+  }
+}

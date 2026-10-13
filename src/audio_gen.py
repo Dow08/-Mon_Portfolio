@@ -29,6 +29,7 @@ PIPER_VOICES_DIR = Path(os.environ.get("PIPER_VOICES_DIR", Path.home() / ".cache
 # rhasspy/piper-voices sur Hugging Face, vérifié le 2026-10-13). Un modèle
 # téléchargé qui ne correspond pas est supprimé et refusé : on n'exécute pas
 # un fichier ONNX d'origine inconnue.
+PIPER_MIRROR = os.environ.get("PIPER_MIRROR", "https://github.com/Dow08/-Mon_Portfolio/releases/download/piper-voices-v1")
 PIPER_VOICE_SHA256 = {
     "fr_FR-tom-medium": "bf65074ccdeeeeaa832e75edb1c0a513c01c9a972bdf085ff8a6e71ea234fd41",
 }
@@ -56,14 +57,37 @@ def verify_model(onnx: Path, voice: str) -> None:
         raise RuntimeError(f"empreinte du modèle {voice} inattendue ({actual[:16]}… ≠ {expected[:16]}…) : fichier supprimé")
 
 
+def _fetch(url: str, dest: Path, timeout: int = 300) -> None:
+    import urllib.request
+    req = urllib.request.Request(url, headers={"User-Agent": "CyberPulse/2.0"})
+    with urllib.request.urlopen(req, timeout=timeout) as r, open(dest, "wb") as f:
+        shutil.copyfileobj(r, f)
+
+
+def download_from_mirror(voice: str) -> bool:
+    """Source principale : miroir dans une Release GitHub de ce dépôt (indépendant de Hugging Face).
+    Retourne False si le miroir est indisponible (l'appelant passe au repli)."""
+    try:
+        for name in (f"{voice}.onnx", f"{voice}.onnx.json"):
+            _fetch(f"{PIPER_MIRROR}/{name}", PIPER_VOICES_DIR / name)
+        return True
+    except Exception as e:  # noqa: BLE001
+        print(f"   ! miroir indisponible ({type(e).__name__}), repli Hugging Face")
+        for name in (f"{voice}.onnx", f"{voice}.onnx.json"):
+            (PIPER_VOICES_DIR / name).unlink(missing_ok=True)
+        return False
+
+
 def piper_model_path(voice: str = PIPER_VOICE) -> Path:
-    """Chemin du modèle .onnx ; le télécharge (avec son .json) s'il manque, et vérifie son empreinte."""
+    """Chemin du modèle .onnx ; le télécharge s'il manque (miroir GitHub, puis Hugging Face),
+    et vérifie son empreinte dans tous les cas."""
     onnx = PIPER_VOICES_DIR / f"{voice}.onnx"
     if not (onnx.exists() and onnx.with_suffix(".onnx.json").exists()):
         PIPER_VOICES_DIR.mkdir(parents=True, exist_ok=True)
         print(f"   téléchargement de la voix Piper {voice}…")
-        subprocess.run([sys.executable, "-m", "piper.download_voices", voice,
-                        "--download-dir", str(PIPER_VOICES_DIR)], check=True)
+        if not download_from_mirror(voice):
+            subprocess.run([sys.executable, "-m", "piper.download_voices", voice,
+                            "--download-dir", str(PIPER_VOICES_DIR)], check=True)
     verify_model(onnx, voice)
     return onnx
 

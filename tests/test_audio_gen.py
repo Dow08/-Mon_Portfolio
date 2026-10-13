@@ -56,22 +56,39 @@ def test_wav_to_mp3_produces_a_playable_mp3(tmp_path):
     assert len(data) > 4000 and (data[:3] == b"ID3" or data[0] == 0xFF)
 
 
-def test_model_path_downloads_when_missing_and_verifies_hash(monkeypatch, tmp_path):
+def test_model_comes_from_mirror_first_and_is_verified(monkeypatch, tmp_path):
     import hashlib
-    calls = []
     fake = b"modele de test"
-    def fake_download(cmd, **k):
+    fetched = []
+    def fake_fetch(url, dest, timeout=300):
+        fetched.append(url)
+        dest.write_bytes(fake if url.endswith(".onnx") else b"{}")
+    monkeypatch.setattr(ag, "PIPER_VOICES_DIR", tmp_path)
+    monkeypatch.setattr(ag, "_fetch", fake_fetch)
+    monkeypatch.setattr(ag.subprocess, "run", lambda *a, **k: (_ for _ in ()).throw(AssertionError("Hugging Face ne doit pas être appelé")))
+    monkeypatch.setitem(ag.PIPER_VOICE_SHA256, "fr_FR-tom-medium", hashlib.sha256(fake).hexdigest())
+    p = ag.piper_model_path("fr_FR-tom-medium")
+    assert p == tmp_path / "fr_FR-tom-medium.onnx"
+    assert fetched == [f"{ag.PIPER_MIRROR}/fr_FR-tom-medium.onnx", f"{ag.PIPER_MIRROR}/fr_FR-tom-medium.onnx.json"]
+    # modèle présent → aucun nouveau téléchargement, empreinte revérifiée
+    fetched.clear(); ag.piper_model_path("fr_FR-tom-medium"); assert fetched == []
+
+
+def test_falls_back_to_huggingface_when_mirror_is_down(monkeypatch, tmp_path):
+    import hashlib
+    fake = b"modele de test"
+    calls = []
+    def failing_fetch(url, dest, timeout=300): raise OSError("miroir HS")
+    def hf_download(cmd, **k):
         calls.append(cmd)
         (tmp_path / "fr_FR-tom-medium.onnx").write_bytes(fake)
         (tmp_path / "fr_FR-tom-medium.onnx.json").write_text("{}")
     monkeypatch.setattr(ag, "PIPER_VOICES_DIR", tmp_path)
-    monkeypatch.setattr(ag.subprocess, "run", fake_download)
+    monkeypatch.setattr(ag, "_fetch", failing_fetch)
+    monkeypatch.setattr(ag.subprocess, "run", hf_download)
     monkeypatch.setitem(ag.PIPER_VOICE_SHA256, "fr_FR-tom-medium", hashlib.sha256(fake).hexdigest())
-    p = ag.piper_model_path("fr_FR-tom-medium")
-    assert p == tmp_path / "fr_FR-tom-medium.onnx"
-    assert calls and "piper.download_voices" in calls[0] and "fr_FR-tom-medium" in calls[0]
-    # modèle présent → pas de téléchargement, empreinte revérifiée
-    calls.clear(); ag.piper_model_path("fr_FR-tom-medium"); assert calls == []
+    ag.piper_model_path("fr_FR-tom-medium")
+    assert calls and "piper.download_voices" in calls[0]
 
 
 def test_tampered_or_unknown_model_is_rejected(monkeypatch, tmp_path):

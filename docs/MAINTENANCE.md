@@ -23,6 +23,7 @@ Comment faire évoluer le site sans le casser. Chaque opération indique le fich
 | Changer une couleur, une taille | `css/tokens.css` (puis autres `css/*.css`) | `python scripts/build_css.py` | `tests/test_build_css.py` |
 | Remplacer la séquence vidéo | déposer dans `assets/source/` | `python scripts/extract_frames.py assets/source/fichier.mp4` | ouvrir le site : la section « Approche » utilise les frames ; `data/sequence.json` a `count > 0` |
 | Régénérer l'image de partage | `scripts/make_og.py` (textes) | `python scripts/make_og.py` | aperçu sur https://www.opengraph.xyz |
+| Mettre à jour le miroir de la voix Piper | Release GitHub `piper-voices-v1` (assets `.onnx` + `.onnx.json`) ; `PIPER_MIRROR` et `PIPER_VOICE_SHA256` dans `src/audio_gen.py` | créer une release `piper-voices-vN`, y déposer les deux fichiers, mettre à jour l'URL et l'empreinte, changer la clé du cache dans `cyberpulse.yml` | `python -m pytest tests/test_audio_gen.py` ; premier run CyberPulse après la mise à jour |
 | Changer la voix de CyberPulse | `src/audio_gen.py` (`PIPER_VOICE`, ou variable d'environnement du même nom dans le workflow) ; voix FR disponibles : `fr_FR-tom-medium`, `fr_FR-siwis-medium`, `fr_FR-upmc-medium` | `python -m piper.download_voices <voix>` puis `cd src && python main.py` ; changer la clé du cache (`piper-voice-…-v2`) dans `cyberpulse.yml` | `python -m pytest tests/test_audio_gen.py` |
 | Changer la source de CyberPulse | `src/scraper.py` (`FEED_URL`) | `cd src && python scraper.py` | `python -m pytest tests/test_cyberpulse.py` |
 | Désactiver l'assistant | `data/profile.json` → `assistant.enabled: false` | — | le bouton disparaît |
@@ -35,6 +36,8 @@ Comment faire évoluer le site sans le casser. Chaque opération indique le fich
 python scripts/build_css.py
 python -m pytest tests
 node --test tests/*.test.mjs
+npm ci && python scripts/serve.py &   # puis, dans un autre terminal :
+node scripts/check_csp.mjs            # 0 violation CSP / Trusted Types, 0 erreur JS, 0 ressource en échec
 python scripts/validate_data.py projects
 grep -n "PROTOTYPE\|TODO\|À VALIDER" index.html data/profile.json   # doit être vide
 ```

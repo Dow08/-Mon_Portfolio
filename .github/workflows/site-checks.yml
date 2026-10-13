@@ -1,0 +1,73 @@
+name: Site checks
+
+# Tests et contrôles du site à chaque push et pull request :
+#   - tests Python (générateur de projets, pipeline, audio, CSS) et Node (DOM sûr, assistant, études de cas)
+#   - css/site.css à jour, clés de traduction complètes, données validées
+#   - navigateur réel : aucune violation CSP / Trusted Types, aucune erreur JS, aucune ressource en échec
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['cyber-news/**', 'data/projects.json']
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Dépendances Node (lockfile, empreintes vérifiées par npm ci)
+        run: npm ci --no-audit --no-fund
+
+      - name: Dépendances de test (hashes exigés)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --require-hashes -r requirements.txt
+          pip install pytest==8.3.3
+
+      - name: Tests Python
+        run: python -m pytest -q tests
+
+      - name: Tests Node
+        run: node --test tests/*.test.mjs
+
+      - name: CSS généré à jour, données et traductions
+        run: |
+          python scripts/build_css.py --check
+          python scripts/validate_data.py projects
+          python - <<'EOF'
+          import json, re, sys
+          h = open('index.html', encoding='utf-8').read()
+          keys = set(re.findall(r'data-i18n(?:-label)?="([^"]+)"', h))
+          d = json.load(open('data/i18n.en.json', encoding='utf-8'))
+          missing = sorted(keys - set(d))
+          print('clés sans traduction :', missing)
+          sys.exit(1 if missing else 0)
+          EOF
+
+      - name: Serveur local
+        run: |
+          python scripts/serve.py 8080 > serve.log 2>&1 &
+          for i in $(seq 1 20); do curl -sf http://localhost:8080/ > /dev/null && break; sleep 0.5; done
+
+      - name: Navigateur réel — CSP, Trusted Types, erreurs JS
+        run: node scripts/check_csp.mjs http://localhost:8080

@@ -31,6 +31,7 @@ python scripts/build_css.py          # régénère css/site.css après modificat
 python scripts/build_projects.py     # régénère data/projects.json (GITHUB_TOKEN conseillé)
 python scripts/make_og.py            # régénère l'image de partage
 python -m pytest tests && node --test tests/*.test.mjs
+npm ci && node scripts/check_csp.mjs     # navigateur réel : CSP / Trusted Types / erreurs JS (serveur local lancé)
 ```
 
 Pipeline CyberPulse en local : `pip install -r requirements.txt`, puis `cd src && python main.py` avec `GEMINI_API_KEY`.
