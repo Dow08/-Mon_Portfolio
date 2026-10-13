@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-13T10:49:16+00:00",
+  "generated_at": "2026-10-13T10:54:36+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -11,8 +11,8 @@
       "title": "Attackers Heat French Supermarket Fridges Up to 50°C by Hijacking Danfoss Controllers",
       "url": "https://thehackernews.com/2026/10/attackers-heat-french-supermarket.html",
       "summary": "Attackers took remote control of fridges and freezers at hundreds of French supermarkets on the night of October 11 and warmed them, forcing stores to throw food away, several retail chains said. The attackers reached them through the controller that runs all of a store's fridges and freezers, a device made by Danish company Danfoss that maintenance firms can manage remotely. Les Mousquetaires",
-      "title_fr": "Des attaquants chauffent les réfrigérateurs de supermarchés français jusqu'à 50°C en piratant les contrôleurs Danfoss",
-      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre, les réchauffant et forçant les magasins à jeter de la nourriture. Les attaquants ont accédé aux appareils via les contrôleurs Danfoss, gérés à distance par des entreprises de maintenance.",
+      "title_fr": "Des attaquants chauffent les réfrigérateurs de supermarchés français jusqu'à 50°C en piratant des contrôleurs Danfoss",
+      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre, les réchauffant et forçant les magasins à jeter de la nourriture. Les attaquants ont accédé aux appareils via le contrôleur Danfoss, géré à distance par des entreprises de maintenance.",
       "published": "Tue, 13 Oct 2026 14:18:41 +0530"
     },
     {
@@ -20,7 +20,7 @@
       "url": "https://thehackernews.com/2026/10/two-critical-marklogic-flaws-could-give.html",
       "summary": "Two of 31 newly disclosed flaws in Progress Software's MarkLogic Server database could let an account given only some management privileges take administrator control of the server, the company says. Progress published all 31 on October 12 and scored five of them critical. Fixes have been available since September 10, in MarkLogic 11.3.7 and MarkLogic 12.1.0. Affected",
       "title_fr": "Deux failles critiques de MarkLogic pourraient donner aux gestionnaires délégués un contrôle administrateur persistant",
-      "summary_fr": "Deux des 31 failles récemment divulguées dans la base de données MarkLogic Server de Progress Software pourraient permettre à un compte doté de privilèges de gestion limités de prendre le contrôle administrateur du serveur. Des correctifs sont disponibles depuis le 10 septembre dans les versions MarkLogic 11.3.7 et MarkLogic 12.1.0.",
+      "summary_fr": "Deux des 31 failles récemment divulguées dans la base de données MarkLogic Server de Progress Software pourraient permettre à un compte avec des privilèges de gestion limités de prendre le contrôle administrateur du serveur. Des correctifs sont disponibles depuis le 10 septembre dans MarkLogic 11.3.7 et MarkLogic 12.1.0.",
       "published": "Tue, 13 Oct 2026 14:14:01 +0530"
     },
     {
@@ -28,13 +28,13 @@
       "url": "https://thehackernews.com/2026/10/gitlab-patches-cvss-100-flaw-that-could.html",
       "summary": "GitLab has released patches for a maximum-severity security flaw impacting its Community Edition (CE) and Enterprise Edition (EE) software that could result in arbitrary code execution. \"GitLab has remediated an issue that, under certain conditions, could have allowed an unauthenticated user to execute arbitrary code on the GitLab server via a specially crafted regular expression in a CI/CD",
       "title_fr": "GitLab corrige une faille CVSS 10.0 pouvant permettre à des utilisateurs non authentifiés d'exécuter du code serveur",
-      "summary_fr": "GitLab a publié des correctifs pour une faille de sécurité de gravité maximale affectant ses logiciels Community Edition (CE) et Enterprise Edition (EE), pouvant entraîner l'exécution de code arbitraire. Cette vulnérabilité aurait pu permettre à un utilisateur non authentifié d'exécuter du code arbitraire sur le serveur GitLab via une expression régulière spécialement conçue dans un CI/CD.",
+      "summary_fr": "GitLab a publié des correctifs pour une faille de sécurité de gravité maximale affectant ses logiciels Community Edition (CE) et Enterprise Edition (EE), pouvant entraîner l'exécution de code arbitraire. Cette faille aurait pu permettre à un utilisateur non authentifié d'exécuter du code arbitraire sur le serveur GitLab via une expression régulière spécialement conçue dans un CI/CD.",
       "published": "Tue, 13 Oct 2026 14:13:37 +0530"
     }
   ],
-  "script": "Flash Info Cyber, bonjour. Aujourd'hui, nous faisons le point sur les dernières menaces qui pèsent sur nos systèmes. Restez à l'écoute.  Une vague de cyberattaques a ciblé des supermarchés français. Des pirates ont pris le contrôle à distance des systèmes de réfrigération, provoquant une hausse des températures jusqu'à 50 degrés Celsius. De nombreux magasins ont été contraints de jeter des denrées alimentaires, suite à cette intrusion via des contrôleurs Danfoss.  Dans le domaine des bases de données, deux failles critiques ont été découvertes dans le logiciel MarkLogic Server. Ces vulnérabilités auraient pu permettre à des utilisateurs avec des privilèges limités de prendre le contrôle total du serveur. Des correctifs sont désormais disponibles et il est impératif de les appliquer sans tarder.  Enfin, une faille de sécurité majeure a été corrigée par GitLab. Cette vulnérabilité de gravité maximale aurait pu permettre à des utilisateurs non authentifiés d'exécuter du code à distance sur les serveurs. Les versions Community Edition et Enterprise Edition étaient toutes deux concernées. Des mises à jour sont disponibles pour protéger vos installations.  Restez vigilants et à demain pour un nouveau Flash Info Cyber.",
-  "audio_file": null,
-  "audio_bytes": 0,
+  "script": "Flash Info Cyber, bonjour à tous. Voici l'essentiel de l'actualité numérique de ce matin. C'est une attaque inédite qui a touché des supermarchés français. Des pirates informatiques ont réussi à prendre le contrôle à distance de systèmes de réfrigération, portant la température des congélateurs jusqu'à cinquante degrés Celsius. Cette opération a contraint de nombreux magasins à jeter des stocks entiers de produits alimentaires, suite à l'accès aux contrôleurs Danfoss gérés par des entreprises de maintenance. Dans un autre registre, la base de données MarkLogic Server de Progress Software est sous les feux de l'actualité. Deux vulnérabilités critiques parmi une trentaine récemment révélées pourraient permettre à des utilisateurs disposant de privilèges limités d'escalader leurs droits et d'obtenir un contrôle administrateur persistant sur le serveur. Des mises à jour correctives sont d'ores et déjà disponibles pour pallier ces failles. Enfin, une alerte majeure concerne GitLab. L'entreprise a déployé des correctifs urgents pour une vulnérabilité critique, notée dix sur dix, affectant ses éditions Community et Enterprise. Cette faille aurait pu permettre à un attaquant non authentifié d'exécuter du code à distance sur le serveur via une manipulation spécifique dans le système de CI/CD. C'est tout pour ce Flash Info Cyber. Restez vigilants.",
+  "audio_file": "audio/latest_briefing.mp3",
+  "audio_bytes": 634462,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
