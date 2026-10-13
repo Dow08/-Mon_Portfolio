@@ -58,12 +58,10 @@ export async function initCyberPulse() {
     const sentences = text.split(/(?<=[.!?…])\s+(?=[A-ZÀ-ÝÉÈ«"(])/).map((s) => s.trim()).filter(Boolean);
     const paragraphs = [];
     for (let i = 0; i < sentences.length; i += 3) paragraphs.push(sentences.slice(i, i + 3).join(' '));
-    const summary = el('summary', { class: 'pulse__transcript-toggle' });
-    const body = el('div', { class: 'pulse__transcript-body', lang: 'fr' }, paragraphs.slice(0, 40).map((p) => el('p', {}, p)));
-    transcript.replaceChildren(summary, body);
-    const label = () => { summary.textContent = t('js.pulse.transcript', 'Lire la transcription du flash'); };
-    label();
-    window.addEventListener('langchange', label);
+    // Le <summary> est dans le HTML (exigé par la norme, traduit via data-i18n) ; on n'ajoute que le corps
+    transcript.querySelector('.pulse__transcript-body')?.remove();
+    transcript.append(el('div', { class: 'pulse__transcript-body', lang: 'fr' }, paragraphs.slice(0, 40).map((p) => el('p', {}, p))));
+    transcript.hidden = false;
   }
 
   renderTexts();

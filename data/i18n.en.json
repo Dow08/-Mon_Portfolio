@@ -95,7 +95,7 @@
   "js.pulse.sourceNote": " — titles and summaries machine-translated into French.",
   "js.pulse.play": "Play the briefing (in French)",
   "js.pulse.pause": "Pause",
-  "js.pulse.transcript": "Read the transcript (in French)",
+  "pulse.transcript": "Read the transcript (in French)",
   "js.pulse.noAudio": "No audio for this briefing (speech synthesis unavailable) — the articles remain available alongside.",
   "js.pulse.project": "project",
   "js.pulse.projects": "projects"

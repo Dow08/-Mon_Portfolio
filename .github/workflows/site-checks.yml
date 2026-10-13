@@ -50,6 +50,12 @@ jobs:
       - name: Tests Node
         run: node --test tests/*.test.mjs
 
+      - name: ESLint (puits d'injection interdits par règle)
+        run: npm run lint
+
+      - name: Validation HTML (html-validate, preset recommended)
+        run: npm run lint:html
+
       - name: CSS généré à jour, données et traductions
         run: |
           python scripts/build_css.py --check

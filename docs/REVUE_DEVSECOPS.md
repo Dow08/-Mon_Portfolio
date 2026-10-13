@@ -76,7 +76,7 @@ Un site statique sans backend ni authentification n'a **pas de session à voler 
 4. ~~Hashes pip~~ — **fait pendant la revue** : `requirements.txt` à empreintes (1 691 hashes), `--require-hashes` dans le workflow, validé par un run réel.
 5. ~~Miroir du modèle Piper~~ — **fait** : Release `piper-voices-v1`, source principale du pipeline, Hugging Face en repli ; validé par le run `38392986344`.
 6. ~~Test de non-régression CSP automatisé~~ — **fait** : `scripts/check_csp.mjs` + workflow `site-checks.yml` (tests Python et Node, CSS/i18n/données, navigateur réel) ; premier run vert (`38392969369`). Il a détecté au passage que `404.html` n'était pas servable en local (préfixe Pages) → `serve.py` corrigé.
-7. **Validation HTML (Nu) et lint JS** (ESLint, config stricte) en CI.
+7. ~~Validation HTML et lint JS~~ — **fait** : ESLint 10 (`eslint-plugin-no-unsanitized` + `no-eval`, `no-script-url`, `document.write`/`outerHTML`/`insertAdjacentHTML` interdits par règle) et `html-validate` (preset recommended, `no-inline-style`) dans `site-checks.yml`. Le validateur a relevé un `<details>` sans `<summary>` → corrigé.
 8. ~~`SECURITY.md`~~ — **fait**.
 
 ### Priorité basse — performance et confort

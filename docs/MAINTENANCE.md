@@ -36,7 +36,8 @@ Comment faire évoluer le site sans le casser. Chaque opération indique le fich
 python scripts/build_css.py
 python -m pytest tests
 node --test tests/*.test.mjs
-npm ci && python scripts/serve.py &   # puis, dans un autre terminal :
+npm ci && npm run check                  # ESLint (innerHTML/eval interdits), html-validate, tests Node
+python scripts/serve.py &   # puis, dans un autre terminal :
 node scripts/check_csp.mjs            # 0 violation CSP / Trusted Types, 0 erreur JS, 0 ressource en échec
 python scripts/validate_data.py projects
 grep -n "PROTOTYPE\|TODO\|À VALIDER" index.html data/profile.json   # doit être vide
