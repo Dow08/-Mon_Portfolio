@@ -121,7 +121,19 @@ Objectifs du cahier des charges (LCP ≤ 2,5 s, INP/TBT ≤ 200 ms, CLS ≤ 0,1)
 ### Non testé à ce stade (à faire)
 
 - PageSpeed Insights desktop (quota API anonyme épuisé ce jour ; à lancer depuis https://pagespeed.web.dev).
-- Premier passage réel des workflows CyberPulse (08:00 UTC) et Projets (05:30 UTC) : à vérifier le 2026-10-14 dans l'onglet Actions.
+### Premiers passages réels des workflows (2026-10-13, déclenchés à la main par `workflow_dispatch`)
+
+| Run | Résultat | Détail |
+|---|---:|---|
+| Projets `38383534876` | **succès** | 24 projets régénérés, aucun changement de contenu → pas de commit (comportement attendu) |
+| CyberPulse `38383538686` | échec | script radio : JSON du LLM avec retours à la ligne bruts → `parse_json` strict ; **issue #1 ouverte automatiquement** (la chaîne d'alerte fonctionne) |
+| CyberPulse `38384502055` | échec | JSON tronqué : Gemini 2.5 compte ses tokens de réflexion dans `max_output_tokens` → `thinking_budget=0`, limites relevées |
+| CyberPulse `38384737825` | échec | traduction et script OK ; **edge-tts 403** (`speech.platform.bing.com` refuse les adresses GitHub Actions, 3 tentatives) — cause probable de l'échec du 12/10 déjà |
+| CyberPulse `38385053947` | **succès** | flash du 13/10 publié **en texte seul**, `audio_file: null`, mention dans le résumé du job et sur le site ; issue #1 fermée avec explication |
+
+Constat annexe : le secret `OPEN_AI_KEY` est vide (`OPENAI_API_KEY:` vide dans l'environnement du job) ; le pipeline tourne entièrement sur Gemini. À corriger ou à assumer (Dorian).
+
+Décision en attente : remplacement de la synthèse vocale (voir DECISIONS_TECHNIQUES D7).
 - `prefers-reduced-motion` : non émulable dans le navigateur intégré ; à tester dans Chrome DevTools (Rendering → Emulate CSS media feature).
 - Lecture audio effective (clic sur Lecture) : non déclenchée automatiquement (autoplay policy) ; à tester à la main.
 - Lecteur d'écran (NVDA) et navigation clavier complète.

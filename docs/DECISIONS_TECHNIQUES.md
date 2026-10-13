@@ -100,6 +100,16 @@ Pas de `'unsafe-inline'` : donc **aucun `style=""` ni `onclick=""` inline** dans
 5. `ai_provider` enregistre les deux étapes (traduction, script).
 6. Historique git : ⚠️ proposer de stocker le MP3 hors git (branche orpheline `cyberpulse-media` ou GitHub Release « latest ») pour arrêter de gonfler l'historique ; sinon conserver tel quel (≈30 Mo/an, acceptable).
 7. Affichage : titre + lien + résumé court ; mention explicite « Source : The Hacker News — résumé traduit automatiquement ». ⚠️ Droits à valider (6.2).
+8. **Mise à jour 2026-10-13 — audio optionnel.** edge-tts (service gratuit Microsoft, sans contrat) répond 403 depuis GitHub Actions. Le flash est publié en texte seul avec `audio_file: null`, signalé dans le résumé du job et sur le site. Options de remplacement, ⚠️ à décider par Dorian :
+
+| Option | Coût | Dépendance | Qualité FR | Effort |
+|---|---|---|---|---|
+| A. Gemini TTS (`gemini-2.5-flash-preview-tts`, même clé) | palier gratuit limité, puis payant (vérifier les tarifs) | Google (déjà utilisé) | très bonne | faible : sortie PCM → MP3 via ffmpeg (présent sur les runners) |
+| B. Piper TTS (open source, hors ligne) | 0 € | aucune (modèle de voix ~60 Mo téléchargé depuis Hugging Face, mis en cache) | correcte | moyen |
+| C. OpenAI TTS (`gpt-4o-mini-tts`) | payant à l'usage | OpenAI (clé actuellement vide) | très bonne | faible |
+| D. Rester en texte seul | 0 € | aucune | — | nul |
+
+Recommandation : **B** si l'indépendance et le coût nul priment, **A** si la qualité prime et que le palier gratuit suffit (≈ 1 requête/jour).
 
 ## D8 — Assistant IA : option A recommandée
 
