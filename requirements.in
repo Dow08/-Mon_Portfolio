@@ -1,0 +1,9 @@
+# Dépendances directes du pipeline CyberPulse et des scripts.
+# Figer avec :  pip install pip-tools && pip-compile --generate-hashes requirements.in
+requests==2.34.2
+feedparser==6.0.14
+beautifulsoup4==4.15.0
+openai==3.29.0
+google-genai==2.30.0
+edge-tts==7.2.8
+jsonschema==4.26.0
