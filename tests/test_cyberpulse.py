@@ -46,6 +46,15 @@ def test_parse_json_accepts_fenced_block_and_rejects_garbage():
         cp.parse_json("TITRE: pas du json")
 
 
+def test_parse_json_tolerates_raw_newlines_in_strings():
+    """Cas réel du run du 2026-10-13 : le LLM met des retours à la ligne bruts dans la chaîne."""
+    raw = '{\n  "script": "Bonjour et bienvenue.\nPremière actualité.\n\nRestez vigilants."\n}'
+    assert cp.parse_json(raw)["script"].startswith("Bonjour et bienvenue.\nPremière")
+    # texte parasite autour + guillemets échappés
+    raw2 = 'Voici le JSON :\n{"script": "Il a dit \\"bonjour\\".\nFin."} merci'
+    assert cp.parse_json(raw2)["script"] == 'Il a dit "bonjour".\nFin.'
+
+
 def test_translate_articles_requires_complete_answer(monkeypatch):
     news = [{"title": "A", "summary": "a"}, {"title": "B", "summary": "b"}, {"title": "C", "summary": "c"}]
     monkeypatch.setattr(cp, "call_ai", lambda *a, **k: json.dumps({"articles": [{"title_fr": "A fr", "summary_fr": "a fr"}]}))

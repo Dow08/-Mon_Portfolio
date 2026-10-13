@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -78,13 +79,20 @@ def call_ai(step: str, system_prompt: str, user_prompt: str, temperature: float,
 
 
 def parse_json(text: str) -> dict:
+    """Parse la réponse JSON d'un LLM en tolérant ses écarts fréquents :
+    bloc ```json```, texte autour, et retours à la ligne bruts dans les chaînes
+    (strict=False). En dernier recours, extrait "script"/"articles" par regex."""
     text = text.strip()
-    if text.startswith("```"):
-        text = text.strip("`")
-        text = text[text.find("{"):text.rfind("}") + 1]
+    start, end = text.find("{"), text.rfind("}")
+    if start != -1 and end > start:
+        text = text[start:end + 1]
     try:
-        return json.loads(text)
+        return json.loads(text, strict=False)
     except json.JSONDecodeError as e:
+        m = re.search(r'"script"\s*:\s*"(.*)"\s*}?\s*$', text, re.S)
+        if m:
+            raw = m.group(1).replace('\\"', '"').replace("\\n", "\n")
+            return {"script": raw}
         raise PipelineError(f"réponse IA non JSON : {e}") from e
 
 
@@ -120,7 +128,7 @@ def generate_script(news: list[dict]) -> str:
         f"ACTUALITÉS :\n{content}\n\n"
         'Réponds UNIQUEMENT avec un objet JSON {"script":"..."}.'
     )
-    data = parse_json(call_ai("script", "Tu es un journaliste radio français, clair et professionnel.", prompt, 0.7, 1200))
+    data = parse_json(call_ai("script", "Tu es un journaliste radio français, clair et professionnel.", prompt, 0.7, 2000))
     script = str(data.get("script", "")).strip()
     words = len(script.split())
     if not 120 <= words <= 400:
