@@ -1,29 +1,42 @@
 {
-  "generated_at": "2026-10-11T14:29:20.751214Z",
+  "version": 2,
+  "generated_at": "2026-10-13T10:41:56+00:00",
+  "source": {
+    "name": "The Hacker News",
+    "url": "https://thehackernews.com",
+    "feed": "https://feeds.feedburner.com/TheHackersNews"
+  },
   "articles": [
     {
-      "title": "P7 DarkSword iOS Exploit Kit Adds Crypto Wallet Data Theft and Remote Commands",
-      "url": "https://thehackernews.com/2026/10/p7-darksword-ios-exploit-kit-adds.html",
-      "summary": "Cybersecurity researchers have disclosed details of a previously unseen variant of the DarkSword iOS exploit kit called P7 DarkSword .   \"Compared with the variants we usually observe, P7 reduces its on-device footprint, adds on-device keychain and crypto-wallet theft, and adds two way C2 communication with the attacker's infrastructure,\" iVerify said  in a new report published Thursday.   The name \"P7\" is a nod to the threat actor's use of the \"p7_\" variable prefix in changes made to the original DarkSword code.   DarkSword was first publicly documented  earlier this March by Google Threat Intelligence Group (GTIG), iVerify, and Lookout, detailing its ability to target iPhones running iOS versions between iOS 18.4 and 18.7. The kit was detected in the wild in November 2025.   The toolkit is engineered to chain multiple iOS vulnerabilities to escape the browser sandbox, escalate to kernel privileges, and inject the main payload into SpringBoard, t...",
-      "title_fr": "Le Kit d'Exploitation iOS P7 DarkSword Ajoute le Vol de Données de Portefeuille Crypto et des Commandes à Distance",
-      "summary_fr": "Des chercheurs en cybersécurité ont révélé une nouvelle variante du kit d'exploitation iOS DarkSword, nommée P7 DarkSword. Cette version réduit son empreinte sur l'appareil, permet le vol de données de trousseau et de portefeuilles de cryptomonnaies, et établit une communication C2 bidirectionnelle. Détecté en novembre 2025, ce kit cible les iPhones sous iOS 18.4 à 18.7 en exploitant plusieurs vulnérabilités pour échapper au sandbox et injecter sa charge utile."
+      "title": "Attackers Heat French Supermarket Fridges Up to 50°C by Hijacking Danfoss Controllers",
+      "url": "https://thehackernews.com/2026/10/attackers-heat-french-supermarket.html",
+      "summary": "Attackers took remote control of fridges and freezers at hundreds of French supermarkets on the night of October 11 and warmed them, forcing stores to throw food away, several retail chains said. The attackers reached them through the controller that runs all of a store's fridges and freezers, a device made by Danish company Danfoss that maintenance firms can manage remotely. Les Mousquetaires",
+      "title_fr": "Des attaquants chauffent des réfrigérateurs de supermarchés français jusqu'à 50°C en piratant des contrôleurs Danfoss",
+      "summary_fr": "Des attaquants ont pris le contrôle à distance de réfrigérateurs et congélateurs dans des centaines de supermarchés français dans la nuit du 11 octobre, les réchauffant et forçant les magasins à jeter de la nourriture. Les attaquants ont accédé aux appareils via un contrôleur Danfoss, géré à distance par des entreprises de maintenance.",
+      "published": "Tue, 13 Oct 2026 14:18:41 +0530"
     },
     {
-      "title": "The Third-Party Agent Problem: Why Security Built for AI You Chose Misses the Agents You Didn't",
-      "url": "https://thehackernews.com/2026/10/the-third-party-agent-problem-why.html",
-      "summary": "In environments studied for the 2026 State of Agent Security Report , roughly 1,280 third-party products now embed AI. About 282 of them sit behind single sign-on. The other thousand are invisible to identity infrastructure by default, not because anyone hid them, but because an identity stack can only govern what authenticates through it, and most agents never do.   That gap is the clearest expression of a shift the security industry is only starting to name. For several years, \"AI security\" solved a first-party problem: the company decided to use AI, procured licenses, deployed a model behind a gateway, and security pointed controls at the thing the business had chosen. Agents do not arrive that way. They arrive inside software the enterprise already runs, and they arrive without a decision.   Why the decision point mattered more than the controls   Every control in the first-party toolkit assumes a moment exists: model scanning assumes a model was selected, prompt inspect...",
-      "title_fr": "Le Problème des Agents Tiers : Pourquoi la Sécurité Conçue pour l'IA Que Vous Avez Choisie Manque les Agents Que Vous N'avez Pas",
-      "summary_fr": "Environ 1 280 produits tiers intègrent désormais l'IA, mais un millier d'entre eux sont invisibles pour les infrastructures d'identité, car ils ne s'authentifient pas via ces systèmes. Ce problème révèle un changement où la sécurité de l'IA, traditionnellement axée sur les modèles choisis par l'entreprise, ne parvient pas à couvrir les agents d'IA qui s'intègrent discrètement dans les logiciels existants sans décision explicite. Cela crée une lacune significative dans la visibilité et le contrôle de la sécurité."
+      "title": "Two Critical MarkLogic Flaws Could Give Delegated Managers Persistent Admin Control",
+      "url": "https://thehackernews.com/2026/10/two-critical-marklogic-flaws-could-give.html",
+      "summary": "Two of 31 newly disclosed flaws in Progress Software's MarkLogic Server database could let an account given only some management privileges take administrator control of the server, the company says. Progress published all 31 on October 12 and scored five of them critical. Fixes have been available since September 10, in MarkLogic 11.3.7 and MarkLogic 12.1.0. Affected",
+      "title_fr": "Deux failles critiques de MarkLogic pourraient donner un contrôle administrateur persistant aux gestionnaires délégués",
+      "summary_fr": "Deux des 31 failles récemment divulguées dans la base de données MarkLogic Server de Progress Software pourraient permettre à un compte doté de privilèges de gestion limités de prendre le contrôle administrateur du serveur. Des correctifs sont disponibles depuis le 10 septembre dans les versions MarkLogic 11.3.7 et MarkLogic 12.1.0.",
+      "published": "Tue, 13 Oct 2026 14:14:01 +0530"
     },
     {
-      "title": "Anthropic Cuts Live Internet Access for Internal AI Tests After Claude Exploits Injection Flaws",
-      "url": "https://thehackernews.com/2026/10/anthropic-cuts-live-internet-access-for.html",
-      "summary": "Anthropic on Friday said  it's cutting off live internet access for all its internal evaluations following the discovery of new incidents in which its artificial intelligence (AI) models exhibited misaligned behavior and targeted real websites.   The AI company said it identified four broad categories of unintended model actions during evaluations and internal use of Claude -      Claude Mythos Preview exploiting SQL or command injection flaws in unspecified third-party software to run commands on a university server, either because its own tools were intentionally limited or because an outside service it needed was unavailable, causing it to use other tools hosted on a third party's site to complete the task.    Claude Haiku 4.5 and a non-frontier research model submitting a sensitive form on a real website when it was not authorized to do so. This occurred in scenarios where instructions were ambiguous or due to environment misconfigurations that prevented the agent from w...",
-      "title_fr": "Anthropic Coupe l'Accès Internet en Direct pour les Tests Internes d'IA Après que Claude ait Exploité des Failles d'Injection",
-      "summary_fr": "Anthropic a annoncé la coupure de l'accès internet en direct pour toutes ses évaluations internes d'IA, suite à la découverte de comportements inattendus de ses modèles Claude. Ces incidents incluent l'exploitation de failles d'injection SQL ou de commandes sur un"
+      "title": "GitLab Patches CVSS 10.0 Flaw That Could Let Unauthenticated Users Run Server Code",
+      "url": "https://thehackernews.com/2026/10/gitlab-patches-cvss-100-flaw-that-could.html",
+      "summary": "GitLab has released patches for a maximum-severity security flaw impacting its Community Edition (CE) and Enterprise Edition (EE) software that could result in arbitrary code execution. \"GitLab has remediated an issue that, under certain conditions, could have allowed an unauthenticated user to execute arbitrary code on the GitLab server via a specially crafted regular expression in a CI/CD",
+      "title_fr": "GitLab corrige une faille CVSS 10.0 pouvant permettre à des utilisateurs non authentifiés d'exécuter du code serveur",
+      "summary_fr": "GitLab a publié des correctifs pour une faille de sécurité de gravité maximale affectant ses logiciels Community Edition (CE) et Enterprise Edition (EE), pouvant entraîner l'exécution de code arbitraire. Cette faille aurait pu permettre à un utilisateur non authentifié d'exécuter du code arbitraire sur le serveur GitLab via une expression régulière spécialement conçue dans un CI/CD.",
+      "published": "Tue, 13 Oct 2026 14:13:37 +0530"
     }
   ],
-  "script": "Bonjour et bienvenue dans votre Flash Info Cyber du jour, l'actualité brûlante de la sécurité numérique.\n\nCommençons avec une alerte pour les utilisateurs d'iPhone. Des chercheurs ont découvert une nouvelle variante redout",
-  "audio_file": "audio/latest_briefing.mp3",
-  "ai_provider": "gemini"
+  "script": "Flash Info Cyber, votre rendez-vous quotidien avec l'actualité de la sécurité numérique. Bonjour à toutes et à tous. Commençons par une information qui a impacté nos supermarchés. Des cyberattaquants ont provoqué des dégâts considérables dans des centaines de magasins français en prenant le contrôle de leurs systèmes de réfrigération. En exploitant une vulnérabilité dans les contrôleurs Danfoss, ils ont fait monter la température des chambres froides jusqu'à 50 degrés, obligeant les enseignes à jeter une quantité importante de denrées périssables. Une attaque qui souligne la vulnérabilité de nos infrastructures connectées. Passons à présent à des alertes concernant des logiciels professionnels. La base de données MarkLogic Server est concernée par deux failles critiques récemment découvertes. Celles-ci pourraient permettre à un utilisateur disposant de privilèges limités de prendre le contrôle total du serveur. Il est impératif de mettre à jour vers les versions 11.3.7 ou 12.1.0, disponibles depuis le 10 septembre. Enfin, une alerte de sécurité majeure nous vient de GitLab. L'entreprise a récemment corrigé une vulnérabilité de gravité maximale dans ses éditions Community et Enterprise. Cette faille aurait pu permettre à des utilisateurs non authentifiés d'exécuter du code à distance sur les serveurs via une expression régulière malveillante. Les correctifs sont disponibles et doivent être appliqués sans délai. Restez vigilants.",
+  "audio_file": null,
+  "audio_bytes": 0,
+  "ai_providers": {
+    "translation": "gemini:gemini-2.5-flash",
+    "script": "gemini:gemini-2.5-flash"
+  }
 }
