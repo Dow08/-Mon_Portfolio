@@ -56,8 +56,20 @@ Résultats de laboratoire (simulation), pas des données terrain. Points relevé
 - Clic « EN » : `<html lang="en">`, titre traduit, 71 clés appliquées (hero, légendes, gouvernance, filtres « All / GRC & compliance… », badges « Showcase (private code) », source CyberPulse, date « 11 October 2026 »), choix mémorisé (`localStorage`), boutons `aria-pressed` cohérents. Retour « FR » : tout restauré. Vérification automatique : **0 clé HTML sans traduction**.
 - Contenu généré (descriptions de projets, articles) reste en français et porte `lang="fr"`.
 
+### Lots 5 et 8 (2026-10-13, soir)
+
+| Suite | Résultat |
+|---|---|
+| `tests/assistant.test.mjs` : normalisation, 6 questions typiques → bonne entrée, question hors périmètre sous le seuil, FR/EN et liens sûrs pour chaque entrée de la FAQ | **4 passés** |
+| `tests/test_build_css.py` : `css/site.css` à jour, minification, pages liées au seul fichier généré | **3 passés** |
+| Total automatisé | **15 pytest + 6 node = 21 passés** |
+| Navigateur : sections Compétences (5 groupes, 39 items, légende) et Formation (9 lignes, statuts) rendues ; assistant : ouverture, question « est-il disponible en remote ? » → entrée « disponibilité », focus dans le dialogue, fermeture ; bascule EN re-rend compétences, formation, FAQ | ok |
+| Nav : à 927 px, 6 liens + langue + CTA ne tenaient plus → burger relevé à 960 px ; vérifié à 1 280 px (une ligne) | ok |
+| Après concaténation CSS : une seule feuille chargée, aucun 404, rendu identique | ok |
+
 ### Non testé à ce stade (à faire)
 
+- Lighthouse à refaire après la concaténation CSS (objectif : LCP mobile < 2,5 s).
 - axe-core (`npx @axe-core/cli`) : non exécuté (Lighthouse accessibilité = 100, mais il ne couvre pas tout).
 - `prefers-reduced-motion` : non émulable dans le navigateur intégré ; à tester dans Chrome DevTools (Rendering → Emulate CSS media feature).
 - Lecture audio effective (clic sur Lecture) : non déclenchée automatiquement (autoplay policy) ; à tester à la main.

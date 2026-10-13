@@ -58,4 +58,20 @@ Ajouts évalués : `src/` réécrit, `schemas/`, 3 workflows épinglés par SHA,
 | Maintenabilité / tests | 10 % | 9 | = | i18n vérifiée par script (0 clé manquante) |
 | **Global pondéré** | | **8,7 / 10** | +0,8 | Utilisable ; livraison à partir de 9,5 : séquence, compétences/formation, assistant, nettoyage (lot 8) |
 
+## 2026-10-13 (nuit) — Lots 5 et 8 : compétences, formation, assistant, nettoyage, documentation
+
+| Critère | Poids | Note | Variation | Justification |
+|---|---:|---:|---:|---|
+| Faits et crédibilité | 15 % | 9 | +1 | Compétences avec niveau D/P/A et lien vers la preuve ; formation avec statut exact (AIS « en attente de passage ») ; FAQ limitée au validé, salaire renvoyé au contact. Reste : dates des certifications, LinkedIn à confirmer |
+| Liens et fonctionnalités | 10 % | 10 | +1 | Toutes les fonctionnalités de l'ancien site sont présentes ou remplacées (formulaire mailto remplacé par liens directs, décision validée « CV via LinkedIn ») ; assistant ajouté |
+| Qualité artistique | 10 % | 8 | = | poster séquence toujours temporaire |
+| Expérience cinématique | 10 % | 6 | = | attend le fichier de Dorian ; `extract_frames.py` prêt |
+| Responsive mobile | 10 % | 10 | = | nav 960 px vérifiée |
+| Sécurité | 15 % | 9 | = | — |
+| Performance | 10 % | 9 | = | 1 CSS (22 Ko) au lieu de 5 ; dépôt 28 Mo → 0,8 Mo ; Lighthouse à refaire |
+| Accessibilité | 5 % | 9 | = | dialogue natif, Échap, focus ; axe à faire |
+| SEO / recrutement | 5 % | 9 | = | — |
+| Maintenabilité / tests | 10 % | 10 | +1 | 21 tests, `build_css --check`, MAINTENANCE.md, README honnête, CLAUDE.md, code mort supprimé |
+| **Global pondéré** | | **9,0 / 10** | +0,3 | Manque pour 9,5 : la séquence réelle (cinématique 6 → 9) et les dates de certification |
+
 Contrôles bloquants (§18) à ce stade : liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exit 1 + issue auto ; exécution réelle à confirmer après push) · médias avec repli ✅ (poster/procédural) · reduced-motion ✅ · informations validées ❌ · pas de fonctionnalité simulée ✅ · tests exécutés ✅ (14 automatisés + navigateur ; Lighthouse/axe en attente) · limitations documentées ✅ · déploiement/retour arrière documentés ✅.

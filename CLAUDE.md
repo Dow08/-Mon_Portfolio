@@ -4,35 +4,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Projet
 
-Portfolio one-page de Dorian Poncelet (cybersécurité), hébergé sur GitHub Pages : https://dow08.github.io/-Mon_Portfolio/ (repo `Dow08/-Mon_Portfolio`, branche `main`). Contenu et commentaires en français.
+Portfolio one-page de Dorian Poncelet (cybersécurité / GRC), GitHub Pages : https://dow08.github.io/-Mon_Portfolio/ (repo `Dow08/-Mon_Portfolio`). `main` = site en ligne. Refonte 2027 sur la branche `refonte-2027` — **ne pas pousser sur `main` sans accord explicite de Dorian**. Contenu et commentaires en français ; site bilingue FR/EN.
 
 ## Commandes
 
 ```bash
-# Serveur local (site statique, aucun build)
-python -m http.server 8080
-
-# Pipeline CyberPulse en local (nécessite OPENAI_API_KEY ou GEMINI_API_KEY)
-pip install -r requirements.txt
-cd src && python main.py
-
-# Tester isolément le scraper / la synthèse vocale
-cd src && python scraper.py
-cd src && python audio_gen.py
+python scripts/serve.py                       # http://localhost:8080, CSP en mode rapport, sans cache
+python scripts/build_css.py                   # OBLIGATOIRE après toute modification de css/*.css (génère css/site.css)
+python scripts/build_projects.py [--check]    # régénère data/projects.json depuis l'API GitHub
+python scripts/make_og.py                     # image de partage
+python scripts/extract_frames.py assets/source/x.mp4   # frames WebP + data/sequence.json
+python -m pytest tests                        # tests Python (PYTHONUTF8=1 sur Windows)
+node --test tests/*.test.mjs                  # tests JS (safeHref, recherche de l'assistant)
+python -m pytest tests/test_cyberpulse.py -k rss   # un seul test
 ```
 
-Pas de tests, pas de linter, pas de bundler. Le déploiement est automatique à chaque push sur `main` (GitHub Pages natif, « Deploy from a branch », racine).
+Pas de bundler, pas de npm : vanilla HTML/CSS/JS en modules ES. Serveur local nécessaire (modules + fetch).
+
+## Règles non négociables
+
+- **Aucune invention de contenu** (expérience, certif, chiffre). Tout texte factuel vient de `docs/CONTENU_A_VALIDER.md` (réponses de Dorian) ou de `data/profile.json`. En cas de doute, retirer plutôt que publier.
+- **Zéro `innerHTML`, zéro attribut `style=""` / `on*=""` dans le HTML** : la CSP meta (`script-src 'self'; style-src 'self'`, sans `unsafe-inline`) les bloque. Construire le DOM avec `el()` / `externalLink()` / `safeHref()` de `js/util/dom.js` ; les variables CSS dynamiques passent par `element.style.setProperty`.
+- **Aucune origine externe** (pas de CDN, pas de Google Fonts) : tout est auto-hébergé.
+- Tout texte ajouté dans `index.html` reçoit `data-i18n="clé"` + sa traduction dans `data/i18n.en.json` (le script de vérification est dans `docs/MAINTENANCE.md`).
+- Fichiers générés, ne pas éditer : `css/site.css`, `data/projects.json`, `cyber-news/*`, `assets/sequence/*`, `assets/img/og.png`.
+- Actions GitHub épinglées par SHA complet + commentaire de version.
 
 ## Architecture
 
-- **`index.html` est tout le site** : HTML + CSS (`<style>`) + JS (`<script>` en fin de body) sont inline. `style.css` n'est **pas** chargé : c'est du code mort hérité d'une ancienne version, il ne faut pas l'éditer en croyant modifier le site.
-- **Section Projets générée côté client** (`renderProjects()`) : appelle l'API GitHub publique pour lister les repos de `Dow08` (hors forks et hors ce repo), lit le `README.md` de chacun et crée une carte par section `### slug`, seulement si un dossier racine du même nom existe dans le repo. Sinon, le repo donne une seule carte. Conventions lues dans les README des autres repos : `Stack: a, b, c` donne les tags, une ligne commençant par `⭐` met la carte « à la une ». Cache `sessionStorage` de 10 min. Modifier les projets affichés se fait donc dans les **autres repos**, pas ici. `CATEGORY_LABELS` mappe nom de repo vers libellé.
-- **CyberPulse** : `.github/workflows/daily_cron.yml` (cron 08:00 UTC) exécute `src/main.py`, qui scrape TheHackerNews (`scraper.py`), traduit et écrit un script radio via OpenAI `gpt-4o-mini`, avec fallback sur une liste de modèles Gemini (`call_ai`), puis le lit en TTS avec edge-tts (`audio_gen.py`). Le résultat est écrit dans `cyber-news/data.json` + `cyber-news/audio/latest_briefing.mp3`, commités par le bot. Le front lit ces fichiers (`renderCyberPulse()`) et masque la section si `data.json` est absent. Ces deux fichiers sont générés : ne pas les éditer à la main. Secrets du repo : `OPEN_AI_KEY`, `GEMINI_KEY`, exposés au script sous `OPENAI_API_KEY` / `GEMINI_API_KEY`.
-- **`deploy.yaml`** ne déploie rien malgré son nom : c'est un scan Trivy non bloquant (SARIF vers l'onglet Security).
-- **Animations** : GSAP + ScrollTrigger chargés en `defer` depuis cdnjs. Le code qui en dépend passe par `whenGsapReady()`. Le défilement d'ancre est fait en JS (`smoothScrollTo`), pas en CSS `scroll-behavior`, pour rester fiable avec les ScrollTriggers. Tout effet doit respecter la constante `REDUCED` (prefers-reduced-motion) et le bloc CSS correspondant. `.hero-title-container` ne doit jamais être transformé en JS : GSAP n'anime que x/y des noms enfants.
-- La vidéo hero (`assets/Video/cyber_hero.mp4`, ~19 Mo) n'est attachée en JS qu'au-dessus de 768px de large.
-- Les surcharges de contraste AA sont regroupées dans un bloc CSS « ACCESSIBILITÉ » qui redéfinit des couleurs plus haut dans le fichier : vérifier ce bloc avant de changer une couleur de texte.
+- `index.html` : HTML sémantique seul ; sections A (hero) → B (`.seq`, séquence épinglée) → C (gouvernance, matrice SVG) → C2 (compétences) → D (projets) → E (CyberPulse) → F (formation) → G (contact). Sprite SVG d'icônes en tête de body.
+- `js/main.js` attend `initI18n()` puis lance les modules. `i18n.js` applique `data/i18n.en.json` et émet `langchange` ; `projects.js`, `profile.js`, `cyberpulse.js`, `assistant.js` se re-rendent sur cet événement via `t(clé, repliFr)`.
+- `js/sequence.js` : épinglage en CSS `position: sticky` (`.seq__track` 320 vh), progression calculée dans un rAF, frames WebP décrites par `data/sequence.json` (`count: 0` → rendu procédural, graphe de nœuds). Mode statique si `prefers-reduced-motion`, largeur ≤ 768 px ou `saveData`.
+- Projets : `scripts/build_projects.py` reprend l'ancienne logique client (sections `### slug` d'un README + dossier homonyme + `Stack :` + `⭐`) ; `REPO_GROUP`/`STATUS` y sont les seules listes à maintenir. `tests/test_build_projects.py` exige que les 24 URL de `docs/LIENS_ET_PROJETS.md` soient présentes.
+- Assistant (option A, sans LLM) : FAQ dans `data/profile.json` → `assistant.faq`, recherche par mots-clés normalisés (`normalize`/`score` testés), seuil 0,4, repli vers le contact.
+- CyberPulse : `src/main.py` (RSS → JSON structuré via OpenAI puis Gemini → edge-tts → validation `schemas/cyberpulse.schema.json`) ; toute étape incomplète → `exit 1`. Workflow `cyberpulse.yml` : job `generate` (secrets, lecture seule) → artefact → job `publish` (écriture, sans secrets) → job `alert` (issue). Le front accepte les formats v1 et v2 de `data.json`.
+- Breakpoints : nav burger ≤ 960 px ; sections/séquence ≤ 768 px ; grilles 1 col ≤ 640 px.
 
-## Audit
+## Docs
 
-`AUDIT.md` liste les problèmes connus (responsive mobile cassé, XSS via `innerHTML` sur data.json, CSP annoncée mais absente, rate-limit API GitHub, etc.) et un plan d'action priorisé.
+`docs/MAINTENANCE.md` (opérations courantes), `DECISIONS_TECHNIQUES.md` (D1-D13), `DIRECTION_ARTISTIQUE.md`, `RAPPORT_TESTS.md`, `RAPPORT_SECURITE.md`, `SCORING.md`, `CONTENU_A_VALIDER.md` (points encore ouverts : LinkedIn, dates des certifications, droits THN).
