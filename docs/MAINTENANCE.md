@@ -25,6 +25,7 @@ Comment faire évoluer le site sans le casser. Chaque opération indique le fich
 | Changer la voix de CyberPulse | `src/audio_gen.py` (`PIPER_VOICE`, ou variable d'environnement du même nom dans le workflow) ; voix FR disponibles : `fr_FR-tom-medium`, `fr_FR-siwis-medium`, `fr_FR-upmc-medium` | `python -m piper.download_voices <voix>` puis `cd src && python main.py` ; changer la clé du cache (`piper-voice-…-v2`) dans `cyberpulse.yml` | `python -m pytest tests/test_audio_gen.py` |
 | Changer la source de CyberPulse | `src/scraper.py` (`FEED_URL`) | `cd src && python scraper.py` | `python -m pytest tests/test_cyberpulse.py` |
 | Désactiver l'assistant | `data/profile.json` → `assistant.enabled: false` | — | le bouton disparaît |
+| Mettre à jour une dépendance Python | `requirements.in` (versions directes) | `pip install pip-tools` puis `python -m piptools compile --generate-hashes --strip-extras --output-file requirements.txt requirements.in` (long : télécharge chaque roue pour l'empreinter) | le workflow installe avec `--require-hashes` : une empreinte manquante fait échouer le job, jamais installer silencieusement |
 | Mettre à jour une Action GitHub | `.github/workflows/*.yml` : remplacer le SHA **et** le commentaire de version | `git ls-remote --tags https://github.com/<org>/<action> vX.Y.Z` pour obtenir le SHA | Dependabot propose aussi les PR |
 
 ## Avant chaque mise en production

@@ -64,7 +64,6 @@ Un site statique sans backend ni authentification n'a **pas de session à voler 
 | Script injecté dans Chrome sur le poste de l'auteur | moyenne (poste) | identifier le composant (antivirus/VPN) ; n'affecte pas les visiteurs |
 | `actions/cache` empoisonné (voix Piper) | faible | neutralisé par la vérification SHA-256 à chaque chargement |
 | Disponibilité des services tiers (Gemini, Hugging Face, feedburner) | moyenne | cascade de modèles, audio optionnel, flash précédent conservé ; piste : miroir du modèle dans une Release GitHub |
-| Hashes pip absents jusqu'à génération | faible | versions figées ; Dependabot ; génération en cours (§5) |
 
 ## 5. Axes d'amélioration (ingénierie)
 
@@ -74,7 +73,7 @@ Un site statique sans backend ni authentification n'a **pas de session à voler 
 3. **Transcription du flash audio** : le script radio existe déjà dans `data.json` (`script`) ; l'afficher dans un `<details>` = accessibilité + SEO gratuit.
 
 ### Priorité moyenne — qualité et sécurité
-4. **Hashes pip** (`pip-compile --generate-hashes`) + `pip install --require-hashes` dans les workflows.
+4. ~~Hashes pip~~ — **fait pendant la revue** : `requirements.txt` à empreintes (1 691 hashes), `--require-hashes` dans le workflow, validé par un run réel.
 5. **Miroir du modèle Piper** dans une Release GitHub du dépôt (plus de dépendance à Hugging Face, empreinte déjà épinglée).
 6. **Test de non-régression CSP automatisé** : un script Node qui charge la page en headless et échoue sur toute violation CSP/Trusted Types (aujourd'hui vérifié à la main).
 7. **Validation HTML (Nu) et lint JS** (ESLint, config stricte) en CI.

@@ -40,7 +40,9 @@ base-uri 'self'; form-action 'self' mailto:
 | GitHub Actions | épinglées par SHA de commit complet, avec la version en commentaire : checkout v5.1.0, setup-python v6.3.0, trivy-action v0.36.0, codeql-action v4.38.3, upload/download-artifact v7.0.2 / v8.0.2, github-script v8 |
 | Permissions des workflows | `permissions: {}` au niveau racine ; chaque job déclare le minimum : génération CyberPulse = `contents: read` (avec les clés IA), publication = `contents: write` (**sans** les clés IA, via artefact), alerte = `issues: write`, scan = `security-events: write` |
 | `persist-credentials: false` | sur les checkouts qui n'ont pas besoin de pousser |
-| Dépendances Python | versions figées (`==`) dans `requirements.txt` ; `requirements.in` pour `pip-compile --generate-hashes` (hashes non encore générés : à faire dans un environnement propre) |
+| Dépendances Python | versions figées **avec empreintes SHA-256** (`requirements.txt`, 50 paquets, 1 691 hashes toutes plateformes, généré le 2026-10-13) ; installation en `--require-hashes` dans le workflow |
+| Modèle de synthèse vocale (Piper, ONNX, 63 Mo) | empreinte SHA-256 épinglée dans `src/audio_gen.py` (source : pointeur Git LFS officiel), vérifiée après téléchargement et à chaque chargement depuis le cache ; fichier supprimé et refusé en cas d'écart |
+| Trusted Types | `require-trusted-types-for 'script'` dans la CSP : le navigateur bloque tout `innerHTML`/`eval`/`script.src` non typé, même introduit par une future modification |
 | Dependabot | hebdomadaire pour `github-actions` et `pip` |
 | Trivy | scan `vuln,secret,misconfig` à chaque push sur `main`, PR, hebdomadaire ; résultats dans l'onglet Security |
 
