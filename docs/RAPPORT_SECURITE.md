@@ -49,7 +49,7 @@ Point non vérifié : la rumeur de compromission de `trivy-action` début 2026 c
 ## 4. Secrets
 
 - Aucun secret côté client (vérifié : aucun appel réseau sortant, aucune clé dans `js/`).
-- `OPEN_AI_KEY` / `GEMINI_KEY` restent des secrets de dépôt, exposés uniquement au job `generate`.
+- `GEMINI_KEY` reste un secret de dépôt, exposé uniquement au job `generate` (OpenAI retiré le 2026-10-13 : un fournisseur de moins, une clé de moins). Le secret `OPEN_AI_KEY`, vide, peut être supprimé des paramètres du dépôt.
 - `GITHUB_TOKEN` du workflow Projets : `contents: write` sur ce seul dépôt.
 
 ## 5. Pipeline CyberPulse

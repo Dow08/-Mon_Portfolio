@@ -1,6 +1,6 @@
 """
 CyberPulse - Orchestrateur
-Pipeline : RSS → traduction + script radio (JSON structuré) → audio → data.json
+Pipeline : RSS → traduction + script radio (Gemini, JSON structuré) → audio (Piper) → data.json
 
 Règles :
   - toute étape obligatoire qui échoue termine le processus avec un code ≠ 0
@@ -29,7 +29,6 @@ SCHEMA_FILE = PROJECT_ROOT / "schemas" / "cyberpulse.schema.json"
 NUM_ARTICLES = 3
 MIN_AUDIO_BYTES = 20_000
 
-OPENAI_MODEL = "gpt-4o-mini"
 GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash", "gemini-2.0-flash-lite"]
 
 PROVIDERS: dict[str, str] = {}   # étape → fournisseur réellement utilisé
@@ -41,50 +40,37 @@ class PipelineError(RuntimeError):
 
 # ─────────────────────────────── Appel IA ────────────────────────────────
 def call_ai(step: str, system_prompt: str, user_prompt: str, temperature: float, max_tokens: int) -> str:
-    """OpenAI puis Gemini (plusieurs modèles). Lève PipelineError si tout échoue."""
-    errors = []
-    if os.environ.get("OPENAI_API_KEY"):
-        try:
-            from openai import OpenAI
-            resp = OpenAI().chat.completions.create(
-                model=OPENAI_MODEL,
-                messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
-                temperature=temperature, max_tokens=max_tokens,
-                response_format={"type": "json_object"},
-            )
-            PROVIDERS[step] = f"openai:{OPENAI_MODEL}"
-            return resp.choices[0].message.content.strip()
-        except Exception as e:  # noqa: BLE001
-            errors.append(f"openai: {e}")
-            print(f"   ! OpenAI indisponible ({type(e).__name__}), repli Gemini")
-
+    """Gemini, plusieurs modèles en cascade (quota ou indisponibilité → suivant).
+    Lève PipelineError si tous échouent. Décision 2026-10-13 : Gemini seul."""
     gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if gemini_key:
-        from google import genai
-        from google.genai import types
-        client = genai.Client(api_key=gemini_key)
-        for model in GEMINI_MODELS:
-            try:
-                # Les modèles 2.5 comptent leurs tokens de « réflexion » dans
-                # max_output_tokens : sans ceci, la réponse JSON arrive tronquée
-                # (cause de l'échec du run 38384502055). La réflexion n'apporte
-                # rien pour une traduction ou un script court.
-                config = types.GenerateContentConfig(
-                    temperature=temperature, max_output_tokens=max_tokens,
-                    response_mime_type="application/json",
-                    thinking_config=types.ThinkingConfig(thinking_budget=0) if "pro" not in model else None,
-                )
-                resp = client.models.generate_content(
-                    model=model, contents=f"{system_prompt}\n\n{user_prompt}", config=config,
-                )
-                if not resp.text:
-                    raise RuntimeError("réponse vide")
-                PROVIDERS[step] = f"gemini:{model}"
-                return resp.text.strip()
-            except Exception as e:  # noqa: BLE001
-                errors.append(f"{model}: {e}")
-                print(f"   ! {model} indisponible ({type(e).__name__})")
-    raise PipelineError("aucun fournisseur IA n'a répondu : " + " | ".join(errors) if errors else "aucune clé API")
+    if not gemini_key:
+        raise PipelineError("aucune clé API Gemini (GEMINI_API_KEY)")
+    from google import genai
+    from google.genai import types
+    client = genai.Client(api_key=gemini_key)
+    errors = []
+    for model in GEMINI_MODELS:
+        try:
+            # Les modèles 2.5 comptent leurs tokens de « réflexion » dans
+            # max_output_tokens : sans ceci, la réponse JSON arrive tronquée
+            # (cause de l'échec du run 38384502055). La réflexion n'apporte
+            # rien pour une traduction ou un script court.
+            config = types.GenerateContentConfig(
+                temperature=temperature, max_output_tokens=max_tokens,
+                response_mime_type="application/json",
+                thinking_config=types.ThinkingConfig(thinking_budget=0) if "pro" not in model else None,
+            )
+            resp = client.models.generate_content(
+                model=model, contents=f"{system_prompt}\n\n{user_prompt}", config=config,
+            )
+            if not resp.text:
+                raise RuntimeError("réponse vide")
+            PROVIDERS[step] = f"gemini:{model}"
+            return resp.text.strip()
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"{model}: {e}")
+            print(f"   ! {model} indisponible ({type(e).__name__})")
+    raise PipelineError("aucun modèle Gemini n'a répondu : " + " | ".join(errors))
 
 
 def parse_json(text: str) -> dict:
@@ -156,8 +142,8 @@ def validate(data: dict) -> None:
 
 def main() -> int:
     print("=" * 60 + "\nCyberPulse - génération du flash info\n" + "=" * 60)
-    if not (os.environ.get("OPENAI_API_KEY") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")):
-        print("ERREUR : aucune clé API (OPENAI_API_KEY ou GEMINI_API_KEY)")
+    if not (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")):
+        print("ERREUR : aucune clé API (GEMINI_API_KEY)")
         return 1
     try:
         print("\n[1/5] Actualités (RSS)")

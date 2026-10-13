@@ -13,7 +13,7 @@ Portfolio de **Dorian Poncelet** — cybersécurité orientée gouvernance, risq
 - **Une page**, HTML/CSS/JavaScript sans framework ni bibliothèque, hébergée sur GitHub Pages, bilingue FR/EN.
 - **Projets générés automatiquement** depuis les dépôts publics de l'auteur (`data/projects.json`, régénéré chaque jour par une GitHub Action). Pour faire apparaître un projet : le documenter dans le README de son dépôt (section `### nom-du-dossier`, ligne `Stack : …`, `⭐` pour le mettre en avant).
 - **Compétences, formation et assistant « questions fréquentes »** alimentés par `data/profile.json`, un fichier de contenu validé. L'assistant fonctionne sans IA, sans réseau et sans stockage.
-- **CyberPulse** : chaque jour, un pipeline Python lit le flux RSS de The Hacker News, traduit et résume trois articles (OpenAI, repli Gemini), rédige un script radio et le lit en synthèse vocale (Piper TTS, hors ligne, repli edge-tts ; sans audio, le flash est publié en texte seul et le signale). Résultat validé contre un schéma JSON avant publication ; un échec ouvre une issue.
+- **CyberPulse** : chaque jour, un pipeline Python lit le flux RSS de The Hacker News, traduit et résume trois articles (Gemini 2.5 Flash, plusieurs modèles en cascade), rédige un script radio et le lit en synthèse vocale (Piper TTS, hors ligne, repli edge-tts ; sans audio, le flash est publié en texte seul et le signale). Résultat validé contre un schéma JSON avant publication ; un échec ouvre une issue.
 - **Séquence cinématique** pilotée par le défilement (canvas + images WebP), avec repli procédural, désactivée sous `prefers-reduced-motion` et sur petit écran.
 
 ## Sécurité
@@ -33,7 +33,7 @@ python scripts/make_og.py            # régénère l'image de partage
 python -m pytest tests && node --test tests/*.test.mjs
 ```
 
-Pipeline CyberPulse en local : `pip install -r requirements.txt`, puis `cd src && python main.py` avec `OPENAI_API_KEY` ou `GEMINI_API_KEY`.
+Pipeline CyberPulse en local : `pip install -r requirements.txt`, puis `cd src && python main.py` avec `GEMINI_API_KEY`.
 
 Guide complet : [docs/MAINTENANCE.md](docs/MAINTENANCE.md). Décisions, direction artistique, rapports de tests et de sécurité, scoring : dossier [docs/](docs/).
 

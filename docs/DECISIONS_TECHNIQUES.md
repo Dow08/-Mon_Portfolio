@@ -113,6 +113,8 @@ Recommandation : **B** si l'indépendance et le coût nul priment, **A** si la q
 
 **Décision de Dorian (2026-10-13) : B, Piper TTS.** Implémentation : `piper-tts==1.8.0`, voix `fr_FR-tom-medium` (63 Mo, téléchargée par `python -m piper.download_voices`, mise en cache par `actions/cache` sous `~/.cache/piper-voices`), WAV → MP3 64 kb/s via ffmpeg (préinstallé sur `ubuntu-latest`). edge-tts reste en repli ; si les deux échouent, publication en texte seul (point 8). Voix changeable par la variable `PIPER_VOICE` (autres voix FR : `fr_FR-siwis-medium`, `fr_FR-upmc-medium`). Échantillon validé en local : 12 s de parole → 97 Ko.
 
+9. **2026-10-13 — OpenAI retiré** (décision de Dorian) : le secret `OPEN_AI_KEY` était vide et Gemini suffit. Une dépendance, une clé et un chemin de code en moins ; la cascade de modèles Gemini reste le mécanisme de résilience.
+
 ## D8 — Assistant IA : option A recommandée
 
 | Critère | A. Déterministe statique | B. LLM + backend |

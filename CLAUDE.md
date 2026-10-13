@@ -37,7 +37,7 @@ Pas de bundler, pas de npm : vanilla HTML/CSS/JS en modules ES. Serveur local n�
 - `js/sequence.js` : épinglage en CSS `position: sticky` (`.seq__track` 320 vh), progression calculée dans un rAF, frames WebP décrites par `data/sequence.json` (`count: 0` → rendu procédural, graphe de nœuds). Mode statique si `prefers-reduced-motion`, largeur ≤ 768 px ou `saveData`.
 - Projets : `scripts/build_projects.py` reprend l'ancienne logique client (sections `### slug` d'un README + dossier homonyme + `Stack :` + `⭐`) ; `REPO_GROUP`/`STATUS` y sont les seules listes à maintenir. `tests/test_build_projects.py` exige que les 24 URL de `docs/LIENS_ET_PROJETS.md` soient présentes.
 - Assistant (option A, sans LLM) : FAQ dans `data/profile.json` → `assistant.faq`, recherche par mots-clés normalisés (`normalize`/`score` testés), seuil 0,4, repli vers le contact.
-- CyberPulse : `src/main.py` (RSS → JSON structuré via OpenAI puis Gemini → edge-tts → validation `schemas/cyberpulse.schema.json`) ; toute étape incomplète → `exit 1`. Workflow `cyberpulse.yml` : job `generate` (secrets, lecture seule) → artefact → job `publish` (écriture, sans secrets) → job `alert` (issue). Le front accepte les formats v1 et v2 de `data.json`.
+- CyberPulse : `src/main.py` (RSS → JSON structuré via Gemini (cascade de modèles, thinking_budget=0) → Piper TTS (lameenc) puis edge-tts en repli, audio optionnel → validation `schemas/cyberpulse.schema.json`) ; toute étape incomplète → `exit 1`. Workflow `cyberpulse.yml` : job `generate` (secrets, lecture seule) → artefact → job `publish` (écriture, sans secrets) → job `alert` (issue). Le front accepte les formats v1 et v2 de `data.json`.
 - Breakpoints : nav burger ≤ 960 px ; sections/séquence ≤ 768 px ; grilles 1 col ≤ 640 px.
 
 ## Docs

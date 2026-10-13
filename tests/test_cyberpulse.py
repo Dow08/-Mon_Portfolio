@@ -83,7 +83,7 @@ def _valid_payload():
     return {"version": 2, "generated_at": "2026-10-13T08:00:00+00:00",
             "source": {"name": "The Hacker News", "url": "https://thehackernews.com"},
             "articles": [art, art, art], "script": "mot " * 200, "audio_file": "audio/latest_briefing.mp3",
-            "audio_bytes": 80000, "ai_providers": {"translation": "openai:gpt-4o-mini"}}
+            "audio_bytes": 80000, "ai_providers": {"translation": "gemini:gemini-2.5-flash"}}
 
 
 def test_schema_accepts_valid_payload_and_rejects_bad_url_or_count():
@@ -102,7 +102,7 @@ def test_schema_accepts_text_only_briefing_when_audio_unavailable():
 
 
 def test_main_publishes_without_audio_when_tts_fails(monkeypatch, tmp_path):
-    monkeypatch.setenv("OPENAI_API_KEY", "x")
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
     monkeypatch.delenv("GITHUB_STEP_SUMMARY", raising=False)
     art = {"title": "Titre long", "url": "https://thehackernews.com/x.html", "summary": "s", "published": ""}
     monkeypatch.setattr(cp, "scrape_hackernews", lambda n: [dict(art) for _ in range(3)])
@@ -118,6 +118,12 @@ def test_main_publishes_without_audio_when_tts_fails(monkeypatch, tmp_path):
 
 
 def test_main_fails_when_not_enough_articles(monkeypatch):
-    monkeypatch.setenv("OPENAI_API_KEY", "x")
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
     monkeypatch.setattr(cp, "scrape_hackernews", lambda n: [])
+    assert cp.main() == 1
+
+
+def test_main_refuses_to_start_without_gemini_key(monkeypatch):
+    for k in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "OPENAI_API_KEY"):
+        monkeypatch.delenv(k, raising=False)
     assert cp.main() == 1

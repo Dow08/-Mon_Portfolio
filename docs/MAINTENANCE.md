@@ -55,8 +55,7 @@ python -c "import json,re;h=open('index.html',encoding='utf-8').read();k=set(re.
 
 | Secret (Settings → Secrets → Actions) | Usage | Si absent |
 |---|---|---|
-| `OPEN_AI_KEY` | traduction + script CyberPulse (OpenAI) | repli Gemini |
-| `GEMINI_KEY` | repli | échec du job si les deux manquent → issue automatique |
+| `GEMINI_KEY` | traduction + script CyberPulse (Gemini, seul fournisseur depuis le 2026-10-13) | échec du job → issue automatique |
 
 Aucun autre compte ni service n'est nécessaire.
 
