@@ -42,4 +42,20 @@ Ajouts évalués : `src/` réécrit, `schemas/`, 3 workflows épinglés par SHA,
 | Maintenabilité / tests | 10 % | 9 | +2 | 14 tests, validateurs, workflows documentés, rapports ; code mort encore présent |
 | **Global pondéré** | | **7,9 / 10** | +0,7 | |
 
+## 2026-10-13 (soir) — Lot 6 : SEO, accessibilité, FR/EN, contenu validé
+
+| Critère | Poids | Note | Variation | Justification |
+|---|---:|---:|---:|---|
+| Faits et crédibilité | 15 % | 8 | +2 | Hero, gouvernance et contact réécrits avec les réponses de Dorian (postes visés, « depuis 2014 », stage, disponibilité, Rodez) ; 0 marqueur `PROTOTYPE`. Reste : certifications/formation non encore affichées (dates à fournir), LinkedIn à confirmer |
+| Liens et fonctionnalités | 10 % | 9 | = | — |
+| Qualité artistique | 10 % | 8 | = | og.png généré ; poster séquence toujours temporaire |
+| Expérience cinématique | 10 % | 6 | = | attend la séquence (prompt livré) |
+| Responsive mobile | 10 % | 10 | = | toggle de langue testé en pilule et dans le menu mobile |
+| Sécurité | 15 % | 9 | = | pages 404 / accessibilité avec `script-src 'none'` |
+| Performance | 10 % | 9 | +2 | Lighthouse desktop 100, mobile 95 (LCP 2,6 s simulé, objectif 2,5) ; CLS 0, TBT 0 |
+| Accessibilité | 5 % | 9 | +1 | Lighthouse 100 ; déclaration publiée ; axe et lecteur d'écran non faits |
+| SEO / recrutement | 5 % | 9 | +3 | Lighthouse SEO 100 ; sitemap, robots, JSON-LD Person (champs validés), hreflang, og:image |
+| Maintenabilité / tests | 10 % | 9 | = | i18n vérifiée par script (0 clé manquante) |
+| **Global pondéré** | | **8,7 / 10** | +0,8 | Utilisable ; livraison à partir de 9,5 : séquence, compétences/formation, assistant, nettoyage (lot 8) |
+
 Contrôles bloquants (§18) à ce stade : liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exit 1 + issue auto ; exécution réelle à confirmer après push) · médias avec repli ✅ (poster/procédural) · reduced-motion ✅ · informations validées ❌ · pas de fonctionnalité simulée ✅ · tests exécutés ✅ (14 automatisés + navigateur ; Lighthouse/axe en attente) · limitations documentées ✅ · déploiement/retour arrière documentés ✅.

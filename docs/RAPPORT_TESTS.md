@@ -40,9 +40,25 @@ Autres vérifications navigateur :
 - Matrice : 25 cellules + 3 points apparaissent à l'entrée dans le viewport.
 - Requêtes réseau : **0 requête externe** ; seul 404 attendu : `data/sequence.json` (frames non encore livrées — repli procédural actif).
 
+### Lighthouse (2026-10-13, lot 7, avant le lot 6 ; `npx lighthouse`, Chrome headless, serveur local)
+
+| Profil | Performance | Accessibilité | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS |
+|---|---:|---:|---:|---:|---|---|---|---|
+| Desktop (preset desktop) | **100** | **100** | 96 | **100** | 0,5 s | 0,6 s | 0 ms | 0 |
+| Mobile (simulation 4G lente, CPU ×4) | **95** | **100** | 96 | **100** | 2,2 s | **2,6 s** | 0 ms | 0 |
+
+Résultats de laboratoire (simulation), pas des données terrain. Points relevés :
+- « Erreurs en console » (bonnes pratiques 96) : le 404 de `data/sequence.json` → corrigé au lot 6 (manifeste vide livré).
+- LCP mobile 2,6 s, légèrement au-dessus de l'objectif de 2,5 s : dû aux 5 feuilles CSS bloquantes (« render-blocking », 1,15 s simulées). Piste : concaténer les CSS en un fichier et inliner `tokens.css` + le CSS critique du hero ; minification (−6 Ko CSS, −3 Ko JS). À refaire après le lot 8.
+- bfcache : 2 raisons d'échec (non détaillées par le rapport JSON) ; à investiguer dans DevTools.
+
+### Bascule FR/EN (lot 6, navigateur)
+- Clic « EN » : `<html lang="en">`, titre traduit, 71 clés appliquées (hero, légendes, gouvernance, filtres « All / GRC & compliance… », badges « Showcase (private code) », source CyberPulse, date « 11 October 2026 »), choix mémorisé (`localStorage`), boutons `aria-pressed` cohérents. Retour « FR » : tout restauré. Vérification automatique : **0 clé HTML sans traduction**.
+- Contenu généré (descriptions de projets, articles) reste en français et porte `lang="fr"`.
+
 ### Non testé à ce stade (à faire)
 
-- Lighthouse (performance, LCP/INP/CLS) et axe-core : nécessitent `npx` (téléchargement de paquets npm) — **en attente d'autorisation**.
+- axe-core (`npx @axe-core/cli`) : non exécuté (Lighthouse accessibilité = 100, mais il ne couvre pas tout).
 - `prefers-reduced-motion` : non émulable dans le navigateur intégré ; à tester dans Chrome DevTools (Rendering → Emulate CSS media feature).
 - Lecture audio effective (clic sur Lecture) : non déclenchée automatiquement (autoplay policy) ; à tester à la main.
 - Lecteur d'écran (NVDA) et navigation clavier complète.
