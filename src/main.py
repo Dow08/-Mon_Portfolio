@@ -65,11 +65,20 @@ def call_ai(step: str, system_prompt: str, user_prompt: str, temperature: float,
         client = genai.Client(api_key=gemini_key)
         for model in GEMINI_MODELS:
             try:
-                resp = client.models.generate_content(
-                    model=model, contents=f"{system_prompt}\n\n{user_prompt}",
-                    config=types.GenerateContentConfig(temperature=temperature, max_output_tokens=max_tokens,
-                                                       response_mime_type="application/json"),
+                # Les modèles 2.5 comptent leurs tokens de « réflexion » dans
+                # max_output_tokens : sans ceci, la réponse JSON arrive tronquée
+                # (cause de l'échec du run 38384502055). La réflexion n'apporte
+                # rien pour une traduction ou un script court.
+                config = types.GenerateContentConfig(
+                    temperature=temperature, max_output_tokens=max_tokens,
+                    response_mime_type="application/json",
+                    thinking_config=types.ThinkingConfig(thinking_budget=0) if "pro" not in model else None,
                 )
+                resp = client.models.generate_content(
+                    model=model, contents=f"{system_prompt}\n\n{user_prompt}", config=config,
+                )
+                if not resp.text:
+                    raise RuntimeError("réponse vide")
                 PROVIDERS[step] = f"gemini:{model}"
                 return resp.text.strip()
             except Exception as e:  # noqa: BLE001
@@ -106,7 +115,7 @@ def translate_articles(news: list[dict]) -> list[dict]:
         f"contenant exactement {len(news)} éléments dans le même ordre. "
         "summary_fr : 2 phrases maximum, factuel, sans markdown."
     )
-    data = parse_json(call_ai("translation", "Tu es un traducteur anglais-français spécialisé en cybersécurité.", prompt, 0.2, 1500))
+    data = parse_json(call_ai("translation", "Tu es un traducteur anglais-français spécialisé en cybersécurité.", prompt, 0.2, 3000))
     items_fr = data.get("articles")
     if not isinstance(items_fr, list) or len(items_fr) != len(news):
         raise PipelineError(f"traduction incomplète ({len(items_fr) if isinstance(items_fr, list) else 'absente'}/{len(news)})")
@@ -128,7 +137,7 @@ def generate_script(news: list[dict]) -> str:
         f"ACTUALITÉS :\n{content}\n\n"
         'Réponds UNIQUEMENT avec un objet JSON {"script":"..."}.'
     )
-    data = parse_json(call_ai("script", "Tu es un journaliste radio français, clair et professionnel.", prompt, 0.7, 2000))
+    data = parse_json(call_ai("script", "Tu es un journaliste radio français, clair et professionnel.", prompt, 0.7, 4000))
     script = str(data.get("script", "")).strip()
     words = len(script.split())
     if not 120 <= words <= 400:
