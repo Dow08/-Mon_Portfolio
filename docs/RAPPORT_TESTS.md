@@ -131,6 +131,9 @@ Objectifs du cahier des charges (LCP ≤ 2,5 s, INP/TBT ≤ 200 ms, CLS ≤ 0,1)
 | CyberPulse `38384737825` | échec | traduction et script OK ; **edge-tts 403** (`speech.platform.bing.com` refuse les adresses GitHub Actions, 3 tentatives) — cause probable de l'échec du 12/10 déjà |
 | CyberPulse `38385053947` | **succès** | flash du 13/10 publié **en texte seul**, `audio_file: null`, mention dans le résumé du job et sur le site ; issue #1 fermée avec explication |
 
+| CyberPulse `38385899821` (Piper v1) | succès, sans audio | Piper OK mais **ffmpeg absent des runners GitHub** (mon contrôle `ffmpeg -version \| head` ne faisait pas échouer l'étape) → encodage MP3 remplacé par `lameenc` |
+| CyberPulse `38386496778` (Piper + lameenc) | **succès avec audio** | voix `fr_FR-tom-medium` téléchargée (63 Mo) et mise en cache (`actions/cache`), MP3 de 620 Ko (~80 s) publié, lecteur fonctionnel sur le site |
+
 Constat annexe : le secret `OPEN_AI_KEY` est vide (`OPENAI_API_KEY:` vide dans l'environnement du job) ; le pipeline tourne entièrement sur Gemini. À corriger ou à assumer (Dorian).
 
 Décision en attente : remplacement de la synthèse vocale (voir DECISIONS_TECHNIQUES D7).
