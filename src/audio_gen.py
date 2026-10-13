@@ -14,6 +14,7 @@ Variables d'environnement :
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import os
 import shutil
 import subprocess
@@ -24,19 +25,46 @@ from pathlib import Path
 
 PIPER_VOICE = os.environ.get("PIPER_VOICE", "fr_FR-tom-medium")
 PIPER_VOICES_DIR = Path(os.environ.get("PIPER_VOICES_DIR", Path.home() / ".cache" / "piper-voices"))
+# Empreintes SHA-256 des modèles autorisés (source : pointeur Git LFS du dépôt
+# rhasspy/piper-voices sur Hugging Face, vérifié le 2026-10-13). Un modèle
+# téléchargé qui ne correspond pas est supprimé et refusé : on n'exécute pas
+# un fichier ONNX d'origine inconnue.
+PIPER_VOICE_SHA256 = {
+    "fr_FR-tom-medium": "bf65074ccdeeeeaa832e75edb1c0a513c01c9a972bdf085ff8a6e71ea234fd41",
+}
 EDGE_VOICE = "fr-FR-HenriNeural"
 EDGE_RETRIES = 2
 
 
 # ─────────────────────────────── Piper ───────────────────────────────────
+def sha256_of(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def verify_model(onnx: Path, voice: str) -> None:
+    """Refuse un modèle dont l'empreinte n'est pas celle attendue (ou inconnue)."""
+    expected = PIPER_VOICE_SHA256.get(voice)
+    if not expected:
+        raise RuntimeError(f"voix {voice} sans empreinte connue : l'ajouter à PIPER_VOICE_SHA256 après vérification")
+    actual = sha256_of(onnx)
+    if actual != expected:
+        onnx.unlink(missing_ok=True)
+        raise RuntimeError(f"empreinte du modèle {voice} inattendue ({actual[:16]}… ≠ {expected[:16]}…) : fichier supprimé")
+
+
 def piper_model_path(voice: str = PIPER_VOICE) -> Path:
-    """Chemin du modèle .onnx ; le télécharge (avec son .json) s'il manque."""
+    """Chemin du modèle .onnx ; le télécharge (avec son .json) s'il manque, et vérifie son empreinte."""
     onnx = PIPER_VOICES_DIR / f"{voice}.onnx"
     if not (onnx.exists() and onnx.with_suffix(".onnx.json").exists()):
         PIPER_VOICES_DIR.mkdir(parents=True, exist_ok=True)
         print(f"   téléchargement de la voix Piper {voice}…")
         subprocess.run([sys.executable, "-m", "piper.download_voices", voice,
                         "--download-dir", str(PIPER_VOICES_DIR)], check=True)
+    verify_model(onnx, voice)
     return onnx
 
 

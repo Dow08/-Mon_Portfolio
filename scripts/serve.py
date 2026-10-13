@@ -15,7 +15,7 @@ from pathlib import Path
 
 CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; "
        "font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; "
-       "base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'")
+       "base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; require-trusted-types-for 'script'")
 
 
 class Handler(SimpleHTTPRequestHandler):

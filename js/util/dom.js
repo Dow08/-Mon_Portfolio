@@ -8,16 +8,25 @@
  * Crée un élément. attrs : {class, dataset, aria-*, href…}, children : string | Node | array.
  * Une string devient un nœud texte (jamais du HTML).
  */
+/** Attributs qui peuvent exécuter du code ou charger une ressource : jamais posés depuis une chaîne. */
+const FORBIDDEN_ATTRS = new Set(['srcdoc', 'formaction', 'action', 'xlink:href', 'style', 'is']);
+const URL_ATTRS = new Set(['href', 'src', 'poster', 'data', 'ping', 'cite', 'background']);
+
 export function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
   for (const [key, value] of Object.entries(attrs)) {
     if (value === null || value === undefined || value === false) continue;
-    if (key === 'class') node.className = value;
-    else if (key === 'dataset') Object.assign(node.dataset, value);
-    else if (key === 'text') node.textContent = value;
-    else if (key === 'href') { const safe = safeHref(value); if (safe) node.setAttribute('href', safe); }
-    else if (key.startsWith('on') && typeof value === 'function') node.addEventListener(key.slice(2), value);
-    else node.setAttribute(key, value === true ? '' : String(value));
+    const k = key.toLowerCase();
+    if (k === 'class') node.className = value;
+    else if (k === 'dataset') Object.assign(node.dataset, value);
+    else if (k === 'text') node.textContent = value;
+    else if (k.startsWith('on')) {
+      // Gestionnaire d'événement : uniquement une fonction, jamais une chaîne (onclick="…")
+      if (typeof value === 'function') node.addEventListener(k.slice(2), value);
+    }
+    else if (FORBIDDEN_ATTRS.has(k)) { /* ignoré : ne peut pas être posé par el() */ }
+    else if (URL_ATTRS.has(k)) { const safe = safeHref(value); if (safe) node.setAttribute(k, safe); }
+    else node.setAttribute(k, value === true ? '' : String(value));
   }
   for (const child of [].concat(children)) {
     if (child === null || child === undefined || child === false) continue;

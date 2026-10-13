@@ -46,7 +46,10 @@ export async function initSequence() {
       if (r.ok) manifest = await r.json();
     } catch { manifest = null; }
   }
-  if (manifest && Number.isInteger(manifest.count) && manifest.count > 0 && typeof manifest.pattern === 'string') {
+  // Manifeste valide = compte raisonnable et chemin de frames à l'intérieur du site
+  const manifestOk = manifest && Number.isInteger(manifest.count) && manifest.count > 0 && manifest.count <= 400
+    && typeof manifest.pattern === 'string' && /^assets\/sequence\/\{n\}\.(webp|jpg|png)$/.test(manifest.pattern);
+  if (manifestOk) {
     frames = new Array(manifest.count).fill(null);
     const load = (i) => {
       if (frames[i] !== null) return;
