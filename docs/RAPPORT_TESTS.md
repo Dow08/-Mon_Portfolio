@@ -67,10 +67,32 @@ Résultats de laboratoire (simulation), pas des données terrain. Points relevé
 | Nav : à 927 px, 6 liens + langue + CTA ne tenaient plus → burger relevé à 960 px ; vérifié à 1 280 px (une ligne) | ok |
 | Après concaténation CSS : une seule feuille chargée, aucun 404, rendu identique | ok |
 
+### Lighthouse — 2e passage (2026-10-13, après lots 5-8, CSS concaténé)
+
+| Profil | Performance | Accessibilité | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS |
+|---|---:|---:|---:|---:|---|---|---|---|
+| Desktop | **100** | **100** | **100** | **100** | 0,5 s | 0,6 s | 0 ms | 0 |
+| Mobile (4G lente simulée, CPU ×4) | **94** | **100** | **100** | **100** | 2,2 s | **2,7 s** | 0 ms | 0 |
+
+- Bonnes pratiques 96 → 100 (plus aucune erreur console).
+- LCP mobile 2,7 s (simulé) : seul `site.css` est bloquant (155 ms simulées) ; l'essentiel vient du **serveur local qui ne compresse pas** (« document latency : 14 Ko à gagner ») — GitHub Pages sert en gzip/brotli, le résultat réel devrait passer sous 2,5 s. À confirmer sur l'URL publique après mise en production (c'est la mesure qui compte).
+- bfcache : les deux raisons sont le `Cache-Control: no-store` de `scripts/serve.py` (dev uniquement), absent en production.
+- Reflow forcé (79 ms) dans `reveal.js` : corrigé (lecture de toutes les positions avant les écritures).
+
+### axe-core 4.14 (2026-10-13, exécuté dans le navigateur, règles WCAG 2.0/2.1/2.2 A+AA + bonnes pratiques)
+
+`npx @axe-core/cli` a échoué (ChromeDriver 155 vs Chrome 154 installé) ; axe a donc été injecté localement (`.axe-tmp/axe.min.js`, hors dépôt) dans les pages servies par le serveur de dev.
+
+| Page | Violations | Règles passées | À vérifier manuellement |
+|---|---:|---:|---|
+| `index.html` (état initial, FR) | **0** | 46 | 1 : contraste de `.nav__brand`, indéterminable par l'outil à cause du pseudo-élément flouté de la pilule. Vérifié à la main : `#F4F5F2` sur un fond ≥ `rgba(11,35,34,.72)` au-dessus de `#061716` → ≥ 15 : 1 |
+| `accessibilite.html` (copie sans CSP, le script y est interdit) | **0** | 26 | idem (même nav) |
+
+Non couvert par axe : états ouverts (menu mobile, dialogue de l'assistant), version EN, lecteur d'écran.
+
 ### Non testé à ce stade (à faire)
 
-- Lighthouse à refaire après la concaténation CSS (objectif : LCP mobile < 2,5 s).
-- axe-core (`npx @axe-core/cli`) : non exécuté (Lighthouse accessibilité = 100, mais il ne couvre pas tout).
+- Lighthouse sur l'URL publique après mise en production (compression serveur).
 - `prefers-reduced-motion` : non émulable dans le navigateur intégré ; à tester dans Chrome DevTools (Rendering → Emulate CSS media feature).
 - Lecture audio effective (clic sur Lecture) : non déclenchée automatiquement (autoplay policy) ; à tester à la main.
 - Lecteur d'écran (NVDA) et navigation clavier complète.

@@ -16,9 +16,14 @@ export function observeReveal(root = document) {
       }
     }, { threshold: 0.15 });
   }
-  root.querySelectorAll('.reveal:not(.is-visible)').forEach((node) => {
+  // Lecture de toutes les positions d'abord, écritures ensuite : évite un
+  // recalcul de mise en page par élément (reflow forcé mesuré par Lighthouse).
+  const nodes = [...root.querySelectorAll('.reveal:not(.is-visible)')];
+  const viewportH = window.innerHeight;
+  const aboveFold = nodes.map((node) => node.getBoundingClientRect().top < viewportH);
+  nodes.forEach((node, i) => {
     // Ce qui est déjà à l'écran au chargement apparaît sans attendre l'observateur
-    if (node.getBoundingClientRect().top < window.innerHeight) node.classList.add('is-visible');
+    if (aboveFold[i]) node.classList.add('is-visible');
     else observer.observe(node);
   });
 }

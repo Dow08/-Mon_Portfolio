@@ -74,4 +74,13 @@ Ajouts évalués : `src/` réécrit, `schemas/`, 3 workflows épinglés par SHA,
 | Maintenabilité / tests | 10 % | 10 | +1 | 21 tests, `build_css --check`, MAINTENANCE.md, README honnête, CLAUDE.md, code mort supprimé |
 | **Global pondéré** | | **9,0 / 10** | +0,3 | Manque pour 9,5 : la séquence réelle (cinématique 6 → 9) et les dates de certification |
 
+## 2026-10-13 (nuit, suite) — Lighthouse 2e passage + axe-core
+
+| Critère | Note | Variation | Justification |
+|---|---:|---:|---|
+| Performance | 9 | = | Desktop 100 ; mobile 94 avec LCP 2,7 s **sur serveur local non compressé** ; la mesure décisive se fera sur l'URL publique |
+| Accessibilité | 10 | +1 | axe-core : 0 violation sur les deux pages (46 + 26 règles passées), Lighthouse 100 ; le seul point « à vérifier » (contraste de la marque dans la nav) est vérifié à la main. Limite : pas de test lecteur d'écran — critère défini comme « 0 violation outillée + clavier », atteint |
+| SEO / recrutement | 10 | +1 | Lighthouse SEO 100, bonnes pratiques 100 |
+| **Global pondéré** | **9,1 / 10** | +0,1 | Bloquant restant pour 9,5 : la séquence |
+
 Contrôles bloquants (§18) à ce stade : liens ✅ · navigation ✅ · débordement mobile ✅ · menu mobile ✅ · projets sans API ✅ · injection sûre ✅ · aucun secret client ✅ · workflows signalent les échecs ✅ (exit 1 + issue auto ; exécution réelle à confirmer après push) · médias avec repli ✅ (poster/procédural) · reduced-motion ✅ · informations validées ❌ · pas de fonctionnalité simulée ✅ · tests exécutés ✅ (14 automatisés + navigateur ; Lighthouse/axe en attente) · limitations documentées ✅ · déploiement/retour arrière documentés ✅.

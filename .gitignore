@@ -66,3 +66,4 @@ yarn-error.log*
 # ===========================================
 # Note: cyber-news/data.json et audio/ sont générés par GitHub Actions
 # et DOIVENT être committés pour le déploiement
+.axe-tmp/
