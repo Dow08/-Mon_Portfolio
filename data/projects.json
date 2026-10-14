@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T08:24:39+00:00",
+  "generated_at": "2026-10-14T10:29:45+00:00",
   "owner": "Dow08",
   "repo_count": 10,
   "groups": {
@@ -19,20 +19,6 @@
   },
   "projects": [
     {
-      "id": "OS-Agentique_showcase",
-      "title": "OS Agentique Showcase",
-      "group": "ia",
-      "group_label": "IA & automatisation",
-      "repo": "OS-Agentique_showcase",
-      "repo_label": "Projet",
-      "description": "Une équipe de 20 agents IA qui tourne en local sur Windows : interface vocale, approbation humaine pour chaque action sensible, résultats vérifiés. Vitrine d'Hermes OS.",
-      "stack": [],
-      "featured": false,
-      "status": "vitrine",
-      "url": "https://github.com/Dow08/OS-Agentique_showcase",
-      "updated_at": "2026-10-02T07:25:39Z"
-    },
-    {
       "id": "Green-Shield-GRC",
       "title": "Green Shield GRC",
       "group": "grc",
@@ -46,7 +32,21 @@
       "featured": false,
       "status": "perso",
       "url": "https://github.com/Dow08/Green-Shield-GRC",
-      "updated_at": "2026-09-28T20:08:41Z"
+      "updated_at": "2026-10-14T02:53:49Z"
+    },
+    {
+      "id": "OS-Agentique_showcase",
+      "title": "OS Agentique Showcase",
+      "group": "ia",
+      "group_label": "IA & automatisation",
+      "repo": "OS-Agentique_showcase",
+      "repo_label": "Projet",
+      "description": "Une équipe de 20 agents IA qui tourne en local sur Windows : interface vocale, approbation humaine pour chaque action sensible, résultats vérifiés. Vitrine d'Hermes OS.",
+      "stack": [],
+      "featured": false,
+      "status": "vitrine",
+      "url": "https://github.com/Dow08/OS-Agentique_showcase",
+      "updated_at": "2026-10-02T07:25:39Z"
     },
     {
       "id": "RED-SHIELD-",
