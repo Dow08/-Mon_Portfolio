@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-14T13:12:04+00:00",
+  "generated_at": "2026-10-15T12:58:36+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -8,33 +8,33 @@
   },
   "articles": [
     {
-      "title": "CISA Urges Immediate Ivanti Connect Secure Updates as Honeypots Log 105 Exploit Attempts",
-      "url": "https://thehackernews.com/2026/10/cisa-urges-immediate-ivanti-connect.html",
-      "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday urged organizations to take steps to immediately update their Ivanti Connect Secure (ICS) appliances and deployments to the latest version following the disclosure of an actively exploited vulnerability. The security flaw, tracked as CVE-2026-104935 (CVSS score: 8.6), is a case of authentication bypass impacting ICS",
-      "title_fr": "La CISA exhorte à des mises à jour immédiates d'Ivanti Connect Secure alors que des honeypots enregistrent 105 tentatives d'exploitation",
-      "summary_fr": "La CISA a exhorté les organisations à mettre à jour leurs appliances Ivanti Connect Secure (ICS) suite à la divulgation d'une vulnérabilité activement exploitée. La faille de sécurité, CVE-2026-104935, est un contournement d'authentification affectant ICS.",
-      "published": "Wed, 14 Oct 2026 18:00:42 +0530"
+      "title": "Drupal Patches Critical Core RCE Flaw with No-Login Path via Contributed Modules",
+      "url": "https://thehackernews.com/2026/10/drupal-patches-critical-core-rce-flaw.html",
+      "summary": "Drupal core has a critical flaw in its Field UI module that could let an attacker run code on the site's server, and fixes were shipped on October 14 in Drupal 11.4.10, 11.3.19, and 10.6.19. An attacker cannot reach the flaw through core alone, the Drupal Security Team said in its advisory. Several exploit paths exist through contributed modules, and at least one known path needs no login.",
+      "title_fr": "Drupal corrige une faille RCE critique dans le cœur, sans chemin de connexion via des modules contribués",
+      "summary_fr": "Le cœur de Drupal présente une faille critique dans son module Field UI qui pourrait permettre à un attaquant d'exécuter du code sur le serveur du site. Des correctifs ont été publiés le 14 octobre dans Drupal 11.4.10, 11.3.19 et 10.6.19. Bien que la faille ne soit pas accessible via le cœur seul, plusieurs chemins d'exploitation existent via des modules contribués, dont au moins un ne nécessite aucune connexion.",
+      "published": "Thu, 15 Oct 2026 17:37:20 +0530"
     },
     {
-      "title": "curl Patches HTTP/2 Upload Flaw After PoC Demonstrates Client-Side Code Execution",
-      "url": "https://thehackernews.com/2026/10/curl-patches-http2-upload-flaw-after.html",
-      "summary": "A flaw in how curl handles HTTP/2 uploads lets a malicious server receiving an upload corrupt the client's memory, and the researcher who reported it turned that into code execution on the uploading machine. The curl project fixed it on October 14 in curl 8.23.0. Taking over a client needs exact knowledge of its build and memory layout, and curl expects a real attack to end in a crash",
-      "title_fr": "curl corrige une faille de téléchargement HTTP/2 après qu'une preuve de concept démontre l'exécution de code côté client",
-      "summary_fr": "Une faille dans la gestion des téléchargements HTTP/2 par curl permet à un serveur malveillant de corrompre la mémoire du client, menant à l'exécution de code. Le projet curl a corrigé cette faille le 14 octobre dans la version 8.23.0.",
-      "published": "Wed, 14 Oct 2026 17:43:36 +0530"
+      "title": "Fake AI Attacks Spread Across US Companies: How MSSPs Can Stop Incidents Early",
+      "url": "https://thehackernews.com/2026/10/fake-ai-attacks-spread-across-us.html",
+      "summary": "Attackers are impersonating popular AI products to distribute malware, steal browser sessions, and compromise business accounts. ANY.RUN linked 1,258 public sandbox analyses to fake AI campaigns between April and October of 2026. The campaigns also increase operational pressure on MSSPs serving US businesses, which accounted for 16% of country-attributed targets. Similar attacks",
+      "title_fr": "De fausses attaques d'IA se propagent dans les entreprises américaines : comment les MSSP peuvent arrêter les incidents précocement",
+      "summary_fr": "Des attaquants se font passer pour des produits d'IA populaires afin de distribuer des malwares, de voler des sessions de navigateur et de compromettre des comptes professionnels. ANY.RUN a lié 1 258 analyses de sandbox publiques à de fausses campagnes d'IA entre avril et octobre 2026. Ces campagnes augmentent également la pression opérationnelle sur les MSSP desservant les entreprises américaines, qui représentaient 16% des cibles attribuées par pays.",
+      "published": "Thu, 15 Oct 2026 17:16:59 +0530"
     },
     {
-      "title": "How to Run a Deepfake Readiness Drill Before a Cloned Voice Calls Your Team",
-      "url": "https://thehackernews.com/2026/10/how-to-run-deepfake-readiness-drill.html",
-      "summary": "Cloned voices and synthetic video calls now show up in payment fraud, help desk resets, and access requests. A structured drill shows security teams exactly where verification breaks down, while nothing is at stake. The call comes in at 4:40 on a Friday. It's the CFO, or it sounds exactly like her, asking the controller to push a supplier payment out before the weekend because a deal closes",
-      "title_fr": "Comment effectuer un exercice de préparation aux deepfakes avant qu'une voix clonée n'appelle votre équipe",
-      "summary_fr": "Les voix clonées et les appels vidéo synthétiques sont désormais utilisés dans la fraude aux paiements et les demandes d'accès. Un exercice structuré révèle les faiblesses de la vérification sans risque, simulant un appel du directeur financier demandant un paiement urgent.",
-      "published": "Wed, 14 Oct 2026 17:20:00 +0530"
+      "title": "Palo Alto Networks Patches PAN-OS Authenticated RCE Flaw Amid Active Exploitation",
+      "url": "https://thehackernews.com/2026/10/palo-alto-networks-patches-pan-os.html",
+      "summary": "Palo Alto Networks on Wednesday issued security updates for a high-severity flaw in PAN-OS software that has come under active exploitation. The vulnerability, tracked as CVE-2026-0322 (CVSS score: 8.6), is a case of remote code execution in the management interface. \"A remote code execution (RCE) vulnerability in the management interface of Palo Alto Networks PAN-OS software enables an",
+      "title_fr": "Palo Alto Networks corrige une faille RCE authentifiée dans PAN-OS suite à une exploitation active",
+      "summary_fr": "Palo Alto Networks a publié mercredi des mises à jour de sécurité pour une faille de gravité élevée dans le logiciel PAN-OS, qui fait l'objet d'une exploitation active. La vulnérabilité, suivie sous CVE-2026-0322 (score CVSS : 8.6), est un cas d'exécution de code à distance dans l'interface de gestion.",
+      "published": "Thu, 15 Oct 2026 17:16:49 +0530"
     }
   ],
-  "script": "Flash Info Cyber. Bonjour à toutes et à tous et bienvenue pour ce nouveau point sur l'actualité de la cybersécurité. Aujourd'hui, nous abordons l'urgence des mises à jour, une faille critique et la préparation face aux menaces d'intelligence artificielle. La CISA, l'agence américaine de cybersécurité, appelle les organisations à la plus grande vigilance concernant les équipements Ivanti Connect Secure. Une vulnérabilité critique est actuellement exploitée, permettant à des attaquants de contourner l'authentification. Il est impératif de procéder aux mises à jour recommandées sans délai pour sécuriser vos systèmes. Par ailleurs, une faille importante a été découverte et corrigée dans curl, un outil très utilisé pour les transferts de données. Cette vulnérabilité aurait pu permettre à un serveur malveillant d'exécuter du code sur les machines clientes lors de téléchargements via HTTP/2. La mise à jour vers la version 8.23.0 est essentielle pour se protéger. Enfin, face à la montée en puissance des technologies d'intelligence artificielle, des exercices de simulation sont désormais cruciaux pour se prémunir contre les fraudes. Des voix clonées et des appels vidéo truqués sont de plus en plus utilisés pour tromper les équipes et obtenir des paiements frauduleux ou des accès non autorisés. Mettre en place des scénarios de test permet de renforcer les procédures de vérification. C'est la fin de ce Flash Info Cyber. Restez vigilants et à très bientôt.",
+  "script": "Flash Info Cyber. Bonjour à toutes et à tous, et bienvenue pour ce point rapide sur l'actualité de la cybersécurité. Nous commençons avec une alerte importante pour les utilisateurs de Drupal. Une vulnérabilité critique a été découverte dans le cœur du système, permettant potentiellement l'exécution de code à distance. Des correctifs ont été déployés mi-octobre. Si le cœur seul ne suffit pas à l'exploiter, des modules tiers peuvent ouvrir la porte aux attaquants, parfois même sans nécessiter d'authentification. Il est donc impératif de mettre à jour vos installations. Ensuite, méfiance face aux fausses alertes d'intelligence artificielle. Des cybercriminels se servent de l'engouement autour de l'IA pour diffuser des logiciels malveillants, dérober des sessions de navigation et compromettre des comptes professionnels. Des milliers de tentatives ont été recensées ces derniers mois, ciblant particulièrement les entreprises américaines. Soyez donc extrêmement vigilants face aux offres ou messages suspects prétendant provenir de produits d'IA. Enfin, Palo Alto Networks a récemment corrigé une faille de sécurité majeure dans son logiciel PAN-OS. Cette vulnérabilité, qui permet l'exécution de code à distance via l'interface de gestion, était déjà exploitée activement par des attaquants. Des mises à jour ont été publiées pour y remédier. Si vous utilisez PAN-OS, assurez-vous d'appliquer les correctifs sans délai. Restez vigilants et à très bientôt pour un nouveau Flash Info Cyber.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 700708,
+  "audio_bytes": 706560,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
