@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-17T11:52:47+00:00",
+  "generated_at": "2026-10-18T12:18:39+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -8,11 +8,19 @@
   },
   "articles": [
     {
+      "title": "ConnectWise Suspends Cloud Backup After Attackers Compromise Microsoft 365 Tenants",
+      "url": "https://thehackernews.com/2026/10/connectwise-suspends-cloud-backup-after.html",
+      "summary": "ConnectWise on Saturday said it has disabled seven ConnectWise application identities as it continues its investigation into an incident in which unknown threat actors obtained unauthorized access to the application identities and compromised Microsoft 365 tenants. The disabled identities are listed below - ConnectWise Cloud Backup - 506e08f9-6e9a-4da4-942b-a099a03644ae ConnectWise",
+      "title_fr": "ConnectWise suspend le service Cloud Backup après la compromission de locataires Microsoft 365 par des attaquants",
+      "summary_fr": "ConnectWise a annoncé samedi avoir désactivé sept identités d'application ConnectWise dans le cadre de son enquête sur un incident où des acteurs de la menace inconnus ont obtenu un accès non autorisé à ces identités et compromis des locataires Microsoft 365. Les identités désactivées incluent ConnectWise Cloud Backup - 506e08f9-6e9a-4da4-942b-a099a03644ae ConnectWise.",
+      "published": "Sun, 18 Oct 2026 13:53:02 +0530"
+    },
+    {
       "title": "MALFEX npm Package 'imgdecode' Hides Shellcode Loader in Windows Native Addon",
       "url": "https://thehackernews.com/2026/10/malfex-npm-package-imgdecode-hides.html",
       "summary": "Cybersecurity researchers have discovered a malicious npm package that's part of a recently disclosed software supply chain attack campaign dubbed MALFEX. The package, named \"imgdecode,\" was uploaded to the package registry on September 30, 2026, by a user named \"malfexteste8.\" It has been downloaded 979 times as of writing and is still available on npm as of writing. The latest version of",
       "title_fr": "Le package npm MALFEX 'imgdecode' cache un chargeur de shellcode dans un module complémentaire natif Windows",
-      "summary_fr": "Des chercheurs en cybersécurité ont découvert un package npm malveillant, 'imgdecode', faisant partie de la campagne d'attaque de la chaîne d'approvisionnement logicielle MALFEX. Téléchargé 979 fois, il dissimule un chargeur de shellcode dans un module complémentaire natif Windows.",
+      "summary_fr": "Des chercheurs en cybersécurité ont découvert un package npm malveillant faisant partie d'une campagne d'attaque de la chaîne d'approvisionnement logicielle récemment divulguée, nommée MALFEX. Le package, nommé 'imgdecode', a été téléchargé sur le registre le 30 septembre 2026 par un utilisateur nommé 'malfexteste8' et a été téléchargé 979 fois.",
       "published": "Sat, 17 Oct 2026 16:41:56 +0530"
     },
     {
@@ -20,21 +28,13 @@
       "url": "https://thehackernews.com/2026/10/hackers-use-compromised-connectwise.html",
       "summary": "Cybersecurity researchers are sounding the alarm related to an active campaign in which unknown threat actors are abusing a compromised Microsoft 365 (M365) credential belonging to ConnectWise Cloud Backup (formerly SkyKick) to gain unauthorized access to customers' M365 environments. ConnectWise Cloud Backup is a cloud-based backup and recovery service built for managed service providers (MSPs",
       "title_fr": "Des pirates utilisent des identifiants ConnectWise compromis pour se connecter à 173 locataires Microsoft 365",
-      "summary_fr": "Des acteurs malveillants exploitent un identifiant Microsoft 365 compromis de ConnectWise Cloud Backup pour accéder sans autorisation aux environnements M365 de clients. Cette campagne active alerte les chercheurs en cybersécurité sur les risques liés aux services de sauvegarde cloud pour les MSP.",
+      "summary_fr": "Des chercheurs en cybersécurité alertent sur une campagne active où des acteurs de la menace abusent d'un identifiant Microsoft 365 (M365) compromis appartenant à ConnectWise Cloud Backup (anciennement SkyKick). Cela leur permet d'obtenir un accès non autorisé aux environnements M365 des clients. ConnectWise Cloud Backup est un service de sauvegarde et de récupération basé sur le cloud conçu pour les fournisseurs de services gérés (MSP).",
       "published": "Sat, 17 Oct 2026 11:46:46 +0530"
-    },
-    {
-      "title": "Researchers Demonstrate OpenBSD Root Exploit Chaining 37-Year-Old Shared-Memory Bug",
-      "url": "https://thehackernews.com/2026/10/researchers-demonstrate-openbsd-root.html",
-      "summary": "A local privilege escalation exploit published today gains root on OpenBSD 7.9 by chaining a roughly 37-year-old integer overflow with a separate kernel flaw, bypassing OpenBSD's KARL kernel-address randomization and its SMAP and SMEP hardware protections. Security firm Calif, which found and reported the flaws, published a detailed writeup and full proof-of-concept code after OpenBSD shipped",
-      "title_fr": "Des chercheurs démontrent un exploit root OpenBSD en chaînant une faille de mémoire partagée vieille de 37 ans",
-      "summary_fr": "Un exploit d'escalade de privilèges local obtient les droits root sur OpenBSD 7.9 en combinant un débordement d'entier vieux de 37 ans avec une faille de noyau distincte. Cela contourne les protections KARL, SMAP et SMEP d'OpenBSD, comme démontré par la firme de sécurité Calif.",
-      "published": "Fri, 16 Oct 2026 23:18:45 +0530"
     }
   ],
-  "script": "Flash Info Cyber, bonjour à toutes et à tous. Restez connectés pour notre point sur l'actualité de la cybersécurité. En première information, un nouveau package malveillant a été repéré sur la plateforme npm. Nommé 'imgdecode', il fait partie de la campagne MALFEX et a déjà été téléchargé près de mille fois. Ce package dissimule un chargeur de shellcode au sein d'un module complémentaire natif Windows, représentant une menace sérieuse pour la chaîne d'approvisionnement logicielle. Soyez donc extrêmement prudents avec les packages que vous intégrez à vos projets. Ensuite, des pirates informatiques utilisent actuellement des identifiants ConnectWise compromis pour s'introduire dans pas moins de 173 locataires Microsoft 365. Cette campagne active met en lumière les risques liés aux services de sauvegarde cloud, notamment pour les fournisseurs de services gérés. Il est crucial de revoir la sécurité de vos accès et de vos sauvegardes pour éviter toute intrusion non autorisée. Enfin, des chercheurs en sécurité ont réussi à obtenir les droits d'administrateur, ou 'root', sur OpenBSD 7.9. Ils ont combiné un débordement d'entier datant de 37 ans avec une autre faille du noyau, contournant ainsi les protections avancées d'OpenBSD. Cette démonstration souligne que même les systèmes réputés très sécurisés peuvent présenter des vulnérabilités inattendues. Restez vigilants.",
+  "script": "Bonjour à toutes et à tous, bienvenue dans ce Flash Info Cyber. Restez connectés pour les dernières alertes. ConnectWise, un acteur majeur des services informatiques, a récemment suspendu son service Cloud Backup. Cette décision fait suite à la découverte que des attaquants ont réussi à compromettre des identités d'application, leur permettant d'accéder sans autorisation à des environnements Microsoft 365 de leurs clients. L'entreprise mène actuellement une enquête approfondie et a désactivé plusieurs identités d'application pour contenir l'incident. Dans un registre similaire, des chercheurs en cybersécurité ont mis en lumière une campagne d'attaque sophistiquée ciblant la chaîne d'approvisionnement logicielle. Un paquet npm malveillant, nommé 'imgdecode', a été identifié. Ce dernier, téléchargé près d'un millier de fois, dissimule un chargeur de shellcode dans un module complémentaire natif Windows, représentant une menace sérieuse pour les développeurs et leurs utilisateurs. Enfin, nous revenons sur l'alerte concernant l'utilisation d'identifiants ConnectWise compromis. Des pirates exploitent ces accès pour s'introduire dans pas moins de 173 locataires Microsoft 365. Ces identifiants proviennent du service ConnectWise Cloud Backup, anciennement SkyKick, et sont utilisés par des acteurs malveillants pour obtenir un contrôle non autorisé sur les environnements M365 de nombreuses entreprises. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 666644,
+  "audio_bytes": 694857,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
