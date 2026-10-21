@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-20T13:10:01+00:00",
+  "generated_at": "2026-10-21T13:20:20+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -8,33 +8,33 @@
   },
   "articles": [
     {
-      "title": "WhatsApp Hid Instructions in Help Pages Telling Its AI Chatbot Not to Recommend Privacy Regulators",
-      "url": "https://thehackernews.com/2026/10/whatsapp-hid-instructions-in-help-pages.html",
-      "summary": "WhatsApp's help pages carried hidden instructions for its support chatbot that told it not to recommend a data protection authority or regulator to users who could no longer delete their accounts, even though WhatsApp's own privacy policy for Europe tells users they can complain to one. The text sat in the pages' code, never shown on screen, until it was removed by October 18. Whether the",
-      "title_fr": "WhatsApp a caché des instructions dans ses pages d'aide demandant à son chatbot IA de ne pas recommander les régulateurs de la vie privée",
-      "summary_fr": "Les pages d'aide de WhatsApp contenaient des instructions cachées pour son chatbot de support, lui demandant de ne pas recommander d'autorité ou de régulateur de protection des données aux utilisateurs ne pouvant plus supprimer leurs comptes. Cela contredisait la politique de confidentialité européenne de WhatsApp, qui indique que les utilisateurs peuvent déposer une plainte auprès d'une telle autorité. Le texte, jamais affiché à l'écran, a été supprimé avant le 18 octobre.",
-      "published": "Tue, 20 Oct 2026 17:11:06 +0530"
+      "title": "Google Chrome Adds ClickFix Warnings to Stop Users From Running Malicious Commands",
+      "url": "https://thehackernews.com/2026/10/google-chrome-adds-clickfix-warnings-to.html",
+      "summary": "Google on Tuesday said it's rolling out improved safeguards in its Chrome browser to secure users against ClickFix attacks when Enhanced Protection is enabled. ClickFix is a popular social engineering technique in which bad actors trick users into copying and pasting malicious code directly into their computer's operating system, thereby bypassing conventional security controls. As part of",
+      "title_fr": "Google Chrome ajoute des avertissements ClickFix pour empêcher les utilisateurs d'exécuter des commandes malveillantes",
+      "summary_fr": "Google a annoncé le déploiement de protections améliorées dans son navigateur Chrome pour sécuriser les utilisateurs contre les attaques ClickFix lorsque la protection renforcée est activée. ClickFix est une technique d'ingénierie sociale où les acteurs malveillants incitent les utilisateurs à copier-coller du code malveillant, contournant ainsi les contrôles de sécurité conventionnels.",
+      "published": "Wed, 21 Oct 2026 18:45:09 +0530"
     },
     {
-      "title": "What Security Teams Can Do To Tame Wild Code",
-      "url": "https://thehackernews.com/2026/10/what-security-teams-can-do-to-tame-wild.html",
-      "summary": "A sales manager builds an AI-assisted workflow to route leads. It connects to customer records, summarizes inbound requests, and posts updates to a shared channel. The workflow saves time, reduces manual work, and soon becomes part of the team’s daily routine. Across the same organization, employees are building useful apps, agents, and automations faster than existing processes can support them",
-      "title_fr": "Ce que les équipes de sécurité peuvent faire pour maîtriser le code sauvage",
-      "summary_fr": "Un responsable des ventes crée un flux de travail assisté par IA pour acheminer les prospects, qui se connecte aux dossiers clients et résume les demandes. Ce type de développement rapide d'applications et d'automatisations par les employés dépasse la capacité des processus existants à les prendre en charge. Les équipes de sécurité doivent trouver des moyens de gérer ce code non officiel mais utile.",
-      "published": "Tue, 20 Oct 2026 17:03:04 +0530"
+      "title": "China-Aligned Bronze Sandcastle Abuses Sandboxie DLL Sideloading to Deploy Backdoors",
+      "url": "https://thehackernews.com/2026/10/china-aligned-bronze-sandcastle-abuses.html",
+      "summary": "Cybersecurity researchers have disclosed details of a previously undocumented China-aligned threat cluster known as Bronze Sandcastle that has been observed targeting organizations in Asia and Africa since mid-2025. \"The most distinctive technical marker for Bronze Sandcastle is its consistent use of Sandboxie DLL sideloading,\" Sophos security researcher Gabor Szappanos said in a post published",
+      "title_fr": "Bronze Sandcastle, aligné sur la Chine, abuse du chargement latéral de DLL de Sandboxie pour déployer des portes dérobées",
+      "summary_fr": "Des chercheurs en cybersécurité ont révélé des détails sur un groupe de menaces aligné sur la Chine, Bronze Sandcastle, ciblant des organisations en Asie et en Afrique depuis mi-2025. Ce groupe se distingue par son utilisation constante du chargement latéral de DLL de Sandboxie pour déployer des portes dérobées.",
+      "published": "Wed, 21 Oct 2026 17:35:00 +0530"
     },
     {
-      "title": "Go Issues Emergency Update Blocking Eight CA Keys Over Undisclosed Security Concerns",
-      "url": "https://thehackernews.com/2026/10/go-issues-emergency-update-blocking.html",
-      "summary": "Go 1.27.3 and Go 1.26.10, released on October 20, make Go's certificate verifier reject any certificate chain that passes through one of eight intermediate certificate authority keys. Programs built on the new release will refuse connections to sites and services whose certificates were issued under those keys. The Go team says the keys belong to one certificate authority it has not",
-      "title_fr": "Go publie une mise à jour d'urgence bloquant huit clés CA en raison de préoccupations de sécurité non divulguées",
-      "summary_fr": "Les versions Go 1.27.3 et Go 1.26.10, publiées le 20 octobre, obligent le vérificateur de certificats de Go à rejeter toute chaîne de certificats passant par l'une des huit clés d'autorité de certification intermédiaires. Les programmes basés sur cette nouvelle version refuseront les connexions aux sites et services dont les certificats ont été émis sous ces clés. L'équipe Go indique que les clés appartiennent à une autorité de certification qu'elle n'a pas nommée.",
-      "published": "Tue, 20 Oct 2026 17:02:59 +0530"
+      "title": "Generative AI Is Erasing Behavioral Tells, Weakening Behavior-Only Detection, Proofpoint Reports",
+      "url": "https://thehackernews.com/2026/10/generative-ai-is-erasing-behavioral.html",
+      "summary": "Generative AI has changed what a malicious email looks like. Messages that once gave themselves away through clumsy wording, generic pretexts, and reused templates now arrive fluent, personalized, and unique to each recipient, and the behavioral signals email filters have relied on for years are fading as a result. Proofpoint shared several examples of the shift at its Protect 2026 conference.",
+      "title_fr": "L'IA générative efface les indices comportementaux, affaiblissant la détection basée uniquement sur le comportement, selon Proofpoint",
+      "summary_fr": "L'IA générative a transformé l'apparence des e-mails malveillants, les rendant fluides, personnalisés et uniques, contrairement aux messages maladroits d'autrefois. En conséquence, les signaux comportementaux sur lesquels les filtres d'e-mails s'appuyaient depuis des années s'estompent, comme l'a rapporté Proofpoint lors de sa conférence Protect 2026.",
+      "published": "Wed, 21 Oct 2026 17:23:34 +0530"
     }
   ],
-  "script": "Flash Info Cyber, bonjour à toutes et à tous. À la une de votre journal, des révélations sur les pratiques de WhatsApp. Il semblerait que l'application ait dissimulé des instructions dans ses pages d'aide. Ces directives demandaient à son agent conversationnel de ne pas orienter les utilisateurs, qui ne pouvaient plus supprimer leurs comptes, vers les régulateurs de la vie privée. Cette pratique contredisait ouvertement la politique de confidentialité européenne de WhatsApp, laquelle stipule pourtant le droit des utilisateurs à déposer une plainte auprès de ces autorités. Le texte incriminé, qui n'était pas visible pour les utilisateurs, a été retiré avant le 18 octobre. Ensuite, un point sur le « code sauvage » en entreprise. Le développement rapide d'applications et d'automatisations par les employés, souvent à l'aide de l'IA, pose de nouveaux défis pour la sécurité. Ces outils non officiels mais utiles, créés pour optimiser les flux de travail, dépassent souvent la capacité des processus de sécurité existants à les encadrer. Les équipes de sécurité sont donc appelées à trouver des solutions pour maîtriser ce phénomène croissant. Enfin, une alerte concernant le langage de programmation Go. Une mise à jour d'urgence a été déployée pour bloquer huit clés d'autorité de certification intermédiaires, suite à des préoccupations de sécurité non divulguées. Les programmes basés sur cette nouvelle version refuseront désormais les connexions aux sites et services dont les certificats ont été émis sous ces clés. L'équipe Go n'a pas nommé l'autorité de certification concernée. Restez vigilants.",
+  "script": "Flash Info Cyber, bonjour à tous. Aujourd'hui, un point rapide sur la sécurité numérique. Google renforce la protection de son navigateur Chrome. De nouveaux avertissements, baptisés ClickFix, sont désormais intégrés pour empêcher les utilisateurs de copier-coller du code malveillant sans le savoir. Cette mesure vise à contrer les techniques d'ingénierie sociale qui exploitent la confiance des internautes. Dans un autre registre, des experts en cybersécurité ont mis en lumière les activités d'un groupe de cybercriminels lié à la Chine, connu sous le nom de Bronze Sandcastle. Ce groupe cible des organisations en Asie et en Afrique en utilisant une technique sophistiquée : le détournement du chargement de bibliothèques logicielles, ou DLL, via Sandboxie, afin d'installer des portes dérobées. Enfin, une tendance inquiétante est signalée par Proofpoint : l'intelligence artificielle générative complique la détection des e-mails frauduleux. En rendant les messages malveillants plus fluides et personnalisés, l'IA efface les indices comportementaux habituels qui permettaient jusqu'à présent aux filtres antispam de les identifier. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 739160,
+  "audio_bytes": 546899,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
