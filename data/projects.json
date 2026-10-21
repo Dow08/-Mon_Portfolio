@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T10:19:12+00:00",
+  "generated_at": "2026-10-21T10:29:35+00:00",
   "owner": "Dow08",
   "repo_count": 10,
   "groups": {
@@ -18,6 +18,113 @@
     "PCI DSS": 1
   },
   "projects": [
+    {
+      "id": "nova-syndicate",
+      "title": "Nova Syndicate",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Infrastructure multi-sites complète — 12 VMs Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation VLAN, VPN WireGuard, plan de continuité et budget CAPEX/OPEX.",
+      "stack": [
+        "Terraform",
+        "Ansible",
+        "Wazuh",
+        "WireGuard"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate",
+      "updated_at": "2026-10-20T14:04:36Z"
+    },
+    {
+      "id": "kessel-soc-siem",
+      "title": "Kessel SOC SIEM",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Déploiement d'un SOC fonctionnel avec Wazuh — intégration de sources de logs, tests de détection par simulation de brute force, tuning des règles.",
+      "stack": [
+        "Wazuh",
+        "Linux"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/kessel-soc-siem",
+      "updated_at": "2026-10-20T14:04:36Z"
+    },
+    {
+      "id": "meet-voice-devsecops",
+      "title": "Meet Voice DevSecOps",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Mise en place d'un stack de monitoring complet sur un serveur de réseau social — Prometheus, Grafana, Alertmanager, Loki, Promtail, orchestration Ansible.",
+      "stack": [
+        "Ansible",
+        "Prometheus",
+        "Grafana",
+        "Loki"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/meet-voice-devsecops",
+      "updated_at": "2026-10-20T14:04:36Z"
+    },
+    {
+      "id": "cyber-homelab-vps",
+      "title": "Cyber Homelab VPS",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Station OSINT auto-hébergée sur VPS — environnement de veille et d'investigation isolé.",
+      "stack": [
+        "Linux",
+        "VPS"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/cyber-homelab-vps",
+      "updated_at": "2026-10-20T14:04:36Z"
+    },
+    {
+      "id": "vps-osint-hermes",
+      "title": "VPS OSINT Hermès",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Déploiement One-Shot d'un VPS personnel — outillage OSINT (mini-Palantir) et agent Hermès intégré, automatisation complète de l'installation.",
+      "stack": [
+        "Python",
+        "Bash",
+        "Linux"
+      ],
+      "featured": false,
+      "status": "perso",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/vps-osint-hermes",
+      "updated_at": "2026-10-20T14:04:36Z"
+    },
+    {
+      "id": "active-directory",
+      "title": "Active Directory",
+      "group": "secops",
+      "group_label": "Infrastructure & SecOps",
+      "repo": "Infrastructure-SecOps",
+      "repo_label": "Infrastructure",
+      "description": "Administration Active Directory sous Windows Server — gestion des utilisateurs, GPO, sécurisation de l'annuaire.",
+      "stack": [
+        "Windows Server",
+        "Active Directory"
+      ],
+      "featured": false,
+      "status": "lab",
+      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/active-directory",
+      "updated_at": "2026-10-20T14:04:36Z"
+    },
     {
       "id": "Green-Shield-GRC",
       "title": "Green Shield GRC",
@@ -248,113 +355,6 @@
       "status": "formation",
       "url": "https://github.com/Dow08/Portfolio/tree/master/demoday-pixelstore",
       "updated_at": "2026-06-17T13:12:37Z"
-    },
-    {
-      "id": "nova-syndicate",
-      "title": "Nova Syndicate",
-      "group": "secops",
-      "group_label": "Infrastructure & SecOps",
-      "repo": "Infrastructure-SecOps",
-      "repo_label": "Infrastructure",
-      "description": "Infrastructure multi-sites complète — 12 VMs Terraform, 10 playbooks Ansible, SIEM Wazuh, segmentation VLAN, VPN WireGuard, plan de continuité et budget CAPEX/OPEX.",
-      "stack": [
-        "Terraform",
-        "Ansible",
-        "Wazuh",
-        "WireGuard"
-      ],
-      "featured": false,
-      "status": "lab",
-      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/nova-syndicate",
-      "updated_at": "2026-06-17T13:12:34Z"
-    },
-    {
-      "id": "kessel-soc-siem",
-      "title": "Kessel SOC SIEM",
-      "group": "secops",
-      "group_label": "Infrastructure & SecOps",
-      "repo": "Infrastructure-SecOps",
-      "repo_label": "Infrastructure",
-      "description": "Déploiement d'un SOC fonctionnel avec Wazuh — intégration de sources de logs, tests de détection par simulation de brute force, tuning des règles.",
-      "stack": [
-        "Wazuh",
-        "Linux"
-      ],
-      "featured": false,
-      "status": "lab",
-      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/kessel-soc-siem",
-      "updated_at": "2026-06-17T13:12:34Z"
-    },
-    {
-      "id": "meet-voice-devsecops",
-      "title": "Meet Voice DevSecOps",
-      "group": "secops",
-      "group_label": "Infrastructure & SecOps",
-      "repo": "Infrastructure-SecOps",
-      "repo_label": "Infrastructure",
-      "description": "Mise en place d'un stack de monitoring complet sur un serveur de réseau social — Prometheus, Grafana, Alertmanager, Loki, Promtail, orchestration Ansible.",
-      "stack": [
-        "Ansible",
-        "Prometheus",
-        "Grafana",
-        "Loki"
-      ],
-      "featured": false,
-      "status": "lab",
-      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/meet-voice-devsecops",
-      "updated_at": "2026-06-17T13:12:34Z"
-    },
-    {
-      "id": "cyber-homelab-vps",
-      "title": "Cyber Homelab VPS",
-      "group": "secops",
-      "group_label": "Infrastructure & SecOps",
-      "repo": "Infrastructure-SecOps",
-      "repo_label": "Infrastructure",
-      "description": "Station OSINT auto-hébergée sur VPS — environnement de veille et d'investigation isolé.",
-      "stack": [
-        "Linux",
-        "VPS"
-      ],
-      "featured": false,
-      "status": "perso",
-      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/cyber-homelab-vps",
-      "updated_at": "2026-06-17T13:12:34Z"
-    },
-    {
-      "id": "vps-osint-hermes",
-      "title": "VPS OSINT Hermès",
-      "group": "secops",
-      "group_label": "Infrastructure & SecOps",
-      "repo": "Infrastructure-SecOps",
-      "repo_label": "Infrastructure",
-      "description": "Déploiement One-Shot d'un VPS personnel — outillage OSINT (mini-Palantir) et agent Hermès intégré, automatisation complète de l'installation.",
-      "stack": [
-        "Python",
-        "Bash",
-        "Linux"
-      ],
-      "featured": false,
-      "status": "perso",
-      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/vps-osint-hermes",
-      "updated_at": "2026-06-17T13:12:34Z"
-    },
-    {
-      "id": "active-directory",
-      "title": "Active Directory",
-      "group": "secops",
-      "group_label": "Infrastructure & SecOps",
-      "repo": "Infrastructure-SecOps",
-      "repo_label": "Infrastructure",
-      "description": "Administration Active Directory sous Windows Server — gestion des utilisateurs, GPO, sécurisation de l'annuaire.",
-      "stack": [
-        "Windows Server",
-        "Active Directory"
-      ],
-      "featured": false,
-      "status": "lab",
-      "url": "https://github.com/Dow08/Infrastructure-SecOps/tree/master/active-directory",
-      "updated_at": "2026-06-17T13:12:34Z"
     },
     {
       "id": "nexus-conformite",
