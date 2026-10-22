@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-21T13:20:20+00:00",
+  "generated_at": "2026-10-22T13:20:13+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -8,33 +8,33 @@
   },
   "articles": [
     {
-      "title": "Google Chrome Adds ClickFix Warnings to Stop Users From Running Malicious Commands",
-      "url": "https://thehackernews.com/2026/10/google-chrome-adds-clickfix-warnings-to.html",
-      "summary": "Google on Tuesday said it's rolling out improved safeguards in its Chrome browser to secure users against ClickFix attacks when Enhanced Protection is enabled. ClickFix is a popular social engineering technique in which bad actors trick users into copying and pasting malicious code directly into their computer's operating system, thereby bypassing conventional security controls. As part of",
-      "title_fr": "Google Chrome ajoute des avertissements ClickFix pour empêcher les utilisateurs d'exécuter des commandes malveillantes",
-      "summary_fr": "Google a annoncé le déploiement de protections améliorées dans son navigateur Chrome pour sécuriser les utilisateurs contre les attaques ClickFix lorsque la protection renforcée est activée. ClickFix est une technique d'ingénierie sociale où les acteurs malveillants incitent les utilisateurs à copier-coller du code malveillant, contournant ainsi les contrôles de sécurité conventionnels.",
-      "published": "Wed, 21 Oct 2026 18:45:09 +0530"
+      "title": "Railway Says Intruder May Have Accessed Customer Secrets, Urges Credential Rotation",
+      "url": "https://thehackernews.com/2026/10/railway-says-intruder-may-have-accessed.html",
+      "summary": "Platform-as-a-Service (PaaS) provider Railway on Wednesday disclosed \"anomalous activity\" related to systems that store customer environment variables. Upon further investigation, the company found that an unauthorized third party may have gained access to encrypted environment variables, and, in some cases, obtained the decrypted contents. The impact, it said, is limited to a \"subset of users,",
+      "title_fr": "Railway déclare qu'un intrus a pu accéder aux secrets des clients et exhorte à la rotation des identifiants",
+      "summary_fr": "Le fournisseur de Plateforme-as-a-Service (PaaS) Railway a révélé une \"activité anormale\" liée aux systèmes stockant les variables d'environnement des clients. Une enquête a montré qu'un tiers non autorisé a pu accéder à des variables d'environnement chiffrées et, dans certains cas, obtenir leur contenu déchiffré, affectant un \"sous-ensemble d'utilisateurs\".",
+      "published": "Thu, 22 Oct 2026 16:45:42 +0530"
     },
     {
-      "title": "China-Aligned Bronze Sandcastle Abuses Sandboxie DLL Sideloading to Deploy Backdoors",
-      "url": "https://thehackernews.com/2026/10/china-aligned-bronze-sandcastle-abuses.html",
-      "summary": "Cybersecurity researchers have disclosed details of a previously undocumented China-aligned threat cluster known as Bronze Sandcastle that has been observed targeting organizations in Asia and Africa since mid-2025. \"The most distinctive technical marker for Bronze Sandcastle is its consistent use of Sandboxie DLL sideloading,\" Sophos security researcher Gabor Szappanos said in a post published",
-      "title_fr": "Bronze Sandcastle, aligné sur la Chine, abuse du chargement latéral de DLL de Sandboxie pour déployer des portes dérobées",
-      "summary_fr": "Des chercheurs en cybersécurité ont révélé des détails sur un groupe de menaces aligné sur la Chine, Bronze Sandcastle, ciblant des organisations en Asie et en Afrique depuis mi-2025. Ce groupe se distingue par son utilisation constante du chargement latéral de DLL de Sandboxie pour déployer des portes dérobées.",
-      "published": "Wed, 21 Oct 2026 17:35:00 +0530"
+      "title": "OpenCode Flaw Lets Malicious MCP Servers Execute Code During Sign-In on Windows and WSL",
+      "url": "https://thehackernews.com/2026/10/opencode-flaw-lets-malicious-mcp.html",
+      "summary": "A flaw in the OpenCode AI coding agent allowed a malicious or hijacked MCP server to run code on a developer's Windows or WSL machine when the developer signed in. OpenCode connects to MCP (Model Context Protocol) servers to add outside tools, and such code would run with the developer's own access. Anomaly, the company behind OpenCode, fixed the flaw in version 1.18.33 on September",
+      "title_fr": "La faille OpenCode permet aux serveurs MCP malveillants d'exécuter du code lors de la connexion sur Windows et WSL",
+      "summary_fr": "Une faille dans l'agent de codage OpenCode AI permettait à un serveur MCP malveillant ou détourné d'exécuter du code sur une machine Windows ou WSL d'un développeur lors de la connexion. Anomaly, la société derrière OpenCode, a corrigé cette faille dans la version 1.18.33 en septembre.",
+      "published": "Thu, 22 Oct 2026 16:14:05 +0530"
     },
     {
-      "title": "Generative AI Is Erasing Behavioral Tells, Weakening Behavior-Only Detection, Proofpoint Reports",
-      "url": "https://thehackernews.com/2026/10/generative-ai-is-erasing-behavioral.html",
-      "summary": "Generative AI has changed what a malicious email looks like. Messages that once gave themselves away through clumsy wording, generic pretexts, and reused templates now arrive fluent, personalized, and unique to each recipient, and the behavioral signals email filters have relied on for years are fading as a result. Proofpoint shared several examples of the shift at its Protect 2026 conference.",
-      "title_fr": "L'IA générative efface les indices comportementaux, affaiblissant la détection basée uniquement sur le comportement, selon Proofpoint",
-      "summary_fr": "L'IA générative a transformé l'apparence des e-mails malveillants, les rendant fluides, personnalisés et uniques, contrairement aux messages maladroits d'autrefois. En conséquence, les signaux comportementaux sur lesquels les filtres d'e-mails s'appuyaient depuis des années s'estompent, comme l'a rapporté Proofpoint lors de sa conférence Protect 2026.",
-      "published": "Wed, 21 Oct 2026 17:23:34 +0530"
+      "title": "LiteLLM Suspects GitHub Token Leak in AI Gateway Logs Behind Malicious Package Release",
+      "url": "https://thehackernews.com/2026/10/litellm-suspects-github-token-leak-in.html",
+      "summary": "LiteLLM on Wednesday disclosed that threat actors compromised \"multiple independent security controls\" to push a malicious version of the Python package containing a credential stealer and a backdoor. On October 21, 2026, LiteLLM's release pipeline was compromised to push 1.107.0 to the Docker Hub registry and the Python Package Index (PyPI) repository. The incident took place around 4:00 a.m.",
+      "title_fr": "LiteLLM soupçonne une fuite de jeton GitHub dans les journaux de la passerelle IA derrière la publication d'un paquet malveillant",
+      "summary_fr": "LiteLLM a révélé que des acteurs malveillants ont compromis \"plusieurs contrôles de sécurité indépendants\" pour publier une version malveillante de son paquet Python contenant un voleur d'identifiants et une porte dérobée. La pipeline de publication de LiteLLM a été compromise le 21 octobre 2026 pour pousser la version 1.107.0 vers Docker Hub et PyPI.",
+      "published": "Thu, 22 Oct 2026 13:58:48 +0530"
     }
   ],
-  "script": "Flash Info Cyber, bonjour à tous. Aujourd'hui, un point rapide sur la sécurité numérique. Google renforce la protection de son navigateur Chrome. De nouveaux avertissements, baptisés ClickFix, sont désormais intégrés pour empêcher les utilisateurs de copier-coller du code malveillant sans le savoir. Cette mesure vise à contrer les techniques d'ingénierie sociale qui exploitent la confiance des internautes. Dans un autre registre, des experts en cybersécurité ont mis en lumière les activités d'un groupe de cybercriminels lié à la Chine, connu sous le nom de Bronze Sandcastle. Ce groupe cible des organisations en Asie et en Afrique en utilisant une technique sophistiquée : le détournement du chargement de bibliothèques logicielles, ou DLL, via Sandboxie, afin d'installer des portes dérobées. Enfin, une tendance inquiétante est signalée par Proofpoint : l'intelligence artificielle générative complique la détection des e-mails frauduleux. En rendant les messages malveillants plus fluides et personnalisés, l'IA efface les indices comportementaux habituels qui permettaient jusqu'à présent aux filtres antispam de les identifier. Restez vigilants.",
+  "script": "Bonjour et bienvenue dans votre Flash Info Cyber. Aujourd'hui, nous faisons le point sur trois alertes majeures. Premièrement, le fournisseur de services cloud Railway a récemment découvert une intrusion. Un accès non autorisé a été détecté sur des systèmes hébergeant des données sensibles de clients. Des variables d'environnement chiffrées, et parfois même leur contenu déchiffré, auraient été compromises pour certains utilisateurs. Railway recommande vivement de renouveler vos identifiants de connexion. Ensuite, une vulnérabilité critique a été identifiée dans l'agent OpenCode AI. Cette faille permettait à des serveurs malveillants d'exécuter du code à distance sur des machines Windows ou WSL lors de la connexion. Heureusement, cette brèche a été corrigée dès septembre avec la version 1.18.33 du logiciel. Enfin, la plateforme LiteLLM, spécialisée dans l'intelligence artificielle, a été victime d'une fuite de jeton GitHub. Cette compromission a permis à des attaquants de publier une version malveillante de son paquet Python, intégrant un voleur d'identifiants et une porte dérobée. L'incident, survenu le 21 octobre 2026, a affecté les dépôts Docker Hub et PyPI. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 546899,
+  "audio_bytes": 609175,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
