@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-22T13:20:13+00:00",
+  "generated_at": "2026-10-23T12:58:52+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -8,33 +8,33 @@
   },
   "articles": [
     {
-      "title": "Railway Says Intruder May Have Accessed Customer Secrets, Urges Credential Rotation",
-      "url": "https://thehackernews.com/2026/10/railway-says-intruder-may-have-accessed.html",
-      "summary": "Platform-as-a-Service (PaaS) provider Railway on Wednesday disclosed \"anomalous activity\" related to systems that store customer environment variables. Upon further investigation, the company found that an unauthorized third party may have gained access to encrypted environment variables, and, in some cases, obtained the decrypted contents. The impact, it said, is limited to a \"subset of users,",
-      "title_fr": "Railway déclare qu'un intrus a pu accéder aux secrets des clients et exhorte à la rotation des identifiants",
-      "summary_fr": "Le fournisseur de Plateforme-as-a-Service (PaaS) Railway a révélé une \"activité anormale\" liée aux systèmes stockant les variables d'environnement des clients. Une enquête a montré qu'un tiers non autorisé a pu accéder à des variables d'environnement chiffrées et, dans certains cas, obtenir leur contenu déchiffré, affectant un \"sous-ensemble d'utilisateurs\".",
-      "published": "Thu, 22 Oct 2026 16:45:42 +0530"
+      "title": "PHP Warns of Another Unpatched RCE Two Days After Emergency PHP2Shell Patches",
+      "url": "https://thehackernews.com/2026/10/urgent-php-warns-of-another-unpatched.html",
+      "summary": "PHP has warned of another way an attacker could run code on a web server, two days after it shipped emergency fixes for the critical PHP2Shell flaws. The new issue, assigned CVE-2026-115560, affects only web applications configured in an unusual way, and PHP considers it an unlikely risk.The project is not issuing an emergency fix for it. Instead, it recommends turning off a feature called",
+      "title_fr": "PHP alerte sur une autre RCE non corrigée deux jours après les correctifs d'urgence PHP2Shell",
+      "summary_fr": "PHP a averti d'une nouvelle méthode permettant à un attaquant d'exécuter du code sur un serveur web, deux jours après avoir publié des correctifs d'urgence pour les failles critiques de PHP2Shell. Ce nouveau problème, identifié CVE-2026-115560, n'affecte que les applications web configurées de manière inhabituelle et PHP le considère comme un risque peu probable, sans qu'un correctif d'urgence ne soit prévu.",
+      "published": "Fri, 23 Oct 2026 16:55:43 +0530"
     },
     {
-      "title": "OpenCode Flaw Lets Malicious MCP Servers Execute Code During Sign-In on Windows and WSL",
-      "url": "https://thehackernews.com/2026/10/opencode-flaw-lets-malicious-mcp.html",
-      "summary": "A flaw in the OpenCode AI coding agent allowed a malicious or hijacked MCP server to run code on a developer's Windows or WSL machine when the developer signed in. OpenCode connects to MCP (Model Context Protocol) servers to add outside tools, and such code would run with the developer's own access. Anomaly, the company behind OpenCode, fixed the flaw in version 1.18.33 on September",
-      "title_fr": "La faille OpenCode permet aux serveurs MCP malveillants d'exécuter du code lors de la connexion sur Windows et WSL",
-      "summary_fr": "Une faille dans l'agent de codage OpenCode AI permettait à un serveur MCP malveillant ou détourné d'exécuter du code sur une machine Windows ou WSL d'un développeur lors de la connexion. Anomaly, la société derrière OpenCode, a corrigé cette faille dans la version 1.18.33 en septembre.",
-      "published": "Thu, 22 Oct 2026 16:14:05 +0530"
+      "title": "Russian-Linked Hackers Used New Mesh Network Backdoor in Destructive Ukraine Attack",
+      "url": "https://thehackernews.com/2026/10/russian-linked-hackers-used-new-mesh.html",
+      "summary": "The Russian state-sponsored hacking group Sandworm teamed up with another threat actor to carry out a destructive wiping attack targeting a Ukrainian logistics company last year. According to ESET, the attack involved UAC-0099 (aka Earth Sirrush) obtaining initial access to the target on July 16, 2025, via a spear-phishing email bearing a malware-laced attachment that led to the deployment of",
+      "title_fr": "Des hackers liés à la Russie ont utilisé une nouvelle porte dérobée de réseau maillé lors d'une attaque destructrice en Ukraine",
+      "summary_fr": "Le groupe de hackers parrainé par l'État russe Sandworm s'est associé à un autre acteur de la menace pour mener une attaque d'effacement destructrice ciblant une entreprise de logistique ukrainienne l'année dernière. Selon ESET, l'attaque a impliqué UAC-0099 (alias Earth Sirrush) obtenant un accès initial à la cible le 16 juillet 2025, via un e-mail de spear-phishing contenant une pièce jointe malveillante.",
+      "published": "Fri, 23 Oct 2026 16:41:23 +0530"
     },
     {
-      "title": "LiteLLM Suspects GitHub Token Leak in AI Gateway Logs Behind Malicious Package Release",
-      "url": "https://thehackernews.com/2026/10/litellm-suspects-github-token-leak-in.html",
-      "summary": "LiteLLM on Wednesday disclosed that threat actors compromised \"multiple independent security controls\" to push a malicious version of the Python package containing a credential stealer and a backdoor. On October 21, 2026, LiteLLM's release pipeline was compromised to push 1.107.0 to the Docker Hub registry and the Python Package Index (PyPI) repository. The incident took place around 4:00 a.m.",
-      "title_fr": "LiteLLM soupçonne une fuite de jeton GitHub dans les journaux de la passerelle IA derrière la publication d'un paquet malveillant",
-      "summary_fr": "LiteLLM a révélé que des acteurs malveillants ont compromis \"plusieurs contrôles de sécurité indépendants\" pour publier une version malveillante de son paquet Python contenant un voleur d'identifiants et une porte dérobée. La pipeline de publication de LiteLLM a été compromise le 21 octobre 2026 pour pousser la version 1.107.0 vers Docker Hub et PyPI.",
-      "published": "Thu, 22 Oct 2026 13:58:48 +0530"
+      "title": "Critical Flaw in Python’s Popular Pillow Image Library Allows Code Execution via a Crafted Image",
+      "url": "https://thehackernews.com/2026/10/critical-flaw-in-pythons-popular-pillow.html",
+      "summary": "Pillow, the most widely used image library for Python, can be made to run operating system commands on a server by specifying the name of a file it is told to open. The flaw, CVE-2026-112900, is in the way Pillow handles EPS images, which it opens by passing the file's name to Ghostscript, a separate program it runs to turn the image into pixels, without checking the name first.",
+      "title_fr": "Une faille critique dans la populaire bibliothèque d'images Python Pillow permet l'exécution de code via une image spécialement conçue",
+      "summary_fr": "Pillow, la bibliothèque d'images la plus utilisée pour Python, peut être forcée d'exécuter des commandes du système d'exploitation sur un serveur en spécifiant le nom d'un fichier qu'elle est censée ouvrir. La faille, CVE-2026-112900, réside dans la manière dont Pillow gère les images EPS, qu'elle ouvre en transmettant le nom du fichier à Ghostscript, un programme distinct qu'elle exécute pour transformer l'image en pixels, sans vérifier le nom au préalable.",
+      "published": "Fri, 23 Oct 2026 15:06:00 +0530"
     }
   ],
-  "script": "Bonjour et bienvenue dans votre Flash Info Cyber. Aujourd'hui, nous faisons le point sur trois alertes majeures. Premièrement, le fournisseur de services cloud Railway a récemment découvert une intrusion. Un accès non autorisé a été détecté sur des systèmes hébergeant des données sensibles de clients. Des variables d'environnement chiffrées, et parfois même leur contenu déchiffré, auraient été compromises pour certains utilisateurs. Railway recommande vivement de renouveler vos identifiants de connexion. Ensuite, une vulnérabilité critique a été identifiée dans l'agent OpenCode AI. Cette faille permettait à des serveurs malveillants d'exécuter du code à distance sur des machines Windows ou WSL lors de la connexion. Heureusement, cette brèche a été corrigée dès septembre avec la version 1.18.33 du logiciel. Enfin, la plateforme LiteLLM, spécialisée dans l'intelligence artificielle, a été victime d'une fuite de jeton GitHub. Cette compromission a permis à des attaquants de publier une version malveillante de son paquet Python, intégrant un voleur d'identifiants et une porte dérobée. L'incident, survenu le 21 octobre 2026, a affecté les dépôts Docker Hub et PyPI. Restez vigilants.",
+  "script": "Bonjour et bienvenue à votre Flash Info Cyber. Aujourd'hui, nous faisons le point sur les dernières menaces qui pèsent sur nos systèmes. Restez à l'écoute. Deux jours seulement après avoir corrigé des failles urgentes, PHP a lancé une nouvelle alerte. Une méthode permettrait l'exécution de code à distance sur des serveurs web. Bien que ce risque soit jugé peu probable par PHP, car il concerne des configurations inhabituelles, la vigilance reste de mise. Pas de correctif immédiat n'est prévu pour l'instant. En Ukraine, un groupe de hackers lié à la Russie, Sandworm, en collaboration avec un autre acteur malveillant, a mené une attaque destructrice l'année dernière. Ils ont utilisé une nouvelle porte dérobée de réseau maillé pour cibler une entreprise de logistique, suite à un hameçonnage par courriel. Enfin, une vulnérabilité critique a été découverte dans Pillow, la bibliothèque d'images la plus populaire pour Python. Cette faille permet l'exécution de code sur un serveur via une image spécialement conçue. Elle exploite la manière dont Pillow traite les images EPS, en transmettant des noms de fichiers à un programme externe sans vérification préalable. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 609175,
+  "audio_bytes": 562573,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
