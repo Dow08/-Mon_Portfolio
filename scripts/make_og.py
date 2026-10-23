@@ -37,7 +37,7 @@ d.text((72, 180), "Cybersécurité", font=font(110, 600), fill="#f4f5f2")
 d.text((72, 300), "& GRC", font=font(110, 600), fill="#b8f23d")
 d.text((72, 470), "Gouvernance, risques et conformité · infrastructures sécurisées ·", font=font(30, 400), fill="#b9c6c3")
 d.text((72, 512), "automatisation par l'IA. Projets vérifiables sur GitHub.", font=font(30, 400), fill="#b9c6c3")
-d.text((72, 572), "dow08.github.io/-Mon_Portfolio", font=font(22, 500), fill="#7f9693")
+d.text((72, 572), "dow08.github.io/Mon_Portfolio", font=font(22, 500), fill="#7f9693")
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 img.save(OUT, optimize=True)

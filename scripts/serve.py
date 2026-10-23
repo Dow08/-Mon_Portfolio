@@ -24,10 +24,10 @@ class Handler(SimpleHTTPRequestHandler):
                       ".json": "application/json", ".webp": "image/webp",
                       ".woff2": "font/woff2", ".svg": "image/svg+xml"}
 
-    # GitHub Pages sert le site sous /-Mon_Portfolio/ ; 404.html utilise donc des
+    # GitHub Pages sert le site sous /Mon_Portfolio/ ; 404.html utilise donc des
     # chemins absolus avec ce préfixe. On le reproduit en local.
     def translate_path(self, path):
-        prefix = "/-Mon_Portfolio"
+        prefix = "/Mon_Portfolio"
         if path == prefix or path.startswith(prefix + "/"):
             path = path[len(prefix):] or "/"
         return super().translate_path(path)

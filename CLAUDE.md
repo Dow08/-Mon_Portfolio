@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Projet
 
-Portfolio one-page de Dorian Poncelet (cybersécurité / GRC), GitHub Pages : https://dow08.github.io/-Mon_Portfolio/ (repo `Dow08/-Mon_Portfolio`). `main` = site en ligne. Refonte 2027 sur la branche `refonte-2027` — **ne pas pousser sur `main` sans accord explicite de Dorian**. Contenu et commentaires en français ; site bilingue FR/EN.
+Portfolio one-page de Dorian Poncelet (cybersécurité / GRC), GitHub Pages : https://dow08.github.io/Mon_Portfolio/ (repo `Dow08/Mon_Portfolio`). `main` = site en ligne. Refonte 2027 sur la branche `refonte-2027` — **ne pas pousser sur `main` sans accord explicite de Dorian**. Contenu et commentaires en français ; site bilingue FR/EN.
 
 ## Commandes
 

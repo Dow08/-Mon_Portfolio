@@ -63,7 +63,7 @@
       "items": [
         { "name": "Agents IA locaux, orchestration multi-agents", "name_en": "Local AI agents, multi-agent orchestration", "level": "D", "url": "https://github.com/Dow08/OS-Agentique_showcase" },
         { "name": "RAG sur sources officielles (CNIL, ANSSI, EUR-Lex)", "name_en": "RAG over official sources (CNIL, ANSSI, EUR-Lex)", "level": "D", "url": "https://github.com/Dow08/GRC-Compliance/tree/master/agent-rgpd-lea" },
-        { "name": "Pipelines automatisés (GitHub Actions, scraping, TTS)", "name_en": "Automated pipelines (GitHub Actions, scraping, TTS)", "level": "D", "url": "https://github.com/Dow08/-Mon_Portfolio" },
+        { "name": "Pipelines automatisés (GitHub Actions, scraping, TTS)", "name_en": "Automated pipelines (GitHub Actions, scraping, TTS)", "level": "D", "url": "https://github.com/Dow08/Mon_Portfolio" },
         { "name": "DevSecOps (Trivy, CI, tests)", "level": "D", "url": "https://github.com/Dow08/RED-SHIELD-" },
         { "name": "Python, FastAPI, React", "level": "D", "url": "https://github.com/Dow08/Green-Shield-GRC" },
         { "name": "MCP, n8n", "level": "P" }

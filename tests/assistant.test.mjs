@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-globalThis.location = { href: 'https://dow08.github.io/-Mon_Portfolio/' };
+globalThis.location = { href: 'https://dow08.github.io/Mon_Portfolio/' };
 globalThis.window = { matchMedia: () => ({ matches: false }) };
 const { normalize, score } = await import('../js/assistant.js');
 const profile = JSON.parse(await readFile(new URL('../data/profile.json', import.meta.url), 'utf8'));

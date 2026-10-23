@@ -29,7 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 OWNER = "Dow08"
-SELF_REPO = "-Mon_Portfolio"
+SELF_REPO = "Mon_Portfolio"
 EXCLUDE_SLUGS = {"site-web"}
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "projects.json"

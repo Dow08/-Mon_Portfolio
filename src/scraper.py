@@ -18,7 +18,7 @@ import requests
 
 FEED_URL = "https://feeds.feedburner.com/TheHackersNews"
 HTML_URL = "https://thehackernews.com"
-HEADERS = {"User-Agent": "CyberPulse/2.0 (+https://dow08.github.io/-Mon_Portfolio/)"}
+HEADERS = {"User-Agent": "CyberPulse/2.0 (+https://dow08.github.io/Mon_Portfolio/)"}
 TIMEOUT = 20
 MAX_SUMMARY = 600
 

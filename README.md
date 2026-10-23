@@ -1,12 +1,12 @@
 # Portfolio — Dorian Poncelet
 
-[![CyberPulse](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/cyberpulse.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/cyberpulse.yml)
-[![Projets](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/projects.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/projects.yml)
-[![Security scan](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Dow08/-Mon_Portfolio/actions/workflows/security-scan.yml)
+[![CyberPulse](https://github.com/Dow08/Mon_Portfolio/actions/workflows/cyberpulse.yml/badge.svg)](https://github.com/Dow08/Mon_Portfolio/actions/workflows/cyberpulse.yml)
+[![Projets](https://github.com/Dow08/Mon_Portfolio/actions/workflows/projects.yml/badge.svg)](https://github.com/Dow08/Mon_Portfolio/actions/workflows/projects.yml)
+[![Security scan](https://github.com/Dow08/Mon_Portfolio/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Dow08/Mon_Portfolio/actions/workflows/security-scan.yml)
 
 Portfolio de **Dorian Poncelet** — cybersécurité orientée gouvernance, risques et conformité (GRC), infrastructures sécurisées et automatisation par l'IA.
 
-🌐 https://dow08.github.io/-Mon_Portfolio/
+🌐 https://dow08.github.io/Mon_Portfolio/
 
 ## Ce que fait le site
 

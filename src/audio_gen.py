@@ -29,7 +29,7 @@ PIPER_VOICES_DIR = Path(os.environ.get("PIPER_VOICES_DIR", Path.home() / ".cache
 # rhasspy/piper-voices sur Hugging Face, vérifié le 2026-10-13). Un modèle
 # téléchargé qui ne correspond pas est supprimé et refusé : on n'exécute pas
 # un fichier ONNX d'origine inconnue.
-PIPER_MIRROR = os.environ.get("PIPER_MIRROR", "https://github.com/Dow08/-Mon_Portfolio/releases/download/piper-voices-v1")
+PIPER_MIRROR = os.environ.get("PIPER_MIRROR", "https://github.com/Dow08/Mon_Portfolio/releases/download/piper-voices-v1")
 PIPER_VOICE_SHA256 = {
     "fr_FR-tom-medium": "bf65074ccdeeeeaa832e75edb1c0a513c01c9a972bdf085ff8a6e71ea234fd41",
 }

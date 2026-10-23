@@ -1,6 +1,6 @@
 # Politique de sécurité
 
-Ce dépôt contient le code du portfolio https://dow08.github.io/-Mon_Portfolio/ et le pipeline CyberPulse qui le met à jour chaque jour.
+Ce dépôt contient le code du portfolio https://dow08.github.io/Mon_Portfolio/ et le pipeline CyberPulse qui le met à jour chaque jour.
 
 ## Signaler une vulnérabilité
 

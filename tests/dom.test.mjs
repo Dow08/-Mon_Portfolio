@@ -2,14 +2,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-globalThis.location = { href: 'https://dow08.github.io/-Mon_Portfolio/' };
+globalThis.location = { href: 'https://dow08.github.io/Mon_Portfolio/' };
 const { safeHref } = await import('../js/util/dom.js');
 
 test('safeHref accepte https, mailto et ancres', () => {
   assert.equal(safeHref('https://github.com/Dow08'), 'https://github.com/Dow08');
   assert.equal(safeHref('mailto:a@b.c'), 'mailto:a@b.c');
   assert.equal(safeHref('#contact'), '#contact');
-  assert.equal(safeHref('data/projects.json'), 'https://dow08.github.io/-Mon_Portfolio/data/projects.json');
+  assert.equal(safeHref('data/projects.json'), 'https://dow08.github.io/Mon_Portfolio/data/projects.json');
 });
 
 test('safeHref refuse javascript:, data:, http: externe et les valeurs non textuelles', () => {

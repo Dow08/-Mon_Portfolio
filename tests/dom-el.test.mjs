@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-globalThis.location = { href: 'https://dow08.github.io/-Mon_Portfolio/' };
+globalThis.location = { href: 'https://dow08.github.io/Mon_Portfolio/' };
 // DOM minimal : on enregistre ce que el() tente de poser
 class FakeNode {
   constructor(tag) { this.tag = tag; this.attrs = {}; this.listeners = []; this.dataset = {}; this.children = []; this.className = ''; this.textContent = ''; }
@@ -30,7 +30,7 @@ test('href et src passent par safeHref', () => {
   assert.deepEqual(bad.attrs, {});
   const good = el('a', { href: 'https://github.com/Dow08', src: 'assets/img/poster.webp' });
   assert.equal(good.attrs.href, 'https://github.com/Dow08');
-  assert.equal(good.attrs.src, 'https://dow08.github.io/-Mon_Portfolio/assets/img/poster.webp');
+  assert.equal(good.attrs.src, 'https://dow08.github.io/Mon_Portfolio/assets/img/poster.webp');
 });
 
 test('les enfants chaîne deviennent des nœuds texte, jamais du HTML', () => {
