@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-10-23T12:58:52+00:00",
+  "generated_at": "2026-10-24T12:22:04+00:00",
   "source": {
     "name": "The Hacker News",
     "url": "https://thehackernews.com",
@@ -8,33 +8,33 @@
   },
   "articles": [
     {
-      "title": "PHP Warns of Another Unpatched RCE Two Days After Emergency PHP2Shell Patches",
-      "url": "https://thehackernews.com/2026/10/urgent-php-warns-of-another-unpatched.html",
-      "summary": "PHP has warned of another way an attacker could run code on a web server, two days after it shipped emergency fixes for the critical PHP2Shell flaws. The new issue, assigned CVE-2026-115560, affects only web applications configured in an unusual way, and PHP considers it an unlikely risk.The project is not issuing an emergency fix for it. Instead, it recommends turning off a feature called",
-      "title_fr": "PHP alerte sur une autre RCE non corrigée deux jours après les correctifs d'urgence PHP2Shell",
-      "summary_fr": "PHP a averti d'une nouvelle méthode permettant à un attaquant d'exécuter du code sur un serveur web, deux jours après avoir publié des correctifs d'urgence pour les failles critiques de PHP2Shell. Ce nouveau problème, identifié CVE-2026-115560, n'affecte que les applications web configurées de manière inhabituelle et PHP le considère comme un risque peu probable, sans qu'un correctif d'urgence ne soit prévu.",
-      "published": "Fri, 23 Oct 2026 16:55:43 +0530"
+      "title": "Brotli Decoder Flaw Behind Node.js RCE Also Affects Bun, Python and Other Widely Used Software",
+      "url": "https://thehackernews.com/2026/10/brotli-decoder-flaw-behind-nodejs-rce.html",
+      "summary": "A memory-corruption flaw in Google's Brotli decoder sits in many programs that unpack Brotli-compressed data, among them Bun, the Python Brotli and brotlicffi packages, and Envoy proxies set up to decompress Brotli. Tracked as CVE-2026-111497, the flaw allows crafted compressed data to overwrite past the end of a buffer and corrupt a program's memory, potentially",
+      "title_fr": "La faille du décodeur Brotli à l'origine de l'exécution de code à distance dans Node.js affecte également Bun, Python et d'autres logiciels largement utilisés",
+      "summary_fr": "Une faille de corruption de mémoire dans le décodeur Brotli de Google est présente dans de nombreux programmes qui décompressent des données Brotli, notamment Bun, les paquets Python Brotli et brotlicffi, ainsi que les proxys Envoy configurés pour décompresser Brotli. Suivie sous le nom de CVE-2026-111497, cette faille permet à des données compressées spécialement conçues d'écrire au-delà de la fin d'un tampon et de corrompre la mémoire d'un programme.",
+      "published": "Sat, 24 Oct 2026 16:39:29 +0530"
     },
     {
-      "title": "Russian-Linked Hackers Used New Mesh Network Backdoor in Destructive Ukraine Attack",
-      "url": "https://thehackernews.com/2026/10/russian-linked-hackers-used-new-mesh.html",
-      "summary": "The Russian state-sponsored hacking group Sandworm teamed up with another threat actor to carry out a destructive wiping attack targeting a Ukrainian logistics company last year. According to ESET, the attack involved UAC-0099 (aka Earth Sirrush) obtaining initial access to the target on July 16, 2025, via a spear-phishing email bearing a malware-laced attachment that led to the deployment of",
-      "title_fr": "Des hackers liés à la Russie ont utilisé une nouvelle porte dérobée de réseau maillé lors d'une attaque destructrice en Ukraine",
-      "summary_fr": "Le groupe de hackers parrainé par l'État russe Sandworm s'est associé à un autre acteur de la menace pour mener une attaque d'effacement destructrice ciblant une entreprise de logistique ukrainienne l'année dernière. Selon ESET, l'attaque a impliqué UAC-0099 (alias Earth Sirrush) obtenant un accès initial à la cible le 16 juillet 2025, via un e-mail de spear-phishing contenant une pièce jointe malveillante.",
-      "published": "Fri, 23 Oct 2026 16:41:23 +0530"
+      "title": "Leaked LiteLLM Master Key Let Attackers Steal GitHub Tokens and Hijack Release Pipeline",
+      "url": "https://thehackernews.com/2026/10/leaked-litellm-master-key-let-attackers.html",
+      "summary": "LiteLLM on Friday revealed that an Agent Platform master key accidentally published to a public GitHub repository in late May 2026 ultimately allowed the threat actor to push a malicious version of the popular Python package. \"On May 27, 2026, a configuration file was committed to the public LiteLLM-Labs/lite-harness repository which inadvertently contained the master key to a deployment of",
+      "title_fr": "Une clé maîtresse LiteLLM divulguée a permis aux attaquants de voler des jetons GitHub et de détourner le pipeline de publication",
+      "summary_fr": "LiteLLM a révélé vendredi qu'une clé maîtresse de la plateforme Agent, accidentellement publiée sur un dépôt GitHub public fin mai 2026, a finalement permis à l'acteur de la menace de pousser une version malveillante du populaire paquet Python. Le 27 mai 2026, un fichier de configuration contenant par inadvertance la clé maîtresse d'un déploiement a été commis dans le dépôt public LiteLLM-Labs/lite-harness.",
+      "published": "Sat, 24 Oct 2026 16:33:33 +0530"
     },
     {
-      "title": "Critical Flaw in Python’s Popular Pillow Image Library Allows Code Execution via a Crafted Image",
-      "url": "https://thehackernews.com/2026/10/critical-flaw-in-pythons-popular-pillow.html",
-      "summary": "Pillow, the most widely used image library for Python, can be made to run operating system commands on a server by specifying the name of a file it is told to open. The flaw, CVE-2026-112900, is in the way Pillow handles EPS images, which it opens by passing the file's name to Ghostscript, a separate program it runs to turn the image into pixels, without checking the name first.",
-      "title_fr": "Une faille critique dans la populaire bibliothèque d'images Python Pillow permet l'exécution de code via une image spécialement conçue",
-      "summary_fr": "Pillow, la bibliothèque d'images la plus utilisée pour Python, peut être forcée d'exécuter des commandes du système d'exploitation sur un serveur en spécifiant le nom d'un fichier qu'elle est censée ouvrir. La faille, CVE-2026-112900, réside dans la manière dont Pillow gère les images EPS, qu'elle ouvre en transmettant le nom du fichier à Ghostscript, un programme distinct qu'elle exécute pour transformer l'image en pixels, sans vérifier le nom au préalable.",
-      "published": "Fri, 23 Oct 2026 15:06:00 +0530"
+      "title": "Google Says Gmail and Photos Data Shared With AI Search Could Be Used for Targeted Ads",
+      "url": "https://thehackernews.com/2026/10/google-says-gmail-and-photos-data.html",
+      "summary": "Google has updated its privacy policy to spell out that using personalized artificial intelligence (AI) features in Search or Gemini could allow the company to serve targeted ads to users based on their activity on other connected Google services. \"You may choose to allow certain Google services, including services like Search or Gemini Apps, to access data from other Google services you use,",
+      "title_fr": "Google déclare que les données Gmail et Photos partagées avec la recherche IA pourraient être utilisées pour des publicités ciblées",
+      "summary_fr": "Google a mis à jour sa politique de confidentialité pour préciser que l'utilisation des fonctionnalités d'intelligence artificielle (IA) personnalisées dans Search ou Gemini pourrait permettre à l'entreprise de diffuser des publicités ciblées aux utilisateurs en fonction de leur activité sur d'autres services Google connectés. Vous pouvez choisir d'autoriser certains services Google, y compris des services comme Search ou les applications Gemini, à accéder aux données d'autres services Google que vous utilisez.",
+      "published": "Sat, 24 Oct 2026 16:06:33 +0530"
     }
   ],
-  "script": "Bonjour et bienvenue à votre Flash Info Cyber. Aujourd'hui, nous faisons le point sur les dernières menaces qui pèsent sur nos systèmes. Restez à l'écoute. Deux jours seulement après avoir corrigé des failles urgentes, PHP a lancé une nouvelle alerte. Une méthode permettrait l'exécution de code à distance sur des serveurs web. Bien que ce risque soit jugé peu probable par PHP, car il concerne des configurations inhabituelles, la vigilance reste de mise. Pas de correctif immédiat n'est prévu pour l'instant. En Ukraine, un groupe de hackers lié à la Russie, Sandworm, en collaboration avec un autre acteur malveillant, a mené une attaque destructrice l'année dernière. Ils ont utilisé une nouvelle porte dérobée de réseau maillé pour cibler une entreprise de logistique, suite à un hameçonnage par courriel. Enfin, une vulnérabilité critique a été découverte dans Pillow, la bibliothèque d'images la plus populaire pour Python. Cette faille permet l'exécution de code sur un serveur via une image spécialement conçue. Elle exploite la manière dont Pillow traite les images EPS, en transmettant des noms de fichiers à un programme externe sans vérification préalable. Restez vigilants.",
+  "script": "Bonjour et bienvenue dans votre Flash Info Cyber. Restez connectés pour les dernières alertes. Premièrement, une vulnérabilité majeure a été découverte dans le décodeur Brotli de Google. Cette faille de corruption de mémoire, connue sous la référence CVE-2026-111497, est présente dans de nombreux logiciels comme Node.js, Bun ou Python. Elle permet à des données compressées malveillantes d'exécuter du code à distance, compromettant ainsi la sécurité des systèmes qui traitent ces données. Soyez donc particulièrement vigilants avec les mises à jour. Ensuite, le projet LiteLLM a été victime d'une cyberattaque suite à la divulgation accidentelle d'une clé maîtresse. Cette clé, publiée par erreur sur un dépôt GitHub public, a permis à des acteurs malveillants de prendre le contrôle du pipeline de publication et de diffuser une version compromise de leur populaire paquet Python. Cet incident souligne l'importance capitale de la gestion sécurisée des identifiants et des accès dans le développement logiciel. Enfin, Google a mis à jour sa politique de confidentialité, précisant que l'utilisation de ses fonctionnalités d'intelligence artificielle personnalisées, que ce soit dans Search ou Gemini, pourrait conduire à des publicités ciblées. Ces publicités seraient basées sur l'activité des utilisateurs sur d'autres services Google connectés. Il est donc recommandé de vérifier vos paramètres de confidentialité si vous utilisez ces outils d'IA. Restez vigilants.",
   "audio_file": "audio/latest_briefing.mp3",
-  "audio_bytes": 562573,
+  "audio_bytes": 699663,
   "ai_providers": {
     "translation": "gemini:gemini-2.5-flash",
     "script": "gemini:gemini-2.5-flash"
